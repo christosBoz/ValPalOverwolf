@@ -1,0 +1,739 @@
+
+/* CSS Reset */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+
+
+/* Style for each agent image */
+.agent-image {
+    background: transparent; /* Grey background behind each image */
+    margin: 0;
+    padding: 0;
+    /* margin-bottom: 10%;  */
+    object-fit: cover;
+    width: 3.8vw;
+    
+    border: .15vw;
+    border-style: solid;
+    border-color: white;
+    display: block;
+    
+    
+  }
+  
+  .col-lg-3 {
+    padding: 0px;
+  }
+  
+  #agentsGrid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 0;
+    width: fit-content;
+    height: auto;
+    column-gap: .5vh;
+    row-gap: .5vh;
+    margin-top: 2%;
+    
+  }
+  .agent-box{
+    width:fit-content;
+    display:flex;
+    flex-direction: column;
+  }
+  .loadout-grid{
+    flex: 0 0 20%;  /* Adjust the width as needed */
+    display: flex;
+  
+    position: absolute;
+  }
+  .agent-side {
+    margin-left: 1%;
+    margin-right: 4%;
+    display: flex;
+    width:fit-content;
+    padding-top: 1%
+  }
+  .row{
+    row-gap: 1%;
+    
+  }
+  #not-agents{
+    margin-left: 2%;
+  }
+  
+  .main{
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  #root {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  #root {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  body {
+    margin: 0;
+    display: flex;
+    min-width: 320px;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .backgroundContainer {
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    z-index: -1;
+    overflow: hidden;
+    position: fixed;
+  }
+  .inventory {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    width: 100%;
+    height: 100%;
+    padding-top: 1%;
+    
+  }
+  .p-0{
+    width: fit-content;
+    cursor: pointer;
+    
+  }
+  
+  .green-border {
+    border-color: red; /* Adjust border width and color as needed */
+  }
+  
+  .p-0 img:hover{
+    border-color: red;
+  }
+  
+  
+  .ValPal{
+    text-align: center;
+    background-color: white;
+    height: 9.5%;
+    -webkit-app-region:drag;
+  
+  } 
+  
+  .weaponimage{
+    z-index: 2;
+    max-width: 90%;
+    max-height: 90%;
+    transition: .2s;
+  }
+  
+  .weapon-overlay img{
+     position: absolute;
+     z-index: auto;
+  }
+  
+  .invCategoryName{
+    color: white;
+  }
+  
+  .weapon-image-container {
+    position: relative;
+    width: 57vh; /* Set the width of your container */
+    margin-right: -32.3vh;
+    margin-bottom: -1.5vh;
+  
+  }
+  
+  
+  
+  .inventory .invCol {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .invCategoryName {
+    font-weight: 900; /* Style for category names */
+    font-size: 1.5vw;
+    padding-bottom: 3%;
+  }
+  .invCategory {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    height: fit-content;
+    
+  
+  }
+  .sprayDirectionTop, .sprayDirectionRight, .sprayDirectionBottom, .sprayDirectionLeft {
+    position: absolute;
+    opacity: 0;
+    top: -10%;
+    height: 28.5vh;
+    transition: .1s;
+  }
+  .sprayDirectionRight {
+    transform: rotate(90deg);
+  }
+  .sprayDirectionLeft {
+    transform: rotate(270deg);
+  }
+  .sprayDirectionBottom {
+    transform: rotate(180deg);
+  }
+  .sprayDirectionTopButton:hover+.sprayDirectionTop,.sprayDirectionRightButton:hover+.sprayDirectionRight,.sprayDirectionBottomButton:hover+.sprayDirectionBottom,.sprayDirectionLeftButton:hover+.sprayDirectionLeft {
+    opacity: 1!important
+  }
+  .sprayItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .invItemSpray .invCategoryName{
+    
+    margin-bottom: -5vh;
+  }
+  .sprayDirectionTopButton, .sprayDirectionRightButton, .sprayDirectionBottomButton, .sprayDirectionLeftButton {
+    position: absolute;
+  }
+  .sprayDirectionTopButton {
+    z-index: 5;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: -5%;
+    height: 35%;
+    width: 55%;
+  }
+  .sprayDirectionRightButton {
+    z-index: 5;
+    height: 35%;
+    width: 55%;
+    right: 3%;
+    top: -18%;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .sprayDirectionBottomButton {
+    z-index: 5;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 10%;
+    height: 35%;
+    width: 55%;
+  }
+  .sprayDirectionLeftButton {
+    z-index: 5;
+    height: 35%;
+    width: 55%;
+    left: 4%;
+    top: -18%; 
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  
+  .invItem {
+    position: relative;
+    width: 100%;
+    height: 12.2vh;
+    background-color: #ffffff1a;
+    border: .074vw solid rgba(255, 255, 255, .2);
+    transition: all .2s;
+  }
+  .invItem, .invItemCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .invItemSpray {
+    background-color: transparent;
+    border: 0px;
+    /* margin-top: 13%; */
+    height: fit-content;
+  }
+  .inventory .invLastCol .invCategory {
+    align-items: center;
+    position: relative;
+  }
+  /* .sprayItem:nth-child(2) .sprayImage, .sprayItem:nth-child(6) .sprayImage {
+    height: 65%;
+    width: auto;
+  } */
+  
+  .sprayDirectionTopButton .sprayImage{
+    height: 51%;
+    width: auto;
+    margin-top: 16%;
+  }
+  .sprayDirectionRightButton .sprayImage{
+    margin-top: 11%;
+    height: 50%;
+    width: auto;
+    margin-left: 18%;
+  }
+  .sprayDirectionLeftButton .sprayImage{
+    margin-top: 11%;
+    height: 50%;
+    width: auto;
+    margin-right: 20%;
+  }
+  .sprayDirectionBottomButton .sprayImage{
+    height: 51%;
+    width: auto;
+    margin-bottom: 4.8%;
+  }
+  .inventory .invCol .invCategory .invItem:hover {
+    border: 1px solid #60eacf
+  }
+  
+  .inventory .invCol .invCategory .invItem:hover .weaponImage {
+    filter: drop-shadow(0px 6px 1px rgba(0,0,0,.3))
+  }
+  
+  .inventory .invCol .invCategory .invItem:hover:before {
+    opacity: .4
+  }
+  
+  .inventory .invCol .invCategory .invItem:hover:after {
+    border-color: transparent transparent transparent #60eacf
+  }
+  
+  
+  
+  .inventory .invCol .invCategory .invItem:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to bottom,#0000 50%,#60eacf);
+      opacity: 0;
+      transition: all .2s;
+  }
+  .inventory .invCol .invCategory .invItem:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 2.23vw 2.23vw;
+    border-color: transparent transparent transparent rgba(255,255,255,.2);
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: all .2s;
+  }
+  .inventory .invLastCol {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .cardImage {
+    margin-bottom: .5%;
+    align-self: center;
+    width: 10vw;
+    -webkit-mask-image: -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,1)),to(rgba(255,255,255,.08)));
+  }
+  
+  
+  .sprayWheel {
+    margin-top: -10%;
+    width: fit-content;
+    aspect-ratio: 1;
+    height: 29vh;
+  }
+  
+  img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+  }
+  .weapon-overlay{
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    width: 100%; /* Ensure the overlay covers the entire image */
+    height: 100%; /* Ensure the overlay covers the entire image */
+    
+    pointer-events: none; /* Allows clicks to fall through to the underlying image */
+  }
+  .weapon-overlay img {
+    position: absolute;  /* Position on top of weapon image */
+    place-content: center;
+    display: block;
+    width: 24%; /* Ensure the overlay covers the entire image */
+    
+    
+  }
+  /* Pistol css: */
+  [weapon="Classic"] img {
+    max-height: 75% !important;
+    
+    
+  }
+  
+  [weapon="Shorty"] img{
+    max-width: 78% !important;
+  }
+  [weapon="Frenzy"] img{
+    max-height: 78% !important;
+  }
+  [weapon="Ghost"] img{
+    max-width: 78% !important;
+  }
+  [weapon="Shriff"] img{
+    max-height: 72% !important;
+  }
+  
+  
+  /* Smg css: */
+  [weapon="Stinger"] img{
+    max-width: 80% !important;
+  }[weapon="Spectre"] img{
+    max-width: 80% !important;
+  }
+  /* Shotgun css: */
+  [weapon="Bucky"] img{
+    
+  }
+  [weapon="Judge"] img{
+    max-width: 95% !important;
+  }
+  
+  
+  /* Rifle css: */
+  [weapon="Bulldog"] img{
+    max-width: 93% !important;
+    
+  }
+  [weapon="Guardian"] img{
+    max-width: 93% !important;
+  }
+  [weapon="Phantom"] img{
+    max-width: 88% !important;  
+  }
+  [weapon="Vandal"] img{
+    max-width: 88% !important;
+  }
+  /* Melee css: */
+  [weapon="Melee"] img{
+    max-height: 74% !important;
+    
+  }
+  /* Sniper css: */
+  [weapon="Marshal"] img{
+    max-width: 94% !important;
+  }
+  [weapon="Outlaw"] img {
+    max-width: 93%!important;
+  }
+  [weapon="Operator"] img {
+      max-width: 95%!important;
+  }
+  /* Machine Gun css: */
+  [weapon="Ares"] img{
+    max-width: 100% !important;
+  }
+  [weapon="Odin"] img{
+    max-width: 100% !important;
+  }
+  
+  .weaponName {
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    font-weight: 400;
+    color: #d6d6d6;
+    z-index: 4;
+    font-size: 1vw !important;
+  }
+  .weaponholder {
+    /* max-width: 200px; Limit width of weapon images */
+    /* height: auto; Maintain aspect ratio */
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+  
+    
+  }
+  .buddyimage {
+    position: absolute;
+    height: 35%;
+    width: auto;
+    left: 5%;
+    bottom: 20%;
+  }
+  
+  .agentImage{
+    height: 78.6%;
+    z-index: 5;
+    /* position: absolute; */
+    left: 35%;
+    background-color: #60eacf;
+  }
+  
+  .loadingCard{
+    align-self: center;
+    height: 4%;
+    display:flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    width: fit-content;
+    height: 8.2vh;
+    position: relative;
+  
+  }
+  .cardImageWide {
+    height: 78.6%;
+    align-self: top;
+  
+    -webkit-mask-image: -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,1)),to(rgba(255,255,255,.08)));
+  }
+  #playercards{
+    width: 50%
+  }
+  .bottomline{
+    background-color: black;
+    align-self: baseline;
+    bottom: 0;
+    height: 21%;
+    position: absolute;
+    width: 100%;
+    opacity: .8;
+  }
+  .username{
+    color: white;
+    position: absolute;
+    font-size: .8vw !important;
+    margin: 0;
+    top: 5%;
+  }
+  .agentname{
+    color: white;
+    position: relative;
+    right: -45%;
+    font-size: 0.45vw !important;
+    margin: 0;
+    top: 25%;
+  }
+  
+  .loadoutbuttons{
+    height: auto;
+    align-content: center;
+    display: flex;
+    flex-direction: column ;
+    width: 100%;
+    position: relative;
+  }
+  .loadoutbutton{
+    max-width: 100%;
+    /* margin-left: -8%; */
+    margin-top: 5%;
+    object-fit: contain;
+    position: absolute;
+  
+  }
+  
+  #loadLoadoutButton{
+    margin-top: 5%;
+    cursor: pointer;
+  
+  }
+  #loadLoadoutButton:hover{
+   content: url("https://imgur.com/tVP7NV4.png")
+  }
+  #saveLoadoutButton:hover{
+    content: url("https://imgur.com/3E8mLOK.png");
+  }
+  
+  #saveLoadoutButton{
+    margin-top: 35%;
+    cursor: pointer;
+  }
+  .skinPickerContainer {
+    display: none;
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+  }
+  .skinPickerBg {
+    height: 100%;
+    width: 100%;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+  }
+  .skinPicker {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #000000e6;
+    margin: auto;
+    height: 67%;
+    width: 30%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+  }
+  .skinPickerNav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .skinPickerNavButtons {
+    width: 70%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+    position: relative;
+  }
+  .skinPickerNavButton {
+    width: 50%;
+    cursor: pointer;
+  }
+  .skinPickerNavButton div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    color: white;
+  }
+  .skinPickerNavButtons .skinPickerNavLine {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 10px #f5f5f578;
+    transition: .2s;
+  }
+  .skinOptions {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+  }
+  .skinPreview {
+    background-color: #ffffff1a;
+    height: 100%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    gap: 3%;
+  }
+  .skinPickerPreview {
+    width: 100%;
+    min-height: 30%;
+    max-height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+  }
+  .gunbuddyPreview {
+    background-color: #ffffff1a;
+    width: 95%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .chromasPreview {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+  
+  .skinPickerOptions {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .skinPickerFilters {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+  }
+  .skinPickerSearch {
+    text-align: start;
+    width: 45%;
+    height: fit-content;
+  }
+  .skinPickerSearch input {
+    margin: 0;
+    background-color: #ffffff1a;
+    border: 0;
+    height: 33px;
+    width: 90%;
+    border-radius: 15px;
+    position: relative;
+    padding-left: 3%;
+    font-size: 20px;
+  }
+  .skinPickerSkins {
+    width: 100%;
+    overflow-y: scroll;
+    padding-right: 5px;
+    flex-grow: 1;
+  }
+  .skinPickerBg {
+    height: 100%;
+    width: 100%;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+  }
+  .chooseButton {
+    height: 30px;
+    line-height: 30px;
+    font-size: 17px;
+    width: 60%;
+    background-color: white;
+    border-radius: 15px;
+    margin-left: auto;
+    cursor: pointer;
+  }
