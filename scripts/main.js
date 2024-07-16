@@ -4,7 +4,6 @@ let activeAgentName = '';
 let userid = '';
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log(dataBuffer);
     fetch('http://127.0.0.1:5000/get-userid')
         .then(response => {
             if (!response.ok) {
@@ -29,9 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateAgentLoadout(agentName, image) {
         activeAgentName = agentName; // Update active agent's name
         const localStorageKey = `${userid}_${agentName}_loadout`;
-        console.log(localStorageKey)
         const agentLoadoutData = localStorage.getItem(localStorageKey);
-        console.log(agentLoadoutData)
 
         if (agentLoadoutData) {
             try {
@@ -177,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to render weapons data (assuming it's defined elsewhere)
     function renderWeaponsData(data) {
-        console.log(dataBuffer);
         const guns = Array.isArray(data.Guns) ? data.Guns : [];
         console.log(guns);
         const weaponCategories = document.querySelectorAll('.invCategory');
@@ -193,10 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (gun) {
                     const displayIconUrl = gun.displayIcon; // Assuming displayIcon is the property in your JSON
                     const weaponImage = item.querySelector('.weaponimage');
+                    console.log(gun)
                     var buddyid = gun.CharmID;
+                    
+                    var skinid = gun.ChromaID
     
                     const buddyImage = item.querySelector('.buddyimage')
-    
+                    item.setAttribute('data-skinID', skinid);
+
                     if (weaponImage) {
                         weaponImage.onload = function() {
                             // Once weaponImage is loaded, then check and update buddyImage if needed
@@ -250,5 +250,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-    console.log(dataBuffer)
+// Add event listener to each 'div' element with a 'weapon' attribute
+document.querySelectorAll('.invItem').forEach(item => {
+    item.addEventListener('click', function(event) {
+        var weaponId = item.getAttribute('data-weaponID').toUpperCase()
+        var topSkinId = item.getAttribute('data-skinID').toUpperCase()
+        console.log(topSkinId)
+        console.log(weaponId)
+      event.stopPropagation(); // Prevents the event from bubbling up to parent elements
+      const skinPickerContainer = document.querySelector('.skinPickerContainer');
+      if (skinPickerContainer.style.display === 'none') {
+        skinPickerContainer.style.display = 'unset';
+      } else {
+        skinPickerContainer.style.display = 'none';
+      }
+      const inventory = localStorage.getItem(`${userid}_inventory`);
+      console.log(inventory)
+        if (inventory) {
+            console.log(userid);
+            try {
+                const inventoryData = JSON.parse(inventory);
+                console.log('Original Inventory:', inventoryData);
+
+                // Assuming inventoryData is an array of items and each item has a type property
+                const weaponsOnly = inventoryData.Weapons
+                console.log('Filtered Weapons:', weaponsOnly);
+
+                const weapon = weaponsOnly.filter(weapon => weapon.Weaponid === weaponId);
+                console.log('Filtered Weapon:', weapon);
+            
+                weapon.forEach(weapon => {
+                    weapon.Chromas.forEach(chroma => {
+                        console.log(chroma.id)
+                        if (chroma.id === topSkinId){
+                            const topWeaponImage = document.querySelector('.topWeapon');
+                            topWeaponImage.src = chroma.displayIcon
+
+                        }
+                    })
+                })
+
+                
+            } catch (error) {
+                console.error('Error parsing inventory data:', error);
+            }
+        } else {
+            console.log('No inventory data found in local storage.');
+        }
+      
+      
+    });
+  });
+
+  document.querySelector('.closeWindow').addEventListener('click', function() {
+    const skinPickerContainer = document.querySelector('.skinPickerContainer');
+    skinPickerContainer.style.display = 'none';
+  });
+  
+  
+    // console.log(dataBuffer)
 });

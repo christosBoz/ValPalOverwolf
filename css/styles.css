@@ -589,8 +589,8 @@
     gap: 20px;
     background-color: #000000e6;
     margin: auto;
-    height: 67%;
-    width: 30%;
+    height: 70%;
+    width: 70%;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -650,7 +650,7 @@
   .skinPreview {
     background-color: #ffffff1a;
     height: 100%;
-    width: 75%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -747,3 +747,91 @@
   #refreshButton:hover {
     background-color: #60eacf;
   }
+
+  .skinPickerClose {
+    color: white;
+    display: flex;
+    position: absolute;
+    left: 1vh;
+    top: 1vh;
+}
+
+
+.skinPickerClose .closeWindow{
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.closeWindow{
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+
+.closeWindow:hover{
+  cursor: pointer;
+}
+
+.skinGrid{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0;
+  width: fit-content;
+  height: auto;
+  margin-top: 2%;
+  column-gap: 1vw;
+}
+
+.weapon-skin{
+  display: flex;                   /* Use Flexbox to center the image */
+    justify-content: center;         /* Center horizontally */
+    align-items: center;             /* Center vertically */
+    background-color: #ffffff1a;      /* Background color (customize as needed) */
+    padding: 20px;                   /* Add space around the image */
+    border-radius: 8px;              /* Optional: rounded corners */
+    width: fit-content;              /* Adjust width based on content */
+    margin: auto;  
+    height: 80%;
+    position: relative;
+    border: 2px solid transparent; /* Set border initially as transparent */
+}
+
+.weapon-skin img{
+  width: 100%;
+}
+
+.skinPicker .skinPickerSkins .weapon-skin:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, #0000 50%, #60eacf);
+  opacity: 0;
+  transition: all .2s;
+}
+
+.weapon-skin:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 4vw 4vw; /* Increase values for a bigger triangle */
+  border-color: transparent transparent transparent rgba(255, 255, 255, .2); /* Triangle color */
+  left: 0; /* Position in the top-left corner */
+  top: 0;  /* Position in the top-left corner */
+  position: absolute; /* Positioning relative to weapon-skin */
+  transition: all .2s; /* Transition for smooth effects */
+}
+
+.weapon-skin:hover{
+  border: 2px solid white;
+  cursor: pointer;
+}
