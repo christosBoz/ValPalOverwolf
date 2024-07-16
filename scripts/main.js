@@ -132,34 +132,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateAgentLoadout(data[0].displayName, data[0].displayIcon_small);
             }
 
-            // Event listener for saving the loadout data
-            document.getElementById('saveLoadoutButton').addEventListener('click', () => {
-                if (activeAgentName) {
-                    console.log("saving")
-                    console.log(dataBuffer)
-                    localStorage.setItem(`${userid}_${activeAgentName}_loadout`, dataBuffer);
-                    alert(`Loadout for ${activeAgentName} saved successfully!`);
-                } else {
-                    alert('No active agent selected.');
-                }
-            });
-
-            // Event listener for fetching the loadout data
-            document.getElementById('loadLoadoutButton').addEventListener('click', () => {
-                fetch('http://127.0.0.1:5000/import_loadout')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log("importing..")
-                        dataBuffer += JSON.stringify(data); // Append fetched data to dataBuffer
-                        console.log(dataBuffer);
-                        renderWeaponsData(data); // Render updated data
-                    })
-                    .catch(error => console.error('Error fetching loadout:', error));
-            });
+            
         })
         .catch(error => {
             console.error('Error fetching agents data:', error);
         });
+
+        document.getElementById('saveLoadoutButton').addEventListener('click', () => {
+            if (activeAgentName) {
+                console.log("saving")
+                console.log(dataBuffer)
+                localStorage.setItem(`${userid}_${activeAgentName}_loadout`, dataBuffer);
+                alert(`Loadout for ${activeAgentName} saved successfully!`);
+            } else {
+                alert('No active agent selected.');
+            }
+        });
+
+        // Event listener for fetching the loadout data
+        document.getElementById('loadLoadoutButton').addEventListener('click', () => {
+            fetch('http://127.0.0.1:5000/import_loadout')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("importing..")
+                    dataBuffer += JSON.stringify(data); // Append fetched data to dataBuffer
+                    console.log(dataBuffer);
+                    renderWeaponsData(data); // Render updated data
+                })
+                .catch(error => console.error('Error fetching loadout:', error));
+        });
+
+
+        document.getElementById('refreshButton').addEventListener('click', () => {
+            fetch('http://127.0.0.1:5000/refresh_inventory')
+                .then(response => response.text())
+                .then(data => {
+                    localStorage.setItem(`${userid}_inventory`, data);
+                })
+                .catch(error => console.error('Error fetching loadout:', error));
+        });
+        
 
 
 

@@ -737,3 +737,13 @@
     margin-left: auto;
     cursor: pointer;
   }
+
+  #refreshButton {
+    margin-top: 70%;
+    cursor: pointer;
+    width:  100%; 
+    background-color: white;
+  }
+  #refreshButton:hover {
+    background-color: #60eacf;
+  }
