@@ -835,3 +835,8 @@
   border: 2px solid white;
   cursor: pointer;
 }
+
+.chromaPreview{
+  display: grid;
+  position: absolute;
+}

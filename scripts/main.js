@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeAgentName) {
                 console.log("saving")
                 console.log(dataBuffer)
+                
                 localStorage.setItem(`${userid}_${activeAgentName}_loadout`, dataBuffer);
                 alert(`Loadout for ${activeAgentName} saved successfully!`);
             } else {
@@ -253,8 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add event listener to each 'div' element with a 'weapon' attribute
 document.querySelectorAll('.invItem').forEach(item => {
     item.addEventListener('click', function(event) {
+        console.log(item)
+        const weaponImage = item.querySelector('.weaponimage');
+        topWeapon = document.querySelector('.topWeapon')
+        topWeapon.src = weaponImage.src
+        let selectedData = ""
         var weaponId = item.getAttribute('data-weaponID').toUpperCase()
         var topSkinId = item.getAttribute('data-skinID').toUpperCase()
+        const skinGrid = document.querySelector('.skinGrid');
         console.log(topSkinId)
         console.log(weaponId)
       event.stopPropagation(); // Prevents the event from bubbling up to parent elements
@@ -278,17 +285,44 @@ document.querySelectorAll('.invItem').forEach(item => {
 
                 const weapon = weaponsOnly.filter(weapon => weapon.Weaponid === weaponId);
                 console.log('Filtered Weapon:', weapon);
-            
-                weapon.forEach(weapon => {
-                    weapon.Chromas.forEach(chroma => {
-                        console.log(chroma.id)
-                        if (chroma.id === topSkinId){
-                            const topWeaponImage = document.querySelector('.topWeapon');
-                            topWeaponImage.src = chroma.displayIcon
 
-                        }
-                    })
-                })
+
+                skinGrid.innerHTML = '';
+                weapon.forEach(w => {
+                    // Check if Chromas array exists and has at least one element
+                    if (w.Chromas && w.Chromas.length > 0) {
+                        const firstChroma = w.Chromas[0];
+                        const firstDisplayIcon = firstChroma.displayIcon;
+                
+                        // Create a div for the weapon skin
+                        const weaponDiv = document.createElement('div');
+                        weaponDiv.classList.add('weapon-skin'); // Add a class for styling if needed
+                
+                        // Create an img element for the skin
+                        const skinImage = document.createElement('img');
+                        skinImage.src = firstDisplayIcon; // Set the src to the first displayIcon
+                        skinImage.alt = w.Name; // Optionally set alt text
+                        
+                        weaponDiv.appendChild(skinImage);
+                        // Add event listener to update topWeapon image on click
+                        weaponDiv.addEventListener('click', () => {
+                            const topWeaponImage = document.querySelector('.topWeapon');
+                            topWeaponImage.src = skinImage.src;
+                            
+                            selectedData = w
+                            console.log(selectedData)
+                        });
+
+
+                
+                        // Append the weapon div to the skinGrid
+                        skinGrid.appendChild(weaponDiv);
+
+
+                    }
+                });
+
+
 
                 
             } catch (error) {
