@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const filteredAgents = agentsData.filter(agent => agent.id !== 'DED3520F-4264-BFED-162D-B080E2ABCCF9');
         filteredAgents.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
+        // refresh inventory
+
+
         // Initialize agent grid
         const agentsGrid = document.getElementById('agentsGrid');
         const fragment = document.createDocumentFragment();
@@ -147,6 +150,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
+                console.log("penis");
             } catch (error) {
                 console.error('Error refreshing inventory:', error);
             }
@@ -269,6 +273,8 @@ function renderWeaponsData(data) {
 
 function weapon_popup(weaponId, topSkinId) {
     
+    console.log(weaponId)
+    console.log(topSkinId)
     const skinGrid = document.querySelector('.skinGrid');
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
@@ -296,7 +302,7 @@ function weapon_popup(weaponId, topSkinId) {
     activeChroma = activeItem.getAttribute("data-activeChromaID");
 >>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
     renderTopWeapon(topWeaponData)
-
+    console.log(topWeaponData)
     // Hide skinGrid initially
     skinGrid.style.visibility = 'hidden';
     
