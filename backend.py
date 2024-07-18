@@ -98,7 +98,8 @@ def get_weapons():
 
     # Add default "Standard" skins for each weapon
     for weapon_skin in weapon_skins_data:
-        if weapon_skin["name"].startswith("Standard"):
+
+        if weapon_skin["name"].startswith("Standard") or weapon_skin["name"].startswith("Random"):
             print(weapon_skin)
             weapon_id = weapon_skin["weaponId"]
             default_chroma = weapon_skin["chromas"][0]
@@ -113,7 +114,9 @@ def get_weapons():
                 }
             updated_weapons.append(updated_item)
             
-            
+
+        
+
 
 
 

@@ -590,13 +590,13 @@ img {
   background-color: #000000e6;
   margin: auto;
   height: 70%;
-  width: 70%;
+  width: 50%;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  border-radius: 15px;
+  border-radius: 8px;
   box-sizing: border-box;
   padding-left: 1%;
   padding-right: 1%;

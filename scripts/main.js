@@ -317,6 +317,8 @@ function weapon_popup(weaponId, topSkinId) {
                 // Add event listener to update topWeapon image on click
                 weaponDiv.addEventListener('click', () => {
                     activeSkin = w
+                    activeChroma = w.Chromas[0].id;
+
                     renderTopWeapon(w);
                 });
 
@@ -341,8 +343,8 @@ function renderTopWeapon(data){
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
     console.log(data);
-    console.log(data.Chromas[0]);
-    chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+    // console.log(data.Chromas[0]);
+    // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
     console.log(activeSkin);
     const topweaponimg = data.Chromas.find(chroma=>chroma.id===activeChroma);
     console.log(topweaponimg);
