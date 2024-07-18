@@ -291,6 +291,10 @@ function weapon_popup(weaponId, topSkinId) {
 
     const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
     activeSkin = topWeaponData
+<<<<<<< HEAD
+=======
+    activeChroma = activeItem.getAttribute("data-activeChromaID");
+>>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
     renderTopWeapon(topWeaponData)
 
     // Hide skinGrid initially
@@ -316,6 +320,11 @@ function weapon_popup(weaponId, topSkinId) {
                 // Add event listener to update topWeapon image on click
                 weaponDiv.addEventListener('click', () => {
                     activeSkin = w
+<<<<<<< HEAD
+=======
+                    activeChroma = w.Chromas[0].id;
+
+>>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
                     renderTopWeapon(w);
                 });
 
@@ -340,7 +349,17 @@ function renderTopWeapon(data){
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
     console.log(data);
+<<<<<<< HEAD
     topWeapon.src = data.Chromas[0].displayIcon;
+=======
+    // console.log(data.Chromas[0]);
+    // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+    console.log(activeSkin);
+    const topweaponimg = data.Chromas.find(chroma=>chroma.id===activeChroma);
+    console.log(topweaponimg);
+    console.log(topweaponimg.displayIcon);
+    topWeapon.src = topweaponimg.displayIcon;
+>>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
     console.log(activeChroma);
     chromaPreview.innerHTML = '';           
   
@@ -481,4 +500,8 @@ function renderTopWeapon(data){
 //     }
   
   
+<<<<<<< HEAD
 // });
+=======
+// });
+>>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38

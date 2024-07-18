@@ -96,28 +96,7 @@ def get_weapons():
             
             updated_weapons.append(updated_item)
 
-    # Add default "Standard" skins for each weapon
-    for weapon_skin in weapon_skins_data:
-        if weapon_skin["name"].startswith("Standard"):
-            print(weapon_skin)
-            weapon_id = weapon_skin["weaponId"]
-            default_chroma = weapon_skin["chromas"][0]
-
-            # Check if the weapon already exists in updated_weapons
-            updated_item = {
-                    "ItemID": weapon_skin["id"],
-                    "OfferID": None,
-                    "Weaponid": weapon_id,
-                    "Name": weapon_skin["name"],
-                    "Chromas": [default_chroma],
-                }
-            updated_weapons.append(updated_item)
-            
-            
-
-
-
-    # Sort updated_weapons by Weaponid
+    # Sort updated_entitlements by Weaponid
     updated_weapons_sorted = sorted(updated_weapons, key=lambda x: x["Weaponid"])
     
     return updated_weapons_sorted
