@@ -840,3 +840,41 @@
   display: grid;
   position: absolute;
 }
+
+.chroma1 {
+  position: absolute;
+  left: 22vw;
+  bottom: 0.6vw;
+}
+.chroma1image{
+  width: 3vw;
+}
+
+.chroma2 {
+  position: absolute;
+  left: 26vw;
+  bottom: .6vw;
+}
+.chroma2image{
+  width: 3vw;
+}
+
+
+.chroma3 {
+  position: absolute;
+  left: 22vw;
+  bottom: -3.4vw;
+}
+.chroma3image{
+  width: 3vw;
+}
+
+
+.chroma4 {
+  position: absolute;
+  left: 26vw;
+  bottom: -3.4vw;
+}
+.chroma4image{
+  width: 3vw;
+}
