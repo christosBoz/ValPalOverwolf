@@ -96,9 +96,6 @@ def get_weapons():
 
             updated_weapons.append(updated_item)
 
-<<<<<<< HEAD
-    # Sort updated_entitlements by Weaponid
-=======
     # Add default "Standard" skins for each weapon
     for weapon_skin in weapon_skins_data:
 
@@ -122,7 +119,6 @@ def get_weapons():
 
 
     # Sort updated_weapons by Weaponid
->>>>>>> 27ef95351598a222656257d6e7e5ca0a6cf0c97a
     updated_weapons_sorted = sorted(updated_weapons, key=lambda x: x["Weaponid"])
 
     return updated_weapons_sorted

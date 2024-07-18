@@ -25,9 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const filteredAgents = agentsData.filter(agent => agent.id !== 'DED3520F-4264-BFED-162D-B080E2ABCCF9');
         filteredAgents.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
-        // refresh inventory
-
-
         // Initialize agent grid
         const agentsGrid = document.getElementById('agentsGrid');
         const fragment = document.createDocumentFragment();
@@ -150,7 +147,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
-                console.log("penis");
             } catch (error) {
                 console.error('Error refreshing inventory:', error);
             }
@@ -273,8 +269,6 @@ function renderWeaponsData(data) {
 
 function weapon_popup(weaponId, topSkinId) {
     
-    console.log(weaponId)
-    console.log(topSkinId)
     const skinGrid = document.querySelector('.skinGrid');
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
@@ -297,12 +291,9 @@ function weapon_popup(weaponId, topSkinId) {
 
     const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
     activeSkin = topWeaponData
-<<<<<<< HEAD
-=======
     activeChroma = activeItem.getAttribute("data-activeChromaID");
->>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
     renderTopWeapon(topWeaponData)
-    console.log(topWeaponData)
+
     // Hide skinGrid initially
     skinGrid.style.visibility = 'hidden';
     
@@ -326,11 +317,8 @@ function weapon_popup(weaponId, topSkinId) {
                 // Add event listener to update topWeapon image on click
                 weaponDiv.addEventListener('click', () => {
                     activeSkin = w
-<<<<<<< HEAD
-=======
                     activeChroma = w.Chromas[0].id;
 
->>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
                     renderTopWeapon(w);
                 });
 
@@ -355,9 +343,6 @@ function renderTopWeapon(data){
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
     console.log(data);
-<<<<<<< HEAD
-    topWeapon.src = data.Chromas[0].displayIcon;
-=======
     // console.log(data.Chromas[0]);
     // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
     console.log(activeSkin);
@@ -365,7 +350,6 @@ function renderTopWeapon(data){
     console.log(topweaponimg);
     console.log(topweaponimg.displayIcon);
     topWeapon.src = topweaponimg.displayIcon;
->>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
     console.log(activeChroma);
     chromaPreview.innerHTML = '';           
   
@@ -506,8 +490,4 @@ function renderTopWeapon(data){
 //     }
   
   
-<<<<<<< HEAD
 // });
-=======
-// });
->>>>>>> 96876d20002745e1d3feb374245a2902ca92fc38
