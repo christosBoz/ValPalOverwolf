@@ -14,17 +14,17 @@
         "start_window":"MainWindow",
         "windows":{
             "MainWindow":{
-                    "file":"index.html",
+                    "file":"loading.html",
                     "transparent": false,
                     "resizable": false,
                     "use_os_windowing": true,
                     "size": {
-                        "width":1212,
-                        "height":699
+                        "width":400,
+                        "height":100
                         },
                     "min_size": {
-                        "width":1212,
-                        "height":699
+                        "width":400,
+                        "height":100
                     }
                 }
         }
