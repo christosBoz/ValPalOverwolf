@@ -291,6 +291,7 @@ function weapon_popup(weaponId, topSkinId) {
 
     const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
     activeSkin = topWeaponData
+    activeChroma = activeItem.getAttribute("data-activeChromaID");
     renderTopWeapon(topWeaponData)
 
     // Hide skinGrid initially
@@ -341,8 +342,12 @@ function renderTopWeapon(data){
     const topWeapon = document.querySelector('.topWeapon');
     console.log(data);
     console.log(data.Chromas[0]);
-    const topweaponimg = data.Chromas[0].displayIcon;
-    topWeapon.src = topweaponimg;
+    chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+    console.log(activeSkin);
+    const topweaponimg = data.Chromas.find(chroma=>chroma.id===activeChroma);
+    console.log(topweaponimg);
+    console.log(topweaponimg.displayIcon);
+    topWeapon.src = topweaponimg.displayIcon;
     console.log(activeChroma);
     chromaPreview.innerHTML = '';           
   
