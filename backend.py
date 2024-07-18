@@ -15,6 +15,7 @@ client.activate()
 @app.route('/import_loadout', methods=['GET'])
 def import_loadout():
     current_loadout = client.fetch_player_loadout()
+    print(type(current_loadout))
 
     # Fetch the weapon skins data from the API
     weapon_skins_url = "https://vinfo-api.com/json/weaponSkins"
@@ -43,6 +44,8 @@ def get_currentuser_id():
     userid = client.session_fetch().get('subject')
     return userid
 
+
+import requests
 
 def get_weapons():
     # Fetch entitlements (items owned)
@@ -84,7 +87,8 @@ def get_weapons():
 
             # Create updated item with collected chromas
             updated_item = {
-                "ItemID": item_id,
+                "ItemID": weapon_skin["id"],
+                "OfferID": item_id,
                 "Weaponid": weapon_skin["weaponId"],
                 "Name": weapon_skin["name"],
                 "Chromas": owned_chromas,
@@ -92,8 +96,30 @@ def get_weapons():
             
             updated_weapons.append(updated_item)
 
-    # Sort updated_entitlements by Weaponid
+    # Add default "Standard" skins for each weapon
+    for weapon_skin in weapon_skins_data:
+        if weapon_skin["name"].startswith("Standard"):
+            print(weapon_skin)
+            weapon_id = weapon_skin["weaponId"]
+            default_chroma = weapon_skin["chromas"][0]
+
+            # Check if the weapon already exists in updated_weapons
+            updated_item = {
+                    "ItemID": weapon_skin["id"],
+                    "OfferID": None,
+                    "Weaponid": weapon_id,
+                    "Name": weapon_skin["name"],
+                    "Chromas": [default_chroma],
+                }
+            updated_weapons.append(updated_item)
+            
+            
+
+
+
+    # Sort updated_weapons by Weaponid
     updated_weapons_sorted = sorted(updated_weapons, key=lambda x: x["Weaponid"])
+    
     return updated_weapons_sorted
 
 def get_buddies():

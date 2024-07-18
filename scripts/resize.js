@@ -37,10 +37,7 @@ function resizeToScreenWithScaling() {
   }
 
   // Resize window when the monitor configuration changes
-  overwolf.games.onMonitorChanged.addListener(function(event) {
-    console.log("Monitor configuration changed:", event);
-    getCurrentScreenAndResize();
-  });
+
 
   // Initial resize on script start
   getCurrentScreenAndResize();
