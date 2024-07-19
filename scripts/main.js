@@ -188,6 +188,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         weaponimage = activeItem.querySelector('.weaponimage')
         chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
         console.log(chroma)
+       // Find the index of the item in dataBuffer.Guns
+        const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid.toLowerCase());
+
+        // Log the old item
+        console.log(dataBuffer.Guns[index]);
+
+        // Update the item's properties
+        console.log(dataBuffer.Guns[index].ChromaID)
+        console.log(chroma.id.toLowerCase())
+        dataBuffer.Guns[index].ChromaID = chroma.id.toLowerCase();
+        console.log(dataBuffer.Guns[index].SkinID)
+        console.log(activeSkin.ItemID.toLowerCase())
+        dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
+        dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
+        dataBuffer.Guns[index].displayIcon = chroma.displayIcon
+
+        // Log the updated item
+        console.log(dataBuffer.Guns[index]);
+
+        
+        console.log(dataBuffer)
         weaponimage.src = chroma.displayIcon
       });
     
