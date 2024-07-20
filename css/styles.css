@@ -586,22 +586,51 @@ img {
 .skinPicker {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  background-color: #000000e6;
+  gap: 12px;
+  background-color: #1b1b1b;
   margin: auto;
-  height: 70%;
-  width: 50%;
+  height: 50%;
+  width: 55%;
   position: absolute;
-  top: 0;
+  top: 36%;
   bottom: 0;
   left: 0;
   right: 0;
-  border-radius: 8px;
+  border-radius: 0px;
+  box-sizing: border-box;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-bottom: 0%;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+
+.skinPickerTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #262424;
+  margin: auto;
+  height: 30%;
+  width: 55%;
+  position: absolute;
+  top: 0;
+  bottom: 44%;
+  left: 0;
+  right: 0;
+  border-radius: 0%;
   box-sizing: border-box;
   padding-left: 1%;
   padding-right: 1%;
   padding-bottom: 1%;
+  -webkit-border-radius: 0%;
+  -moz-border-radius: 0%;
+  -ms-border-radius: 0%;
+  -o-border-radius: 0%;
 }
+
 .skinPickerNav {
   width: 100%;
   display: flex;
@@ -648,7 +677,7 @@ img {
   height: 100%;
 }
 .skinPreview {
-  background-color: #ffffff1a;
+  background-color: #262424;
   height: 100%;
   width: 100%;
   display: flex;
@@ -687,6 +716,12 @@ img {
   width: 90%;
 }
 
+.topWeapon{
+  height: 50%;
+  width: 50%;
+  padding-top: 8%;
+}
+
 .skinPickerOptions {
   height: fit-content;
   display: flex;
@@ -698,22 +733,53 @@ img {
   height: fit-content;
   display: flex;
   align-items: center;
+  margin-top: -4px;
 }
 .skinPickerSearch {
   text-align: start;
-  width: 45%;
+  width: 112.5%;
   height: fit-content;
+  margin-top: 2%;
 }
 .skinPickerSearch input {
   margin: 0;
   background-color: #ffffff1a;
   border: 0;
   height: 33px;
-  width: 90%;
-  border-radius: 15px;
+  width: 94%;
+  border-radius: 0px;
   position: relative;
   padding-left: 3%;
   font-size: 20px;
+  outline: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+
+input{
+
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 0px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
 }
 .skinPickerSkins {
   width: 100%;
@@ -728,14 +794,19 @@ img {
   backdrop-filter: blur(7px);
 }
 .chooseButton {
-  height: 30px;
+  height: 35px;
   line-height: 30px;
   font-size: 17px;
-  width: 60%;
-  background-color: white;
-  border-radius: 15px;
+  width: 53%;
+  background-color: rgb(141, 141, 141);
+  border-radius: 0px;
   margin-left: auto;
   cursor: pointer;
+  margin-top: 2%;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
 }
 
 #refreshButton {
@@ -784,22 +855,37 @@ grid-template-columns: auto auto auto;
 padding: 0;
 width: fit-content;
 height: auto;
-margin-top: 2%;
+margin-top: 0%;
 column-gap: 1vw;
+row-gap: 1vw;
+}
+
+.skinPickerSkins::-webkit-scrollbar {
+  display: none;
 }
 
 .weapon-skin{
-display: flex;                   /* Use Flexbox to center the image */
-  justify-content: center;         /* Center horizontally */
-  align-items: center;             /* Center vertically */
-  background-color: #ffffff1a;      /* Background color (customize as needed) */
-  padding: 20px;                   /* Add space around the image */
-  border-radius: 8px;              /* Optional: rounded corners */
-  width: fit-content;              /* Adjust width based on content */
-  margin: auto;  
-  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #242222;
+  padding: 20px;
+  border-radius: 0px;
+  width: fit-content;
+  margin: auto;
+  height: 58%;
   position: relative;
-  border: 2px solid transparent; /* Set border initially as transparent */
+  border: 2px solid;
+  border-color: rgb(141, 141, 141);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+.fit-image{
+  object-fit: contain;
 }
 
 .weapon-skin img{
@@ -823,8 +909,8 @@ content: "";
 width: 0;
 height: 0;
 border-style: solid;
-border-width: 0 0 4vw 4vw; /* Increase values for a bigger triangle */
-border-color: transparent transparent transparent rgba(255, 255, 255, .2); /* Triangle color */
+border-width: 0 0 2vw 2vw; /* Increase values for a bigger triangle */
+border-color: transparent transparent transparent rgb(141, 141, 141); /* Triangle color */
 left: 0; /* Position in the top-left corner */
 top: 0;  /* Position in the top-left corner */
 position: absolute; /* Positioning relative to weapon-skin */
