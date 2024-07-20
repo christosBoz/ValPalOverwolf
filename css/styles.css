@@ -586,7 +586,7 @@ img {
 .skinPicker {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   background-color: #1b1b1b;
   margin: auto;
   height: 50%;
@@ -600,7 +600,7 @@ img {
   box-sizing: border-box;
   padding-left: 1%;
   padding-right: 1%;
-  padding-bottom: 1%;
+  padding-bottom: 0%;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -719,7 +719,7 @@ img {
 .topWeapon{
   height: 50%;
   width: 50%;
-  padding-top: 4%;
+  padding-top: 8%;
 }
 
 .skinPickerOptions {
@@ -733,10 +733,11 @@ img {
   height: fit-content;
   display: flex;
   align-items: center;
+  margin-top: -4px;
 }
 .skinPickerSearch {
   text-align: start;
-  width: 105%;
+  width: 112.5%;
   height: fit-content;
   margin-top: 2%;
 }
@@ -745,11 +746,12 @@ img {
   background-color: #ffffff1a;
   border: 0;
   height: 33px;
-  width: 90%;
+  width: 94%;
   border-radius: 0px;
   position: relative;
   padding-left: 3%;
   font-size: 20px;
+  outline: none;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -795,8 +797,8 @@ input{
   height: 35px;
   line-height: 30px;
   font-size: 17px;
-  width: 60%;
-  background-color: white;
+  width: 53%;
+  background-color: rgb(141, 141, 141);
   border-radius: 0px;
   margin-left: auto;
   cursor: pointer;
@@ -853,22 +855,37 @@ grid-template-columns: auto auto auto;
 padding: 0;
 width: fit-content;
 height: auto;
-margin-top: 2%;
+margin-top: 0%;
 column-gap: 1vw;
+row-gap: 1vw;
+}
+
+.skinPickerSkins::-webkit-scrollbar {
+  display: none;
 }
 
 .weapon-skin{
-display: flex;                   /* Use Flexbox to center the image */
-  justify-content: center;         /* Center horizontally */
-  align-items: center;             /* Center vertically */
-  background-color: #ffffff1a;      /* Background color (customize as needed) */
-  padding: 20px;                   /* Add space around the image */
-  border-radius: 8px;              /* Optional: rounded corners */
-  width: fit-content;              /* Adjust width based on content */
-  margin: auto;  
-  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #242222;
+  padding: 20px;
+  border-radius: 0px;
+  width: fit-content;
+  margin: auto;
+  height: 58%;
   position: relative;
-  border: 2px solid transparent; /* Set border initially as transparent */
+  border: 2px solid;
+  border-color: rgb(141, 141, 141);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+.fit-image{
+  object-fit: contain;
 }
 
 .weapon-skin img{
@@ -892,8 +909,8 @@ content: "";
 width: 0;
 height: 0;
 border-style: solid;
-border-width: 0 0 4vw 4vw; /* Increase values for a bigger triangle */
-border-color: transparent transparent transparent rgba(255, 255, 255, .2); /* Triangle color */
+border-width: 0 0 2vw 2vw; /* Increase values for a bigger triangle */
+border-color: transparent transparent transparent rgb(141, 141, 141); /* Triangle color */
 left: 0; /* Position in the top-left corner */
 top: 0;  /* Position in the top-left corner */
 position: absolute; /* Positioning relative to weapon-skin */
