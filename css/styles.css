@@ -718,7 +718,7 @@ img {
 
 .topWeapon{
   height: 50%;
-  width: 50%;
+  /* width: 50%; */
   padding-top: 8%;
 }
 
@@ -853,11 +853,11 @@ cursor: pointer;
 display: grid;
 grid-template-columns: auto auto auto;
 padding: 0;
-width: fit-content;
-height: auto;
+width: 100%;
+height: 100%;
 margin-top: 0%;
 column-gap: 1vw;
-row-gap: 1vw;
+row-gap: 0vw;
 }
 
 .skinPickerSkins::-webkit-scrollbar {
@@ -869,11 +869,8 @@ row-gap: 1vw;
   justify-content: center;
   align-items: center;
   background-color: #242222;
-  padding: 20px;
-  border-radius: 0px;
-  width: fit-content;
-  margin: auto;
-  height: 58%;
+  width: 96%;
+  height: 13.4vh;
   position: relative;
   border: 2px solid;
   border-color: rgb(141, 141, 141);
@@ -889,7 +886,7 @@ row-gap: 1vw;
 }
 
 .weapon-skin img{
-width: 100%;
+max-width: 90%;
 }
 
 .skinPicker .skinPickerSkins .weapon-skin:before {
@@ -922,7 +919,92 @@ border: 2px solid white;
 cursor: pointer;
 }
 
-.chromaPreview{
-display: grid;
-position: absolute;
+
+
+.chromaPreview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* Adjust gap between items if needed */
+  right: 1vw;
+  position: absolute;
+}
+
+.chroma1, .chroma2, .chroma3, .chroma4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chroma1image, .chroma2image, .chroma3image, .chroma4image {
+  max-width: 100%; /* Adjust size if needed */
+  max-height: 60%;  
+}
+.skinName {
+  position: absolute;
+  bottom: 0;
+  left: 2%;
+  font-weight: 400;
+  color: #d6d6d6;
+  z-index: 4;
+  font-size: 1vw !important;
+}
+img[class*="Weapon_29A0CFAB-485B-F5D5-779A-B59F85E204A8"] {
+  max-height: 75% !important;
+}
+
+img[class="Weapon_42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA"] {
+  max-width: 78% !important;
+}
+
+img[class="Weapon_44D4E95C-4157-0037-81B2-17841BF2E8E3"] {
+  max-height: 78% !important;
+}
+
+img[class="Weapon_1BAA85B4-4C70-1284-64BB-6481DFC3BB4E"] {
+  max-width: 78% !important;
+}
+
+img[class="Weapon_E336C6B8-418D-9340-D77F-7A9E4CFE0702"] {
+  max-height: 72% !important;
+}
+img[class="Weapon_F7E1B454-4AD4-1063-EC0A-159E56B58941"] {
+  max-width: 80% !important;
+}
+img[class="Weapon_462080D1-4035-2937-7C09-27AA2A5C27A7"] {
+  max-width: 80% !important;
+}
+img[class="Weapon_EC845BF4-4F79-DDDA-A3DA-0DB3774B2794"] {
+  max-width: 95% !important;
+}
+
+img[class="Weapon_2F59173C-4BED-B6C3-2191-DEA9B58BE9C7"]{
+  max-height: 74% !important;
+}
+
+img[class="Weapon_AE3DE142-4D85-2547-DD26-4E90BED35CF7"] {
+  max-width: 93% !important;
+}
+img[class="Weapon_4ADE7FAA-4CF1-8376-95EF-39884480959B"] {
+  max-width: 93% !important;
+}
+img[class="Weapon_EE8E8D15-496B-07AC-E5F6-8FAE5D4C7B1A"] {
+  max-width: 88% !important;
+}
+img[class="Weapon_9C82E19D-4575-0200-1A81-3EACF00CF872"] {
+  max-width: 88% !important;
+}
+img[class="Weapon_C4883E50-4494-202C-3EC3-6B8A9284F00B"] {
+  max-width: 94% !important;
+}
+img[class="Weapon_5F0AAF7A-4289-3998-D5FF-EB9A5CF7EF5C"] {
+  max-width: 93%!important;
+}
+img[class="Weapon_A03B24D3-4319-996D-0F8C-94BBFBA1DFC7"] {
+  max-width: 95%!important;
+}
+img[class="Weapon_55D8A0F4-4274-CA67-FE2C-06AB45EFDF58"] {
+  max-width: 100% !important;
+}
+img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
+  max-width: 100% !important;
 }
