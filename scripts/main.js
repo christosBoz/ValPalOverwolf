@@ -337,6 +337,8 @@ function weapon_popup(weaponId, topSkinId) {
                 skinName.className = "skinName"
                 skinName.innerHTML = w.Name
 
+                weaponDiv.appendChild(skinName)
+
                 weaponDiv.appendChild(skinImage);
 
                 // Add event listener to update topWeapon image on click
