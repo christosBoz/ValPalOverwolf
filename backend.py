@@ -51,8 +51,13 @@ def get_weapons():
     # Fetch entitlements (items owned)
     weapons_owned = client.store_fetch_entitlements()
     chromas_owned = client.store_fetch_entitlements(item_type="3ad1b2b2-acdb-4524-852f-954a76ddae0a")
+    levels_owned = client.store_fetch_entitlements(item_type="e7c63390-eda7-46e0-bb7a-a6abdacd2433")
+    
     entitlements = chromas_owned.get('Entitlements', [])
     chromas_owned_ids = [chroma['ItemID'].upper() for chroma in entitlements]
+    
+    levels_entitlements = levels_owned.get('Entitlements', [])
+    levels_owned_ids = [level['ItemID'].upper() for level in levels_entitlements]
 
     # Fetch weapon skins data from the API
     api_url = "https://vinfo-api.com/json/weaponSkins"
@@ -79,48 +84,52 @@ def get_weapons():
         # Check if the itemID exists in the weapon skins data
         if item_id in weapon_skins_by_offerid:
             weapon_skin = weapon_skins_by_offerid[item_id]
-
+            
             owned_chromas = [weapon_skin["chromas"][0]]
             for chroma in weapon_skin.get("chromas", []):
                 if chroma["id"] in chromas_owned_ids:
                     owned_chromas.append(chroma)
 
-            # Create updated item with collected chromas
+            owned_levels = []
+            for level in weapon_skin.get("levels", []):
+                if level["id"] in levels_owned_ids:
+                    owned_levels.append(level)
+
+            # Create updated item with collected chromas and levels
             updated_item = {
                 "ItemID": weapon_skin["id"],
                 "OfferID": item_id,
                 "Weaponid": weapon_skin["weaponId"],
                 "Name": weapon_skin["name"],
                 "Chromas": owned_chromas,
+                "Levels": owned_levels
             }
-
+            
             updated_weapons.append(updated_item)
 
     # Add default "Standard" skins for each weapon
     for weapon_skin in weapon_skins_data:
-
-        if weapon_skin["name"].startswith("Standard") or weapon_skin["name"].startswith("Random") or weapon_skin["name"] == ("Melee"):
+        if weapon_skin["name"].startswith("Standard"):
             print(weapon_skin)
             weapon_id = weapon_skin["weaponId"]
             default_chroma = weapon_skin["chromas"][0]
+            default_levels = weapon_skin["levels"]
 
-            # Check if the weapon already exists in updated_weapons
-            updated_item = {
-                    "ItemID": weapon_skin["id"],
-                    "OfferID": None,
-                    "Weaponid": weapon_id,
-                    "Name": weapon_skin["name"],
-                    "Chromas": [default_chroma],
-                }
-            updated_weapons.append(updated_item)
-
-
-
-
+            # Create default item with the default chroma and levels
+            default_item = {
+                "ItemID": weapon_skin["id"],
+                "OfferID": None,
+                "Weaponid": weapon_id,
+                "Name": weapon_skin["name"],
+                "Chromas": [default_chroma],
+                "Levels": default_levels
+            }
+            
+            updated_weapons.append(default_item)
 
     # Sort updated_weapons by Weaponid
     updated_weapons_sorted = sorted(updated_weapons, key=lambda x: x["Weaponid"])
-
+    
     return updated_weapons_sorted
 def get_buddies():
     buddies_owned = client.store_fetch_entitlements(item_type = "dd3bf334-87f3-40bd-b043-682a57a8dc3a")
