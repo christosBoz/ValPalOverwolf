@@ -330,6 +330,7 @@ function weapon_popup(weaponId, topSkinId) {
 
                 // Create an img element for the skin
                 const skinImage = document.createElement('img');
+                skinImage.className = "Weapon_"+ w.Weaponid
                 skinImage.src = w.Chromas[0].displayIcon; // Set the src to the first chroma displayIcon
                 skinImage.alt = w.Name; // Optionally set alt text
 
