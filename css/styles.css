@@ -1033,3 +1033,45 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   justify-self: end;
   align-self: end;
 }
+
+.buddy-item {
+  border: 1px solid;
+  margin: 6%;
+}
+
+.buddy-item img {
+  width: 50%;
+  height: 88%;
+  object-fit: cover;
+}
+
+.buddy-item:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+}
+
+.gunBuddy {
+  position: absolute;
+  left: 1vw;
+}
+
+.buddyPreview {
+  position: absolute;
+  left: 3vw;
+  top: 12vh;
+  /* border: 1px solid red; */
+  width: 5%;
+  height: 18%;
+  cursor: pointer;
+}
+
+.clickForBuddy{
+  /* position: absolute;
+  left: 0vw;
+  top: -5vh;
+  border: 1px solid red;
+  /* width: 5%; */
+  /* height: 18%; */
+  cursor: pointer; 
+  width: 200%;
+}
