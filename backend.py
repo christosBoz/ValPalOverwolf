@@ -133,6 +133,7 @@ def get_weapons():
     
     return updated_weapons_sorted
 def get_buddies():
+
     buddies_owned = client.store_fetch_entitlements(item_type = "dd3bf334-87f3-40bd-b043-682a57a8dc3a")
 
     # Fetch weapon skins data from the API
@@ -166,7 +167,8 @@ def get_buddies():
                 "Name": buddy["name"],
                 "ImageURL": buddy["displayIcon"],
                 "InstanceID": item["InstanceID"],
-                "LevelID": item_id
+                "LevelID": item_id,
+                "Uses": 2
             }
             
             updated_buddies.append(updated_item)
