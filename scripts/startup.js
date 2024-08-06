@@ -1,5 +1,4 @@
 userid = ""
-
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Fetch user ID and agents data in parallel

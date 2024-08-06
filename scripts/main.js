@@ -5,6 +5,10 @@ let weaponsOnly = ''
 let activeItem = ''
 let activeSkin = ''
 let activeChroma = ''
+let activeBuddy = ''
+let weaponChoicesHTML = ''
+let buddiesOnly = ''
+let buddiesChoiceHTML = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const inventory = localStorage.getItem(`${userid}_inventory`);
         const inventoryData = JSON.parse(inventory);
         weaponsOnly = inventoryData.Weapons
+        buddiesOnly = inventoryData.Buddies
 
         // Update agent loadout function
         async function updateAgentLoadout(agentName, image) {
@@ -165,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             activeItem = item
             var weaponId = item.getAttribute('data-weaponID').toUpperCase()
             var topSkinId = item.getAttribute('data-skinID').toUpperCase()
-            weapon_popup(weaponId, topSkinId)
+            weapon_popup(weaponId, topSkinId, item)
         })
     
     
@@ -177,15 +182,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
       
       document.querySelector('.chooseButton').addEventListener('click', function() {
-        console.log(activeItem)
         activeItem.setAttribute("data-skinID", activeSkin.ItemID)
-        console.log(activeChroma)
         activeItem.setAttribute("data-activeChromaID", activeChroma)
-        console.log(activeSkin)
-        console.log(activeChroma)
+        activeItem.setAttribute("data-buddyID", activeBuddy.ItemID);
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
         skinPickerContainer.style.display = 'none';
+        console.log(activeItem)
         weaponimage = activeItem.querySelector('.weaponimage')
+        buddyimage = activeItem.querySelector('.buddyimage')
+        
         chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
         console.log(chroma)
        // Find the index of the item in dataBuffer.Guns
@@ -204,108 +209,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
         dataBuffer.Guns[index].displayIcon = chroma.displayIcon
 
+        dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
+        dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
+        dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
+
         // Log the updated item
         console.log(dataBuffer.Guns[index]);
-
-        
-        console.log(dataBuffer)
+        console.log(buddyimage)
+        console.log(activeItem)
+        buddyimage.src = activeBuddy.ImageURL
         weaponimage.src = chroma.displayIcon
+        console.log(activeItem)
       });
-    
-        let chooseButton;
-        let buddyImg;
-    
-    
-        //const userid = await useridResponse.text();
+
+      document.querySelector('.topWeapon').addEventListener('click', function() {
         const skinGrid = document.querySelector('.skinGrid');
-        const buddyPreview = document.querySelector('.buddyPreview');
-        buddyImg = buddyPreview.querySelector('.clickForBuddy');
-        chooseButton = document.querySelector('.chooseButton');
-        // Fetch inventory data from localStorage
-        const inventory = localStorage.getItem(`${userid}_inventory`);
-        
-        // Parse the JSON data
-        const inventoryData = JSON.parse(inventory);
-     
-        // Extract buddies data
-        const buddiesOnly = inventoryData.Buddies;
-        console.log(buddiesOnly);
+        skinGrid.innerHTML = '';
+        skinGrid.innerHTML = weaponChoicesHTML
+    })
+    document.querySelector('.buddyPreview').addEventListener('click', function() {
+        buddyChoices()
+    })
     
-        // Event listener for the buddies button
-        buddyPreview.addEventListener('click', () => {
-            // Clear the current skinGrid content
-            skinGrid.innerHTML = '';
     
-            // Loop through the buddies and create the HTML
-            buddiesOnly.forEach(buddy => {
-                const buddyDiv = document.createElement('div');
-                buddyDiv.classList.add('buddy-item');
     
-                const buddyImage = document.createElement('img');
-                buddyImage.src = buddy.ImageURL;
-                buddyImage.alt = 'Buddy';
+       
     
-                // Add event listener to update buddyPreview image when clicked
-                buddyImage.addEventListener('click', () => {
-                    buddyImg.src = buddy.ImageURL;
-                    console.log(buddyImg.src)
-                });
-    
-                buddyDiv.appendChild(buddyImage);
-                skinGrid.appendChild(buddyDiv);
-            });    
-        });
-    
-        let selectedBuddyImageSrc = ''; // Variable to store the buddy image URL
-        let selectedWeaponItem = null; // Variable to store the weapon name
-    
-        // Get all weapon items
-        const weaponItems = document.querySelectorAll('.invItem.weapon');
-        
-    
-        // Get the buddyPreview image element
-        const buddyPreviewImage = document.querySelector('.buddyPreview .clickForBuddy');
-        
-        weaponItems.forEach(item => {
-            item.addEventListener('click', () => {
-                selectedWeaponItem = item;
-                console.log(selectedWeaponItem)
-                console.log(buddyPreviewImage);
-                // Find the buddy image within the clicked item
-                const buddyImage = item.querySelector('.buddyimage');
-                
-                if (buddyImage) {
-                    // Update the variable with the buddy image URL
-                    selectedBuddyImageSrc = buddyImage.src;
-                    console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
-                    
-                    // Update the src attribute of the buddyPreview image
-                    if (buddyPreviewImage) {
-                        buddyPreviewImage.src = selectedBuddyImageSrc;
-                        console.log(buddyPreviewImage.src)
-                    }
-                }
-            });
-        });
-        
-    
-          // Event listener for the choose button
-          chooseButton.addEventListener('click', () => {
-            if (selectedWeaponItem) {
-                
-                const buddyImageInWeapon = selectedWeaponItem.querySelector('.buddyimage');
-                
-                if (buddyImageInWeapon) {
-                    buddyImageInWeapon.src = buddyImg.src;
-                    console.log(buddyImg.src)
-                }
-            }
-        });
+
     }
 
 );
 
+
 function renderWeaponsData(data) {
+
     const guns = Array.isArray(data.Guns) ? data.Guns : [];
     const weaponCategories = document.querySelectorAll('.invCategory');
 
@@ -327,18 +264,22 @@ function renderWeaponsData(data) {
                 const buddyImage = item.querySelector('.buddyimage');
                 item.setAttribute('data-skinID', skinid);
                 item.setAttribute('data-activeChromaID', chromaid);
+                item.setAttribute('data-buddyID', buddyid);
                 if (weaponImage) {
                     weaponImage.onload = function() {
                         // Once weaponImage is loaded, then check and update buddyImage if needed
-                        if (buddyid) {
-                            buddyid = buddyid.toUpperCase();
-                            const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddyid}.png`;
+                        var buddy = item.getAttribute('data-buddyID');
+                        console.log(buddyid);
+                        if (buddy != "undefined") {
+                            buddy = buddy.toUpperCase();
+                            const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
                                 buddyImage.src = buddyImageUrl;
                             };
                             buddyImage.src = buddyImageUrl; // Set src immediately
                         } else {
+                            console.log("not working")
                             const buddyImageUrl = "";
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
@@ -378,9 +319,11 @@ function renderWeaponsData(data) {
 
   
 
-function weapon_popup(weaponId, topSkinId) {
-    
+function weapon_popup(weaponId, topSkinId, item) {
     const skinGrid = document.querySelector('.skinGrid');
+    const buddyImage = item.querySelector('.buddyimage');
+    console.log(buddyImage.src)
+    const buddyPreviewImage = document.querySelector('.buddyPreview .clickForBuddy');
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
     topWeapon.src = '';
@@ -403,11 +346,27 @@ function weapon_popup(weaponId, topSkinId) {
     const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
     activeSkin = topWeaponData
     activeChroma = activeItem.getAttribute("data-activeChromaID");
+    if (buddyImage.src != "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/index.html") {
+        // Update the variable with the buddy image URL
+        selectedBuddyImageSrc = buddyImage.src;
+        console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
+        
+        // Update the src attribute of the buddyPreview image
+        if (buddyPreviewImage) {
+            buddyPreviewImage.src = selectedBuddyImageSrc;
+            console.log(buddyPreviewImage.src)
+        }
+    }
     renderTopWeapon(topWeaponData)
+    weaponChoices(weapon)
 
-    
 
-    // Hide skinGrid initially
+
+}
+function weaponChoices(weapon){
+    const skinGrid = document.querySelector('.skinGrid');
+    skinGrid.innerHTML = '';
+
     skinGrid.style.visibility = 'hidden';
     
 
@@ -443,6 +402,7 @@ function weapon_popup(weaponId, topSkinId) {
 
                 // Append the weapon div to the skinGrid
                 skinGrid.appendChild(weaponDiv);
+                weaponChoicesHTML = skinGrid.innerHTML
             }
         });
 
@@ -454,14 +414,37 @@ function weapon_popup(weaponId, topSkinId) {
     renderWeaponsPromise.then(() => {
         skinGrid.style.visibility = 'visible';
     });
-
-
 }
 
+function buddyChoices(){
+    const skinGrid = document.querySelector('.skinGrid');
+    const buddyPreview = document.querySelector('.buddyPreview');
+    const buddyImg = buddyPreview.querySelector('.clickForBuddy');
+    skinGrid.innerHTML = '';
+    // Loop through the buddies and create the HTML
+    buddiesOnly.forEach(buddy => {
+        const buddyDiv = document.createElement('div');
+        buddyDiv.classList.add('buddy-item');
+
+        const buddyImage = document.createElement('img');
+        buddyImage.src = buddy.ImageURL;
+        buddyImage.alt = 'Buddy';
+
+        // Add event listener to update buddyPreview image when clicked
+        buddyImage.addEventListener('click', () => {
+            buddyImg.src = buddy.ImageURL;
+            console.log(buddyImg.src)
+            activeBuddy = buddy
+            console.log(activeBuddy)
+        });
+
+        buddyDiv.appendChild(buddyImage);
+        skinGrid.appendChild(buddyDiv);
+    });    
+}
 function renderTopWeapon(data){
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
-    const buddyPreview = document.querySelector('.gunbuddyPreview .clickForBuddy'); // Get the buddy image element
     console.log(data);
     // console.log(data.Chromas[0]);
     // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
@@ -504,112 +487,54 @@ function renderTopWeapon(data){
 
 
 
+// let selectedBuddyImageSrc = ''; // Variable to store the buddy image URL
+// let selectedWeaponItem = null; // Variable to store the weapon name
+
+// // Get all weapon items
+// const weaponItems = document.querySelectorAll('.invItem.weapon');
 
 
+// // Get the buddyPreview image element
+// const buddyPreviewImage = document.querySelector('.buddyPreview .clickForBuddy');
 
-// item.addEventListener('click', function(event) {
-//     console.log(item)
-//     weaponImage = item.querySelector('.weaponimage')
-//     topWeapon = document.querySelector('.topWeapon')
-//     const chromaPreview = document.querySelector('.chromaPreview')
-//     var weaponId = item.getAttribute('data-weaponID').toUpperCase()
-//     var topSkinId = item.getAttribute('data-skinID').toUpperCase()
-//     const skinGrid = document.querySelector('.skinGrid');
-//     console.log(topSkinId)
-//     console.log(weaponId)
-//   event.stopPropagation(); // Prevents the event from bubbling up to parent elements
-//   const skinPickerContainer = document.querySelector('.skinPickerContainer');
-//   if (skinPickerContainer.style.display === 'none') {
-//     skinPickerContainer.style.display = 'unset';
-//   } else {
-//     skinPickerContainer.style.display = 'none';
-//   }
-//   const inventory = localStorage.getItem(${userid}_inventory);
-//   console.log(inventory)
-//     if (inventory) {
-//         console.log(userid);
-//         try {
-//             const inventoryData = JSON.parse(inventory);
-//             console.log('Original Inventory:', inventoryData);
-
-//             // Assuming inventoryData is an array of items and each item has a type property
-//             const weaponsOnly = inventoryData.Weapons
-//             console.log('Filtered Weapons:', weaponsOnly);
-
-//             const weapon = weaponsOnly.filter(weapon => weapon.Weaponid === weaponId);
-//             console.log('Filtered Weapon:', weapon);
-
-//             const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
-//             if (topWeaponData != undefined ){
-//                 console.log("hi")
-//             }
-//             renderTopWeapon(topWeaponData)
-//             function renderTopWeapon(data){
-//                 const topWeapon = document.querySelector('.topWeapon')
-//                 console.log(data)
-//                 topWeapon.src = data.Chromas[0].displayIcon
-//                 chromaPreview.innerHTML = '';             
-//                 data.Chromas.forEach((chroma, index) => {
-//                     const chromaSwatch = document.createElement('div');
-//                     chromaSwatch.classList.add(chroma${index + 1}); // Add class chroma1, chroma2, etc.
-    
-//                     const chromaImage = document.createElement('img');
-//                     if (chroma.swatch != null){
-//                         chromaImage.src = chroma.swatch;
-//                         chromaImage.alt = chroma.Name;
-//                     }
-                    
-//                     chromaImage.addEventListener('click', () => {
-//                         const topWeaponImage = document.querySelector('.topWeapon');
-//                         topWeaponImage.src = chroma.displayIcon;
-
-//                     });
-//                     chromaImage.className = chroma${index + 1}image
-    
-//                     chromaSwatch.appendChild(chromaImage);
-//                     chromaPreview.appendChild(chromaSwatch);
-//                 });
-
-//             }
-
-
-//             skinGrid.innerHTML = '';
-//             chromaPreview.innerHTML = '';
-
-//             weapon.forEach(w => {
-//                 // Check if Chromas array exists and has at least one element
-//                 if (w.Chromas && w.Chromas.length > 0) {
-//                     // Create a div for the weapon skin
-//                     const weaponDiv = document.createElement('div');
-//                     weaponDiv.classList.add('weapon-skin'); // Add a class for styling if needed
-
-//                     // Create an img element for the skin
-//                     const skinImage = document.createElement('img');
-//                     skinImage.src = w.Chromas[0].displayIcon; // Set the src to the first chroma displayIcon
-//                     skinImage.alt = w.Name; // Optionally set alt text
-
-//                     weaponDiv.appendChild(skinImage);
-
-//                     // Add event listener to update topWeapon image on click
-//                     weaponDiv.addEventListener('click', () => {
-//                         renderTopWeapon(w)
-//                     });
-
-//                     // Append the weapon div to the skinGrid
-//                     skinGrid.appendChild(weaponDiv);
-//                 }
-//             });
+// weaponItems.forEach(item => {
+//     item.addEventListener('click', () => {
+//         selectedWeaponItem = item;
+//         console.log(selectedWeaponItem)
+//         console.log(buddyPreviewImage);
+//         // Find the buddy image within the clicked item
+//         const buddyImage = item.querySelector('.buddyimage');
+        
+//         if (buddyImage) {
+//             // Update the variable with the buddy image URL
+//             selectedBuddyImageSrc = buddyImage.src;
+//             console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
             
-
-
-
-            
-//         } catch (error) {
-//             console.error('Error parsing inventory data:', error);
+//             // Update the src attribute of the buddyPreview image
+//             if (buddyPreviewImage) {
+//                 buddyPreviewImage.src = selectedBuddyImageSrc;
+//                 console.log(buddyPreviewImage.src)
+//             }
 //         }
-//     } else {
-//         console.log('No inventory data found in local storage.');
-//     }
-  
-  
+//     });
 // });
+
+
+//   // Event listener for the choose button
+//   chooseButton.addEventListener('click', () => {
+//     if (selectedWeaponItem) {
+        
+//         const buddyImageInWeapon = selectedWeaponItem.querySelector('.buddyimage');
+        
+//         if (buddyImageInWeapon) {
+//             buddyImageInWeapon.src = buddyImg.src;
+//             console.log(buddyImg.src)
+//         }
+//     }
+// });
+
+
+
+
+
+

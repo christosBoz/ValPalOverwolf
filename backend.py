@@ -162,9 +162,11 @@ def get_buddies():
             
             # Create updated item with collected chromas
             updated_item = {
-                "ItemID": item_id,
+                "ItemID": buddy["id"],
                 "Name": buddy["name"],
-                "ImageURL": buddy["displayIcon"]
+                "ImageURL": buddy["displayIcon"],
+                "InstanceID": item["InstanceID"],
+                "LevelID": item_id
             }
             
             updated_buddies.append(updated_item)
