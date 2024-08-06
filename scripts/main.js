@@ -49,12 +49,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         weaponsOnly = inventoryData.Weapons
         buddiesOnly = inventoryData.Buddies
 
+
         // Update agent loadout function
         async function updateAgentLoadout(agentName, image) {
             activeAgentName = agentName; // Update active agent's name
             const localStorageKey = `${userid}_${agentName}_loadout`;
             const agentLoadoutData = localStorage.getItem(localStorageKey);
 
+            resetUses()
             if (agentLoadoutData) {
                 try {
                     const agentLoadout = JSON.parse(agentLoadoutData);
@@ -179,48 +181,58 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.querySelector('.closeWindow').addEventListener('click', function() {
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
         skinPickerContainer.style.display = 'none';
+        var currentBuddyID = activeItem.getAttribute("data-buddyID")
+        currentBuddyID = currentBuddyID.toUpperCase();
+        const currentBuddy = buddiesOnly.find(b => b.ItemID === currentBuddyID)
+        currentBuddy.Uses -= 1
       });
       
       document.querySelector('.chooseButton').addEventListener('click', function() {
-        activeItem.setAttribute("data-skinID", activeSkin.ItemID)
-        activeItem.setAttribute("data-activeChromaID", activeChroma)
-        activeItem.setAttribute("data-buddyID", activeBuddy.ItemID);
-        const skinPickerContainer = document.querySelector('.skinPickerContainer');
-        skinPickerContainer.style.display = 'none';
-        console.log(activeItem)
-        weaponimage = activeItem.querySelector('.weaponimage')
-        buddyimage = activeItem.querySelector('.buddyimage')
-        
-        chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
-        console.log(chroma)
-       // Find the index of the item in dataBuffer.Guns
-        const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid.toLowerCase());
+        if (activeBuddy.Uses == 0) {
+            alert("no more buddies")
+        }
+        else {
+            activeItem.setAttribute("data-skinID", activeSkin.ItemID)
+            activeItem.setAttribute("data-activeChromaID", activeChroma)
+            activeItem.setAttribute("data-buddyID", activeBuddy.ItemID);
+            const skinPickerContainer = document.querySelector('.skinPickerContainer');
+            skinPickerContainer.style.display = 'none';
+            console.log(activeItem)
+            weaponimage = activeItem.querySelector('.weaponimage')
+            buddyimage = activeItem.querySelector('.buddyimage')
+            
+            chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+            console.log(chroma)
+        // Find the index of the item in dataBuffer.Guns
+            const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid.toLowerCase());
 
-        // Log the old item
-        console.log(dataBuffer.Guns[index]);
+            // Log the old item
+            console.log(dataBuffer.Guns[index]);
 
-        // Update the item's properties
-        console.log(dataBuffer.Guns[index].ChromaID)
-        console.log(chroma.id.toLowerCase())
-        dataBuffer.Guns[index].ChromaID = chroma.id.toLowerCase();
-        console.log(dataBuffer.Guns[index].SkinID)
-        console.log(activeSkin.ItemID.toLowerCase())
-        dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
-        dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
-        dataBuffer.Guns[index].displayIcon = chroma.displayIcon
+            // Update the item's properties
+            console.log(dataBuffer.Guns[index].ChromaID)
+            console.log(chroma.id.toLowerCase())
+            dataBuffer.Guns[index].ChromaID = chroma.id.toLowerCase();
+            console.log(dataBuffer.Guns[index].SkinID)
+            console.log(activeSkin.ItemID.toLowerCase())
+            dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
+            dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
+            dataBuffer.Guns[index].displayIcon = chroma.displayIcon
 
-        dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
-        dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
-        dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
+            dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
+            dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
+            dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
 
-        // Log the updated item
-        console.log(dataBuffer.Guns[index]);
-        console.log(buddyimage)
-        console.log(activeItem)
-        buddyimage.src = activeBuddy.ImageURL
-        weaponimage.src = chroma.displayIcon
-        console.log(activeItem)
+            // Log the updated item
+            console.log(dataBuffer.Guns[index]);
+            console.log(buddyimage)
+            console.log(activeItem)
+            buddyimage.src = activeBuddy.ImageURL
+            weaponimage.src = chroma.displayIcon
+            console.log(activeItem)
+        }
       });
+
 
       document.querySelector('.topWeapon').addEventListener('click', function() {
         const skinGrid = document.querySelector('.skinGrid');
@@ -265,6 +277,7 @@ function renderWeaponsData(data) {
                 item.setAttribute('data-skinID', skinid);
                 item.setAttribute('data-activeChromaID', chromaid);
                 item.setAttribute('data-buddyID', buddyid);
+
                 if (weaponImage) {
                     weaponImage.onload = function() {
                         // Once weaponImage is loaded, then check and update buddyImage if needed
@@ -273,13 +286,16 @@ function renderWeaponsData(data) {
                         if (buddy != "undefined") {
                             buddy = buddy.toUpperCase();
                             const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
+                            const usedBuddy = buddiesOnly.find(b => b.ItemID === buddy);
+                            usedBuddy.Uses -= 1;
+                            console.log(usedBuddy)
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
                                 buddyImage.src = buddyImageUrl;
                             };
                             buddyImage.src = buddyImageUrl; // Set src immediately
                         } else {
-                            console.log("not working")
+                            console.log("no buddy")
                             const buddyImageUrl = "";
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
@@ -316,8 +332,13 @@ function renderWeaponsData(data) {
         }
     });
 }
+function resetUses(){
+    buddiesOnly.forEach(buddy => {
+        buddy.Uses = 2;
+        console.log("hi")
+    })
+}
 
-  
 
 function weapon_popup(weaponId, topSkinId, item) {
     const skinGrid = document.querySelector('.skinGrid');
@@ -326,6 +347,7 @@ function weapon_popup(weaponId, topSkinId, item) {
     const buddyPreviewImage = document.querySelector('.buddyPreview .clickForBuddy');
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
+    var buddy = item.getAttribute('data-buddyID');
     topWeapon.src = '';
     skinGrid.innerHTML = '';
     chromaPreview.innerHTML = '';
@@ -346,17 +368,31 @@ function weapon_popup(weaponId, topSkinId, item) {
     const topWeaponData = weapon.find(w => w.ItemID === topSkinId);
     activeSkin = topWeaponData
     activeChroma = activeItem.getAttribute("data-activeChromaID");
-    if (buddyImage.src != "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/index.html") {
-        // Update the variable with the buddy image URL
-        selectedBuddyImageSrc = buddyImage.src;
-        console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
+    console.log(buddy)
+    if (buddy != "undefined") {
+        buddy = buddy.toUpperCase();
+        currentBuddy = buddiesOnly.find(b => b.ItemID === buddy)
+        console.log(currentBuddy)
+        currentBuddy.Uses += 1;
+
+        buddyPreviewImage.src = `https://vinfo-api.com/media/Charms/${buddy}.png`;
         
-        // Update the src attribute of the buddyPreview image
-        if (buddyPreviewImage) {
-            buddyPreviewImage.src = selectedBuddyImageSrc;
-            console.log(buddyPreviewImage.src)
-        }
     }
+    else {
+        buddyPreviewImage.src = "./img/image.png"
+    }
+    // if (buddyImage.src != "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/index.html") {
+    //     // Update the variable with the buddy image URL
+    //     selectedBuddyImageSrc = buddyImage.src;
+    //     console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
+        
+    //     // Update the src attribute of the buddyPreview image
+    //     if (buddyPreviewImage) {
+    //         buddyPreviewImage.src = selectedBuddyImageSrc;
+    //         console.log(buddyPreviewImage.src)
+    //     }
+    // }
+    
     renderTopWeapon(topWeaponData)
     weaponChoices(weapon)
 
@@ -430,11 +466,12 @@ function buddyChoices(){
         buddyImage.src = buddy.ImageURL;
         buddyImage.alt = 'Buddy';
 
-        // Add event listener to update buddyPreview image when clicked
+        // Add event listener to update buddyPreview image when clicked 
         buddyImage.addEventListener('click', () => {
             buddyImg.src = buddy.ImageURL;
             console.log(buddyImg.src)
             activeBuddy = buddy
+           
             console.log(activeBuddy)
         });
 
