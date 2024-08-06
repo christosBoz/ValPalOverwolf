@@ -175,6 +175,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             weapon_popup(weaponId, topSkinId, item)
         })
     
+        const card = document.querySelector('.Card')
+        card.addEventListener('click', function(){
+            const cardID = card.getAttribute('data-cardid').toUpperCase()
+            const agentName = card.querySelector('.agentname').textContent.trim();
+            const agentImg = card.querySelector('.agentImage').getAttribute('src');
+            const username = card.querySelector('.username').textContent.trim();
+            card_popup(cardID, agentImg, agentName, username);
+
+      });
+
     
       });
 
@@ -309,12 +319,18 @@ function renderWeaponsData(data) {
         });
     });
 
+    const playercard = document.querySelector('.Card')
+
     const Identity = data.Identity;
-    const playercard = document.querySelector('.cardImage');
+    const playercardImg = document.querySelector('.cardImage');
     const cardImage = Identity.PlayerCardID.toUpperCase();
-    playercard.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
+    playercardImg.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
     const playercardWide = document.querySelector('.cardImageWide');
     playercardWide.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
+
+    playercard.setAttribute('data-cardID', Identity.PlayerCardID);
+
+
 
     const sprays = Array.isArray(data.Sprays) ? data.Sprays : [];
 
@@ -339,6 +355,43 @@ function resetUses(){
     })
 }
 
+function card_popup(cardID, agentImg, agentName, username) {
+
+    preview_dictionary={
+        "card":cardID,
+        "agentImg":agentImg,
+        "agentName":agentName,
+        "username":username
+   };
+
+   console.log(preview_dictionary);
+
+
+    const cardPickerContainer = document.querySelector('.cardPickerContainer');
+    if (cardPickerContainer.style.display === 'none') {
+        cardPickerContainer.style.display = "unset";
+    } else {
+        cardPickerContainer.style.display = 'none';
+        console.log("balls");
+    }
+
+    renderCardPreview(preview_dictionary);
+}
+
+function renderCardPreview(data){
+    console.log(preview_dictionary)
+    topCardLong = document.querySelector(".topCardLong");
+    topCardLong.src = "https://vinfo-api.com/media/PlayerCards/" + preview_dictionary.card + "_large.png"
+    topLoadingCard = document.querySelector(".topLoadingCard");
+    const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
+    loadingCardWide.src = "https://vinfo-api.com/media/PlayerCards/" + preview_dictionary.card + "_wide.png"
+    const agentImg = topLoadingCard.querySelector(".agentImage");
+    agentImg.src = preview_dictionary.agentImg;
+    const agentName = topLoadingCard.querySelector(".agentname");
+    agentName.innerHTML = preview_dictionary.agentName;
+
+
+}
 
 function weapon_popup(weaponId, topSkinId, item) {
     const skinGrid = document.querySelector('.skinGrid');
