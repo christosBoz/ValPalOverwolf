@@ -9,6 +9,7 @@ let activeBuddy = ''
 let weaponChoicesHTML = ''
 let buddiesOnly = ''
 let buddiesChoiceHTML = ''
+let activeType = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -188,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
       });
 
-      document.querySelector('.closeWindow').addEventListener('click', function() {
+      document.querySelector('.skinPickerBg').addEventListener('click', function() {
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
         skinPickerContainer.style.display = 'none';
         var currentBuddyID = activeItem.getAttribute("data-buddyID")
@@ -196,6 +197,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const currentBuddy = buddiesOnly.find(b => b.ItemID === currentBuddyID)
         currentBuddy.Uses -= 1
       });
+
+      document.querySelector('.cardPickerBg').addEventListener('click', function() {
+        const cardPickerContainer = document.querySelector('.cardPickerContainer');
+        cardPickerContainer.style.display = 'none';
+      });
+
       
       document.querySelector('.chooseButton').addEventListener('click', function() {
         if (activeBuddy.Uses == 0) {
@@ -242,6 +249,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(activeItem)
         }
       });
+
+      document.getElementById('skinSearchInput').addEventListener('input', function() {
+
+        let filter = this.value.toLowerCase();
+        if (activeType = "weapons") {
+            let skins = document.getElementsByClassName('weapon-skin');
+            for (let i = 0; i < skins.length; i++) {
+                let skinName = skins[i].getElementsByClassName('skinName')[0].textContent.toLowerCase();
+             //    let buddyName = buddies[i].getElementsByClassName('buddyName')[0].textContent.toLowerCase();
+                if (skinName.includes(filter)) {
+                    skins[i].style.display = '';
+                } else {
+                    skins[i].style.display = 'none';
+                }
+            }
+        }
+        if(activeType = "buddies") {
+            let buddies = document.getElementsByClassName('buddy-item');
+            for (let i = 0; i < buddies.length; i++) {
+                let buddyName = buddies[i].getElementsByClassName('buddyName')[0].textContent.toLowerCase();
+                if (buddyName.includes(filter)) {
+                    buddies[i].style.display = '';
+                } else {
+                    buddies[i].style.display = 'none';
+                }
+            }
+        }
+        
+    });
 
 
       document.querySelector('.topWeapon').addEventListener('click', function() {
@@ -453,6 +489,7 @@ function weapon_popup(weaponId, topSkinId, item) {
 
 }
 function weaponChoices(weapon){
+    activeType = "weapons"
     const skinGrid = document.querySelector('.skinGrid');
     skinGrid.innerHTML = '';
 
@@ -506,6 +543,7 @@ function weaponChoices(weapon){
 }
 
 function buddyChoices(){
+    activeType = "buddies"
     const skinGrid = document.querySelector('.skinGrid');
     const buddyPreview = document.querySelector('.buddyPreview');
     const buddyImg = buddyPreview.querySelector('.clickForBuddy');
@@ -518,6 +556,12 @@ function buddyChoices(){
         const buddyImage = document.createElement('img');
         buddyImage.src = buddy.ImageURL;
         buddyImage.alt = 'Buddy';
+        const buddyName = document.createElement('div');
+        buddyName.className = "buddyName"
+        buddyName.innerHTML = buddy.Name 
+        const buddyUses = document.createElement('div')
+        buddyUses.className = "buddyUses"
+        buddyUses.innerHTML = "Uses: "+buddy.Uses
 
         // Add event listener to update buddyPreview image when clicked 
         buddyImage.addEventListener('click', () => {
@@ -530,6 +574,8 @@ function buddyChoices(){
 
         buddyDiv.appendChild(buddyImage);
         skinGrid.appendChild(buddyDiv);
+        buddyDiv.appendChild(buddyName);
+        buddyDiv.appendChild(buddyUses);
     });    
 }
 function renderTopWeapon(data){

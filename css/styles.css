@@ -936,14 +936,16 @@ cursor: pointer;
 }
 
 .skinGrid{
-display: grid;
+/* display: grid; */
+display: flex;
+flex-wrap: wrap;
 grid-template-columns: auto auto auto;
 padding: 0;
 width: 100%;
-height: 100%;
+/* height: 100%; */
 margin-top: 0%;
 column-gap: 1vw;
-row-gap: 0vw;
+row-gap: 1vw;
 }
 
 .skinPickerSkins::-webkit-scrollbar {
@@ -955,7 +957,7 @@ row-gap: 0vw;
   justify-content: center;
   align-items: center;
   background-color: #242222;
-  width: 96%;
+  width: 31%;
   height: 13.4vh;
   position: relative;
   border: 2px solid;
@@ -1038,6 +1040,27 @@ cursor: pointer;
   z-index: 4;
   font-size: 1vw !important;
 }
+
+.buddyName{
+  bottom: 0;
+  left: 2%;
+  font-weight: 400;
+  color: #d6d6d6;
+  z-index: 4;
+  font-size: 1vw !important;
+}
+
+.buddyUses {
+  /* bottom: 0; */
+  font-weight: 400;
+  color: #d6d6d6;
+  z-index: 4;
+  font-size: 1vw !important;
+  position: absolute;
+  right: 3%;
+  top: 3%;
+}
+
 img[class*="Weapon_29A0CFAB-485B-F5D5-779A-B59F85E204A8"] {
   max-height: 75% !important;
 }
@@ -1123,13 +1146,22 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
 .buddy-item {
   border: 1px solid;
-  margin: 6%;
+  /* margin: 6%; */
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 23%;
+  /* height: 13.4vh; */
+  position: relative;
+  flex-direction: column;
 }
 
 .buddy-item img {
   width: 50%;
   height: 88%;
   object-fit: cover;
+  margin-top: 5%;
 }
 
 .buddy-item:hover {
