@@ -624,7 +624,7 @@ img {
   width: 114%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   gap: 3%;
 
@@ -646,14 +646,17 @@ img {
 }
 
 .cardGrid{
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: auto auto auto;
   padding: 0;
-  width: fit-content;
-  height: auto;
+  width: 100%;
+  height: 75%;
   margin-top: 0%;
   column-gap: 1vw;
   row-gap: 1vw;
+  justify-content: center;
+  overflow-y: scroll;
 }
 
 .skinPickerContainer {
@@ -948,6 +951,9 @@ column-gap: 1vw;
 row-gap: 1vw;
 }
 
+.cardGrid::-webkit-scrollbar {
+  display: none;
+}
 .skinPickerSkins::-webkit-scrollbar {
   display: none;
 }
@@ -1152,6 +1158,19 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   justify-content: center;
   align-items: center;
   width: 23%;
+  /* height: 13.4vh; */
+  position: relative;
+  flex-direction: column;
+}
+
+.card-image {
+  border: 1px solid;
+  /* margin: 6%; */
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 15%;
   /* height: 13.4vh; */
   position: relative;
   flex-direction: column;

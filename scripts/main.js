@@ -7,9 +7,11 @@ let activeSkin = ''
 let activeChroma = ''
 let activeBuddy = ''
 let weaponChoicesHTML = ''
+let cardChoicesHTML = ''
 let buddiesOnly = ''
 let buddiesChoiceHTML = ''
 let activeType = ''
+let activeCard = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -49,6 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const inventoryData = JSON.parse(inventory);
         weaponsOnly = inventoryData.Weapons
         buddiesOnly = inventoryData.Buddies
+        cardsOnly = inventoryData.Cards
+        console.log(cardsOnly)
 
 
         // Update agent loadout function
@@ -178,11 +182,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
         const card = document.querySelector('.Card')
         card.addEventListener('click', function(){
-            const cardID = card.getAttribute('data-cardid').toUpperCase()
-            const agentName = card.querySelector('.agentname').textContent.trim();
-            const agentImg = card.querySelector('.agentImage').getAttribute('src');
-            const username = card.querySelector('.username').textContent.trim();
-            card_popup(cardID, agentImg, agentName, username);
+            
+            card_popup(activeCard);
 
       });
 
@@ -235,18 +236,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
             dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
             dataBuffer.Guns[index].displayIcon = chroma.displayIcon
+            if (activeBuddy != ''){
+                dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
+                dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
+                dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
+                buddyimage.src = activeBuddy.ImageURL
 
-            dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
-            dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
-            dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
-
+            }
+            
             // Log the updated item
             console.log(dataBuffer.Guns[index]);
             console.log(buddyimage)
             console.log(activeItem)
-            buddyimage.src = activeBuddy.ImageURL
             weaponimage.src = chroma.displayIcon
             console.log(activeItem)
+            activeBuddy = ''
+
         }
       });
 
@@ -410,24 +415,64 @@ function card_popup(cardID, agentImg, agentName, username) {
         cardPickerContainer.style.display = 'none';
         console.log("balls");
     }
-
-    renderCardPreview(preview_dictionary);
+    cardChoices()
 }
 
-function renderCardPreview(data){
-    console.log(preview_dictionary)
-    topCardLong = document.querySelector(".topCardLong");
-    topCardLong.src = "https://vinfo-api.com/media/PlayerCards/" + preview_dictionary.card + "_large.png"
+function cardChoices(){
+    const cardGrid = document.querySelector('.cardGrid')
+    cardGrid.innerHTML = '';
+    cardGrid.style.visibility = 'hidden';
+    const topCardLong = document.querySelector(".topCardLong");
     topLoadingCard = document.querySelector(".topLoadingCard");
     const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
-    loadingCardWide.src = "https://vinfo-api.com/media/PlayerCards/" + preview_dictionary.card + "_wide.png"
-    const agentImg = topLoadingCard.querySelector(".agentImage");
-    agentImg.src = preview_dictionary.agentImg;
-    const agentName = topLoadingCard.querySelector(".agentname");
-    agentName.innerHTML = preview_dictionary.agentName;
+    const cardtitle = document.querySelector('.cardTitle')
+    const playercard = document.querySelector('.Card')
+    const cardid = playercard.getAttribute('data-cardID')
+    console.log(cardid)
+    activeCard = cardsOnly.find(card => card.ItemID === cardid)
+    console.log(activeCard)
+    topCardLong.src = activeCard.largeImageURL
+    loadingCardWide.src = activeCard.wideImageURL
+    cardtitle.innerHTML = activeCard.Name
+    
 
+    const renderCardPromise = new Promise((resolve, reject) => {
+        cardsOnly.forEach(c => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card-image'); // Add a class for styling if needed
+
+             // Create an img element for the skin
+             const cardImage = document.createElement('img');
+            //  cardImage.className = "Card_"+ c.ItemID
+             cardImage.src = c.smallImageURL
+             cardImage.alt = c.Name; // Optionally set alt text
+             const cardName = document.createElement('div');
+             cardName.className = "cardName"
+            //  cardName.innerHTML = c.Name
+
+            //  cardDiv.appendChild(cardName)
+            cardDiv.addEventListener('click', () => {
+                topCardLong.src = c.largeImageURL
+                loadingCardWide.src = c.wideImageURL
+                cardtitle.innerHTML = c.Name
+            });
+             cardDiv.appendChild(cardImage);
+
+
+
+             cardGrid.appendChild(cardDiv);
+             cardChoicesHTML = cardGrid.innerHTML
+        })
+        resolve();
+    });
+    renderCardPromise.then(() => {
+        cardGrid.style.visibility = 'visible';
+    });
 
 }
+
+
+
 
 function weapon_popup(weaponId, topSkinId, item) {
     const skinGrid = document.querySelector('.skinGrid');
@@ -484,10 +529,57 @@ function weapon_popup(weaponId, topSkinId, item) {
     
     renderTopWeapon(topWeaponData)
     weaponChoices(weapon)
+    
 
 
 
 }
+// function cardChoices(card){
+//     const cardGrid = document.querySelector('.cardGrid')
+//     cardGrid.innerHTML = '';
+//     cardGrid.style.visibility = 'hidden';
+//     const topCardLong = document.querySelector(".topCardLong");
+//     const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
+
+
+//     const renderCardPromise = new Promise((resolve, reject) => {
+//         card.forEach(c => {
+//             const cardDiv = document.createElement('div');
+//             cardDiv.classList.add('card-image'); // Add a class for styling if needed
+
+//              // Create an img element for the skin
+//              const cardImage = document.createElement('img');
+//             //  cardImage.className = "Card_"+ c.ItemID
+//              cardImage.src = c.smallImageURL
+//              cardImage.alt = c.Name; // Optionally set alt text
+//              const cardName = document.createElement('div');
+//              cardName.className = "cardName"
+//             //  cardName.innerHTML = c.Name
+
+//             //  cardDiv.appendChild(cardName)
+//             cardDiv.addEventListener('click', () => {
+//                 topCardLong.src = card.
+//             });
+//              cardDiv.appendChild(cardImage);
+
+
+
+//              cardGrid.appendChild(cardDiv);
+//              cardChoicesHTML = cardGrid.innerHTML
+//         })
+//         resolve();
+//     });
+//     renderCardPromise.then(() => {
+//         cardGrid.style.visibility = 'visible';
+//     });
+
+// }
+
+// function renderCardImage(data){
+    
+
+// }
+
 function weaponChoices(weapon){
     activeType = "weapons"
     const skinGrid = document.querySelector('.skinGrid');
