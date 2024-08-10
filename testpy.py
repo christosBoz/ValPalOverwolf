@@ -6,5 +6,5 @@ from valclient.client import Client
 client = Client(region="na")
 client.activate()
 
-
-print(client.store_fetch_entitlements(item_type = "dd3bf334-87f3-40bd-b043-682a57a8dc3a"))
+username = client.rnet_fetch_active_alias().get('game_name')
+print(username)

@@ -1,10 +1,11 @@
 userid = ""
+username = ""
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Fetch user ID and agents data in parallel
-        const [useridResponse, agentsResponse] = await Promise.all([
+        const [useridResponse, usernameResponse] = await Promise.all([
             fetch('http://127.0.0.1:5000/get-userid'),
-            fetch('https://vinfo-api.com/json/characters')
+            fetch('http://127.0.0.1:5000/get-username')
         ]);
 
         if (!useridResponse.ok || !agentsResponse.ok) {
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         userid = await useridResponse.text();
+        username = await usernameResponse.text();
         console.log('String from backend:', userid);
 
         userInventory = localStorage.getItem(`${userid}_inventory`);

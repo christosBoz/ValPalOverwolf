@@ -44,6 +44,11 @@ def get_currentuser_id():
     userid = client.session_fetch().get('subject')
     return userid
 
+@app.route('/get-username', methods=['GET'])
+def get_currentuser_name():
+    username = client.rnet_fetch_active_alias().get('game_name')
+    return username
+
 
 import requests
 

@@ -89,6 +89,10 @@ body {
   min-width: 320px;
   height: 100vh;
   overflow: hidden;
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;         /* Standard */
 }
 .backgroundContainer {
   position: absolute;
@@ -533,7 +537,7 @@ img {
   width: 100%;
   opacity: .8;
 }
-.username{
+.botLineUsername{
   color: white;
   position: absolute;
   font-size: .8vw !important;
@@ -641,7 +645,7 @@ img {
 
 .topCardLong{
  height: 60%;
- margin-top:-30%;
+ margin-top:-20%;
 }
 
 .cardGrid{
@@ -1285,6 +1289,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   border: 2px #2a2f3b solid;
   cursor: pointer;
   transition: background 0.3s;
+  margin-top: 10%;
 }
 
 .select-clicked {
@@ -1340,7 +1345,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto;
     opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 9999;
 }
@@ -1357,4 +1362,41 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 .menu-open {
   display: block;
   opacity: 1;
+}
+
+.confirm {
+  height: 20%;
+  bottom: 0;
+  position: fixed;
+}
+
+#username {
+  z-index: 4;
+  position: absolute;
+  top: 52%;
+  width: 64%;
+  height: 4%;
+  background-color: #ebeeb2;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.user {
+  color: #2a2f3b;
+  position: absolute;
+  top: -50%;
+  font-size: 12px;
+}
+
+.titleName {
+  color: white;
+  position: absolute;
+  top: 60%;
+  font-size: 8px;
+}
+
+.title-overlay {
+  justify-content: center;
+  display: flex;
 }

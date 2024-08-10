@@ -1,6 +1,11 @@
+// const { func } = require("prop-types");
+
+// const { NONAME } = require("dns");
+
 let dataBuffer = '';
 let activeAgentName = '';
 let userid = '';
+let username = ''
 let weaponsOnly = ''
 let activeItem = ''
 let activeSkin = ''
@@ -12,19 +17,22 @@ let buddiesOnly = ''
 let buddiesChoiceHTML = ''
 let activeType = ''
 let activeCard = ''
+let activeTitle = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Fetch user ID and agents data in parallel
-        const [useridResponse, agentsResponse] = await Promise.all([
+        const [useridResponse, agentsResponse, usernameResponse] = await Promise.all([
             fetch('http://127.0.0.1:5000/get-userid'),
-            fetch('https://vinfo-api.com/json/characters')
+            fetch('https://vinfo-api.com/json/characters'),
+            fetch('http://127.0.0.1:5000/get-username')
         ]);
 
         if (!useridResponse.ok || !agentsResponse.ok) {
             throw new Error('Network response was not ok');
         }
-
+        username = await usernameResponse.text();
+        console.log('String from backend:', username);
         userid = await useridResponse.text();
         console.log('String from backend:', userid);
 
@@ -52,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         weaponsOnly = inventoryData.Weapons
         buddiesOnly = inventoryData.Buddies
         cardsOnly = inventoryData.Cards
+        titlesOnly = inventoryData.Titles
         console.log(cardsOnly)
 
 
@@ -172,7 +181,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     document.querySelectorAll('.weapon').forEach(item => {
-        console.log(item)
+        // console.log(item)
         item.addEventListener('click', function(event) {
             activeItem = item
             var weaponId = item.getAttribute('data-weaponID').toUpperCase()
@@ -283,7 +292,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
     });
+    document.getElementById('cardSearchInput').addEventListener('input', function() {
 
+        let filter = this.value.toLowerCase();
+        let cards = document.querySelectorAll('.card-image'); // Select all .card-image elements
+        
+        for (let i = 0; i < cards.length; i++) {
+            let img = cards[i].querySelector('img'); // Get the img tag within the current .card-image
+            let cardName = img.alt.toLowerCase(); // Access the alt attribute of the img
+        
+            if (cardName.includes(filter)) {
+                cards[i].style.display = ''; // Show the card if it matches the filter
+            } else {
+                cards[i].style.display = 'none'; // Hide the card if it doesn't match the filter
+            }
+        }
+        })
+
+    
+
+    document.getElementById('cardSearchInput').addEventListener('input', function() {
+
+        let filter = this.value.toLowerCase();
+        let cards = document.querySelectorAll('.card-image'); // Select all .card-image elements
+        
+        for (let i = 0; i < cards.length; i++) {
+            let img = cards[i].querySelector('img'); // Get the img tag within the current .card-image
+            let cardName = img.alt.toLowerCase(); // Access the alt attribute of the img
+        
+            if (cardName.includes(filter)) {
+                cards[i].style.display = ''; // Show the card if it matches the filter
+            } else {
+                cards[i].style.display = 'none'; // Hide the card if it doesn't match the filter
+            }
+        }
+        })
 
       document.querySelector('.topWeapon').addEventListener('click', function() {
         const skinGrid = document.querySelector('.skinGrid');
@@ -292,6 +335,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
     document.querySelector('.buddyPreview').addEventListener('click', function() {
         buddyChoices()
+    })
+
+
+    document.querySelector('.confirm').addEventListener('click', function() {
+        const invLargeImage = document.querySelector('.cardImage')
+        const invWideImage = document.querySelector('.cardImageWide')
+        const playercard = document.querySelector('.Card')
+        invLargeImage.src = activeCard.largeImageURL
+        invWideImage.src = activeCard.wideImageURL
+        playercard.setAttribute('data-cardID', activeCard.ItemID) 
+        const cardPickerContainer = document.querySelector('.cardPickerContainer');
+        cardPickerContainer.style.display = "none";
+
+
     })
     
     
@@ -333,7 +390,7 @@ function renderWeaponsData(data) {
                     weaponImage.onload = function() {
                         // Once weaponImage is loaded, then check and update buddyImage if needed
                         var buddy = item.getAttribute('data-buddyID');
-                        console.log(buddyid);
+                        // console.log(buddyid);
                         if (buddy != "undefined") {
                             buddy = buddy.toUpperCase();
                             const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
@@ -346,7 +403,7 @@ function renderWeaponsData(data) {
                             };
                             buddyImage.src = buddyImageUrl; // Set src immediately
                         } else {
-                            console.log("no buddy")
+                            // console.log("no buddy")
                             const buddyImageUrl = "";
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
@@ -361,7 +418,6 @@ function renderWeaponsData(data) {
     });
 
     const playercard = document.querySelector('.Card')
-
     const Identity = data.Identity;
     const playercardImg = document.querySelector('.cardImage');
     const cardImage = Identity.PlayerCardID.toUpperCase();
@@ -370,8 +426,15 @@ function renderWeaponsData(data) {
     playercardWide.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
 
     playercard.setAttribute('data-cardID', Identity.PlayerCardID);
+    playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
 
-
+    const player_username = document.querySelectorAll('#username')
+    const wideUsername = document.querySelector('.botLineUsername')
+    wideUsername.textContent = username;
+    console.log(player_username)
+    player_username.forEach(name =>{
+        name.innerHTML = username
+    })
 
     const sprays = Array.isArray(data.Sprays) ? data.Sprays : [];
 
@@ -392,7 +455,7 @@ function renderWeaponsData(data) {
 function resetUses(){
     buddiesOnly.forEach(buddy => {
         buddy.Uses = 2;
-        console.log("hi")
+        // console.log("hi")
     })
 }
 
@@ -415,11 +478,17 @@ function card_popup(cardID, agentImg, agentName, username) {
         cardPickerContainer.style.display = 'none';
         console.log("balls");
     }
+    
+
     cardChoices()
+    titleChoices()
 }
 
 function cardChoices(){
     const cardGrid = document.querySelector('.cardGrid')
+    const invLargeImage = document.querySelector('.cardImage')
+    const invWideImage = document.querySelector('.cardImageWide')
+    
     cardGrid.innerHTML = '';
     cardGrid.style.visibility = 'hidden';
     const topCardLong = document.querySelector(".topCardLong");
@@ -435,7 +504,7 @@ function cardChoices(){
     loadingCardWide.src = activeCard.wideImageURL
     cardtitle.innerHTML = activeCard.Name
     
-
+    
     const renderCardPromise = new Promise((resolve, reject) => {
         cardsOnly.forEach(c => {
             const cardDiv = document.createElement('div');
@@ -452,9 +521,14 @@ function cardChoices(){
 
             //  cardDiv.appendChild(cardName)
             cardDiv.addEventListener('click', () => {
+                activeCard = c
+                console.log(activeCard)
                 topCardLong.src = c.largeImageURL
                 loadingCardWide.src = c.wideImageURL
                 cardtitle.innerHTML = c.Name
+                // invLargeImage.src = c.largeImageURL
+                // invWideImage.src = c.wideImageURL
+                // playercard.setAttribute('data-cardID', c.ItemID) 
             });
              cardDiv.appendChild(cardImage);
 
@@ -463,10 +537,85 @@ function cardChoices(){
              cardGrid.appendChild(cardDiv);
              cardChoicesHTML = cardGrid.innerHTML
         })
+        
         resolve();
     });
     renderCardPromise.then(() => {
         cardGrid.style.visibility = 'visible';
+    });
+
+}
+
+function titleChoices() {
+    const playercard = document.querySelector('.Card')
+    const titleid = playercard.getAttribute('data-titleID')
+    console.log(titleid)
+    activeTitle = titlesOnly.find(title => title.ItemID === titleid)
+    console.log(activeTitle)
+    const titleSelect = document.querySelector('.selectMenu');
+    console.log(titleSelect)
+    titleSelect.innerHTML = '';
+    console.log(titlesOnly)
+    titlesOnly.forEach(t => {
+        const option = document.createElement('li');
+        option.classList.add('option-select'); // Add a class for styling if needed
+        //<option value="option1">Option 1</option>
+        option.value = t.ItemID;
+        option.textContent = t.Title;
+        titleSelect.appendChild(option);
+    });
+
+    const dropdown = document.querySelector('.titleDropDown');
+
+    // Get inner elements
+    const select = dropdown.querySelector('.select');
+    const caret = dropdown.querySelector('.caret');
+    const menu = dropdown.querySelector('.selectMenu');
+    const options = dropdown.querySelectorAll('.option-select');
+    const selected = dropdown.querySelector('.selected');
+    selected.innerText = activeTitle.Title;
+
+    
+    select.addEventListener('click', (event) => {
+        // Toggle the clicked select styles
+        select.classList.toggle('select-clicked');
+        
+        // Toggle the rotation of the caret
+        caret.classList.toggle('caret-rotate');
+        
+        // Toggle the visibility of the menu
+        menu.classList.toggle('menu-open');
+    });
+    
+    options.forEach(option => {
+        option.addEventListener('click', (event) => {
+            // Stop the event from bubbling up to the select element
+            event.stopPropagation();
+    
+            // Set the selected text
+            selected.innerText = option.innerText;
+    
+            // Remove the styles indicating the select is active
+            select.classList.remove('select-clicked');
+            caret.classList.remove('caret-rotate');
+            menu.classList.remove('menu-open');
+    
+            // Remove active class from all options and add it to the clicked one
+            options.forEach(option => {
+                option.classList.remove('active');
+            });
+            option.classList.add('active');
+            activeTitle = option.textContent
+        });
+    });
+    
+    // Close the dropdown if clicked outside
+    document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target)) {
+            select.classList.remove('select-clicked');
+            caret.classList.remove('caret-rotate');
+            menu.classList.remove('menu-open');
+        }
     });
 
 }
