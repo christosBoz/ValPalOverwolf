@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch('http://127.0.0.1:5000/get-username')
         ]);
 
-        if (!useridResponse.ok || !agentsResponse.ok) {
+        if (!useridResponse.ok) {
             throw new Error('Network response was not ok');
         }
 

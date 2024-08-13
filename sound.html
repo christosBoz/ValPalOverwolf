@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/sound.css">
+</head>
+<body style="background-color: #1B191A;">
+<div id="root"></div>
+    <div class="backgroundContainer"></div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Inventory</a></li>
+            <li><a href="sound.html">Sounds</a></li>
+        </ul>
+    </nav>
+
+    <input type="file" id="audioFile" accept=".mp3, .wav">
+    <button onclick="storeAudio()">Store Audio</button>
+    <button onclick="playStoredAudio()">Play Stored Audio</button>
+
+    <select id="audioList" onchange="playStoredAudio()"></select>
+    <audio id="audioPlayer" controls></audio>
+
+    <script src="scripts/storesound.js"></script>
+</body>
+</html>
