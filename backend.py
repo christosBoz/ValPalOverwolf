@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 import requests
@@ -329,6 +329,16 @@ def refresh_inventory():
     }
 
     return updated_items_owned
+
+@app.route('/update_loadout', methods=['POST'])
+def update_loadout():
+    loadout = request.json  # Get the JSON data sent from the frontend
+    # Assume `client` is an instance of the class where put_player_loadout is defined
+    updated_loadout = client.put_player_loadout(loadout)
+    return jsonify(updated_loadout)  # Return the updated loadout as JSON
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
