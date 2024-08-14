@@ -222,6 +222,14 @@ def get_cards():
             }
             
             updated_cards.append(updated_item)
+    standard_card = {
+        "ItemID": "9fb348bc-41a0-91ad-8a3e-818035c4e561" ,
+        "Name": "VALORANT Card",
+        "smallImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_small.png",
+        "wideImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_wide.png",
+        "largeImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_large.png",
+    }
+    updated_cards.append(standard_card)
 
     # Sort updated_entitlements by Weaponid
     updated_cards_sorted = sorted(updated_cards, key=lambda x: x["Name"])
