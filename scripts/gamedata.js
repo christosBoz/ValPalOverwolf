@@ -78,7 +78,17 @@ function initializeGameEventListeners() {
         });
     });
 }
+const agentNameMapping = {
+    "char_1": "InGameName1",
+    "char_2": "InGameName2",
+    "char_3": "InGameName3",
+    // Add all necessary mappings here
+};
 
+
+function getInGameAgentName(character) {
+    return agentNameMapping[character] || null; // Returns the in-game name or null if not found
+}
 
 overwolf.games.events.onInfoUpdates2.addListener(function(info) {
     if (info.info && info.feature === "match_info" && info.info.match_info) {
@@ -93,27 +103,32 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
                 if (parsedPlayerInfo.player_id === user_id) {
                     console.log("has local player");
                     if (parsedPlayerInfo.locked) {
-                        console.log(`You have locked in: ${parsedPlayerInfo.character}`);
+                        // Get the in-game name using the mapping function
+                        const inGameAgentName = getInGameAgentName(parsedPlayerInfo.character);
 
-                        // Retrieve the saved loadout from localStorage
-                        const loadoutKey = `${user_id}_jett_loadout`;
-                        const savedLoadout = localStorage.getItem(loadoutKey);
+                        if (inGameAgentName) {
+                            console.log(`You have locked in: ${inGameAgentName}`);
 
-                        if (savedLoadout) {
-                            // Parse the saved loadout as it is stored as a JSON string
-                            const loadoutData = JSON.parse(savedLoadout);
+                            // Retrieve the saved loadout from localStorage
+                            const loadoutKey = `${user_id}_${inGameAgentName}_loadout`;
+                            const savedLoadout = localStorage.getItem(loadoutKey);
 
-                            // Send the loadout data to the backend to update
-                            sendLoadoutUpdate(loadoutData);
+                            if (savedLoadout) {
+                                // Parse the saved loadout as it is stored as a JSON string
+                                const loadoutData = JSON.parse(savedLoadout);
+
+                                // Send the loadout data to the backend to update
+                                sendLoadoutUpdate(loadoutData);
+                            } else {
+                                console.error("No saved loadout found for this agent.");
+                            }
                         } else {
-                            console.error("No saved loadout found for this agent.");
+                            console.error("No matching in-game name found for the character.");
                         }
                     }
                 }
             }
         }
-    }
-});
 
 // Function to send loadout update to the backend
 async function sendLoadoutUpdate(loadoutData) {
