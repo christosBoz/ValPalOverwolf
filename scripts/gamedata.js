@@ -89,18 +89,51 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
                 // Parse the roster data (stringified JSON)
                 let parsedPlayerInfo = JSON.parse(playerInfo);
 
-
                 // Check if the player is the local player by matching the player_id with userId
                 if (parsedPlayerInfo.player_id === user_id) {
                     console.log("has local player");
                     if (parsedPlayerInfo.locked) {
-                        console.log(`You have locked in: ${parsedPlayerInfo.character}`);
+                        console.log(`You have locked in: ${playerInfo.character}`);
+
+                        // Retrieve the saved loadout from localStorage
+                        const loadoutKey = `${user_id}_${playerInfo.character}_loadout`;
+                        const savedLoadout = localStorage.getItem(loadoutKey);
+
+                        if (savedLoadout) {
+                            // Parse the saved loadout as it is stored as a JSON string
+                            const loadoutData = JSON.parse(savedLoadout);
+
+                            // Send the loadout data to the backend to update
+                            sendLoadoutUpdate(loadoutData);
+                        } else {
+                            console.error("No saved loadout found for this agent.");
+                        }
                     }
                 }
             }
         }
     }
 });
+
+// Function to send loadout update to the backend
+async function sendLoadoutUpdate(loadoutData) {
+    try {
+        const response = await fetch('/update_loadout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loadoutData)
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const updatedLoadout = await response.json();
+        console.log('Loadout updated:', updatedLoadout);
+    } catch (error) {
+        console.error('Failed to update loadout:', error);
+    }
+}
 
 // Listen for changes in running game status
 overwolf.games.onGameInfoUpdated.addListener(function(info) {
