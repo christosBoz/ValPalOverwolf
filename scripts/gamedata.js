@@ -93,7 +93,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
                 if (parsedPlayerInfo.player_id === user_id) {
                     console.log("has local player");
                     if (parsedPlayerInfo.locked) {
-                        console.log(`You have locked in: ${playerInfo.character}`);
+                        console.log(`You have locked in: ${parsedPlayerInfo.character}`);
 
                         // Retrieve the saved loadout from localStorage
                         const loadoutKey = `${user_id}_jett_loadout`;
