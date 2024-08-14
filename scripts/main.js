@@ -18,6 +18,7 @@ let buddiesChoiceHTML = ''
 let activeType = ''
 let activeCard = ''
 let activeTitle = ''
+let activeTitleFullData = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -189,12 +190,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             weapon_popup(weaponId, topSkinId, item)
         })
     
-        const card = document.querySelector('.Card')
-        card.addEventListener('click', function(){
-            
-            card_popup(activeCard);
+        
 
       });
+      const card = document.querySelector('.Card')
+        card.addEventListener('click', function(){
+            
+            card_popup();
+            console.log(activeCard)
 
     
       });
@@ -342,14 +345,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         const invLargeImage = document.querySelector('.cardImage')
         const invWideImage = document.querySelector('.cardImageWide')
         const playercard = document.querySelector('.Card')
+        const playerTitle = document.querySelector('.titleName')
         invLargeImage.src = activeCard.largeImageURL
         invWideImage.src = activeCard.wideImageURL
         playercard.setAttribute('data-cardID', activeCard.ItemID) 
+        dataBuffer.Identity.PlayerCardID = activeCard.ItemID
+        dataBuffer.Identity.PlayerTitleID = activeTitle.ItemID
+        playerTitle.textContent = activeTitle.Title
+        //if activeTitle has data in it then do this. else we cant i guess.
+        console.log(activeTitle)
+        playercard.setAttribute('data-titleid', activeTitle.ItemID)
+        // playercard.setAttribute('data-titleid', activeTitle.getAttribute('data-item-id'))
         const cardPickerContainer = document.querySelector('.cardPickerContainer');
         cardPickerContainer.style.display = "none";
 
+        //do data buffer stuff here:
+
+        console.log(activeCard.ItemID)
+
+        console.log(activeTitle.ItemID)
+
 
     })
+
+    // const playercard = document.querySelector('.Card')
+    // const titleid = playercard.getAttribute('data-titleID')
+    // activeTitle = titlesOnly.find(title => title.ItemID === titleid)
+    // console.log(activeTitle)
+    // const player_title = document.querySelector('.titleName')
+    // player_title.textContent = activeTitle.Title
+  
+
     
     
     
@@ -396,7 +422,7 @@ function renderWeaponsData(data) {
                             const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
                             const usedBuddy = buddiesOnly.find(b => b.ItemID === buddy);
                             usedBuddy.Uses -= 1;
-                            console.log(usedBuddy)
+                            // console.log(usedBuddy)
                             buddyImage.onload = function() {
                                 // Once buddyImage is loaded, or directly set its src
                                 buddyImage.src = buddyImageUrl;
@@ -429,8 +455,12 @@ function renderWeaponsData(data) {
     playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
 
     const player_username = document.querySelectorAll('#username')
+    const player_title = document.querySelector('.titleName')
     const wideUsername = document.querySelector('.botLineUsername')
     wideUsername.textContent = username;
+    activeTitle = titlesOnly.find(title => title.ItemID === Identity.PlayerTitleID)
+    console.log(activeTitle)
+    player_title.textContent = activeTitle.Title;
     console.log(player_username)
     player_username.forEach(name =>{
         name.innerHTML = username
@@ -459,16 +489,16 @@ function resetUses(){
     })
 }
 
-function card_popup(cardID, agentImg, agentName, username) {
+function card_popup() {
 
-    preview_dictionary={
-        "card":cardID,
-        "agentImg":agentImg,
-        "agentName":agentName,
-        "username":username
-   };
+//     preview_dictionary={
+//         "card":cardID,
+//         "agentImg":agentImg,
+//         "agentName":agentName,
+//         "username":username
+//    };
 
-   console.log(preview_dictionary);
+//    console.log(preview_dictionary);
 
 
     const cardPickerContainer = document.querySelector('.cardPickerContainer');
@@ -481,7 +511,30 @@ function card_popup(cardID, agentImg, agentName, username) {
     
 
     cardChoices()
-    titleChoices()
+
+    const dropdown = document.querySelector('.titleDropDown');
+    const select = dropdown.querySelector('.select');
+    const selected = dropdown.querySelector('.selected');
+    const caret = dropdown.querySelector('.caret');
+    const menu = dropdown.querySelector('.selectMenu');
+    selected.innerText = activeTitle.Title;
+
+    
+    select.addEventListener('click', (event) => {
+        event.stopPropagation();
+        // Toggle the clicked select styles
+        select.classList.toggle('select-clicked');
+        
+        // Toggle the rotation of the caret
+        caret.classList.toggle('caret-rotate');
+        
+        // Toggle the visibility of the menu
+        menu.classList.toggle('menu-open');
+
+        titleChoices()
+    });
+    //when click on select then do titlechoices.
+    
 }
 
 function cardChoices(){
@@ -497,7 +550,7 @@ function cardChoices(){
     const cardtitle = document.querySelector('.cardTitle')
     const playercard = document.querySelector('.Card')
     const cardid = playercard.getAttribute('data-cardID')
-    console.log(cardid)
+    // console.log(cardid)
     activeCard = cardsOnly.find(card => card.ItemID === cardid)
     console.log(activeCard)
     topCardLong.src = activeCard.largeImageURL
@@ -546,12 +599,12 @@ function cardChoices(){
 
 }
 
+
 function titleChoices() {
     const playercard = document.querySelector('.Card')
     const titleid = playercard.getAttribute('data-titleID')
     console.log(titleid)
     activeTitle = titlesOnly.find(title => title.ItemID === titleid)
-    console.log(activeTitle)
     const titleSelect = document.querySelector('.selectMenu');
     console.log(titleSelect)
     titleSelect.innerHTML = '';
@@ -560,7 +613,7 @@ function titleChoices() {
         const option = document.createElement('li');
         option.classList.add('option-select'); // Add a class for styling if needed
         //<option value="option1">Option 1</option>
-        option.value = t.ItemID;
+        option.setAttribute('data-item-id', t.ItemID);
         option.textContent = t.Title;
         titleSelect.appendChild(option);
     });
@@ -577,6 +630,7 @@ function titleChoices() {
 
     
     select.addEventListener('click', (event) => {
+        event.stopPropagation();
         // Toggle the clicked select styles
         select.classList.toggle('select-clicked');
         
@@ -605,9 +659,13 @@ function titleChoices() {
                 option.classList.remove('active');
             });
             option.classList.add('active');
-            activeTitle = option.textContent
+            console.log(option)
+
+            activeTitle = titlesOnly.find(title => title.Title === option.textContent)
+            console.log(activeTitle)
         });
     });
+    
     
     // Close the dropdown if clicked outside
     document.addEventListener('click', (event) => {
@@ -615,6 +673,7 @@ function titleChoices() {
             select.classList.remove('select-clicked');
             caret.classList.remove('caret-rotate');
             menu.classList.remove('menu-open');
+            event.stopPropagation();
         }
     });
 
@@ -863,52 +922,6 @@ function renderTopWeapon(data){
 
 
 
-
-// let selectedBuddyImageSrc = ''; // Variable to store the buddy image URL
-// let selectedWeaponItem = null; // Variable to store the weapon name
-
-// // Get all weapon items
-// const weaponItems = document.querySelectorAll('.invItem.weapon');
-
-
-// // Get the buddyPreview image element
-// const buddyPreviewImage = document.querySelector('.buddyPreview .clickForBuddy');
-
-// weaponItems.forEach(item => {
-//     item.addEventListener('click', () => {
-//         selectedWeaponItem = item;
-//         console.log(selectedWeaponItem)
-//         console.log(buddyPreviewImage);
-//         // Find the buddy image within the clicked item
-//         const buddyImage = item.querySelector('.buddyimage');
-        
-//         if (buddyImage) {
-//             // Update the variable with the buddy image URL
-//             selectedBuddyImageSrc = buddyImage.src;
-//             console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
-            
-//             // Update the src attribute of the buddyPreview image
-//             if (buddyPreviewImage) {
-//                 buddyPreviewImage.src = selectedBuddyImageSrc;
-//                 console.log(buddyPreviewImage.src)
-//             }
-//         }
-//     });
-// });
-
-
-//   // Event listener for the choose button
-//   chooseButton.addEventListener('click', () => {
-//     if (selectedWeaponItem) {
-        
-//         const buddyImageInWeapon = selectedWeaponItem.querySelector('.buddyimage');
-        
-//         if (buddyImageInWeapon) {
-//             buddyImageInWeapon.src = buddyImg.src;
-//             console.log(buddyImg.src)
-//         }
-//     }
-// });
 
 
 
