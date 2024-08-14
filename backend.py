@@ -158,9 +158,10 @@ def get_buddies():
 
         # Check if the itemID has already been processed
         if item_id in processed_item_ids:
-            continue  # Skip processing this item ID to avoid duplication
+            instanceID2 = item["InstanceID"]
         else:
             processed_item_ids.add(item_id)  # Mark this item ID as processed
+            instanceID2 = ""
 
         # Check if the itemID exists in the weapon skins data
         if item_id in buddies_by_offerid:
@@ -171,7 +172,8 @@ def get_buddies():
                 "ItemID": buddy["id"],
                 "Name": buddy["name"],
                 "ImageURL": buddy["displayIcon"],
-                "InstanceID": item["InstanceID"],
+                "InstanceID1": item["InstanceID"],
+                "InstanceID2": instanceID2,
                 "LevelID": item_id,
                 "Uses": 2
             }
