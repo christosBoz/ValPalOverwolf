@@ -129,6 +129,8 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
                 }
             }
         }
+    }
+});
 
 // Function to send loadout update to the backend
 async function sendLoadoutUpdate(loadoutData) {
