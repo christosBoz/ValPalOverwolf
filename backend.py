@@ -158,7 +158,7 @@ def get_buddies():
 
         # Check if the itemID has already been processed
         if item_id in processed_item_ids:
-            for buddy in updated_items:
+            for buddy in updated_buddies:
                 if item["ItemID"] == item_id:
                     buddy["InstanceID2"] = item["InstanceID"]
                     break
