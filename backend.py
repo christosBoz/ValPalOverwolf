@@ -15,7 +15,7 @@ client.activate()
 @app.route('/import_loadout', methods=['GET'])
 def import_loadout():
     current_loadout = client.fetch_player_loadout()
-    print(type(current_loadout))
+    # print(type(current_loadout))
 
     # Fetch the weapon skins data from the API
     weapon_skins_url = "https://vinfo-api.com/json/weaponSkins"
@@ -115,8 +115,8 @@ def get_weapons():
     # Add default "Standard" skins for each weapon
     for weapon_skin in weapon_skins_data:
         if weapon_skin["name"].startswith("Standard") or weapon_skin["name"].startswith("Random") or weapon_skin["name"] == "Melee":
-            print(weapon_skin)
-            print(weapon_skin)
+            # print(weapon_skin)
+            # print(weapon_skin)
             weapon_id = weapon_skin["weaponId"]
             default_chroma = weapon_skin["chromas"][0]
             default_levels = weapon_skin["levels"]
@@ -159,9 +159,13 @@ def get_buddies():
         # Check if the itemID has already been processed
         if item_id in processed_item_ids:
             for buddy in updated_buddies:
-                if item["ItemID"] == item_id:
+                if buddy["LevelID"] == item_id:
+                    # print(buddy)
+                    # print(buddy['InstanceID2'])
+                    print(item["InstanceID"])
                     buddy["InstanceID2"] = item["InstanceID"]
-                    break
+                    
+            continue
         else:
             processed_item_ids.add(item_id)  # Mark this item ID as processed
             
@@ -176,7 +180,7 @@ def get_buddies():
                 "Name": buddy["name"],
                 "ImageURL": buddy["displayIcon"],
                 "InstanceID1": item["InstanceID"],
-                "InstanceID2": instanceID2,
+                "InstanceID2": "",
                 "LevelID": item_id,
                 "Uses": 2
             }

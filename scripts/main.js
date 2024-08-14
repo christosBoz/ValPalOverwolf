@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         skinPickerContainer.style.display = 'none';
         var currentBuddyID = activeItem.getAttribute("data-buddyID")
         currentBuddyID = currentBuddyID.toUpperCase();
+        // console.log(currentBuddyID)
         const currentBuddy = buddiesOnly.find(b => b.ItemID === currentBuddyID)
         currentBuddy.Uses -= 1
       });
@@ -249,8 +250,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
             dataBuffer.Guns[index].displayIcon = chroma.displayIcon
             if (activeBuddy != ''){
+                console.log(activeBuddy)
                 dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
-                dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID.toLowerCase();
+                if (activeBuddy.Uses == 2) {
+                    dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID1.toLowerCase();
+                }
+                else {
+                    dataBuffer.Guns[index].CharmInstanceID = activeBuddy.InstanceID2.toLowerCase();
+                }
                 dataBuffer.Guns[index].CharmLevelID = activeBuddy.LevelID.toLowerCase();
                 buddyimage.src = activeBuddy.ImageURL
 
