@@ -96,7 +96,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
                         console.log(`You have locked in: ${playerInfo.character}`);
 
                         // Retrieve the saved loadout from localStorage
-                        const loadoutKey = `${user_id}_${playerInfo.character}_loadout`;
+                        const loadoutKey = `${user_id}_jett_loadout`;
                         const savedLoadout = localStorage.getItem(loadoutKey);
 
                         if (savedLoadout) {
@@ -118,7 +118,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
 // Function to send loadout update to the backend
 async function sendLoadoutUpdate(loadoutData) {
     try {
-        const response = await fetch('/update_loadout', {
+        const response = await fetch('http://127.0.0.1:5000/update_loadout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
