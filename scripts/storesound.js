@@ -48,7 +48,7 @@ function storeAudio() {
     }
 }
 
-    function playSoundByName(soundName) {
+    function playSoundByName(soundName, volume = 1.0) {
         let transaction = db.transaction(["audioFiles"], "readonly");
         let objectStore = transaction.objectStore("audioFiles");
         let index = objectStore.index("name");
@@ -58,6 +58,7 @@ function storeAudio() {
             let result = event.target.result;
             if (result && result.data) {
                 let audio = new Audio(result.data);
+                audio.volume = volume;
                 audio.play();
             } else {
                 console.error("Sound not found:", soundName);

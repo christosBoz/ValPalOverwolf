@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
+                console.log("Refreshed Inv");
             } catch (error) {
                 console.error('Error refreshing inventory:', error);
             }

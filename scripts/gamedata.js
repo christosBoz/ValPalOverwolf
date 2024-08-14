@@ -1,5 +1,6 @@
 let user_id = '';
 let playerLocked = false;
+let lastWonRounds = 0;
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -55,16 +56,17 @@ function initializeGameEventListeners() {
     overwolf.games.events.onNewEvents.addListener(function(event) {
         //console.log("New event received:", event);
         event.events.forEach(function(e) {
-            if (e.name === "kill") {
-                console.log("Kill event detected:", e);
+        if (e.name === "kill") {
+            console.log("Kill event detected:", e);
 
-                // Example: Play a specific sound based on the weapon used
-                let soundFileName = "among-us-roundstart.mp3";  // Default sound
+            let soundFileName = "JJBA - Yare Yare Daze Jotaro Kujo.mp3";
 
-                // Play the specific sound by its name
-                playSoundByName(soundFileName);
-
-                // headshot sound if it cant find headshot, play kill audio
+            if (e.data && e.data.headshots && parseInt(e.data.final_headshot) > 0) {
+                console.log("Headshot detected!");
+                soundFileName = "fortnite hs.mp3";  // Replace with your actual headshot sound file name
+            }
+           
+            playSoundByName(soundFileName);
 
             } else if (e.name === "death") {
                 console.log("Death event detected:", e);
@@ -79,9 +81,12 @@ function initializeGameEventListeners() {
     });
 }
 const agentNameMapping = {
-    "char_1": "InGameName1",
-    "char_2": "InGameName2",
-    "char_3": "InGameName3",
+    "Wushu": "Jett",
+    "Deadeye": "Chamber",
+    "Vampire": "Reyna",
+    "Killjoy": "Killjoy",
+    "Phoenix": "Phoenix"
+
     // Add all necessary mappings here
 };
 
@@ -130,6 +135,32 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
             }
         }
     }
+    // ------------------------------------------------------------------------------------------------
+    if (info.info && info.feature === "match_info" && info.info.match_info.round_phase) {
+        let roundPhase = info.info.match_info.round_phase;
+
+        if (roundPhase === "combat") {
+            console.log("Combat round phase has begun.");
+            soundFileName = "among-us-roundstart.mp3";
+            playSoundByName(soundFileName);
+        }
+    }
+
+    if (info.info && info.feature === "match_info" && info.info.match_info.score) {
+        let scoreData = JSON.parse(info.info.match_info.score);
+        let currentWonRounds = scoreData.won;
+
+        // Check if a round was won
+        if (currentWonRounds > lastWonRounds) {
+            console.log("Round won!");
+            soundFileName = "ara.mp3";
+            playSoundByName(soundFileName, 0.4
+            );
+            lastWonRounds = currentWonRounds; // Update the won rounds tracker
+        }
+    }
+
+
 });
 
 // Function to send loadout update to the backend
