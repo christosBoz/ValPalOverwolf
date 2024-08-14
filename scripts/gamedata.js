@@ -1,3 +1,26 @@
+let user_id = '';
+let playerLocked = false;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Fetch user ID and agents data in parallel
+        const [useridResponse] = await Promise.all([
+            fetch('http://127.0.0.1:5000/get-userid'),
+
+        ]);
+
+        if (!useridResponse.ok) {
+            throw new Error('Network response was not ok');
+        }
+        user_id = await useridResponse.text();
+        console.log('UserID:', user_id);
+    } catch (error) {
+        console.error('Error fetching and processing data:', error);
+    }
+});
+
+
+
 // Log when the Overwolf API is available
 if (typeof overwolf !== 'undefined') {
     console.log("Overwolf API is available!");
@@ -5,11 +28,12 @@ if (typeof overwolf !== 'undefined') {
     console.error("Overwolf API is not available.");
 }
 
+
 // Check if Valorant is running when the app starts
 overwolf.games.getRunningGameInfo(function(gameInfo) {
     if (gameInfo && gameInfo.isRunning) {
         console.log("Valorant is running: ", gameInfo);
-        initializeGameEventListeners();
+        initializeGameEventListeners()
     } else {
         console.log("No game is currently running.");
     }
@@ -17,8 +41,9 @@ overwolf.games.getRunningGameInfo(function(gameInfo) {
 
 // Function to initialize game event listeners
 function initializeGameEventListeners() {
+    console.log("Initializing game event listeners...");
     // Set the required features for tracking kills and deaths
-    overwolf.games.events.setRequiredFeatures(["kill", "death", "match_info"], function(info) {
+    overwolf.games.events.setRequiredFeatures(["match_info", "kill", "death"], function(info) {
         if (info.status === "error") {
             console.error("Could not set required features:", info.reason);
         } else {
@@ -28,24 +53,54 @@ function initializeGameEventListeners() {
 
     // Listen for new game events
     overwolf.games.events.onNewEvents.addListener(function(event) {
-        console.log("New event received:", event);
+        //console.log("New event received:", event);
         event.events.forEach(function(e) {
             if (e.name === "kill") {
                 console.log("Kill event detected:", e);
+
+                // Example: Play a specific sound based on the weapon used
+                let soundFileName = "among-us-roundstart.mp3";  // Default sound
+
+                // Play the specific sound by its name
+                playSoundByName(soundFileName);
+
+                // headshot sound if it cant find headshot, play kill audio
+
             } else if (e.name === "death") {
                 console.log("Death event detected:", e);
-            }
-        });
-    });
 
-    overwolf.games.events.onNewEvents.addListener(function(event) {
-        //console.log("Raw event data:", event);
-        event.events.forEach(function(e) {
-            //console.log("Event name:", e.name);
-            // Handle specific event types here
+                soundFileName = "Nyaa - Sound Effect (HD).mp3";
+
+                playSoundByName(soundFileName);
+            }
+                // round win 
+
         });
     });
 }
+
+
+overwolf.games.events.onInfoUpdates2.addListener(function(info) {
+    if (info.info && info.feature === "match_info" && info.info.match_info) {
+        for (let key in info.info.match_info) {
+            if (key.startsWith("roster_")) {
+                let playerInfo = info.info.match_info[key];
+
+                // Parse the roster data (stringified JSON)
+                let parsedPlayerInfo = JSON.parse(playerInfo);
+
+
+                // Check if the player is the local player by matching the player_id with userId
+                if (parsedPlayerInfo.player_id === user_id) {
+                    console.log("has local player");
+                    if (parsedPlayerInfo.locked) {
+                        console.log(`You have locked in: ${parsedPlayerInfo.character}`);
+                    }
+                }
+            }
+        }
+    }
+});
 
 // Listen for changes in running game status
 overwolf.games.onGameInfoUpdated.addListener(function(info) {
@@ -59,11 +114,3 @@ overwolf.games.onGameInfoUpdated.addListener(function(info) {
     }
 });
 
-// Debugging: log any errors from the Overwolf API
-overwolf.extensions.onAppLaunchTriggered.addListener(function(event) {
-    console.log("App launched: ", event);
-});
-
-overwolf.extensions.onAppLaunchError.addListener(function(event) {
-    console.error("App launch error: ", event);
-});

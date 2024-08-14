@@ -69,32 +69,6 @@ function storeAudio() {
         };
     }
 
-function initializeGameEventListeners() {
-    console.log("Initializing game event listeners...");
-
-    overwolf.games.events.setRequiredFeatures(["kill"], function(info) {
-        if (info.status === "error") {
-            console.error("Could not set required features:", info.reason);
-        } else {
-            console.log("Required features set successfully:", info);
-        }
-    });
-
-    overwolf.games.events.onNewEvents.addListener(function(event) {
-        event.events.forEach(function(e) {
-            if (e.name === "kill") {
-                console.log("Kill event detected:", e);
-
-                // Example: Play a specific sound based on the weapon used
-                let soundFileName = "Nyaa - Sound Effect (HD).mp3";  // Default sound
-
-                // Play the specific sound by its name
-                playSoundByName(soundFileName);
-            }
-        });
-    });
-}
-
 function loadAudioList() {
     let audioList = document.getElementById('audioList');
     audioList.innerHTML = "";
@@ -127,27 +101,4 @@ function playStoredAudio() {
     };
 }
 
-function playKillSound(db) {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(["sounds"], "readonly");
-        const store = transaction.objectStore("sounds");
 
-        const request = store.get("killSound");
-
-        request.onsuccess = function(event) {
-            const mp3File = event.target.result.file;
-
-            if (mp3File) {
-                const audio = new Audio(URL.createObjectURL(mp3File));
-                audio.play();
-                resolve();
-            } else {
-                reject("No MP3 file found in IndexedDB.");
-            }
-        };
-
-        request.onerror = function(event) {
-            reject("Error retrieving MP3 file:", event.target.errorCode);
-        };
-    });
-}
