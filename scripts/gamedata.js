@@ -51,19 +51,15 @@ async function initializeGameEventListeners() {
             console.log("Required features set successfully:", info);
         }
     });
-    
+
     try {
         const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
         currentloadout = await loadoutResponse.json();
-        dataBuffer = loadoutData // Append fetched data to dataBuffer
-        renderWeaponsData(loadoutData); // Render updated data
     } catch (error) {
         console.error('Error fetching loadout:', error);
     }
 
-    
 
-    
 
     // Listen for new game events
     overwolf.games.events.onNewEvents.addListener(function(event) {
@@ -87,9 +83,11 @@ async function initializeGameEventListeners() {
                 soundFileName = "Nyaa - Sound Effect (HD).mp3";
 
                 playSoundByName(soundFileName);
+            } else if (e.name === "match_end") {
+                console.log("Match ended!");
+                sendLoadoutUpdate(currentloadout);
+                // round win
             }
-                // round win 
-
         });
     });
 }
