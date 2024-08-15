@@ -1,6 +1,7 @@
 let user_id = '';
 let playerLocked = false;
 let lastWonRounds = 0;
+let currentloadout = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -35,13 +36,12 @@ overwolf.games.getRunningGameInfo(function(gameInfo) {
     if (gameInfo && gameInfo.isRunning) {
         console.log("Valorant is running: ", gameInfo);
         initializeGameEventListeners()
-    } else {
-        console.log("No game is currently running.");
+    } else {        console.log("No game is currently running.");
     }
 });
 
 // Function to initialize game event listeners
-function initializeGameEventListeners() {
+async function initializeGameEventListeners() {
     console.log("Initializing game event listeners...");
     // Set the required features for tracking kills and deaths
     overwolf.games.events.setRequiredFeatures(["match_info", "kill", "death"], function(info) {
@@ -51,6 +51,19 @@ function initializeGameEventListeners() {
             console.log("Required features set successfully:", info);
         }
     });
+    
+    try {
+        const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
+        currentloadout = await loadoutResponse.json();
+        dataBuffer = loadoutData // Append fetched data to dataBuffer
+        renderWeaponsData(loadoutData); // Render updated data
+    } catch (error) {
+        console.error('Error fetching loadout:', error);
+    }
+
+    
+
+    
 
     // Listen for new game events
     overwolf.games.events.onNewEvents.addListener(function(event) {
@@ -65,7 +78,7 @@ function initializeGameEventListeners() {
                 console.log("Headshot detected!");
                 soundFileName = "fortnite hs.mp3";  // Replace with your actual headshot sound file name
             }
-           
+
             playSoundByName(soundFileName);
 
             } else if (e.name === "death") {
@@ -81,14 +94,31 @@ function initializeGameEventListeners() {
     });
 }
 const agentNameMapping = {
+    "Clay": "Raze",
+    "Pandemic": "Viper",
+    "Wraith": "Omen",
+    "Hunter": "Sova",
+    "Thorne": "Sage",
+    "Phoenix": "Phoenix",
     "Wushu": "Jett",
-    "Deadeye": "Chamber",
+    "Gumshoe": "Cypher",
+    "Sarge": "Brimstone",
+    "Breach": "Breach",
     "Vampire": "Reyna",
     "Killjoy": "Killjoy",
-    "Phoenix": "Phoenix"
-
-    // Add all necessary mappings here
-};
+    "Guide": "Skye",
+    "Stealth": "Yoru",
+    "Rift": "Astra",
+    "Grenadier": "KAY/O",
+    "Deadeye": "Chamber",
+    "Sprinter": "Neon",
+    "BountyHunter": "Fade",
+    "Mage": "Harbor",
+    "AggroBot": "Gekko",
+    "Cable": "Deadlock",
+    "Sequoia": "Iso",
+    "Smonk": "Clove"
+}
 
 
 function getInGameAgentName(character) {
@@ -195,3 +225,6 @@ overwolf.games.onGameInfoUpdated.addListener(function(info) {
     }
 });
 
+overwolf.games.events.onNewEvents.addListener(function(event) {
+    console.log("Raw event data:", event);
+});
