@@ -52,12 +52,7 @@ async function initializeGameEventListeners() {
         }
     });
 
-    try {
-        const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
-        currentloadout = await loadoutResponse.json();
-    } catch (error) {
-        console.error('Error fetching loadout:', error);
-    }
+    
 
 
 
@@ -68,7 +63,7 @@ async function initializeGameEventListeners() {
         if (e.name === "kill") {
             console.log("Kill event detected:", e);
 
-            let soundFileName = "JJBA - Yare Yare Daze Jotaro Kujo.mp3";
+            let soundFileName = "fortnite hs.mp3";
 
             if (e.data && e.data.headshots && parseInt(e.data.final_headshot) > 0) {
                 console.log("Headshot detected!");
@@ -83,10 +78,6 @@ async function initializeGameEventListeners() {
                 soundFileName = "Nyaa - Sound Effect (HD).mp3";
 
                 playSoundByName(soundFileName);
-            } else if (e.name === "match_end") {
-                console.log("Match ended!");
-                sendLoadoutUpdate(currentloadout);
-                // round win
             }
         });
     });
@@ -226,3 +217,30 @@ overwolf.games.onGameInfoUpdated.addListener(function(info) {
 overwolf.games.events.onNewEvents.addListener(function(event) {
     console.log("Raw event data:", event);
 });
+
+overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
+    if (info.info && info.info.match_info) {
+        console.log("Map detected:", info.info.match_info.map);
+
+        let map = info.info.match_info.map;
+
+        if (map === null) {
+            console.log("Game has been dodged or ended");
+            sendLoadoutUpdate(currentloadout);
+        }else if (map === undefined) {
+            console.log("Game is ongoing");
+        }else{
+            console.log("Game has started");
+            try {
+                const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
+                currentloadout = await loadoutResponse.json();
+                console.log(currentloadout);
+            } catch (error) {
+                console.error('Error fetching loadout:', error);
+            }
+        }
+    }
+});
+/*overwolf.games.events.onInfoUpdates2.addListener(function(info) {
+    console.log("Raw info update received:", JSON.stringify(info, null, 2));
+});*/
