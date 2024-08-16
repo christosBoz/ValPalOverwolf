@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for fetching the loadout data
         document.getElementById('loadLoadoutButton').addEventListener('click', async () => {
             try {
-                const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
+                const loadoutResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
                 const loadoutData = await loadoutResponse.json();
                 dataBuffer = loadoutData // Append fetched data to dataBuffer
                 renderWeaponsData(loadoutData); // Render updated data
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for refreshing the inventory data
         document.getElementById('refreshButton').addEventListener('click', async () => {
             try {
-                const refreshResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/refresh_inventory?puuid=${userid}`);
+                const refreshResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
