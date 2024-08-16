@@ -22,19 +22,20 @@ let activeTitleFullData = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        userid = localStorage.getItem(`puuid`)
+
         // Fetch user ID and agents data in parallel
-        const [useridResponse, agentsResponse, usernameResponse] = await Promise.all([
-            fetch('http://127.0.0.1:5000/get-userid'),
+        const [agentsResponse, usernameResponse] = await Promise.all([
+        
             fetch('https://vinfo-api.com/json/characters'),
-            fetch('http://127.0.0.1:5000/get-username')
+            fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/get-username?puuid=${userid}`)
         ]);
 
-        if (!useridResponse.ok || !agentsResponse.ok) {
+        if (!agentsResponse.ok) {
             throw new Error('Network response was not ok');
         }
         username = await usernameResponse.text();
         console.log('String from backend:', username);
-        userid = await useridResponse.text();
         console.log('String from backend:', userid);
 
         const agentsData = await agentsResponse.json();
@@ -165,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for refreshing the inventory data
         document.getElementById('refreshButton').addEventListener('click', async () => {
             try {
-                const refreshResponse = await fetch('http://127.0.0.1:5000/refresh_inventory');
+                const refreshResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/refresh_inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);

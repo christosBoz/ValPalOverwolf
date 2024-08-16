@@ -5,16 +5,8 @@ let currentloadout = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Fetch user ID and agents data in parallel
-        const [useridResponse] = await Promise.all([
-            fetch('http://127.0.0.1:5000/get-userid'),
-
-        ]);
-
-        if (!useridResponse.ok) {
-            throw new Error('Network response was not ok');
-        }
-        user_id = await useridResponse.text();
+        
+        user_id = localStorage.getItem(`puuid`) 
         console.log('UserID:', user_id);
     } catch (error) {
         console.error('Error fetching and processing data:', error);
