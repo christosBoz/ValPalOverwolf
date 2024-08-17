@@ -224,7 +224,7 @@ overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
         }else{
             console.log("Game has started");
             try {
-                const loadoutResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/update_loadout?puuid=${user_id}`);
+                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//update_loadout?puuid=${user_id}`);
                 currentloadout = await loadoutResponse.json();
                 console.log(currentloadout);
             } catch (error) {

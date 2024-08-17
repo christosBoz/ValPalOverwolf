@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const [agentsResponse, usernameResponse] = await Promise.all([
         
             fetch('https://vinfo-api.com/json/characters'),
-            fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/get-username?puuid=${userid}`)
+            fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//get-username?puuid=${userid}`)
         ]);
 
         if (!agentsResponse.ok) {
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for fetching the loadout data
         document.getElementById('loadLoadoutButton').addEventListener('click', async () => {
             try {
-                const loadoutResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
+                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
                 const loadoutData = await loadoutResponse.json();
                 dataBuffer = loadoutData // Append fetched data to dataBuffer
                 renderWeaponsData(loadoutData); // Render updated data
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for refreshing the inventory data
         document.getElementById('refreshButton').addEventListener('click', async () => {
             try {
-                const refreshResponse = await fetch(`http://ec2-52-14-242-49.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${userid}`);
+                const refreshResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//refresh-inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
@@ -428,7 +428,7 @@ function renderWeaponsData(data) {
                         // console.log(buddyid);
                         if (buddy != "undefined") {
                             buddy = buddy.toUpperCase();
-                            const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
+                            const buddyImageUrl = `http://vinfo-api.com/media/Charms/${buddy}.png`;
                             const usedBuddy = buddiesOnly.find(b => b.ItemID === buddy);
                             usedBuddy.Uses -= 1;
                             // console.log(usedBuddy)
@@ -456,9 +456,9 @@ function renderWeaponsData(data) {
     const Identity = data.Identity;
     const playercardImg = document.querySelector('.cardImage');
     const cardImage = Identity.PlayerCardID.toUpperCase();
-    playercardImg.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
+    playercardImg.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
     const playercardWide = document.querySelector('.cardImageWide');
-    playercardWide.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
+    playercardWide.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
 
     playercard.setAttribute('data-cardID', Identity.PlayerCardID);
     playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
@@ -485,7 +485,7 @@ function renderWeaponsData(data) {
 
         if (spray) {
             const sprayId = spray.SprayID.toUpperCase();
-            const sprayIconURL = "https://vinfo-api.com/media/Sprays/" + sprayId + ".png";
+            const sprayIconURL = "http://vinfo-api.com/media/Sprays/" + sprayId + ".png";
             const sprayImage = spraySlot.querySelector('.sprayImage');
             sprayImage.src = sprayIconURL;
         }
@@ -726,7 +726,7 @@ function weapon_popup(weaponId, topSkinId, item) {
         console.log(currentBuddy)
         currentBuddy.Uses += 1;
 
-        buddyPreviewImage.src = `https://vinfo-api.com/media/Charms/${buddy}.png`;
+        buddyPreviewImage.src = `http://vinfo-api.com/media/Charms/${buddy}.png`;
         
     }
     else {
