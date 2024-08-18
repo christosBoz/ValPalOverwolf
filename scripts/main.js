@@ -388,7 +388,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   
 
     
-    
+    const sprayContainer = document.querySelector('.sprayPickerContainer')
+    document.querySelectorAll('.sprayItem').forEach(spray => {
+        spray.addEventListener('click', function(event) {
+            console.log(spray)
+            activeItem = spray
+            if (sprayContainer.style.display === 'none') {
+                sprayContainer.style.display = "unset";
+                const name = spray.getAttribute('weapon')
+                const id = spray.getAttribute('data-slotid')
+                const imgSrc = spray.querySelector('img').getAttribute('src');
+                spraypopup(id, name, imgSrc, spray)
+            } else {
+                sprayContainer.style.display = 'none';
+                console.log("not openning because it says its closed");
+            }
+
+        })
+      });
+
+    document.querySelector('.sprayPickerBg').addEventListener('click', function() {
+    sprayContainer.style.display = 'none';
+    });
     
        
     
@@ -888,3 +909,149 @@ function renderTopWeapon(data){
 
 
 
+function renderSprayData(){
+    const sprayDisplay = document.querySelector('.topSpray')
+    const grid = document.querySelector('.sprayGrid')
+    grid.innerHTML = '';
+    grid.style.visibility = 'hidden';
+    const renderCardPromise = new Promise((resolve, reject) => {
+        spraysOnly.forEach(s => {
+            const sprayDiv = document.createElement('div');
+            sprayDiv.classList.add('spray-image'); // Add a class for styling if needed
+             // Create an img element for the skin
+             const sprayImage = document.createElement('img');
+            //  cardImage.className = "Card_"+ c.ItemID
+             sprayImage.src = s.ImageURL
+             sprayImage.alt = s.Name; // Optionally set alt text
+            sprayDiv.addEventListener('click', () => {
+                sprayDisplay.src = s.ImageURL
+                activeSpray = s
+            })
+             sprayDiv.appendChild(sprayImage);
+             grid.appendChild(sprayDiv);
+
+        })
+
+        resolve();
+    });
+    renderCardPromise.then(() => {
+        grid.style.visibility = 'visible';
+    });
+}
+
+function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) { 
+    const sprayContainer = document.querySelector('.sprayPickerContainer')
+    const spray1 = document.querySelector('.sprayDirectionTopButton')
+    const spray2 = document.querySelector('.sprayDirectionRightButton')
+    const spray3 = document.querySelector('.sprayDirectionBottomButton')
+    const spray4 = document.querySelector('.sprayDirectionLeftButton')
+    
+    // console.log("SPRAY ID IS" +sprayid);
+    // console.log(sprayDirection);
+    // console.log(sprayIcon)
+    document.querySelector('.sprayPreview .topSpray').setAttribute('src', sprayIcon);
+    // console.log(spraysOnly)
+    const grid = document.querySelector('.sprayGrid')
+    renderSprayData()
+    const sprayImage1 = spray1.querySelector('img.sprayImage');
+    const sprayImage2 = spray2.querySelector('img.sprayImage');
+    const sprayImage3 = spray3.querySelector('img.sprayImage');
+    const sprayImage4 = spray4.querySelector('img.sprayImage');
+    document.querySelector('.chooseButtonSprays').addEventListener('click', function() {
+        // console.log(dataBuffer)
+        // console.log(activeSpray.ItemID)
+
+        if (sprayDirection === "Spray1") {
+            console.log(spray1)
+            console.log(checkSprays())
+            if (checkSprays()){
+                sprayImage1.src = activeSpray.ImageURL
+                spray1.setAttribute('data-slotid', activeSpray.ItemID)
+                sprayDirection = ""
+                dataBuffer.Sprays[0].SprayID = activeSpray.ItemID
+                sprayContainer.style.display = "unset";
+
+                
+                
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        if (sprayDirection === "Spray2") {
+            if (checkSprays()){
+            sprayImage2.src = activeSpray.ImageURL
+            spray2.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[1].SprayID = spray2.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        if (sprayDirection === "Spray3") {
+            if (checkSprays()) {
+            sprayImage3.src = activeSpray.ImageURL
+            spray3.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[2].SprayID = spray3.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+            
+
+        }
+        if (sprayDirection === "Spray4") {
+            if (checkSprays()){
+            sprayImage4.src = activeSpray.ImageURL
+            spray4.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[3].SprayID = spray4.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        console.log(dataBuffer)
+        
+    
+     })
+
+    
+
+
+
+    
+}
+
+function checkSprays() {
+    const sprayImages = document.querySelectorAll('.sprayItem .sprayImage');
+    
+    // Create an array to store the src values
+    const srcArray = [];
+
+    // Loop through each spray image and add its src to the array
+    for (let i = 0; i < sprayImages.length; i++) {
+        const src = sprayImages[i].src;
+
+        // If the src is already in the array, there's a duplicate
+        if (srcArray.includes(src)) {
+            return false; // Duplicate found
+        }
+
+        // Add the src to the array
+        srcArray.push(src);
+    }
+    return true; // No duplicates found
+}
