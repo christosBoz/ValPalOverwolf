@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // console.log(item)
         item.addEventListener('click', function(event) {
             activeItem = item
-            var weaponId = item.getAttribute('data-weaponID').toUpperCase()
-            var topSkinId = item.getAttribute('data-skinID').toUpperCase()
+            var weaponId = item.getAttribute('data-weaponID')
+            var topSkinId = item.getAttribute('data-skinID')
             weapon_popup(weaponId, topSkinId, item)
         })
     
@@ -231,25 +231,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             const skinPickerContainer = document.querySelector('.skinPickerContainer');
             skinPickerContainer.style.display = 'none';
             console.log(activeItem)
+            console.log(activeSkin)
+            console.log(activeChroma)
             weaponimage = activeItem.querySelector('.weaponimage')
             buddyimage = activeItem.querySelector('.buddyimage')
             
-            chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+            chroma = activeSkin.Chromas.find(chroma => chroma.uuid === activeChroma)
             console.log(chroma)
         // Find the index of the item in dataBuffer.Guns
-            const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid.toLowerCase());
+            const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid);
 
             // Log the old item
             console.log(dataBuffer.Guns[index]);
 
             // Update the item's properties
             console.log(dataBuffer.Guns[index].ChromaID)
-            console.log(chroma.id.toLowerCase())
-            dataBuffer.Guns[index].ChromaID = chroma.id.toLowerCase();
+            console.log(chroma.uuid)
+            dataBuffer.Guns[index].ChromaID = chroma.uuid;
             console.log(dataBuffer.Guns[index].SkinID)
             console.log(activeSkin.ItemID.toLowerCase())
             dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
-            dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
+            dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].uuid;
             dataBuffer.Guns[index].displayIcon = chroma.displayIcon
             if (activeBuddy != ''){
                 console.log(activeBuddy)
@@ -269,7 +271,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(dataBuffer.Guns[index]);
             console.log(buddyimage)
             console.log(activeItem)
-            weaponimage.src = chroma.displayIcon
+            weaponimage.src = chroma.fullRender
             console.log(activeItem)
             activeBuddy = ''
 
@@ -413,8 +415,8 @@ function renderWeaponsData(data) {
                 const weaponImage = item.querySelector('.weaponimage');
                 var buddyid = gun.CharmID;
 
-                var skinid = gun.SkinID.toUpperCase();
-                var chromaid = gun.ChromaID.toUpperCase()
+                var skinid = gun.SkinID
+                var chromaid = gun.ChromaID
 
                 const buddyImage = item.querySelector('.buddyimage');
                 item.setAttribute('data-skinID', skinid);
@@ -732,17 +734,7 @@ function weapon_popup(weaponId, topSkinId, item) {
     else {
         buddyPreviewImage.src = "./img/image.png"
     }
-    // if (buddyImage.src != "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/index.html") {
-    //     // Update the variable with the buddy image URL
-    //     selectedBuddyImageSrc = buddyImage.src;
-    //     console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
-        
-    //     // Update the src attribute of the buddyPreview image
-    //     if (buddyPreviewImage) {
-    //         buddyPreviewImage.src = selectedBuddyImageSrc;
-    //         console.log(buddyPreviewImage.src)
-    //     }
-    // }
+
     
     renderTopWeapon(topWeaponData)
     weaponChoices(weapon)
@@ -751,51 +743,7 @@ function weapon_popup(weaponId, topSkinId, item) {
 
 
 }
-// function cardChoices(card){
-//     const cardGrid = document.querySelector('.cardGrid')
-//     cardGrid.innerHTML = '';
-//     cardGrid.style.visibility = 'hidden';
-//     const topCardLong = document.querySelector(".topCardLong");
-//     const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
 
-
-//     const renderCardPromise = new Promise((resolve, reject) => {
-//         card.forEach(c => {
-//             const cardDiv = document.createElement('div');
-//             cardDiv.classList.add('card-image'); // Add a class for styling if needed
-
-//              // Create an img element for the skin
-//              const cardImage = document.createElement('img');
-//             //  cardImage.className = "Card_"+ c.ItemID
-//              cardImage.src = c.smallImageURL
-//              cardImage.alt = c.Name; // Optionally set alt text
-//              const cardName = document.createElement('div');
-//              cardName.className = "cardName"
-//             //  cardName.innerHTML = c.Name
-
-//             //  cardDiv.appendChild(cardName)
-//             cardDiv.addEventListener('click', () => {
-//                 topCardLong.src = card.
-//             });
-//              cardDiv.appendChild(cardImage);
-
-
-
-//              cardGrid.appendChild(cardDiv);
-//              cardChoicesHTML = cardGrid.innerHTML
-//         })
-//         resolve();
-//     });
-//     renderCardPromise.then(() => {
-//         cardGrid.style.visibility = 'visible';
-//     });
-
-// }
-
-// function renderCardImage(data){
-    
-
-// }
 
 function weaponChoices(weapon){
     activeType = "weapons"
@@ -817,7 +765,7 @@ function weaponChoices(weapon){
                 // Create an img element for the skin
                 const skinImage = document.createElement('img');
                 skinImage.className = "Weapon_"+ w.Weaponid
-                skinImage.src = w.Chromas[0].displayIcon; // Set the src to the first chroma displayIcon
+                skinImage.src = w.Chromas[0].fullRender; // Set the src to the first chroma displayIcon
                 skinImage.alt = w.Name; // Optionally set alt text
                 const skinName = document.createElement('div');
                 skinName.className = "skinName"
@@ -830,7 +778,7 @@ function weaponChoices(weapon){
                 // Add event listener to update topWeapon image on click
                 weaponDiv.addEventListener('click', () => {
                     activeSkin = w
-                    activeChroma = w.Chromas[0].id;
+                    activeChroma = w.Chromas[0].uuid;
 
                     renderTopWeapon(w);
                 });
@@ -894,10 +842,13 @@ function renderTopWeapon(data){
     // console.log(data.Chromas[0]);
     // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
     console.log(activeSkin);
-    const topweaponimg = data.Chromas.find(chroma=>chroma.id===activeChroma);
+    console.log(data.Chromas)
+    console.log(activeChroma)
+    const topweaponimg = data.Chromas.find(chroma=>chroma.uuid===activeChroma);
+    console
     console.log(topweaponimg);
-    console.log(topweaponimg.displayIcon);
-    topWeapon.src = topweaponimg.displayIcon;
+    console.log(topweaponimg.fullRender);
+    topWeapon.src = topweaponimg.fullRender;
     console.log(activeChroma);
     chromaPreview.innerHTML = '';           
   
@@ -913,8 +864,8 @@ function renderTopWeapon(data){
         
         chromaImage.addEventListener('click', () => {
             const topWeaponImage = document.querySelector('.topWeapon');
-            topWeaponImage.src = chroma.displayIcon;
-            activeChroma = chroma.id;
+            topWeaponImage.src = chroma.fullRender;
+            activeChroma = chroma.uuid;
         });
         chromaImage.className = `chroma${index + 1}image`;
 
@@ -924,7 +875,7 @@ function renderTopWeapon(data){
 
     // If a weapon has only 1 chroma, set the first chroma.id as active chroma id
     if (data.Chromas.length === 1) {
-        activeChroma = data.Chromas[0].id;
+        activeChroma = data.Chromas[0].uuid;
         console.log(`Active chroma set to: ${activeChroma}`);
     }
 }
