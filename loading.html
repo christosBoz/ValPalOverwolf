@@ -18,7 +18,7 @@
             activateButton.addEventListener('click', async () => {
                 try {
                     // Adjust the path to your actual lockfile path
-                    const lockfilePath = 'C:/Users/majdh/AppData/Local/Riot Games/Riot Client/Config/lockfile'; // Change this to the actual path
+                    const lockfilePath = overwolf.io.paths.localAppData+ '/Riot Games/Riot Client/Config/lockfile'; // Change this to the actual path
 
                     // Read the lockfile content
                     const lockfileContent = await new Promise((resolve, reject) => {
