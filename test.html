@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Client Activation</title>
+</head>
+<body>
+    <button id="activate-button">Activate Client</button>
+    <pre id="activation-status"></pre>
+    <script src="valclient.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const activateButton = document.getElementById('activate-button');
+            const activationStatusPre = document.getElementById('activation-status');
+
+            const client = new Client("na");
+
+            activateButton.addEventListener('click', async () => {
+                try {
+                    await client.activate();
+                    activationStatusPre.textContent = 'Client activated successfully.';
+                } catch (error) {
+                    activationStatusPre.textContent = `Error: ${error.message}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

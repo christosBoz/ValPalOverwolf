@@ -22,19 +22,20 @@ let activeTitleFullData = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        userid = localStorage.getItem(`puuid`)
+
         // Fetch user ID and agents data in parallel
-        const [useridResponse, agentsResponse, usernameResponse] = await Promise.all([
-            fetch('http://127.0.0.1:5000/get-userid'),
+        const [agentsResponse, usernameResponse] = await Promise.all([
+        
             fetch('https://vinfo-api.com/json/characters'),
-            fetch('http://127.0.0.1:5000/get-username')
+            fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//get-username?puuid=${userid}`)
         ]);
 
-        if (!useridResponse.ok || !agentsResponse.ok) {
+        if (!agentsResponse.ok) {
             throw new Error('Network response was not ok');
         }
         username = await usernameResponse.text();
         console.log('String from backend:', username);
-        userid = await useridResponse.text();
         console.log('String from backend:', userid);
 
         const agentsData = await agentsResponse.json();
@@ -153,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for fetching the loadout data
         document.getElementById('loadLoadoutButton').addEventListener('click', async () => {
             try {
-                const loadoutResponse = await fetch('http://127.0.0.1:5000/import_loadout');
+                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
                 const loadoutData = await loadoutResponse.json();
                 dataBuffer = loadoutData // Append fetched data to dataBuffer
                 renderWeaponsData(loadoutData); // Render updated data
@@ -165,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for refreshing the inventory data
         document.getElementById('refreshButton').addEventListener('click', async () => {
             try {
-                const refreshResponse = await fetch('http://127.0.0.1:5000/refresh_inventory');
+                const refreshResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//refresh-inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
@@ -186,8 +187,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // console.log(item)
         item.addEventListener('click', function(event) {
             activeItem = item
-            var weaponId = item.getAttribute('data-weaponID').toUpperCase()
-            var topSkinId = item.getAttribute('data-skinID').toUpperCase()
+            var weaponId = item.getAttribute('data-weaponID')
+            var topSkinId = item.getAttribute('data-skinID')
             weapon_popup(weaponId, topSkinId, item)
         })
     
@@ -230,25 +231,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             const skinPickerContainer = document.querySelector('.skinPickerContainer');
             skinPickerContainer.style.display = 'none';
             console.log(activeItem)
+            console.log(activeSkin)
+            console.log(activeChroma)
             weaponimage = activeItem.querySelector('.weaponimage')
             buddyimage = activeItem.querySelector('.buddyimage')
             
-            chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
+            chroma = activeSkin.Chromas.find(chroma => chroma.uuid === activeChroma)
             console.log(chroma)
         // Find the index of the item in dataBuffer.Guns
-            const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid.toLowerCase());
+            const index = dataBuffer.Guns.findIndex(gun => gun.ID === activeSkin.Weaponid);
 
             // Log the old item
             console.log(dataBuffer.Guns[index]);
 
             // Update the item's properties
             console.log(dataBuffer.Guns[index].ChromaID)
-            console.log(chroma.id.toLowerCase())
-            dataBuffer.Guns[index].ChromaID = chroma.id.toLowerCase();
+            console.log(chroma.uuid)
+            dataBuffer.Guns[index].ChromaID = chroma.uuid;
             console.log(dataBuffer.Guns[index].SkinID)
             console.log(activeSkin.ItemID.toLowerCase())
             dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
-            dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].id.toLowerCase();
+            dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].uuid;
             dataBuffer.Guns[index].displayIcon = chroma.displayIcon
             if (activeBuddy != ''){
                 console.log(activeBuddy)
@@ -268,7 +271,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(dataBuffer.Guns[index]);
             console.log(buddyimage)
             console.log(activeItem)
-            weaponimage.src = chroma.displayIcon
+            weaponimage.src = chroma.fullRender
             console.log(activeItem)
             activeBuddy = ''
 
@@ -385,7 +388,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   
 
     
-    
+    const sprayContainer = document.querySelector('.sprayPickerContainer')
+    document.querySelectorAll('.sprayItem').forEach(spray => {
+        spray.addEventListener('click', function(event) {
+            console.log(spray)
+            activeItem = spray
+            if (sprayContainer.style.display === 'none') {
+                sprayContainer.style.display = "unset";
+                const name = spray.getAttribute('weapon')
+                const id = spray.getAttribute('data-slotid')
+                const imgSrc = spray.querySelector('img').getAttribute('src');
+                spraypopup(id, name, imgSrc, spray)
+            } else {
+                sprayContainer.style.display = 'none';
+                console.log("not openning because it says its closed");
+            }
+
+        })
+      });
+
+    document.querySelector('.sprayPickerBg').addEventListener('click', function() {
+    sprayContainer.style.display = 'none';
+    });
     
        
     
@@ -412,8 +436,8 @@ function renderWeaponsData(data) {
                 const weaponImage = item.querySelector('.weaponimage');
                 var buddyid = gun.CharmID;
 
-                var skinid = gun.SkinID.toUpperCase();
-                var chromaid = gun.ChromaID.toUpperCase()
+                var skinid = gun.SkinID
+                var chromaid = gun.ChromaID
 
                 const buddyImage = item.querySelector('.buddyimage');
                 item.setAttribute('data-skinID', skinid);
@@ -427,7 +451,7 @@ function renderWeaponsData(data) {
                         // console.log(buddyid);
                         if (buddy != "undefined") {
                             buddy = buddy.toUpperCase();
-                            const buddyImageUrl = `https://vinfo-api.com/media/Charms/${buddy}.png`;
+                            const buddyImageUrl = `http://vinfo-api.com/media/Charms/${buddy}.png`;
                             const usedBuddy = buddiesOnly.find(b => b.ItemID === buddy);
                             usedBuddy.Uses -= 1;
                             // console.log(usedBuddy)
@@ -455,9 +479,9 @@ function renderWeaponsData(data) {
     const Identity = data.Identity;
     const playercardImg = document.querySelector('.cardImage');
     const cardImage = Identity.PlayerCardID.toUpperCase();
-    playercardImg.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
+    playercardImg.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
     const playercardWide = document.querySelector('.cardImageWide');
-    playercardWide.src = "https://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
+    playercardWide.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
 
     playercard.setAttribute('data-cardID', Identity.PlayerCardID);
     playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
@@ -484,7 +508,7 @@ function renderWeaponsData(data) {
 
         if (spray) {
             const sprayId = spray.SprayID.toUpperCase();
-            const sprayIconURL = "https://vinfo-api.com/media/Sprays/" + sprayId + ".png";
+            const sprayIconURL = "http://vinfo-api.com/media/Sprays/" + sprayId + ".png";
             const sprayImage = spraySlot.querySelector('.sprayImage');
             sprayImage.src = sprayIconURL;
         }
@@ -725,23 +749,13 @@ function weapon_popup(weaponId, topSkinId, item) {
         console.log(currentBuddy)
         currentBuddy.Uses += 1;
 
-        buddyPreviewImage.src = `https://vinfo-api.com/media/Charms/${buddy}.png`;
+        buddyPreviewImage.src = `http://vinfo-api.com/media/Charms/${buddy}.png`;
         
     }
     else {
         buddyPreviewImage.src = "./img/image.png"
     }
-    // if (buddyImage.src != "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/index.html") {
-    //     // Update the variable with the buddy image URL
-    //     selectedBuddyImageSrc = buddyImage.src;
-    //     console.log('Selected Buddy Image URL:', selectedBuddyImageSrc);
-        
-    //     // Update the src attribute of the buddyPreview image
-    //     if (buddyPreviewImage) {
-    //         buddyPreviewImage.src = selectedBuddyImageSrc;
-    //         console.log(buddyPreviewImage.src)
-    //     }
-    // }
+
     
     renderTopWeapon(topWeaponData)
     weaponChoices(weapon)
@@ -750,51 +764,7 @@ function weapon_popup(weaponId, topSkinId, item) {
 
 
 }
-// function cardChoices(card){
-//     const cardGrid = document.querySelector('.cardGrid')
-//     cardGrid.innerHTML = '';
-//     cardGrid.style.visibility = 'hidden';
-//     const topCardLong = document.querySelector(".topCardLong");
-//     const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
 
-
-//     const renderCardPromise = new Promise((resolve, reject) => {
-//         card.forEach(c => {
-//             const cardDiv = document.createElement('div');
-//             cardDiv.classList.add('card-image'); // Add a class for styling if needed
-
-//              // Create an img element for the skin
-//              const cardImage = document.createElement('img');
-//             //  cardImage.className = "Card_"+ c.ItemID
-//              cardImage.src = c.smallImageURL
-//              cardImage.alt = c.Name; // Optionally set alt text
-//              const cardName = document.createElement('div');
-//              cardName.className = "cardName"
-//             //  cardName.innerHTML = c.Name
-
-//             //  cardDiv.appendChild(cardName)
-//             cardDiv.addEventListener('click', () => {
-//                 topCardLong.src = card.
-//             });
-//              cardDiv.appendChild(cardImage);
-
-
-
-//              cardGrid.appendChild(cardDiv);
-//              cardChoicesHTML = cardGrid.innerHTML
-//         })
-//         resolve();
-//     });
-//     renderCardPromise.then(() => {
-//         cardGrid.style.visibility = 'visible';
-//     });
-
-// }
-
-// function renderCardImage(data){
-    
-
-// }
 
 function weaponChoices(weapon){
     activeType = "weapons"
@@ -816,7 +786,7 @@ function weaponChoices(weapon){
                 // Create an img element for the skin
                 const skinImage = document.createElement('img');
                 skinImage.className = "Weapon_"+ w.Weaponid
-                skinImage.src = w.Chromas[0].displayIcon; // Set the src to the first chroma displayIcon
+                skinImage.src = w.Chromas[0].fullRender; // Set the src to the first chroma displayIcon
                 skinImage.alt = w.Name; // Optionally set alt text
                 const skinName = document.createElement('div');
                 skinName.className = "skinName"
@@ -829,7 +799,7 @@ function weaponChoices(weapon){
                 // Add event listener to update topWeapon image on click
                 weaponDiv.addEventListener('click', () => {
                     activeSkin = w
-                    activeChroma = w.Chromas[0].id;
+                    activeChroma = w.Chromas[0].uuid;
 
                     renderTopWeapon(w);
                 });
@@ -893,10 +863,13 @@ function renderTopWeapon(data){
     // console.log(data.Chromas[0]);
     // chroma = activeSkin.Chromas.find(chroma => chroma.id === activeChroma)
     console.log(activeSkin);
-    const topweaponimg = data.Chromas.find(chroma=>chroma.id===activeChroma);
+    console.log(data.Chromas)
+    console.log(activeChroma)
+    const topweaponimg = data.Chromas.find(chroma=>chroma.uuid===activeChroma);
+    console
     console.log(topweaponimg);
-    console.log(topweaponimg.displayIcon);
-    topWeapon.src = topweaponimg.displayIcon;
+    console.log(topweaponimg.fullRender);
+    topWeapon.src = topweaponimg.fullRender;
     console.log(activeChroma);
     chromaPreview.innerHTML = '';           
   
@@ -912,8 +885,8 @@ function renderTopWeapon(data){
         
         chromaImage.addEventListener('click', () => {
             const topWeaponImage = document.querySelector('.topWeapon');
-            topWeaponImage.src = chroma.displayIcon;
-            activeChroma = chroma.id;
+            topWeaponImage.src = chroma.fullRender;
+            activeChroma = chroma.uuid;
         });
         chromaImage.className = `chroma${index + 1}image`;
 
@@ -923,7 +896,7 @@ function renderTopWeapon(data){
 
     // If a weapon has only 1 chroma, set the first chroma.id as active chroma id
     if (data.Chromas.length === 1) {
-        activeChroma = data.Chromas[0].id;
+        activeChroma = data.Chromas[0].uuid;
         console.log(`Active chroma set to: ${activeChroma}`);
     }
 }
@@ -936,3 +909,149 @@ function renderTopWeapon(data){
 
 
 
+function renderSprayData(){
+    const sprayDisplay = document.querySelector('.topSpray')
+    const grid = document.querySelector('.sprayGrid')
+    grid.innerHTML = '';
+    grid.style.visibility = 'hidden';
+    const renderCardPromise = new Promise((resolve, reject) => {
+        spraysOnly.forEach(s => {
+            const sprayDiv = document.createElement('div');
+            sprayDiv.classList.add('spray-image'); // Add a class for styling if needed
+             // Create an img element for the skin
+             const sprayImage = document.createElement('img');
+            //  cardImage.className = "Card_"+ c.ItemID
+             sprayImage.src = s.ImageURL
+             sprayImage.alt = s.Name; // Optionally set alt text
+            sprayDiv.addEventListener('click', () => {
+                sprayDisplay.src = s.ImageURL
+                activeSpray = s
+            })
+             sprayDiv.appendChild(sprayImage);
+             grid.appendChild(sprayDiv);
+
+        })
+
+        resolve();
+    });
+    renderCardPromise.then(() => {
+        grid.style.visibility = 'visible';
+    });
+}
+
+function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) { 
+    const sprayContainer = document.querySelector('.sprayPickerContainer')
+    const spray1 = document.querySelector('.sprayDirectionTopButton')
+    const spray2 = document.querySelector('.sprayDirectionRightButton')
+    const spray3 = document.querySelector('.sprayDirectionBottomButton')
+    const spray4 = document.querySelector('.sprayDirectionLeftButton')
+    
+    // console.log("SPRAY ID IS" +sprayid);
+    // console.log(sprayDirection);
+    // console.log(sprayIcon)
+    document.querySelector('.sprayPreview .topSpray').setAttribute('src', sprayIcon);
+    // console.log(spraysOnly)
+    const grid = document.querySelector('.sprayGrid')
+    renderSprayData()
+    const sprayImage1 = spray1.querySelector('img.sprayImage');
+    const sprayImage2 = spray2.querySelector('img.sprayImage');
+    const sprayImage3 = spray3.querySelector('img.sprayImage');
+    const sprayImage4 = spray4.querySelector('img.sprayImage');
+    document.querySelector('.chooseButtonSprays').addEventListener('click', function() {
+        // console.log(dataBuffer)
+        // console.log(activeSpray.ItemID)
+
+        if (sprayDirection === "Spray1") {
+            console.log(spray1)
+            console.log(checkSprays())
+            if (checkSprays()){
+                sprayImage1.src = activeSpray.ImageURL
+                spray1.setAttribute('data-slotid', activeSpray.ItemID)
+                sprayDirection = ""
+                dataBuffer.Sprays[0].SprayID = activeSpray.ItemID
+                sprayContainer.style.display = "unset";
+
+                
+                
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        if (sprayDirection === "Spray2") {
+            if (checkSprays()){
+            sprayImage2.src = activeSpray.ImageURL
+            spray2.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[1].SprayID = spray2.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        if (sprayDirection === "Spray3") {
+            if (checkSprays()) {
+            sprayImage3.src = activeSpray.ImageURL
+            spray3.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[2].SprayID = spray3.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+            
+
+        }
+        if (sprayDirection === "Spray4") {
+            if (checkSprays()){
+            sprayImage4.src = activeSpray.ImageURL
+            spray4.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[3].SprayID = spray4.getAttribute('data-slotid')
+            sprayContainer.style.display = "unset";
+            }
+            else{
+                alert(`Spray already on the wheel`);
+                sprayDirection = ""
+            }
+
+        }
+        console.log(dataBuffer)
+        
+    
+     })
+
+    
+
+
+
+    
+}
+
+function checkSprays() {
+    const sprayImages = document.querySelectorAll('.sprayItem .sprayImage');
+    
+    // Create an array to store the src values
+    const srcArray = [];
+
+    // Loop through each spray image and add its src to the array
+    for (let i = 0; i < sprayImages.length; i++) {
+        const src = sprayImages[i].src;
+
+        // If the src is already in the array, there's a duplicate
+        if (srcArray.includes(src)) {
+            return false; // Duplicate found
+        }
+
+        // Add the src to the array
+        srcArray.push(src);
+    }
+    return true; // No duplicates found
+}

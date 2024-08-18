@@ -1,353 +1,245 @@
-from flask import Flask, jsonify, request
+from xmlrpc.client import ResponseError
+from flask import Flask, json, jsonify, request
 from flask_cors import CORS
-import json
 import requests
-from valclient.client import Client
+import valclient  # Ensure valclient is installed and configured
+import typing as t
+import base64
+
+
 
 app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes
+CORS(app)  # Enable CORS for all routes
 
-# Initialize the VALORANT client
-client = Client(region="na")
-client.activate()
+class CustomClient(valclient.Client):
+    def __init__(self, region: t.Text = "na", auth: t.Optional[t.Mapping] = None, lockfile_content: t.Optional[str] = None, *args, **kwargs):
+        self.base_endpoint_local = "http://127.0.0.1:{port}"
+        self.base_endpoint = "https://pd.{shard}.a.pvp.net"
+        self.base_endpoint_glz = "https://glz-{region}-1.{shard}.a.pvp.net"
+        self.base_endpoint_shared = "https://shared.{shard}.a.pvp.net"
 
+        self.regions = ["na", "eu", "latam", "br", "ap", "kr", "pbe"]
+        self.region_shard_override = {
+        "latam": "na",
+        "br": "na",
+        }
+        self.shard_region_override = {"pbe": "na"}
 
-@app.route('/import_loadout', methods=['GET'])
-def import_loadout():
-    current_loadout = client.fetch_player_loadout()
-    # print(type(current_loadout))
-
-    # Fetch the weapon skins data from the API
-    weapon_skins_url = "https://vinfo-api.com/json/weaponSkins"
-    response = requests.get(weapon_skins_url)
-    weapon_skins_data = response.json()
-
-    # Create a mapping from ChromaID to displayIcon
-    chroma_to_icon = {}
-    for skin in weapon_skins_data:
-        for chroma in skin.get('chromas', []):
-            chroma_id = chroma['id'].upper()
-            display_icon = chroma['displayIcon']
-            chroma_to_icon[chroma_id] = display_icon
-
-    # Add the displayIcon to each weapon in the loadout
-    for gun in current_loadout['Guns']:
-        chroma_id = gun.get('ChromaID').upper()
-        if chroma_id in chroma_to_icon:
-            gun['displayIcon'] = chroma_to_icon[chroma_id]
-
-    # Return the JSON data
-    return jsonify(current_loadout)
-
-@app.route('/get-userid', methods=['GET'])
-def get_currentuser_id():
-    userid = client.session_fetch().get('subject')
-    return userid
-
-@app.route('/get-username', methods=['GET'])
-def get_currentuser_name():
-    username = client.rnet_fetch_active_alias().get('game_name')
-    return username
-
-
-import requests
-
-def get_weapons():
-    # Fetch entitlements (items owned)
-    weapons_owned = client.store_fetch_entitlements()
-    chromas_owned = client.store_fetch_entitlements(item_type="3ad1b2b2-acdb-4524-852f-954a76ddae0a")
-    levels_owned = client.store_fetch_entitlements(item_type="e7c63390-eda7-46e0-bb7a-a6abdacd2433")
-    
-    entitlements = chromas_owned.get('Entitlements', [])
-    chromas_owned_ids = [chroma['ItemID'].upper() for chroma in entitlements]
-    
-    levels_entitlements = levels_owned.get('Entitlements', [])
-    levels_owned_ids = [level['ItemID'].upper() for level in levels_entitlements]
-
-    # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/weaponSkins"
-    response = requests.get(api_url)
-    weapon_skins_data = response.json()
-
-    # Create a dictionary to store weapon skins data by offerId
-    weapon_skins_by_offerid = {item['offerId']: item for item in weapon_skins_data}
-
-    # Initialize a set to keep track of processed ItemIDs
-    processed_item_ids = set()
-
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
-    updated_weapons = []
-    for item in weapons_owned["Entitlements"]:
-        item_id = item["ItemID"]
-
-        # Check if the itemID has already been processed
-        if item_id in processed_item_ids:
-            continue  # Skip processing this item ID to avoid duplication
+        self.queues = [
+        "competitive",
+        "custom",
+        "deathmatch",
+        "ggteam",
+        "snowball",
+        "spikerush",
+        "unrated",
+        "onefa",
+        "null",
+]
+        self.puuid = ""
+        self.player_name = ""
+        self.player_tag = ""
+        self.lockfile = {}
+        self.headers = {}
+        self.local_headers = {}
+        self.region = region
+        self.shard = region
+        self.auth = None
+        self.client_platform = "ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9"
+        self.session = {}  # Placeholder for session data
+        if lockfile_content:
+            print("hi")
+            # Parse the lockfile content and use it to initialize the client
+            self.lockfile = self._parse_lockfile(lockfile_content)
+            print(self.lockfile)
         else:
-            processed_item_ids.add(item_id)  # Mark this item ID as processed
+            self.lockfile = None
+        self.base_url, self.base_url_glz, self.base_url_shared = self.__build_urls()
 
-        # Check if the itemID exists in the weapon skins data
-        if item_id in weapon_skins_by_offerid:
-            weapon_skin = weapon_skins_by_offerid[item_id]
-            
-            owned_chromas = [weapon_skin["chromas"][0]]
-            for chroma in weapon_skin.get("chromas", []):
-                if chroma["id"] in chromas_owned_ids:
-                    owned_chromas.append(chroma)
+    def __build_urls(self) -> t.Tuple[str, str, str]:
+        """Generate URLs based on region/shard"""
+        base_url = self.base_endpoint.format(shard=self.shard)
+        base_url_glz = self.base_endpoint_glz.format(shard=self.shard, region=self.region)
+        base_url_shared = self.base_endpoint_shared.format(shard=self.shard)
+        return base_url, base_url_glz, base_url_shared
 
-            owned_levels = []
-            for level in weapon_skin.get("levels", []):
-                if level["id"] in levels_owned_ids:
-                    owned_levels.append(level)
+    def region_to_shard(self, region: str) -> str:
+        """Convert region to shard if necessary"""
+        region_shard_map = {
+            'na': 'na',
+            'latam': 'na',
+            'br': 'na',
+            'pbe': 'pbe',
+            'eu': 'eu',
+            'ap': 'ap',
+            'kr': 'kr'
+        }
+        return region_shard_map.get(region, 'na')
 
-            # Create updated item with collected chromas and levels
-            updated_item = {
-                "ItemID": weapon_skin["id"],
-                "OfferID": item_id,
-                "Weaponid": weapon_skin["weaponId"],
-                "Name": weapon_skin["name"],
-                "Chromas": owned_chromas,
-                "Levels": owned_levels
-            }
-            
-            updated_weapons.append(updated_item)
+    def _parse_lockfile(self, lockfile_content: str) -> t.Dict[str, str]:
+        """Parse the lockfile content and return a dictionary."""
+        data = lockfile_content.split(':')
+        keys = ["name", "PID", "port", "password", "protocol"]
+        if len(data) != len(keys):
+            raise ValueError('Lockfile format is incorrect')
+        return dict(zip(keys, data))
 
-    # Add default "Standard" skins for each weapon
-    for weapon_skin in weapon_skins_data:
-        if weapon_skin["name"].startswith("Standard") or weapon_skin["name"].startswith("Random") or weapon_skin["name"] == "Melee":
-            # print(weapon_skin)
-            # print(weapon_skin)
-            weapon_id = weapon_skin["weaponId"]
-            default_chroma = weapon_skin["chromas"][0]
-            default_levels = weapon_skin["levels"]
+    def set_session(self, session_data: t.Dict[str, t.Any]) -> None:
+        """Set the session data."""
+        self.session = session_data
 
-            # Create default item with the default chroma and levels
-            default_item = {
-                "ItemID": weapon_skin["id"],
-                "OfferID": None,
-                "Weaponid": weapon_id,
-                "Name": weapon_skin["name"],
-                "Chromas": [default_chroma],
-                "Levels": default_levels
-            }
-            
-            updated_weapons.append(default_item)
+    def activate(self) -> None:
+        print("activating")
+        """Activate the client and get authorization using the custom lockfile."""
+        try:
+            if self.lockfile:
+                print("lockfile found")
+                # Normally here you would set up headers or other client state based on self.lockfile
+                self.puuid, self.headers, self.local_headers = self.__get_headers()
+                print("1")
+                # Instead of fetching the session, use the provided session data
+                self.player_name = self.session.get("game_name", "")
+                print(self.player_name)
+                self.player_tag = self.session.get("game_tag", "")
+                print(self.player_tag)
 
-    # Sort updated_weapons by Weaponid
-    updated_weapons_sorted = sorted(updated_weapons, key=lambda x: x["Weaponid"])
-    
-    return updated_weapons_sorted
-def get_buddies():
+            else:
+                print("hi")
+                self.puuid, self.headers, self.local_headers = self.auth.authenticate()
+        except Exception as e:
+            print(f"Unable to activate; {str(e)}")
+    def __verify_status_code(self, status_code, exceptions={}):
+        """Verify that the request was successful according to exceptions"""
+        if status_code in exceptions.keys():
+            response_exception = exceptions[status_code]
+            raise response_exception[0](response_exception[1])
 
-    buddies_owned = client.store_fetch_entitlements(item_type = "dd3bf334-87f3-40bd-b043-682a57a8dc3a")
+    def __get_headers(self) -> t.Tuple[t.Text, t.Mapping[t.Text, t.Any]]:
+        """Get authorization headers to make requests"""
+        try:
+            if self.auth is None:
+                return self.__get_auth_headers()
+            puuid, headers, _ = self.auth.authenticate()
+            headers["X-Riot-ClientPlatform"] = (self.client_platform,)
+            headers["X-Riot-ClientVersion"] = self.__get_current_version()
+            return puuid, headers, None
 
-    # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/charms"
-    response = requests.get(api_url)
-    buddies_data = response.json()
+        except Exception as e:
+            print(e)
+            raise ("Unable to get headers; is VALORANT running?")
+    def __get_auth_headers(self) -> t.Tuple[t.Text, t.Mapping[t.Text, t.Any]]: 
+        # headers for pd/glz endpoints
+        local_headers = {
+            "Authorization": (
+                "Basic "
+                + base64.b64encode(
+                    ("riot:" + self.lockfile["password"]).encode()
+                ).decode()
+            )
+        }
+        response = requests.get(
+            "https://127.0.0.1:{port}/entitlements/v1/token".format(
+                port=self.lockfile["port"]
+            ),
+            headers=local_headers,
+            verify=False,
+        )
+        entitlements = response.json()
+        puuid = entitlements["subject"]
+        headers = {
+            "Authorization": f"Bearer {entitlements['accessToken']}",
+            "X-Riot-Entitlements-JWT": entitlements["token"],
+            "X-Riot-ClientPlatform": self.client_platform,
+            "X-Riot-ClientVersion": self.__get_current_version(),
+        }
+        return puuid, headers, local_headers
+    def fetch(
+        self, endpoint="/", endpoint_type="pd", exceptions={}
+    ) -> dict:  # exception: code: {Exception, Message}
+        """Get data from a pd/glz/local endpoint"""
+        data = None
+        if endpoint_type in ["pd", "glz", "shared"]:
+            response = requests.get(
+                f'{self.base_url_glz if endpoint_type == "glz" else self.base_url if endpoint_type == "pd" else self.base_url_shared if endpoint_type == "shared" else self.base_url}{endpoint}',
+                headers=self.headers,
+            )
 
-    buddies_by_offerid = {item['offerId']: item for item in buddies_data}
+            # custom exceptions for http status codes
+            self.__verify_status_code(response.status_code, exceptions)
 
-    # Initialize a set to keep track of processed ItemIDs
-    processed_item_ids = set()
+            try:
+                data = json.loads(response.text)
+            except:  # as no data is set, an exception will be raised later in the method
+                pass
 
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
-    updated_buddies = []
-    for item in buddies_owned["Entitlements"]:
-        item_id = item["ItemID"]
+        elif endpoint_type == "local":
+            response = requests.get(
+                "https://127.0.0.1:{port}{endpoint}".format(
+                    port=self.lockfile["port"], endpoint=endpoint
+                ),
+                headers=self.local_headers,
+                verify=False,
+            )
 
-        # Check if the itemID has already been processed
-        if item_id in processed_item_ids:
-            for buddy in updated_buddies:
-                if buddy["LevelID"] == item_id:
-                    # print(buddy)
-                    # print(buddy['InstanceID2'])
-                    print(item["InstanceID"])
-                    buddy["InstanceID2"] = item["InstanceID"]
-                    
-            continue
-        else:
-            processed_item_ids.add(item_id)  # Mark this item ID as processed
-            
+            # custom exceptions for http status codes
+            self.__verify_status_code(response.status_code, exceptions)
 
-        # Check if the itemID exists in the weapon skins data
-        if item_id in buddies_by_offerid:
-            buddy = buddies_by_offerid[item_id]
-            
-            # Create updated item with collected chromas
-            updated_item = {
-                "ItemID": buddy["id"],
-                "Name": buddy["name"],
-                "ImageURL": buddy["displayIcon"],
-                "InstanceID1": item["InstanceID"],
-                "InstanceID2": "",
-                "LevelID": item_id,
-                "Uses": 2
-            }
-            
-            updated_buddies.append(updated_item)
+            try:
+                data = response.json()
+            except:  # as no data is set, an exception will be raised later in the method
+                pass
 
-    # Sort updated_entitlements by Weaponid
-    updated_cards_sorted = sorted(updated_buddies, key=lambda x: x["Name"])
-    return updated_cards_sorted
+        if data is None:
+            raise ResponseError("Request returned NoneType")
 
-# Create a new JSON structure with three fields and the entitlements as the value for the first field
+        if "httpStatus" not in data:
+            return data
+        if data["httpStatus"] == 400:
+            # if headers expire (i dont think they ever do but jic), refresh em!
+            if self.auth is None:
+                self.puuid, self.headers, self.local_headers = self.__get_headers()
+            else:
+                self.puuid, self.headers, self.local_headers = self.auth.authenticate()
+            return self.fetch(endpoint=endpoint, endpoint_type=endpoint_type)
+        
 
-def get_cards():
-    cards_owned = client.store_fetch_entitlements(item_type = "3f296c07-64c3-494c-923b-fe692a4fa1bd")
+@app.route('/activate', methods=['POST'])
+def activate_client():
+    data = request.json
+    lockfile_content = data.get('lockfileContent')
+    session_data = data.get('sessionData')  # Receive session data from the frontend
 
-    # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/playerCards"
-    response = requests.get(api_url)
-    cards_data = response.json()
+    print(f"Received lockfile content: {lockfile_content}")
+    print(f"Received session data: {session_data}")
 
-    cards_by_offerid = {item['offerId']: item for item in cards_data}
+    if not lockfile_content:
+        return jsonify({"error": "Lockfile content is required"}), 400
 
-    # Initialize a set to keep track of processed ItemIDs
-    processed_item_ids = set()
+    if not session_data:
+        return jsonify({"error": "Session data is required"}), 400
 
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
-    updated_cards = []
-    for item in cards_owned["Entitlements"]:
-        item_id = item["ItemID"]
+    try:
+        # Initialize CustomClient with the lockfile details
+        client = CustomClient(lockfile_content=lockfile_content)
+        print("Client initialized successfully")
 
-        # Check if the itemID has already been processed
-        if item_id in processed_item_ids:
-            continue  # Skip processing this item ID to avoid duplication
-        else:
-            processed_item_ids.add(item_id)  # Mark this item ID as processed
+        # Set the session data
+        client.set_session(session_data)
+        print("Session data set successfully")
 
-        # Check if the itemID exists in the weapon skins data
-        if item_id in cards_by_offerid:
-            card = cards_by_offerid[item_id]
-            
-            # Create updated item with collected chromas
-            updated_item = {
-                "ItemID": item_id,
-                "Name": card["name"],
-                "smallImageURL": card["smallIcon"],
-                "wideImageURL": card["wideIcon"],
-                "largeImageURL": card["largeIcon"],
-            }
-            
-            updated_cards.append(updated_item)
-    standard_card = {
-        "ItemID": "9fb348bc-41a0-91ad-8a3e-818035c4e561" ,
-        "Name": "VALORANT Card",
-        "smallImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_small.png",
-        "wideImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_wide.png",
-        "largeImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_large.png",
-    }
-    updated_cards.append(standard_card)
+        # Activate the client
+        client.activate()
+        print("Client activated successfully")
 
-    # Sort updated_entitlements by Weaponid
-    updated_cards_sorted = sorted(updated_cards, key=lambda x: x["Name"])
-    return updated_cards_sorted
+        # Fetch account XP or any other information as needed
+        response = client.fetch_account_xp()
+        print(f"Fetched response: {response}")
 
-def get_sprays():
-    sprays_owned = client.store_fetch_entitlements(item_type = "d5f120f8-ff8c-4aac-92ea-f2b5acbe9475")
+        return jsonify(response)
+    except Exception as e:
+        print(f"Error in /activate route: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
-    # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/sprays"
-    response = requests.get(api_url)
-    cards_data = response.json()
-
-    sprays_by_offerid = {item['offerId']: item for item in cards_data}
-
-    # Initialize a set to keep track of processed ItemIDs
-    processed_item_ids = set()
-
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
-    updated_sprays = []
-    for item in sprays_owned["Entitlements"]:
-        item_id = item["ItemID"]
-
-        # Check if the itemID has already been processed
-        if item_id in processed_item_ids:
-            continue  # Skip processing this item ID to avoid duplication
-        else:
-            processed_item_ids.add(item_id)  # Mark this item ID as processed
-
-        # Check if the itemID exists in the weapon skins data
-        if item_id in sprays_by_offerid:
-            spray = sprays_by_offerid[item_id]
-            
-            # Create updated item with collected chromas
-            updated_item = {
-                "ItemID": item_id,
-                "Name": spray["name"],
-                "ImageURL": spray["displayIcon"],
-            }
-            
-            updated_sprays.append(updated_item)
-
-    # Sort updated_entitlements by Name
-    updated_cards_sorted = sorted(updated_sprays, key=lambda x: x["Name"])
-    return updated_cards_sorted
-
-def get_titles():
-    titles_owned = client.store_fetch_entitlements(item_type = "de7caa6b-adf7-4588-bbd1-143831e786c6")
-
-    # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/playerTitles"
-    response = requests.get(api_url)
-    titles_data = response.json()
-
-    titles_by_offerid = {item['offerId']: item for item in titles_data}
-
-    # Initialize a set to keep track of processed ItemIDs
-    processed_item_ids = set()
-
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
-    updated_titles = []
-    for item in titles_owned["Entitlements"]:
-        item_id = item["ItemID"]
-
-        # Check if the itemID has already been processed
-        if item_id in processed_item_ids:
-            continue  # Skip processing this item ID to avoid duplication
-        else:
-            processed_item_ids.add(item_id)  # Mark this item ID as processed
-
-        # Check if the itemID exists in the weapon skins data
-        if item_id in titles_by_offerid:
-            title = titles_by_offerid[item_id]
-            
-            # Create updated item with collected chromas
-            updated_item = {
-                "ItemID": item_id,
-                "Name": title["name"],
-                "Title": title["titleText"],
-            }
-            
-            updated_titles.append(updated_item)
-
-    # Sort updated_entitlements by Name
-    updated_cards_sorted = sorted(updated_titles, key=lambda x: x["Name"])
-    return updated_cards_sorted
-
-@app.route('/refresh_inventory', methods=['GET'])
-def refresh_inventory():
-    updated_items_owned = {
-        "User": get_currentuser_id(),
-        "Weapons": get_weapons(),
-        "Buddies": get_buddies(),
-        "Cards": get_cards(),
-        "Sprays": get_sprays(),
-        "Titles": get_titles(),
-    }
-
-    return updated_items_owned
-
-@app.route('/update_loadout', methods=['POST'])
-def update_loadout():
-    loadout = request.json  # Get the JSON data sent from the frontend
-    # Assume `client` is an instance of the class where put_player_loadout is defined
-    updated_loadout = client.put_player_loadout(loadout)
-    return jsonify(updated_loadout)  # Return the updated loadout as JSON
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)  # Ensure it's accessible externally
