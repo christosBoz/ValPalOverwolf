@@ -488,11 +488,11 @@ def get_cards(client):
     cards_owned = client.store_fetch_entitlements(item_type = "3f296c07-64c3-494c-923b-fe692a4fa1bd")
 
     # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/playerCards"
+    api_url = "https://valorant-api.com/v1/playercards"
     response = requests.get(api_url)
-    cards_data = response.json()
+    cards_data = response.json().get('data', [])
 
-    cards_by_offerid = {item['offerId']: item for item in cards_data}
+    cards_by_offerid = {item['uuid']: item for item in cards_data}
 
     # Initialize a set to keep track of processed ItemIDs
     processed_item_ids = set()
@@ -515,19 +515,19 @@ def get_cards(client):
             # Create updated item with collected chromas
             updated_item = {
                 "ItemID": item_id,
-                "Name": card["name"],
-                "smallImageURL": card["smallIcon"],
-                "wideImageURL": card["wideIcon"],
-                "largeImageURL": card["largeIcon"],
+                "Name": card["displayName"],
+                "smallImageURL": card["smallArt"],
+                "wideImageURL": card["wideArt"],
+                "largeImageURL": card["largeArt"],
             }
             
             updated_cards.append(updated_item)
     standard_card = {
         "ItemID": "9fb348bc-41a0-91ad-8a3e-818035c4e561" ,
         "Name": "VALORANT Card",
-        "smallImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_small.png",
-        "wideImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_wide.png",
-        "largeImageURL": "https://vinfo-api.com/media/PlayerCards/9FB348BC-41A0-91AD-8A3E-818035C4E561_large.png",
+        "smallImageURL": "https://media.valorant-api.com/playercards/9fb348bc-41a0-91ad-8a3e-818035c4e561/smallart.png",
+        "wideImageURL": "https://media.valorant-api.com/playercards/9fb348bc-41a0-91ad-8a3e-818035c4e561/wideart.png",
+        "largeImageURL": "https://media.valorant-api.com/playercards/9fb348bc-41a0-91ad-8a3e-818035c4e561/largeart.png",
     }
     updated_cards.append(standard_card)
 
@@ -539,11 +539,11 @@ def get_sprays(client):
     sprays_owned = client.store_fetch_entitlements(item_type = "d5f120f8-ff8c-4aac-92ea-f2b5acbe9475")
 
     # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/sprays"
+    api_url = "https://valorant-api.com/v1/sprays"
     response = requests.get(api_url)
-    cards_data = response.json()
+    sprays_data = response.json().get('data', [])
 
-    sprays_by_offerid = {item['offerId']: item for item in cards_data}
+    sprays_by_offerid = {item['uuid']: item for item in sprays_data}
 
     # Initialize a set to keep track of processed ItemIDs
     processed_item_ids = set()
@@ -566,15 +566,17 @@ def get_sprays(client):
             # Create updated item with collected chromas
             updated_item = {
                 "ItemID": item_id,
-                "Name": spray["name"],
-                "ImageURL": spray["displayIcon"],
+                "Name": spray["displayName"],
+                "displayIcon": spray["displayIcon"],
+                "fullDisplayImg": spray["fullTransparentIcon"],
+                "fullDisplayGif": spray["animationGif"]
             }
             
             updated_sprays.append(updated_item)
 
     # Sort updated_entitlements by Name
-    updated_cards_sorted = sorted(updated_sprays, key=lambda x: x["Name"])
-    return updated_cards_sorted
+    updated_sprays_sorted = sorted(updated_sprays, key=lambda x: x["Name"])
+    return updated_sprays_sorted
 
 def get_titles(client):
     titles_owned = client.store_fetch_entitlements(item_type = "de7caa6b-adf7-4588-bbd1-143831e786c6")
