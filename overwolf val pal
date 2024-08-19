@@ -1,0 +1,2253 @@
+[
+    {
+        "ItemID": "DAED0E44-4AB6-22B4-A5A5-57A4957A056B",
+        "OfferID": "f7862f1f-4340-6e42-b1fa-0ebcdcf43456",
+        "Weaponid": "1BAA85B4-4C70-1284-64BB-6481DFC3BB4E",
+        "Name": "Gaia's Vengeance Ghost",
+        "Chromas": [
+            {
+                "id": "47424591-4A33-EB97-F90E-78998BFE2D41",
+                "name": "Gaia's Vengeance Ghost",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/47424591-4A33-EB97-F90E-78998BFE2D41.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/47424591-4A33-EB97-F90E-78998BFE2D41_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "B46355EA-407D-241B-0119-618774F4DBC9",
+                "name": "Gaia's Vengeance Ghost Level 4\n(Variant 1 Blue)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B46355EA-407D-241B-0119-618774F4DBC9.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/B46355EA-407D-241B-0119-618774F4DBC9_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "F7862F1F-4340-6E42-B1FA-0EBCDCF43456",
+                "name": "Gaia's Vengeance Ghost",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "FACED80A-4EBF-C35D-EF38-71A32B63A143",
+                "name": "Gaia's Vengeance Ghost Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "1694D232-4A90-7DA9-DD1F-268626AA573D",
+                "name": "Gaia's Vengeance Ghost Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "13D0CE22-4C97-02A0-4E16-C7964D9B1332",
+                "name": "Gaia's Vengeance Ghost Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "DF65F29B-465C-827A-7C34-15BE149B883E",
+        "OfferID": "0235ff00-4ba4-2092-ea7d-b99299d7017f",
+        "Weaponid": "1BAA85B4-4C70-1284-64BB-6481DFC3BB4E",
+        "Name": "Starlit Odyssey Ghost",
+        "Chromas": [
+            {
+                "id": "4E362535-4F11-253E-C9EF-93A1E5F46F60",
+                "name": "Starlit Odyssey Ghost",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/4E362535-4F11-253E-C9EF-93A1E5F46F60.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/4E362535-4F11-253E-C9EF-93A1E5F46F60_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "0235FF00-4BA4-2092-EA7D-B99299D7017F",
+                "name": "Starlit Odyssey Ghost",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "E223E993-45F5-013B-4259-11B263184752",
+        "OfferID": "7adb5ad2-45e4-1a21-89b9-ea99a66690a8",
+        "Weaponid": "1BAA85B4-4C70-1284-64BB-6481DFC3BB4E",
+        "Name": "Topotek Ghost",
+        "Chromas": [
+            {
+                "id": "94BAE03C-4559-AB68-87E2-B0A0CA90B003",
+                "name": "Topotek Ghost",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/94BAE03C-4559-AB68-87E2-B0A0CA90B003.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "7ADB5AD2-45E4-1A21-89B9-EA99A66690A8",
+                "name": "Topotek Ghost",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "B4903002-4687-1953-847A-E0B09A2B2726",
+        "OfferID": null,
+        "Weaponid": "1BAA85B4-4C70-1284-64BB-6481DFC3BB4E",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "E17C8364-4630-505A-A2F8-45ADD0C2C292",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/E17C8364-4630-505A-A2F8-45ADD0C2C292.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "7AFBE865-4832-941B-049B-1397BD90D4D8",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "1C63B43B-43C4-04E4-01C9-7AA1BFFA5AC1",
+        "OfferID": null,
+        "Weaponid": "1BAA85B4-4C70-1284-64BB-6481DFC3BB4E",
+        "Name": "Standard Ghost",
+        "Chromas": [
+            {
+                "id": "947A28B6-4E0F-61FB-E795-BC9A5E7B7129",
+                "name": "Ghost",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/947A28B6-4E0F-61FB-E795-BC9A5E7B7129.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "0A7E786C-444E-6A80-8BDA-E2B714D68332",
+                "name": "Ghost",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "111680FD-4562-F658-AF1C-ED8F9CFE9F9C",
+        "OfferID": "90cd5d86-4516-918b-29af-07b116f63aa9",
+        "Weaponid": "29A0CFAB-485B-F5D5-779A-B59F85E204A8",
+        "Name": "RGX 11z Pro Classic",
+        "Chromas": [
+            {
+                "id": "EDA9DFED-4D9F-BF1F-9D47-8598AEEBD14D",
+                "name": "RGX 11z Pro Classic",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/EDA9DFED-4D9F-BF1F-9D47-8598AEEBD14D.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/EDA9DFED-4D9F-BF1F-9D47-8598AEEBD14D_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "6BDC383F-49CD-CA87-EA30-E89A400D4B6A",
+                "name": "RGX 11z Pro Classic Level 5\r\n(Variant 1 Red)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/6BDC383F-49CD-CA87-EA30-E89A400D4B6A.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/6BDC383F-49CD-CA87-EA30-E89A400D4B6A_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "63091EE5-47D9-F252-F7AD-09BB049C8673",
+                "name": "RGX 11z Pro Classic Level 5\r\n(Variant 2 Blue)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/63091EE5-47D9-F252-F7AD-09BB049C8673.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/63091EE5-47D9-F252-F7AD-09BB049C8673_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "90CD5D86-4516-918B-29AF-07B116F63AA9",
+                "name": "RGX 11z Pro Classic",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "335AF838-4F48-E2DB-CA91-3D976AAB34C2",
+                "name": "RGX 11z Pro Classic Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "C11DEAAE-4528-AF24-25C6-7F8D928951A5",
+                "name": "RGX 11z Pro Classic Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "44FB2542-45E5-F504-FDB5-FDB075ECE7AF",
+                "name": "RGX 11z Pro Classic Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "4C741D16-4AB3-873F-99E0-7AB0C0643F08",
+                "name": "RGX 11z Pro Classic Level 5",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "F3F962BD-4A19-B363-E939-6A91B897A28C",
+        "OfferID": "b2ae014f-4c4e-1308-d1c7-e8bc70c46947",
+        "Weaponid": "29A0CFAB-485B-F5D5-779A-B59F85E204A8",
+        "Name": "9 Lives Classic",
+        "Chromas": [
+            {
+                "id": "E8C60959-49A8-6EFF-7983-2EA1955940B8",
+                "name": "9 Lives Classic",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/E8C60959-49A8-6EFF-7983-2EA1955940B8.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/E8C60959-49A8-6EFF-7983-2EA1955940B8_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "B2AE014F-4C4E-1308-D1C7-E8BC70C46947",
+                "name": "9 Lives Classic",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "3E3AD47A-4383-73F1-4D92-1693059DAE8F",
+        "OfferID": null,
+        "Weaponid": "29A0CFAB-485B-F5D5-779A-B59F85E204A8",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "093E8873-4D3D-B63D-E98F-D29FC401C8BE",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/093E8873-4D3D-B63D-E98F-D29FC401C8BE.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1B9B82E2-4352-E339-F0F8-7D96D16B48E0",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "24AEE897-4CDC-B0FD-E596-1BA90FA6D1B2",
+        "OfferID": null,
+        "Weaponid": "29A0CFAB-485B-F5D5-779A-B59F85E204A8",
+        "Name": "Standard Classic",
+        "Chromas": [
+            {
+                "id": "4B2D5B4F-4955-4208-286C-ABADEC250CDD",
+                "name": "Classic",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/4B2D5B4F-4955-4208-286C-ABADEC250CDD.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "51CBCCAD-487C-50ED-2FFD-C88B4240FAB3",
+                "name": "Classic",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "BE489303-4AA4-BA46-E6A8-02AE4C7A7B3A",
+        "OfferID": "1521c8d1-4071-f91d-1d22-c4aa30590fe4",
+        "Weaponid": "2F59173C-4BED-B6C3-2191-DEA9B58BE9C7",
+        "Name": "Tilde Knife",
+        "Chromas": [
+            {
+                "id": "05DCE4FD-4B4D-1FE5-4226-27BFF185488C",
+                "name": "Tilde Knife",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/05DCE4FD-4B4D-1FE5-4226-27BFF185488C.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/05DCE4FD-4B4D-1FE5-4226-27BFF185488C_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "B6FA2C4D-4038-36E9-A403-859D54A2F4E0",
+                "name": "Tilde Knife\r\n(Variant 1 Red)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B6FA2C4D-4038-36E9-A403-859D54A2F4E0.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/B6FA2C4D-4038-36E9-A403-859D54A2F4E0_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1521C8D1-4071-F91D-1D22-C4AA30590FE4",
+                "name": "Tilde Knife",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "16DA5CCA-49BC-2516-8EE6-C98D93E2D911",
+        "OfferID": "9464eca6-4ba2-adaa-a57a-d78eb0b38696",
+        "Weaponid": "2F59173C-4BED-B6C3-2191-DEA9B58BE9C7",
+        "Name": "Iridian Thorn Blade",
+        "Chromas": [
+            {
+                "id": "236DEB7D-4AEA-5AAE-4730-DCA65F88E4B3",
+                "name": "Iridian Thorn Blade",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/236DEB7D-4AEA-5AAE-4730-DCA65F88E4B3.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "9464ECA6-4BA2-ADAA-A57A-D78EB0B38696",
+                "name": "Iridian Thorn Blade",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "B73D7B16-4652-BC5B-5C4C-068AABB19D0A",
+        "OfferID": "5ac106cd-45ef-a26f-2058-f382f20c64db",
+        "Weaponid": "2F59173C-4BED-B6C3-2191-DEA9B58BE9C7",
+        "Name": "Reaver Karambit",
+        "Chromas": [
+            {
+                "id": "61EB0D02-4DFE-4413-6E29-4D9F9500E6A5",
+                "name": "Reaver Karambit",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/61EB0D02-4DFE-4413-6E29-4D9F9500E6A5.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/61EB0D02-4DFE-4413-6E29-4D9F9500E6A5_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "517F5413-4859-AB98-FEC8-4EBD39A15121",
+                "name": "Reaver Karambit Level 2\r\n(Variant 2 Black)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/517F5413-4859-AB98-FEC8-4EBD39A15121.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/517F5413-4859-AB98-FEC8-4EBD39A15121_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "CF9FC0DC-48D9-34A6-95FD-CEA860D2DF5E",
+                "name": "Reaver Karambit Level 2\r\n(Variant 3 White)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/CF9FC0DC-48D9-34A6-95FD-CEA860D2DF5E.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/CF9FC0DC-48D9-34A6-95FD-CEA860D2DF5E_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "5AC106CD-45EF-A26F-2058-F382F20C64DB",
+                "name": "Reaver Karambit",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "84D08CE6-468C-B95B-9BBB-408DCDCEE76F",
+                "name": "Reaver Karambit Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "B5F42A00-425A-6FDF-61AF-BB9A564C3D79",
+        "OfferID": null,
+        "Weaponid": "2F59173C-4BED-B6C3-2191-DEA9B58BE9C7",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "D1D33FE3-444E-3391-CD3F-92AE4C15C3CD",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/D1D33FE3-444E-3391-CD3F-92AE4C15C3CD.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "059C9307-4D19-00F3-C0E5-49B8BC66BD40",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "12CC9ED2-4430-D2FE-3064-F7A19B1BA7C7",
+        "OfferID": null,
+        "Weaponid": "2F59173C-4BED-B6C3-2191-DEA9B58BE9C7",
+        "Name": "Melee",
+        "Chromas": [
+            {
+                "id": "CAC83E5C-47A1-3519-5420-1DB1FDBC4892",
+                "name": "Standard Melee",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/CAC83E5C-47A1-3519-5420-1DB1FDBC4892.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "854938F3-4532-B300-D9A2-379D987D7469",
+                "name": "Standard Melee",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "0581FB92-4B2D-0EDE-6BFC-8D93FDE11F74",
+        "OfferID": "f1f9cde8-4810-86a0-1c95-4ab214d4f6b8",
+        "Weaponid": "42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA",
+        "Name": "Karabasan Shorty",
+        "Chromas": [
+            {
+                "id": "74019079-43D3-2757-BF40-9792C930034E",
+                "name": "Karabasan Shorty",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/74019079-43D3-2757-BF40-9792C930034E.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "F1F9CDE8-4810-86A0-1C95-4AB214D4F6B8",
+                "name": "Karabasan Shorty",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ACEDB6DB-407B-5D62-9C27-07BBB2313FE3",
+        "OfferID": "f990616a-44ab-ec78-fe3d-8b9ce27a5d18",
+        "Weaponid": "42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA",
+        "Name": "Rune Stone Shorty",
+        "Chromas": [
+            {
+                "id": "9C81A88B-47D1-0813-1534-088E9E9678D6",
+                "name": "Rune Stone Shorty",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/9C81A88B-47D1-0813-1534-088E9E9678D6.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "F990616A-44AB-EC78-FE3D-8B9CE27A5D18",
+                "name": "Rune Stone Shorty",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "AE2EA89B-495E-2902-F67F-3490C1A03754",
+        "OfferID": "10cf91e9-4902-3898-3857-b4ad13882e71",
+        "Weaponid": "42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA",
+        "Name": "Tilde Shorty",
+        "Chromas": [
+            {
+                "id": "69DF9FF4-4441-12FF-94FC-1F84B37AD8A5",
+                "name": "Tilde Shorty",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/69DF9FF4-4441-12FF-94FC-1F84B37AD8A5.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/69DF9FF4-4441-12FF-94FC-1F84B37AD8A5_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "10CF91E9-4902-3898-3857-B4AD13882E71",
+                "name": "Tilde Shorty",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "075E4CF0-469B-25DC-8D6F-2995FBB093DE",
+        "OfferID": null,
+        "Weaponid": "42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "38F0B73A-4C02-26ED-DBD0-409A2F8E33CE",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/38F0B73A-4C02-26ED-DBD0-409A2F8E33CE.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "6AFA5E36-4A90-7A2C-30B7-23BE5BA2588B",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "48AD078A-4DAE-2B85-A945-F4B6D1EFECBB",
+        "OfferID": null,
+        "Weaponid": "42DA8CCC-40D5-AFFC-BEEC-15AA47B42EDA",
+        "Name": "Standard Shorty",
+        "Chromas": [
+            {
+                "id": "95608504-4C8B-1408-1612-0F8200421C49",
+                "name": "Shorty",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/95608504-4C8B-1408-1612-0F8200421C49.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "A7F92A1C-4465-5EA3-7745-BD876117F4A7",
+                "name": "Shorty",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "5BB5ACB1-44DD-184B-484E-319188EF78EB",
+        "OfferID": "468505e6-46e2-af29-3974-5fbbe6bf212f",
+        "Weaponid": "44D4E95C-4157-0037-81B2-17841BF2E8E3",
+        "Name": "Spitfire Frenzy",
+        "Chromas": [
+            {
+                "id": "5A649A38-4C12-FB73-FC12-9F975495716F",
+                "name": "Spitfire Frenzy",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/5A649A38-4C12-FB73-FC12-9F975495716F.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "468505E6-46E2-AF29-3974-5FBBE6BF212F",
+                "name": "Spitfire Frenzy",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "7B82C605-44BB-AAE9-55BF-A4AFEF323553",
+        "OfferID": null,
+        "Weaponid": "44D4E95C-4157-0037-81B2-17841BF2E8E3",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "AFC47102-475D-3A5C-F498-C4B98FB203E1",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/AFC47102-475D-3A5C-F498-C4B98FB203E1.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "DBF01B61-4639-696A-D17B-0B85C4E3FEEC",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "F06657F3-48B6-6314-7235-A9A2749DF5B9",
+        "OfferID": null,
+        "Weaponid": "44D4E95C-4157-0037-81B2-17841BF2E8E3",
+        "Name": "Standard Frenzy",
+        "Chromas": [
+            {
+                "id": "DC99ED5A-4D75-87A0-C921-75963EA3C1E1",
+                "name": "Frenzy",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/DC99ED5A-4D75-87A0-C921-75963EA3C1E1.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "80FABD74-4438-A2DD-0C39-42AB449F9EC6",
+                "name": "Frenzy",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "EACEA54E-4E53-2715-CD4A-5D860AA68449",
+        "OfferID": "8af83962-4e2f-f58e-588e-ef85e4882b79",
+        "Weaponid": "462080D1-4035-2937-7C09-27AA2A5C27A7",
+        "Name": "Ion Spectre",
+        "Chromas": [
+            {
+                "id": "F97B465B-467E-F7CE-D3D1-4981CBD23954",
+                "name": "Ion Spectre",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/F97B465B-467E-F7CE-D3D1-4981CBD23954.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/F97B465B-467E-F7CE-D3D1-4981CBD23954_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "7896AFCD-4D80-859A-90AC-638EFEDD1E19",
+                "name": "Ion Spectre Level 4\n(Variant 3 Blue)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/7896AFCD-4D80-859A-90AC-638EFEDD1E19.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/7896AFCD-4D80-859A-90AC-638EFEDD1E19_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "8AF83962-4E2F-F58E-588E-EF85E4882B79",
+                "name": "Ion Spectre",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "D1469F2A-4F98-67DC-AD71-6AB75B9E720B",
+                "name": "Ion Spectre Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "1C5A796E-4D2D-EE9F-A9E3-C087F328D9C7",
+                "name": "Ion Spectre Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "3CD34480-4704-E443-FFFD-A9A3120B73D6",
+                "name": "Ion Spectre Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "1E473101-488A-E8AB-41CD-C6AD9D53443A",
+        "OfferID": "a9e8ca5e-405e-db36-b240-bbb43dca41b1",
+        "Weaponid": "462080D1-4035-2937-7C09-27AA2A5C27A7",
+        "Name": "Starlit Odyssey Spectre",
+        "Chromas": [
+            {
+                "id": "57DF5949-46AB-5458-2CBC-66B519A495AD",
+                "name": "Starlit Odyssey Spectre",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/57DF5949-46AB-5458-2CBC-66B519A495AD.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/57DF5949-46AB-5458-2CBC-66B519A495AD_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "A9E8CA5E-405E-DB36-B240-BBB43DCA41B1",
+                "name": "Starlit Odyssey Spectre",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "C79318A6-4FFD-A99F-F452-77947640F688",
+        "OfferID": null,
+        "Weaponid": "462080D1-4035-2937-7C09-27AA2A5C27A7",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "055E903F-42B7-3D08-DC2F-BC9ED2D9B719",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/055E903F-42B7-3D08-DC2F-BC9ED2D9B719.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "3F14AFF8-480E-335A-974F-2BA1817DE303",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "F01D1307-4299-42F5-2C5E-7DAB7E69AB19",
+        "OfferID": null,
+        "Weaponid": "462080D1-4035-2937-7C09-27AA2A5C27A7",
+        "Name": "Standard Spectre",
+        "Chromas": [
+            {
+                "id": "A9AACCCA-4CDC-02EA-1D7E-89BBACECC0E2",
+                "name": "Spectre",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/A9AACCCA-4CDC-02EA-1D7E-89BBACECC0E2.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1DC45E18-4A07-C85F-0020-6DA4DB1486CE",
+                "name": "Spectre",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "16DBA725-4DE2-8412-C07F-AF95C65DB9A2",
+        "OfferID": "9815f9fe-40c5-db68-9ac3-e69c926daf12",
+        "Weaponid": "4ADE7FAA-4CF1-8376-95EF-39884480959B",
+        "Name": "Starlit Odyssey Guardian",
+        "Chromas": [
+            {
+                "id": "F239EDB5-467A-D4F2-C78D-5F81CE8162C1",
+                "name": "Starlit Odyssey Guardian",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/F239EDB5-467A-D4F2-C78D-5F81CE8162C1.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/F239EDB5-467A-D4F2-C78D-5F81CE8162C1_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "9815F9FE-40C5-DB68-9AC3-E69C926DAF12",
+                "name": "Starlit Odyssey Guardian",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "26E675C5-46CC-65FB-7BE2-DB8A64DBDE48",
+        "OfferID": "a7d529fa-4892-8834-f7e8-689fc2eae6ec",
+        "Weaponid": "4ADE7FAA-4CF1-8376-95EF-39884480959B",
+        "Name": "Signature Guardian",
+        "Chromas": [
+            {
+                "id": "6C1C1710-48F1-A0B6-01A1-049995413B3F",
+                "name": "Signature Guardian",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/6C1C1710-48F1-A0B6-01A1-049995413B3F.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "A7D529FA-4892-8834-F7E8-689FC2EAE6EC",
+                "name": "Signature Guardian",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "874025D8-4293-A38A-96AC-3D94954FB4B7",
+        "OfferID": null,
+        "Weaponid": "4ADE7FAA-4CF1-8376-95EF-39884480959B",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "1738ABBC-4DBE-1A42-A15B-EDA6249F35BE",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/1738ABBC-4DBE-1A42-A15B-EDA6249F35BE.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "76587A8A-4622-2E70-AAFD-EA960B06A98D",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "3BF1E8E0-47E8-F27A-6054-929575F41A54",
+        "OfferID": null,
+        "Weaponid": "4ADE7FAA-4CF1-8376-95EF-39884480959B",
+        "Name": "Standard Guardian",
+        "Chromas": [
+            {
+                "id": "0F934388-418A-A9E7-42A7-21B27402E46C",
+                "name": "Guardian",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/0F934388-418A-A9E7-42A7-21B27402E46C.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "414D888A-41CE-FCF0-E545-C49018EC9CF4",
+                "name": "Guardian",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ACCCAB4A-4093-8A4A-F1D3-299071D763D3",
+        "OfferID": null,
+        "Weaponid": "55D8A0F4-4274-CA67-FE2C-06AB45EFDF58",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "0A59FA66-4F08-E72D-D818-D083B993E8CF",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/0A59FA66-4F08-E72D-D818-D083B993E8CF.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "E507B35C-4A86-0663-0259-8DA5F286D41C",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "5305D9C4-4F46-FBF4-9E9A-DEA772C263B5",
+        "OfferID": null,
+        "Weaponid": "55D8A0F4-4274-CA67-FE2C-06AB45EFDF58",
+        "Name": "Standard Ares",
+        "Chromas": [
+            {
+                "id": "B33DE820-4061-8B85-31CE-808F1A2C58F5",
+                "name": "Ares",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B33DE820-4061-8B85-31CE-808F1A2C58F5.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "0F5F60F4-4C94-E4B2-CEAB-E2B4E8B41784",
+                "name": "Ares",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "BD9C41DD-42B1-8555-78C1-81A36016BC03",
+        "OfferID": null,
+        "Weaponid": "5F0AAF7A-4289-3998-D5FF-EB9A5CF7EF5C",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "031401E8-4907-DE2C-5097-B88EB90AD540",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/031401E8-4907-DE2C-5097-B88EB90AD540.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "D45B04D5-44D9-2671-2070-11B8EFAE759C",
+                "name": "RANDOM FAVORITE SKIN",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "740B9572-44B1-57BF-767E-6AA01811F94D",
+        "OfferID": null,
+        "Weaponid": "5F0AAF7A-4289-3998-D5FF-EB9A5CF7EF5C",
+        "Name": "Standard Outlaw",
+        "Chromas": [
+            {
+                "id": "66C8D241-4F7C-6652-3AAA-51BAFFFBD493",
+                "name": "Outlaw",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/66C8D241-4F7C-6652-3AAA-51BAFFFBD493.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "E4D16FC0-47A2-323F-0564-9495418237E8",
+                "name": "Outlaw",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ABEF8114-4495-6DA7-2ADE-02BD0F014FD3",
+        "OfferID": "a00e2e2b-431a-1f84-e6d0-a58f4fe1e56b",
+        "Weaponid": "63E6C2B6-4A8E-869C-3D4C-E38355226584",
+        "Name": "Rune Stone Odin",
+        "Chromas": [
+            {
+                "id": "BF2FEA95-4B73-05E3-9956-B8828A0F2EDF",
+                "name": "Rune Stone Odin",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/BF2FEA95-4B73-05E3-9956-B8828A0F2EDF.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "A00E2E2B-431A-1F84-E6D0-A58F4FE1E56B",
+                "name": "Rune Stone Odin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "85C76090-4DE5-3A3A-A763-F4A7B779E8ED",
+        "OfferID": "bdd376fa-42df-b1a3-dff5-df8c201ce53e",
+        "Weaponid": "63E6C2B6-4A8E-869C-3D4C-E38355226584",
+        "Name": "Topotek Odin",
+        "Chromas": [
+            {
+                "id": "2AA6E3AF-424E-1278-E317-1FAA895AB33C",
+                "name": "Topotek Odin",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/2AA6E3AF-424E-1278-E317-1FAA895AB33C.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "BDD376FA-42DF-B1A3-DFF5-DF8C201CE53E",
+                "name": "Topotek Odin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "9C134F41-4C29-1BD8-682E-178E7F349C9B",
+        "OfferID": null,
+        "Weaponid": "63E6C2B6-4A8E-869C-3D4C-E38355226584",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "647F59FB-41EE-ED30-11F1-52B0814AF441",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/647F59FB-41EE-ED30-11F1-52B0814AF441.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "A89584FB-451D-FCCE-0176-3BBAA6764A2E",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "F454EFD1-49CB-372F-7096-D394DF615308",
+        "OfferID": null,
+        "Weaponid": "63E6C2B6-4A8E-869C-3D4C-E38355226584",
+        "Name": "Standard Odin",
+        "Chromas": [
+            {
+                "id": "2F93861D-4B2F-2175-AF0C-3BA0C736E257",
+                "name": "Odin",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/2F93861D-4B2F-2175-AF0C-3BA0C736E257.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "D91FB318-4E40-B4C9-8C0B-BB9DA28BAC55",
+                "name": "Odin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D95FE9CC-4B39-6F54-1912-D796B5912481",
+        "OfferID": "d1d98507-48c7-a7ed-003c-90b085632fb9",
+        "Weaponid": "910BE174-449B-C412-AB22-D0873436B21B",
+        "Name": "Iridian Thorn Bucky",
+        "Chromas": [
+            {
+                "id": "0D885F51-43D3-5391-0097-61B69873BEEF",
+                "name": "Iridian Thorn Bucky",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/0D885F51-43D3-5391-0097-61B69873BEEF.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "D1D98507-48C7-A7ED-003C-90B085632FB9",
+                "name": "Iridian Thorn Bucky",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "4A1D582D-4C3B-6595-57B6-E3B2CF0EE543",
+        "OfferID": "8a0ded4e-4218-d59a-53cc-488c3e384425",
+        "Weaponid": "910BE174-449B-C412-AB22-D0873436B21B",
+        "Name": "Topotek Bucky",
+        "Chromas": [
+            {
+                "id": "2D680B54-40DA-0AFA-E787-89A545F1C7B2",
+                "name": "Topotek Bucky",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/2D680B54-40DA-0AFA-E787-89A545F1C7B2.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "8A0DED4E-4218-D59A-53CC-488C3E384425",
+                "name": "Topotek Bucky",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ED407BC7-4949-3131-B84F-D6BE83B63A15",
+        "OfferID": null,
+        "Weaponid": "910BE174-449B-C412-AB22-D0873436B21B",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "74D62853-4AA2-8D3B-D7C2-8D8BDE69F23C",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/74D62853-4AA2-8D3B-D7C2-8D8BDE69F23C.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "E5C6D130-4226-CDAC-8D03-1B97E907B8F9",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "70C97FB2-4D79-D4BB-5173-A1888CD4BFD9",
+        "OfferID": null,
+        "Weaponid": "910BE174-449B-C412-AB22-D0873436B21B",
+        "Name": "Standard Bucky",
+        "Chromas": [
+            {
+                "id": "3D8FFCFE-4786-0180-42D7-E1BE18DD1CAB",
+                "name": "Bucky",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/3D8FFCFE-4786-0180-42D7-E1BE18DD1CAB.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "2F5078C7-4381-492D-CC00-9F96966BA1EC",
+                "name": "Bucky",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "FFB65A92-4654-A7F8-1908-BF9BB18995A3",
+        "OfferID": "214578e1-4895-3b35-0d3d-85a8beac1b59",
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Starlit Odyssey Vandal",
+        "Chromas": [
+            {
+                "id": "0F85E1E8-4F6E-1A01-210A-B1948C05F8EA",
+                "name": "Starlit Odyssey Vandal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/0F85E1E8-4F6E-1A01-210A-B1948C05F8EA.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/0F85E1E8-4F6E-1A01-210A-B1948C05F8EA_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "214578E1-4895-3B35-0D3D-85A8BEAC1B59",
+                "name": "Starlit Odyssey Vandal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "E8DF3725-40DE-B8EC-77BD-62A989685A85",
+        "OfferID": "968efd06-4549-65f4-9fb1-3f90d612e428",
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Sentinels of Light Vandal",
+        "Chromas": [
+            {
+                "id": "6F337971-40B7-C94D-0F24-36869AF654C6",
+                "name": "Sentinels of Light Vandal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/6F337971-40B7-C94D-0F24-36869AF654C6.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/6F337971-40B7-C94D-0F24-36869AF654C6_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "31C816C4-4E19-9A57-4103-4194723EB6F1",
+                "name": "Sentinels of Light Vandal Level 4\r\n(Variant 1 Pink)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/31C816C4-4E19-9A57-4103-4194723EB6F1.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/31C816C4-4E19-9A57-4103-4194723EB6F1_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "274E2C81-4BCF-3689-C22B-41AA05B1329C",
+                "name": "Sentinels of Light Vandal Level 4\n(Variant 2 Red/Green)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/274E2C81-4BCF-3689-C22B-41AA05B1329C.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/274E2C81-4BCF-3689-C22B-41AA05B1329C_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "968EFD06-4549-65F4-9FB1-3F90D612E428",
+                "name": "Sentinels of Light Vandal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "BFA45341-4338-5EBD-3BEC-8D95F6C6FEB4",
+                "name": "Sentinels of Light Vandal Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "D8B58C68-45E6-65F4-01BD-6BAAEEEF667F",
+                "name": "Sentinels of Light Vandal Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "E0DFB9D6-42A4-1463-CC80-00AC9DF10C9E",
+                "name": "Sentinels of Light Vandal Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "B9EE2457-481C-6776-3F5B-0CA8E8F90C89",
+        "OfferID": "c9678d8c-4327-f397-b0ec-dca3c3d6fb15",
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Prime Vandal",
+        "Chromas": [
+            {
+                "id": "A26E0D1D-4886-7D62-6B4F-1996E706463D",
+                "name": "Prime Vandal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/A26E0D1D-4886-7D62-6B4F-1996E706463D.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/A26E0D1D-4886-7D62-6B4F-1996E706463D_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "D43B8D21-4FB2-1224-1392-53AB6D829ED1",
+                "name": "Prime Vandal Level 4\r\n(Variant 3 Yellow)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/D43B8D21-4FB2-1224-1392-53AB6D829ED1.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/D43B8D21-4FB2-1224-1392-53AB6D829ED1_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "C9678D8C-4327-F397-B0EC-DCA3C3D6FB15",
+                "name": "Prime Vandal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "C6F9C7EF-4A35-FA14-C9ED-BD80E37BE826",
+                "name": "Prime Vandal Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "FC332008-475F-5555-0155-4CB3BCE714FF",
+                "name": "Prime Vandal Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "22821A32-4E04-AD4A-1893-95904C08B264",
+                "name": "Prime Vandal Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D8D5D7A1-4D81-8560-54BC-0692AB40F69B",
+        "OfferID": "636c1f83-44f7-6bc4-0b24-88a1beb66c2d",
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Kuronami Vandal",
+        "Chromas": [
+            {
+                "id": "3637A0BE-4785-8841-9893-1198325185F2",
+                "name": "Kuronami Vandal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/3637A0BE-4785-8841-9893-1198325185F2.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/3637A0BE-4785-8841-9893-1198325185F2_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "9DD03547-4CD7-3B80-3D10-BEAEBD36D6E7",
+                "name": "Kuronami Vandal Level 4\n(Variant 1 Purple)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/9DD03547-4CD7-3B80-3D10-BEAEBD36D6E7.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/9DD03547-4CD7-3B80-3D10-BEAEBD36D6E7_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "B0113D7E-4417-0264-B5F5-949A8379BB21",
+                "name": "Kuronami Vandal Level 4\n(Variant 2 White)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B0113D7E-4417-0264-B5F5-949A8379BB21.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/B0113D7E-4417-0264-B5F5-949A8379BB21_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "B899AFBC-47FC-78BF-D30B-20863C1C89F0",
+                "name": "Kuronami Vandal Level 4\n(Variant 3 Black)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B899AFBC-47FC-78BF-D30B-20863C1C89F0.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/B899AFBC-47FC-78BF-D30B-20863C1C89F0_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "636C1F83-44F7-6BC4-0B24-88A1BEB66C2D",
+                "name": "Kuronami Vandal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "97A5AAB0-43BA-2044-4EB4-5D91AF25BF7B",
+                "name": "Kuronami Vandal Level 2",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "A328D9BB-4F53-0CE0-CD21-A4A454E82D43",
+                "name": "Kuronami Vandal Level 3",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            },
+            {
+                "id": "85D35E1C-4A21-172B-231F-5CB84550E48B",
+                "name": "Kuronami Vandal Level 4",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 10
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "9C808029-48F5-CE89-21C5-88BF4228D2ED",
+        "OfferID": null,
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "F68018D5-44FF-4CCF-3957-75AF660ABC12",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/F68018D5-44FF-4CCF-3957-75AF660ABC12.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "B5F4ED55-4E7F-F561-B365-5397F9E5890B",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "27F21D97-4C4B-BD1C-1F08-31830AB0BE84",
+        "OfferID": null,
+        "Weaponid": "9C82E19D-4575-0200-1A81-3EACF00CF872",
+        "Name": "Standard Vandal",
+        "Chromas": [
+            {
+                "id": "19629AE1-4996-AE98-7742-24A240D41F99",
+                "name": "Vandal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/19629AE1-4996-AE98-7742-24A240D41F99.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1AB72E66-4DA3-33A0-164F-908113E075A4",
+                "name": "Vandal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "44175B4F-4503-4CE4-25FC-32A995D872C1",
+        "OfferID": "ec7585ec-4569-3c28-bd82-709cfa26e95b",
+        "Weaponid": "A03B24D3-4319-996D-0F8C-94BBFBA1DFC7",
+        "Name": "Tilde Operator",
+        "Chromas": [
+            {
+                "id": "25C02810-4475-98C8-CFEE-04BB4FBD0FAB",
+                "name": "Tilde Operator",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/25C02810-4475-98C8-CFEE-04BB4FBD0FAB.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/25C02810-4475-98C8-CFEE-04BB4FBD0FAB_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            },
+            {
+                "id": "9A6F3AD5-4908-457D-437F-54AC0965277C",
+                "name": "Tilde Operator\n(Variant 1 Red)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/9A6F3AD5-4908-457D-437F-54AC0965277C.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/9A6F3AD5-4908-457D-437F-54AC0965277C_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            },
+            {
+                "id": "F0F48FC1-4E1D-95D4-5351-54B49A134281",
+                "name": "Tilde Operator\n(Variant 2 Purple)",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/F0F48FC1-4E1D-95D4-5351-54B49A134281.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/F0F48FC1-4E1D-95D4-5351-54B49A134281_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": 15
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "EC7585EC-4569-3C28-BD82-709CFA26E95B",
+                "name": "Tilde Operator",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "CB07878F-484F-50DD-AB6B-5380640B13C5",
+        "OfferID": "d4a5f5a7-4831-f240-fac7-bfa06b50cd73",
+        "Weaponid": "A03B24D3-4319-996D-0F8C-94BBFBA1DFC7",
+        "Name": "Iridian Thorn Operator",
+        "Chromas": [
+            {
+                "id": "1FD790CA-42A2-4DD2-EBCE-60A88735B3E3",
+                "name": "Iridian Thorn Operator",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/1FD790CA-42A2-4DD2-EBCE-60A88735B3E3.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "D4A5F5A7-4831-F240-FAC7-BFA06B50CD73",
+                "name": "Iridian Thorn Operator",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ACDD29AA-44B5-0D78-DC54-8F92ED555559",
+        "OfferID": null,
+        "Weaponid": "A03B24D3-4319-996D-0F8C-94BBFBA1DFC7",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "1F0C942C-4BE3-D4F3-0183-F7B26CCDCBB8",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/1F0C942C-4BE3-D4F3-0183-F7B26CCDCBB8.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "D0EF50DC-4A62-1AC1-A276-1F8D1B47A7B0",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D1F2920F-469A-3431-AD96-96AFBD0017F2",
+        "OfferID": null,
+        "Weaponid": "A03B24D3-4319-996D-0F8C-94BBFBA1DFC7",
+        "Name": "Standard Operator",
+        "Chromas": [
+            {
+                "id": "4914F50D-49F9-6424-CA80-9486C45A138D",
+                "name": "Operator",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/4914F50D-49F9-6424-CA80-9486C45A138D.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "88CBA358-4F4D-4D0E-69FC-B48F4C65CB2D",
+                "name": "Operator",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "8594C025-4C96-E258-13DA-53A2F747BCA2",
+        "OfferID": "85e74e8f-4360-2961-dd91-52bb854e495f",
+        "Weaponid": "AE3DE142-4D85-2547-DD26-4E90BED35CF7",
+        "Name": "Rune Stone Bulldog",
+        "Chromas": [
+            {
+                "id": "C4508633-4701-A745-251D-0BB0884F14EF",
+                "name": "Rune Stone Bulldog",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/C4508633-4701-A745-251D-0BB0884F14EF.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "85E74E8F-4360-2961-DD91-52BB854E495F",
+                "name": "Rune Stone Bulldog",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "006D6B0A-47BA-A909-ADE5-0CBA66DD5829",
+        "OfferID": "1074041a-4ee2-be43-9e43-d5833b9358a4",
+        "Weaponid": "AE3DE142-4D85-2547-DD26-4E90BED35CF7",
+        "Name": "Tilde Bulldog",
+        "Chromas": [
+            {
+                "id": "A6F4B6F4-41C9-9441-B35F-47BD950A2E87",
+                "name": "Tilde Bulldog",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/A6F4B6F4-41C9-9441-B35F-47BD950A2E87.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/A6F4B6F4-41C9-9441-B35F-47BD950A2E87_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1074041A-4EE2-BE43-9E43-D5833B9358A4",
+                "name": "Tilde Bulldog",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "7BAA9F5A-4AC3-804A-2E47-4DA916DE0B79",
+        "OfferID": null,
+        "Weaponid": "AE3DE142-4D85-2547-DD26-4E90BED35CF7",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "10AFA924-483C-3F29-21A3-F78B88E13C60",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/10AFA924-483C-3F29-21A3-F78B88E13C60.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "FB79C688-4A07-6F3F-7C1A-948B5B399A3F",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "724A7F42-4315-ECCF-0E76-77BDD3EC2E09",
+        "OfferID": null,
+        "Weaponid": "AE3DE142-4D85-2547-DD26-4E90BED35CF7",
+        "Name": "Standard Bulldog",
+        "Chromas": [
+            {
+                "id": "BF35F404-4A14-6953-CED2-5BAFD21639A0",
+                "name": "Bulldog",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/BF35F404-4A14-6953-CED2-5BAFD21639A0.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "C8E6AC70-48EF-9D96-D964-A88E8890B885",
+                "name": "Bulldog",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "DB3BF2D9-449E-CD8A-950E-018CA893D404",
+        "OfferID": "3e87c99d-4a98-15f5-ba6d-0383db725558",
+        "Weaponid": "C4883E50-4494-202C-3EC3-6B8A9284F00B",
+        "Name": "Rune Stone Marshal",
+        "Chromas": [
+            {
+                "id": "DFB8B619-49C8-745E-E6BA-62A9339DAF86",
+                "name": "Rune Stone Marshal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/DFB8B619-49C8-745E-E6BA-62A9339DAF86.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "3E87C99D-4A98-15F5-BA6D-0383DB725558",
+                "name": "Rune Stone Marshal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D4BCBC96-4BE3-AA57-9A6A-11AECF60AC61",
+        "OfferID": "abde79d2-4ddc-3e97-ed9e-bf956d9814c0",
+        "Weaponid": "C4883E50-4494-202C-3EC3-6B8A9284F00B",
+        "Name": "Signature Marshal",
+        "Chromas": [
+            {
+                "id": "9F89D919-4DAB-9443-5B1D-91929D0A1D93",
+                "name": "Signature Marshal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/9F89D919-4DAB-9443-5B1D-91929D0A1D93.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "ABDE79D2-4DDC-3E97-ED9E-BF956D9814C0",
+                "name": "Signature Marshal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "457FE5D2-40C8-4490-6834-53A74E709F4A",
+        "OfferID": null,
+        "Weaponid": "C4883E50-4494-202C-3EC3-6B8A9284F00B",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "BD2A03A0-4690-EACC-B68C-9C87E378294D",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/BD2A03A0-4690-EACC-B68C-9C87E378294D.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "04B64C56-4A51-88D1-419E-9C91FCDFF626",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "FD44B2D5-49EE-77AB-FA56-588F3AC0C268",
+        "OfferID": null,
+        "Weaponid": "C4883E50-4494-202C-3EC3-6B8A9284F00B",
+        "Name": "Standard Marshal",
+        "Chromas": [
+            {
+                "id": "1AFEC971-4170-F29B-1C94-07A0EFF270AB",
+                "name": "Marshal",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/1AFEC971-4170-F29B-1C94-07A0EFF270AB.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "F0389390-49EB-A43E-27FA-FC9F9F8AA9DE",
+                "name": "Marshal",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "6B57A839-4F3E-8DF9-4B05-0DB2C9FA1FAE",
+        "OfferID": "c5ee573f-4f5d-e64c-240c-89a1d1be64a1",
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Iridian Thorn Sheriff",
+        "Chromas": [
+            {
+                "id": "7F4259EA-468E-4743-0E28-E1BC05967650",
+                "name": "Iridian Thorn Sheriff",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/7F4259EA-468E-4743-0E28-E1BC05967650.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "C5EE573F-4F5D-E64C-240C-89A1D1BE64A1",
+                "name": "Iridian Thorn Sheriff",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "CB89C7BB-445E-DFEC-AD4A-B0BA37271329",
+        "OfferID": "56c2a35a-4078-8c2a-dfa4-799697bcb4df",
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Signature Sheriff",
+        "Chromas": [
+            {
+                "id": "106A294B-4D0F-94D7-0E5F-08AEA143D7B2",
+                "name": "Signature Sheriff",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/106A294B-4D0F-94D7-0E5F-08AEA143D7B2.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "56C2A35A-4078-8C2A-DFA4-799697BCB4DF",
+                "name": "Signature Sheriff",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "43E01E91-44D0-A819-852B-35B71673C648",
+        "OfferID": "8eac98c8-4f58-bdde-03ed-e484586bcf0c",
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Sandswept Sheriff",
+        "Chromas": [
+            {
+                "id": "161287BC-47ED-14C4-FE19-43A1D365443D",
+                "name": "Sandswept Sheriff",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/161287BC-47ED-14C4-FE19-43A1D365443D.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/161287BC-47ED-14C4-FE19-43A1D365443D_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "8EAC98C8-4F58-BDDE-03ED-E484586BCF0C",
+                "name": "Sandswept Sheriff",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "F8DFD0AD-496B-2B31-FFF8-DEA9DE2F04C0",
+        "OfferID": "f3d205b2-4975-3688-6613-039648e3a226",
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Monstrocity Sheriff",
+        "Chromas": [
+            {
+                "id": "1C6B960A-4FF4-4404-CD9D-6B88DE3542A5",
+                "name": "Monstrocity Sheriff",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/1C6B960A-4FF4-4404-CD9D-6B88DE3542A5.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/1C6B960A-4FF4-4404-CD9D-6B88DE3542A5_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "F3D205B2-4975-3688-6613-039648E3A226",
+                "name": "Monstrocity Sheriff",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D26CE959-4ED2-7105-8F33-DEA48E26DE4A",
+        "OfferID": null,
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "C5D3843F-4AE2-F87A-EBC5-3AB638FC6AE0",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/C5D3843F-4AE2-F87A-EBC5-3AB638FC6AE0.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "94D0CA9C-444B-F762-17A5-908EF1418BC3",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "1EF6BA68-4DBE-30C7-6BC8-93A6C6F13F04",
+        "OfferID": null,
+        "Weaponid": "E336C6B8-418D-9340-D77F-7A9E4CFE0702",
+        "Name": "Standard Sheriff",
+        "Chromas": [
+            {
+                "id": "5A59BD61-48A9-AF61-C00F-4AA21DECA9A8",
+                "name": "Sheriff",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/5A59BD61-48A9-AF61-C00F-4AA21DECA9A8.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "FEAF05A1-492F-D154-A9F5-0EB1FE9A603E",
+                "name": "Sheriff",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "91CEA710-495B-FD95-9E7A-6C928A0C5449",
+        "OfferID": "1a1e4b44-4d12-897d-e189-f39c244f8f0e",
+        "Weaponid": "EC845BF4-4F79-DDDA-A3DA-0DB3774B2794",
+        "Name": "Tilde Judge",
+        "Chromas": [
+            {
+                "id": "D5FA8E74-4B7F-0621-B9A8-1AB1A1179E7F",
+                "name": "Tilde Judge",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/D5FA8E74-4B7F-0621-B9A8-1AB1A1179E7F.png",
+                "swatch": "https://vinfo-api.com/media/WeaponSkins/D5FA8E74-4B7F-0621-B9A8-1AB1A1179E7F_swatch.png",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "1A1E4B44-4D12-897D-E189-F39C244F8F0E",
+                "name": "Tilde Judge",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "0CBA5A5F-41AB-ED7D-158E-4FB92AB25C47",
+        "OfferID": "7fa021e2-4881-d71e-f7a1-a6947b4b48d9",
+        "Weaponid": "EC845BF4-4F79-DDDA-A3DA-0DB3774B2794",
+        "Name": "Iridian Thorn Judge",
+        "Chromas": [
+            {
+                "id": "18C824C6-4074-96D4-67ED-13A51309EE71",
+                "name": "Iridian Thorn Judge",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/18C824C6-4074-96D4-67ED-13A51309EE71.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "7FA021E2-4881-D71E-F7A1-A6947B4B48D9",
+                "name": "Iridian Thorn Judge",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "68F2E92E-4C94-8104-ED99-03925BBC71E8",
+        "OfferID": null,
+        "Weaponid": "EC845BF4-4F79-DDDA-A3DA-0DB3774B2794",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "F848117B-4CD5-04A1-9F36-648EACEBE8EC",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/F848117B-4CD5-04A1-9F36-648EACEBE8EC.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "69DD1D46-422B-EC24-6DC1-FB848D445EF4",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "ACD26127-48FF-8B9E-7BA6-B989AF8A4B24",
+        "OfferID": null,
+        "Weaponid": "EC845BF4-4F79-DDDA-A3DA-0DB3774B2794",
+        "Name": "Standard Judge",
+        "Chromas": [
+            {
+                "id": "B71AE8D6-44BB-AA4C-0D2A-DC9ED9E66410",
+                "name": "Judge",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/B71AE8D6-44BB-AA4C-0D2A-DC9ED9E66410.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "6942D8D1-4370-A144-2140-22A6D2BE2697",
+                "name": "Judge",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D34EDAFC-4E48-B2D7-6163-08BF054D3D80",
+        "OfferID": "739553f3-466d-bb50-64d2-b5a59645da01",
+        "Weaponid": "EE8E8D15-496B-07AC-E5F6-8FAE5D4C7B1A",
+        "Name": "Topotek Phantom",
+        "Chromas": [
+            {
+                "id": "981763AF-47A2-DD3C-4C53-C8B4D8717A4B",
+                "name": "Topotek Phantom",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/981763AF-47A2-DD3C-4C53-C8B4D8717A4B.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "739553F3-466D-BB50-64D2-B5A59645DA01",
+                "name": "Topotek Phantom",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "FFF73AD4-4D46-A6D9-43F1-51B633845434",
+        "OfferID": null,
+        "Weaponid": "EE8E8D15-496B-07AC-E5F6-8FAE5D4C7B1A",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "ADF1D2CC-482E-A16A-E3C1-608A82B606CC",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/ADF1D2CC-482E-A16A-E3C1-608A82B606CC.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "4728DFEE-4879-381C-1DB1-89B839CBD3D4",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "337CB216-4A6E-D85D-88C2-F29AB317784C",
+        "OfferID": null,
+        "Weaponid": "EE8E8D15-496B-07AC-E5F6-8FAE5D4C7B1A",
+        "Name": "Standard Phantom",
+        "Chromas": [
+            {
+                "id": "52221BA2-4E4C-EC76-8C81-3483506D5242",
+                "name": "Phantom",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/52221BA2-4E4C-EC76-8C81-3483506D5242.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "871E73ED-452D-EB5A-3D6B-1D87060F35CE",
+                "name": "Phantom",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "CFBCBBCB-4D51-94CB-2EFB-9FBB0D655B45",
+        "OfferID": "39ac9329-472e-809c-57c6-768963f4e92e",
+        "Weaponid": "F7E1B454-4AD4-1063-EC0A-159E56B58941",
+        "Name": "Signature Stinger",
+        "Chromas": [
+            {
+                "id": "3FE99248-42D3-13D2-5C82-11ABA62A391C",
+                "name": "Signature Stinger",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/3FE99248-42D3-13D2-5C82-11ABA62A391C.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "39AC9329-472E-809C-57C6-768963F4E92E",
+                "name": "Signature Stinger",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "D25DFDC4-4FCE-E121-88EF-66B5DADEEE09",
+        "OfferID": null,
+        "Weaponid": "F7E1B454-4AD4-1063-EC0A-159E56B58941",
+        "Name": "Random Favorite Skin",
+        "Chromas": [
+            {
+                "id": "4BB225A9-4A78-A9D2-8A9F-07A965BC8867",
+                "name": "Standard",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/4BB225A9-4A78-A9D2-8A9F-07A965BC8867.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "CAEA8844-4603-951F-C458-25A04A778BF8",
+                "name": "Random Favorite Skin",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    },
+    {
+        "ItemID": "940FB417-4A9C-3004-41F5-3E8F1F4178B2",
+        "OfferID": null,
+        "Weaponid": "F7E1B454-4AD4-1063-EC0A-159E56B58941",
+        "Name": "Standard Stinger",
+        "Chromas": [
+            {
+                "id": "31BB2115-4C62-D37C-43C4-11B8FEE7F212",
+                "name": "Stinger",
+                "displayIcon": "https://vinfo-api.com/media/WeaponSkins/31BB2115-4C62-D37C-43C4-11B8FEE7F212.png",
+                "swatch": null,
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ],
+        "Levels": [
+            {
+                "id": "471FC2A5-47A7-5B12-2895-0899117D2F57",
+                "name": "Stinger",
+                "price": {
+                    "e59aa87c-4cbf-517a-5983-6e81511be9b7": null
+                }
+            }
+        ]
+    }
+]

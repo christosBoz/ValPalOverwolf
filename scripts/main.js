@@ -19,6 +19,8 @@ let activeType = ''
 let activeCard = ''
 let activeTitle = ''
 let activeTitleFullData = ''
+let spraysOnly = ''
+let activeSpray = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -27,8 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Fetch user ID and agents data in parallel
         const [agentsResponse, usernameResponse] = await Promise.all([
         
-            fetch('https://vinfo-api.com/json/characters'),
-            fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//get-username?puuid=${userid}`)
+            fetch('https://valorant-api.com/v1/agents'),
+            fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000/get-username?puuid=${userid}`)
         ]);
 
         if (!agentsResponse.ok) {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('String from backend:', userid);
 
         const agentsData = await agentsResponse.json();
-        const filteredAgents = agentsData.filter(agent => agent.id !== 'DED3520F-4264-BFED-162D-B080E2ABCCF9');
+        const filteredAgents = agentsData.data.filter(agent => agent.uuid !== 'ded3520f-4264-bfed-162d-b080e2abccf9');
         filteredAgents.sort((a, b) => a.displayName.localeCompare(b.displayName));
 
         // Initialize agent grid
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             agentDiv.classList.add('make-button');
             agentDiv.innerHTML = `
                 <div class="p-0">
-                    <img src="${agent.displayIcon_small}" alt="${agent.displayName}" class="img-fluid agent-image">
+                    <img src="${agent.displayIconSmall}" alt="${agent.displayName}" class="img-fluid agent-image">
                 </div>
             `;
             fragment.appendChild(agentDiv);
@@ -63,6 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         buddiesOnly = inventoryData.Buddies
         cardsOnly = inventoryData.Cards
         titlesOnly = inventoryData.Titles
+        spraysOnly = inventoryData.Sprays
         console.log(cardsOnly)
 
 
@@ -115,10 +118,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 agent_name.innerHTML = filteredAgents[index].displayName;
 
                 const agent_image = document.querySelector('.agentImage');
-                agent_image.src = filteredAgents[index].displayIcon_small;
+                agent_image.src = filteredAgents[index].displayIconSmall;
 
                 // Update agent loadout based on clicked agent
-                updateAgentLoadout(filteredAgents[index].displayName, filteredAgents[index].displayIcon_small);
+                updateAgentLoadout(filteredAgents[index].displayName, filteredAgents[index].displayIconSmall);
             });
         });
 
@@ -128,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             agent_name.innerHTML = filteredAgents[0].displayName;
 
             const agent_image = document.querySelector('.agentImage');
-            agent_image.src = filteredAgents[0].displayIcon_small;
+            agent_image.src = filteredAgents[0].displayIconSmall;
 
             const firstAgentImage = document.querySelector('.agent-image');
             if (firstAgentImage) {
@@ -136,13 +139,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Update agent loadout for the first agent
-            updateAgentLoadout(filteredAgents[0].displayName, filteredAgents[0].displayIcon_small);
+            updateAgentLoadout(filteredAgents[0].displayName, filteredAgents[0].displayIconSmall);
         }
 
         // Event listener for saving the loadout data
         document.getElementById('saveLoadoutButton').addEventListener('click', () => {
             if (activeAgentName) {
                 console.log("saving");
+                console.log(dataBuffer)
                 const saveData = JSON.stringify(dataBuffer)
                 localStorage.setItem(`${userid}_${activeAgentName}_loadout`, saveData);
                 alert(`Loadout for ${activeAgentName} saved successfully!`);
@@ -154,7 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for fetching the loadout data
         document.getElementById('loadLoadoutButton').addEventListener('click', async () => {
             try {
-                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
+                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
                 const loadoutData = await loadoutResponse.json();
                 dataBuffer = loadoutData // Append fetched data to dataBuffer
                 renderWeaponsData(loadoutData); // Render updated data
@@ -166,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Event listener for refreshing the inventory data
         document.getElementById('refreshButton').addEventListener('click', async () => {
             try {
-                const refreshResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//refresh-inventory?puuid=${userid}`);
+                const refreshResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
@@ -252,7 +256,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(activeSkin.ItemID.toLowerCase())
             dataBuffer.Guns[index].SkinID = activeSkin.ItemID.toLowerCase();
             dataBuffer.Guns[index].SkinLevelID = activeSkin.Levels[activeSkin.Levels.length - 1].uuid;
-            dataBuffer.Guns[index].displayIcon = chroma.displayIcon
+            dataBuffer.Guns[index].displayIcon = chroma.fullRender
             if (activeBuddy != ''){
                 console.log(activeBuddy)
                 dataBuffer.Guns[index].CharmID = activeBuddy.ItemID.toLowerCase();
@@ -945,85 +949,70 @@ function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) {
     const spray2 = document.querySelector('.sprayDirectionRightButton')
     const spray3 = document.querySelector('.sprayDirectionBottomButton')
     const spray4 = document.querySelector('.sprayDirectionLeftButton')
-    
-    // console.log("SPRAY ID IS" +sprayid);
-    // console.log(sprayDirection);
-    // console.log(sprayIcon)
+    const sprayDisplay = document.querySelector('.topSpray')
+
     document.querySelector('.sprayPreview .topSpray').setAttribute('src', sprayIcon);
-    // console.log(spraysOnly)
+
     const grid = document.querySelector('.sprayGrid')
-    renderSprayData()
+    // renderSprayData()
+    spraysOnly.forEach(s => {
+        const sprayDiv = document.createElement('div');
+        sprayDiv.classList.add('spray-image'); // Add a class for styling if needed
+         // Create an img element for the skin
+         const sprayImage = document.createElement('img');
+        //  cardImage.className = "Card_"+ c.ItemID
+         sprayImage.src = s.ImageURL
+         sprayImage.alt = s.Name; // Optionally set alt text
+        sprayDiv.addEventListener('click', () => {
+            sprayDisplay.src = s.ImageURL
+            activeSpray = s
+        })
+         sprayDiv.appendChild(sprayImage);
+         grid.appendChild(sprayDiv);
+
+    })
     const sprayImage1 = spray1.querySelector('img.sprayImage');
     const sprayImage2 = spray2.querySelector('img.sprayImage');
     const sprayImage3 = spray3.querySelector('img.sprayImage');
     const sprayImage4 = spray4.querySelector('img.sprayImage');
     document.querySelector('.chooseButtonSprays').addEventListener('click', function() {
-        // console.log(dataBuffer)
-        // console.log(activeSpray.ItemID)
+
+        console.log(activeSpray)
 
         if (sprayDirection === "Spray1") {
             console.log(spray1)
-            console.log(checkSprays())
-            if (checkSprays()){
-                sprayImage1.src = activeSpray.ImageURL
-                spray1.setAttribute('data-slotid', activeSpray.ItemID)
-                sprayDirection = ""
-                dataBuffer.Sprays[0].SprayID = activeSpray.ItemID
-                sprayContainer.style.display = "unset";
-
-                
-                
-            }
-            else{
-                alert(`Spray already on the wheel`);
-                sprayDirection = ""
-            }
-
+            sprayImage1.src = activeSpray.ImageURL
+            spray1.setAttribute('data-slotid', activeSpray.ItemID)
+            sprayDirection = ""
+            dataBuffer.Sprays[0].SprayID = activeSpray.ItemID
+            sprayContainer.style.display = "unset";
+        
         }
         if (sprayDirection === "Spray2") {
-            if (checkSprays()){
             sprayImage2.src = activeSpray.ImageURL
             spray2.setAttribute('data-slotid', activeSpray.ItemID)
             sprayDirection = ""
             dataBuffer.Sprays[1].SprayID = spray2.getAttribute('data-slotid')
             sprayContainer.style.display = "unset";
-            }
-            else{
-                alert(`Spray already on the wheel`);
-                sprayDirection = ""
-            }
+    
 
         }
         if (sprayDirection === "Spray3") {
-            if (checkSprays()) {
             sprayImage3.src = activeSpray.ImageURL
             spray3.setAttribute('data-slotid', activeSpray.ItemID)
             sprayDirection = ""
             dataBuffer.Sprays[2].SprayID = spray3.getAttribute('data-slotid')
             sprayContainer.style.display = "unset";
-            }
-            else{
-                alert(`Spray already on the wheel`);
-                sprayDirection = ""
-            }
-            
 
         }
         if (sprayDirection === "Spray4") {
-            if (checkSprays()){
             sprayImage4.src = activeSpray.ImageURL
             spray4.setAttribute('data-slotid', activeSpray.ItemID)
             sprayDirection = ""
             dataBuffer.Sprays[3].SprayID = spray4.getAttribute('data-slotid')
             sprayContainer.style.display = "unset";
-            }
-            else{
-                alert(`Spray already on the wheel`);
-                sprayDirection = ""
-            }
 
         }
-        console.log(dataBuffer)
         
     
      })

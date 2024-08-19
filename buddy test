@@ -1,0 +1,506 @@
+[
+    {
+        "ItemID": "BF997358-4A99-C1F8-37B0-5FA64200CDCE",
+        "Name": "Beckoner Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/BF997358-4A99-C1F8-37B0-5FA64200CDCE.png",
+        "InstanceID1": "71b244e5-35e9-4f80-b2c7-7c3c8cd48fe3",
+        "InstanceID2": "e1bf9690-0fbd-4464-a94b-2127a61aeeda",
+        "LevelID": "b1fa66b4-4401-415a-03fd-d2862fae97ab",
+        "Uses": 2
+    },
+    {
+        "ItemID": "8493F0FD-4D25-7834-86D6-B89DDB1D3F97",
+        "Name": "Big Announcement Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/8493F0FD-4D25-7834-86D6-B89DDB1D3F97.png",
+        "InstanceID1": "dc47544b-ccc3-4fe3-9afd-ad629925f53f",
+        "InstanceID2": "5da919ac-da39-4c46-a376-ce0cfac8ff6b",
+        "LevelID": "ee11a149-4be0-089b-a4cf-da8795020c33",
+        "Uses": 2
+    },
+    {
+        "ItemID": "12372DBB-4F09-4B26-6FE5-779488AAA9F9",
+        "Name": "Bot Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/12372DBB-4F09-4B26-6FE5-779488AAA9F9.png",
+        "InstanceID1": "1f0dd293-c91c-4a51-a6eb-3acc64f66ccf",
+        "InstanceID2": "8afb52b7-df35-4d51-a3f0-fef22bc08194",
+        "LevelID": "f14d17fd-42a2-946f-21fb-1a815a6837bc",
+        "Uses": 2
+    },
+    {
+        "ItemID": "1E0E13EA-46DE-7EF6-5303-1FA15632CD0A",
+        "Name": "Bounce House Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/1E0E13EA-46DE-7EF6-5303-1FA15632CD0A.png",
+        "InstanceID1": "d1ee97d4-757b-46c4-a6fb-0d4666dd304c",
+        "InstanceID2": "9f71f94b-3085-4431-86b4-881287ba2d40",
+        "LevelID": "fe47daf6-4198-7542-645f-9f92b73a98a4",
+        "Uses": 2
+    },
+    {
+        "ItemID": "022534CE-41F1-C4F9-B953-2E9F19E82E24",
+        "Name": "Can't Break Me Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/022534CE-41F1-C4F9-B953-2E9F19E82E24.png",
+        "InstanceID1": "1927cc0d-1ac8-49de-ac23-2b8dba583cc5",
+        "InstanceID2": "3c519172-4961-4f57-a131-dfc619468d04",
+        "LevelID": "e6b2cd4c-4c42-7cae-cd93-86b5f181274d",
+        "Uses": 2
+    },
+    {
+        "ItemID": "59FD71A3-4C6F-30E8-BFF3-CD81FE316718",
+        "Name": "Cat-Eye Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/59FD71A3-4C6F-30E8-BFF3-CD81FE316718.png",
+        "InstanceID1": "e5d8d993-d0e6-451b-bdb7-726fc93dc1f9",
+        "InstanceID2": "539e3ab0-f434-4801-ab5c-403c1b5d7123",
+        "LevelID": "2cf55340-46ad-f79a-39b1-e4be6ad411ab",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C4BA9F04-49A2-22E6-A273-27A716EB7D7A",
+        "Name": "Corbin's Light Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C4BA9F04-49A2-22E6-A273-27A716EB7D7A.png",
+        "InstanceID1": "08315168-42b6-4466-8f32-dc6bed45cf17",
+        "InstanceID2": "3b97ff24-5321-438f-9285-c62203a9b8a6",
+        "LevelID": "95586f9f-4c62-510f-00a9-2eae5e54cc9e",
+        "Uses": 2
+    },
+    {
+        "ItemID": "8A431014-470C-D11F-24E0-35A992E427D2",
+        "Name": "Cruiser Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/8A431014-470C-D11F-24E0-35A992E427D2.png",
+        "InstanceID1": "a1318592-e755-4ce8-9857-3b63ff7baed0",
+        "InstanceID2": "9d574b65-ba3f-44ff-9843-0459e9973396",
+        "LevelID": "cdfc181f-4e27-3bb0-633c-4f8e52348cd0",
+        "Uses": 2
+    },
+    {
+        "ItemID": "B0A675C7-4D23-9449-CD9C-2B8F94E7194C",
+        "Name": "Desert Rose Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/B0A675C7-4D23-9449-CD9C-2B8F94E7194C.png",
+        "InstanceID1": "f308c038-01c7-486f-9cce-efb304c2e344",
+        "InstanceID2": "8277f311-a552-4453-9329-7d5df20e65ed",
+        "LevelID": "2588637e-41e6-84a6-5e3e-d39c6decaf5e",
+        "Uses": 2
+    },
+    {
+        "ItemID": "70B6A860-4DC1-CD58-CB5E-9886179DED55",
+        "Name": "EP5: Platinum Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/70B6A860-4DC1-CD58-CB5E-9886179DED55.png",
+        "InstanceID1": "e5ac32f5-8451-5c26-a62a-9c5399dc5b46",
+        "InstanceID2": "40cbba36-2a9d-562a-8c26-1d97befe8a25",
+        "LevelID": "347221af-4c78-ffcd-4dfe-a3bb6b0bf08f",
+        "Uses": 2
+    },
+    {
+        "ItemID": "BA6C7A2B-405D-776E-0750-9A9C97703FFA",
+        "Name": "EP6: Diamond Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/BA6C7A2B-405D-776E-0750-9A9C97703FFA.png",
+        "InstanceID1": "e8b4acdd-5002-54d9-a241-abb620183088",
+        "InstanceID2": "ead8b925-47c9-57da-8fca-9a49fcb12623",
+        "LevelID": "36381a44-4fc5-741b-e3f4-b1926c95e8f1",
+        "Uses": 2
+    },
+    {
+        "ItemID": "60EA5778-480C-A4A8-E36A-858F67FB63DB",
+        "Name": "EP7: Platinum Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/60EA5778-480C-A4A8-E36A-858F67FB63DB.png",
+        "InstanceID1": "d0162aea-c38c-5432-ae87-ff290aa57b87",
+        "InstanceID2": "a843561a-e150-5cac-9396-9a6a0d4efc8e",
+        "LevelID": "a087581c-4be5-5609-915c-738a2c1e4d35",
+        "Uses": 2
+    },
+    {
+        "ItemID": "3E2453BC-4018-BE1B-143F-C2983A6D64A5",
+        "Name": "EP8: Platinum Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/3E2453BC-4018-BE1B-143F-C2983A6D64A5.png",
+        "InstanceID1": "e196ab16-5cfa-5228-a9b7-a5015089f780",
+        "InstanceID2": "ea94f54b-ea23-5f44-9ba3-895847239c41",
+        "LevelID": "826421fe-49ee-36f0-e5b8-53ab546fd6e7",
+        "Uses": 2
+    },
+    {
+        "ItemID": "8CB83AD7-4E5B-73A1-173D-DC970951AF9B",
+        "Name": "Egg in a Basket Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/8CB83AD7-4E5B-73A1-173D-DC970951AF9B.png",
+        "InstanceID1": "ab62660b-9eee-43fe-b205-29fc2c0f4543",
+        "InstanceID2": "8b574898-61db-4856-88a3-0a6ab9c5b5d9",
+        "LevelID": "dea60b28-4655-084d-c5c1-69b5bf25e3ff",
+        "Uses": 2
+    },
+    {
+        "ItemID": "D2FDB49A-4829-0FB8-102A-6D9112E3C367",
+        "Name": "Ep 5 // 3 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/D2FDB49A-4829-0FB8-102A-6D9112E3C367.png",
+        "InstanceID1": "0a7ebda9-e968-4550-a5e0-18c63760bb95",
+        "InstanceID2": "57d58762-8507-47af-884a-f8850253c529",
+        "LevelID": "4183fe63-4311-0a84-334e-bd894eff9092",
+        "Uses": 2
+    },
+    {
+        "ItemID": "66C26557-4EE6-6A61-83D4-04BD138EE2E4",
+        "Name": "Ep 6 // 1 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/66C26557-4EE6-6A61-83D4-04BD138EE2E4.png",
+        "InstanceID1": "990f4b84-7c37-4238-a92f-2d2882967793",
+        "InstanceID2": "0f452ca0-b249-418f-b85c-7fe35961137d",
+        "LevelID": "e0e58d6f-409f-6556-61c8-5594a8c1f523",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C58337A2-4495-E5BF-B571-96B2B62F93CC",
+        "Name": "Ep 6 // 2 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C58337A2-4495-E5BF-B571-96B2B62F93CC.png",
+        "InstanceID1": "e602627c-8df5-4251-9cec-d168da028798",
+        "InstanceID2": "a4b42496-358a-482a-9022-b6c56ebbbf32",
+        "LevelID": "f54dc8c8-4fa1-0a3f-8340-daad6a43cbac",
+        "Uses": 2
+    },
+    {
+        "ItemID": "FE575BBD-4EBC-78B4-84B0-7EA97D6F9833",
+        "Name": "Ep 6 // 3 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/FE575BBD-4EBC-78B4-84B0-7EA97D6F9833.png",
+        "InstanceID1": "bb708970-19fe-4848-9676-4bda0920e1a0",
+        "InstanceID2": "0b237f27-1293-4702-a9ab-c088bdb0e7d6",
+        "LevelID": "8b843e13-4b7a-71cf-b706-e99233c153a9",
+        "Uses": 2
+    },
+    {
+        "ItemID": "23511E47-44F8-A1B2-34DA-09B2962693E5",
+        "Name": "Ep 7 // 1 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/23511E47-44F8-A1B2-34DA-09B2962693E5.png",
+        "InstanceID1": "d029d972-5ae5-43a1-b50f-af867c0b3772",
+        "InstanceID2": "dbbcaa95-b603-414c-9b33-195f4173eea3",
+        "LevelID": "d81cc7d8-4e4f-cd9d-2b41-e897874b1cf0",
+        "Uses": 2
+    },
+    {
+        "ItemID": "52E28E6C-46F1-C370-1AB1-C89AB5F060FA",
+        "Name": "Ep 7 // 3 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/52E28E6C-46F1-C370-1AB1-C89AB5F060FA.png",
+        "InstanceID1": "7cb39804-2ef7-47d0-9cf2-a076561d3291",
+        "InstanceID2": "3f9678e5-9446-4512-9a8d-7017aaaeb836",
+        "LevelID": "1d3e6a02-450c-870a-0a0c-1aafdfb75083",
+        "Uses": 2
+    },
+    {
+        "ItemID": "F72BFB46-4B57-BB2E-0CFE-BFA9C5089EB3",
+        "Name": "Ep 8 // 1 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/F72BFB46-4B57-BB2E-0CFE-BFA9C5089EB3.png",
+        "InstanceID1": "0f818e45-88ff-40af-b2f1-7fd27b49a680",
+        "InstanceID2": "8ea697f2-1e70-4d32-95b6-210b37000afb",
+        "LevelID": "df9d2766-4586-67cc-7997-b0b76baa269c",
+        "Uses": 2
+    },
+    {
+        "ItemID": "FDEA7D2B-4CC7-E129-1E14-3DA6E4D710E5",
+        "Name": "Ep 8 // 3 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/FDEA7D2B-4CC7-E129-1E14-3DA6E4D710E5.png",
+        "InstanceID1": "3de4b951-0a1f-4d21-83ea-40fd8c58ba5b",
+        "InstanceID2": "1effa92d-4163-440c-82d8-1919dac3ce2d",
+        "LevelID": "870fcd61-4e42-2431-a1f3-048d09fede15",
+        "Uses": 2
+    },
+    {
+        "ItemID": "5D5B910A-4113-53AE-160A-AEA270EA5029",
+        "Name": "Ep 9 // 1 Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/5D5B910A-4113-53AE-160A-AEA270EA5029.png",
+        "InstanceID1": "02cf3b78-a8bd-4d54-bad8-c6d0e7214c7a",
+        "InstanceID2": "6e793638-3297-4df7-8927-3e7d1c7a78d2",
+        "LevelID": "3d64b111-41bf-b2aa-ed36-999f96e50750",
+        "Uses": 2
+    },
+    {
+        "ItemID": "01B8E9E0-4CCB-7603-2BBA-B9BA952B0306",
+        "Name": "Epilogue: Drop the Hammer Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/01B8E9E0-4CCB-7603-2BBA-B9BA952B0306.png",
+        "InstanceID1": "ac0fccce-6f16-463d-9145-c863de7d44bb",
+        "InstanceID2": "72bc83d7-7631-4d26-bc6a-ca2727390156",
+        "LevelID": "11c2ead2-4f00-8ed2-32d1-4cadc9bd13c8",
+        "Uses": 2
+    },
+    {
+        "ItemID": "1F9B0C32-405A-AAE2-F291-20A752DE92E0",
+        "Name": "Epilogue: Folded Wish Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/1F9B0C32-405A-AAE2-F291-20A752DE92E0.png",
+        "InstanceID1": "918ba731-2e76-45fa-9a28-7f574b98590c",
+        "InstanceID2": "53d132c6-f598-45a0-8ec8-6a2c6135a1e4",
+        "LevelID": "f8ee875e-4522-9740-ca8a-a495a5186cf8",
+        "Uses": 2
+    },
+    {
+        "ItemID": "93F87778-4F95-C0C4-5686-21BF55542ECD",
+        "Name": "Epilogue: Lucky Star Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/93F87778-4F95-C0C4-5686-21BF55542ECD.png",
+        "InstanceID1": "8b528267-2e53-471d-8dee-e38b611a731c",
+        "InstanceID2": "2c3b7583-7b81-45d9-94b4-3bd34ed57b14",
+        "LevelID": "17fcd820-4eee-5694-0b6e-ed9064514b4e",
+        "Uses": 2
+    },
+    {
+        "ItemID": "B8FEC641-431A-F6A2-32C4-20B18AD9D261",
+        "Name": "Epilogue: Shell Song Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/B8FEC641-431A-F6A2-32C4-20B18AD9D261.png",
+        "InstanceID1": "c1e7fa43-e178-4258-9050-94bf07d1cd63",
+        "InstanceID2": "607bc23a-9dcc-47fc-b134-bb18034a4f2a",
+        "LevelID": "9c104a59-4bed-43ee-7b4e-9886c8e7e2fc",
+        "Uses": 2
+    },
+    {
+        "ItemID": "5B9AA7C9-4F6A-28F2-1B81-AF94E8158573",
+        "Name": "Epilogue: Treble Clef Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/5B9AA7C9-4F6A-28F2-1B81-AF94E8158573.png",
+        "InstanceID1": "78ac7862-0b34-4c11-b3e1-d5ae09fd24ef",
+        "InstanceID2": "4a40b3c1-5f07-479c-a67d-29774367c243",
+        "LevelID": "5635065c-4520-d734-5194-bdbef122c29b",
+        "Uses": 2
+    },
+    {
+        "ItemID": "D51EBB6B-4CD1-99A7-F52B-7987EE654A44",
+        "Name": "Extra Crispy Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/D51EBB6B-4CD1-99A7-F52B-7987EE654A44.png",
+        "InstanceID1": "033ed7cc-7c19-40f8-b19e-6abf2cc3b981",
+        "InstanceID2": "38dbe8fe-a68e-4e23-b10a-498859d97303",
+        "LevelID": "34bfbd23-4bcf-88bb-f749-589f447d1a47",
+        "Uses": 2
+    },
+    {
+        "ItemID": "7CF1FC2C-4456-FA8F-B9F6-C9BE7092163F",
+        "Name": "Grim Delight Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/7CF1FC2C-4456-FA8F-B9F6-C9BE7092163F.png",
+        "InstanceID1": "351058da-5cc0-41d6-967c-52815c7b8387",
+        "InstanceID2": "63d08c24-b90c-49d6-937e-1bd62d97b8a2",
+        "LevelID": "cf194771-4eb6-053e-6c0c-5a80dab14f39",
+        "Uses": 2
+    },
+    {
+        "ItemID": "F671190D-4DFB-89CE-B668-28BF81ECB33A",
+        "Name": "Halo Halo Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/F671190D-4DFB-89CE-B668-28BF81ECB33A.png",
+        "InstanceID1": "aaf19525-4c75-477b-9d27-792f37e3e900",
+        "InstanceID2": "25180438-a385-432e-8238-f1c94ba0df61",
+        "LevelID": "a85b109c-4252-b779-cfdc-b28f9a774b89",
+        "Uses": 2
+    },
+    {
+        "ItemID": "E4689A4B-4DF6-86E8-8D34-A19BDC01AFE7",
+        "Name": "Hawko Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/E4689A4B-4DF6-86E8-8D34-A19BDC01AFE7.png",
+        "InstanceID1": "983bc89c-2316-4940-a096-c56b62c949e1",
+        "InstanceID2": "2d50aeb8-599b-4c2a-a536-46da474b27b8",
+        "LevelID": "10d781c0-4500-19eb-5000-c6afac6f2c58",
+        "Uses": 2
+    },
+    {
+        "ItemID": "B9FEB6B6-493C-B76E-CE8E-6FB371CA2CF5",
+        "Name": "Hot Bling Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/B9FEB6B6-493C-B76E-CE8E-6FB371CA2CF5.png",
+        "InstanceID1": "36e8fc82-043b-45a4-bf2f-4ccde12d448e",
+        "InstanceID2": "32b65a53-509a-4277-9fb0-00fcc8321504",
+        "LevelID": "ec22d3c1-4df0-f0fe-a424-359627fb83ff",
+        "Uses": 2
+    },
+    {
+        "ItemID": "6CEB34C0-4E16-032B-C97B-9FABCF81EB52",
+        "Name": "Hundreds and Thousands Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/6CEB34C0-4E16-032B-C97B-9FABCF81EB52.png",
+        "InstanceID1": "625b289b-c29c-48f3-a3b7-7c513bae5694",
+        "InstanceID2": "959efacc-991a-4dff-947b-707e03a67dc2",
+        "LevelID": "cbfc0948-43c0-6d22-cba2-228d2f697590",
+        "Uses": 2
+    },
+    {
+        "ItemID": "8CB32887-48F3-2DAD-D954-38AC7BACF8A9",
+        "Name": "Iridian Thorn Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/8CB32887-48F3-2DAD-D954-38AC7BACF8A9.png",
+        "InstanceID1": "fa29502e-28c3-4c69-82bc-5b4969e09f9d",
+        "InstanceID2": "87bdcd87-e1e4-435f-8314-7c57b5811f86",
+        "LevelID": "9ae93ca9-41e8-10cd-8ba8-1eab23deec28",
+        "Uses": 2
+    },
+    {
+        "ItemID": "9219F3FA-4C89-7D7D-F2DC-ED8AD3C7BF6E",
+        "Name": "Light Stick Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/9219F3FA-4C89-7D7D-F2DC-ED8AD3C7BF6E.png",
+        "InstanceID1": "560e6f00-ea2f-4fde-b0d2-bb483a3ade0a",
+        "InstanceID2": "f6026ce0-8b8a-4e4f-bb47-c8374bb456e0",
+        "LevelID": "c104e58d-40ee-2024-3cfc-40b9e36d6828",
+        "Uses": 2
+    },
+    {
+        "ItemID": "CA84DD34-466A-E084-77D1-599F4E30CA97",
+        "Name": "Lucky Star Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/CA84DD34-466A-E084-77D1-599F4E30CA97.png",
+        "InstanceID1": "e26d49bb-98b3-4e1e-a743-dca48f690117",
+        "InstanceID2": "ad042358-1e1d-4737-aa85-31673863ed07",
+        "LevelID": "438908b8-4185-de18-6d1c-efa99b7376e3",
+        "Uses": 2
+    },
+    {
+        "ItemID": "7AB545A7-407B-F4B4-CCC0-B6B642E6273A",
+        "Name": "Mini Espresso Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/7AB545A7-407B-F4B4-CCC0-B6B642E6273A.png",
+        "InstanceID1": "5fd4548b-bb7d-40cf-bfd0-8ef0ee03343d",
+        "InstanceID2": "9fa46724-d82a-4616-999e-83792070ebfc",
+        "LevelID": "2fb1ceea-4ade-5fd1-8e69-1fbc7f9926dd",
+        "Uses": 2
+    },
+    {
+        "ItemID": "3B056085-4578-FC8C-553F-2DB7AAC380FB",
+        "Name": "Monster Cookie Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/3B056085-4578-FC8C-553F-2DB7AAC380FB.png",
+        "InstanceID1": "f0bf1ebf-dec8-4b1c-8ce2-63b61f3c949f",
+        "InstanceID2": "ec1539a6-ab1f-4535-8c32-3e574a413512",
+        "LevelID": "57235ca8-47c1-9336-4201-35ae1f782e36",
+        "Uses": 2
+    },
+    {
+        "ItemID": "9DEB35D4-4128-4DF2-8624-DA89B30B1BC3",
+        "Name": "Mother of Pearl Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/9DEB35D4-4128-4DF2-8624-DA89B30B1BC3.png",
+        "InstanceID1": "623a479e-3f81-4982-9743-d2fa6f263112",
+        "InstanceID2": "69828415-a9b7-418a-b8e7-d83c970b0a6c",
+        "LevelID": "86916aa0-497a-4543-0ed8-d589b7aad85c",
+        "Uses": 2
+    },
+    {
+        "ItemID": "F8C59F2F-48F8-A93D-5BEF-A7902BDE82A5",
+        "Name": "Nazar Bead Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/F8C59F2F-48F8-A93D-5BEF-A7902BDE82A5.png",
+        "InstanceID1": "bfaabc0c-79b6-486b-a2a2-f47aeb4337f7",
+        "InstanceID2": "41ae4b4f-32fd-49bd-9cb4-0cf7d4c38263",
+        "LevelID": "4bea7864-4a08-e510-97c6-42bdd9e1182d",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C168A992-4428-8D15-365A-58AEAD037BC5",
+        "Name": "Ornamental Commander Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C168A992-4428-8D15-365A-58AEAD037BC5.png",
+        "InstanceID1": "a653ddbc-f476-484d-94dc-573b205a2060",
+        "InstanceID2": "75a322c8-182c-4044-80d1-218279396da4",
+        "LevelID": "1d0413e0-42db-a101-8804-829e76810f1b",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C3DFC971-4C08-956F-CA4E-6282315ED771",
+        "Name": "Pocket Jett Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C3DFC971-4C08-956F-CA4E-6282315ED771.png",
+        "InstanceID1": "31ecd61e-5d59-48d8-a7c3-ae932c2285df",
+        "InstanceID2": "b73e39c8-49a3-450a-8a92-5ed179bdce49",
+        "LevelID": "06f21195-4c2a-5618-fa9a-50a3288efa6d",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C2D90932-4CC3-512E-F741-3DAA7ABD4C2B",
+        "Name": "Rune Stone Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C2D90932-4CC3-512E-F741-3DAA7ABD4C2B.png",
+        "InstanceID1": "0fc72450-18f2-4b18-8dc1-5e80bb224de6",
+        "InstanceID2": "18bb9814-d6b8-4374-bcca-4631fb2a4f05",
+        "LevelID": "b6b43226-4c43-c5d4-d9fd-1b97d01f0e94",
+        "Uses": 2
+    },
+    {
+        "ItemID": "1BDF2EAC-4DB6-DE1F-7ADE-D5BDAC4D9D69",
+        "Name": "Shell Song Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/1BDF2EAC-4DB6-DE1F-7ADE-D5BDAC4D9D69.png",
+        "InstanceID1": "9ba16aff-f1c8-4ab0-b959-6aec6bf2bcf5",
+        "InstanceID2": "5f3c53b1-9faf-4a01-abce-c3f9be38333c",
+        "LevelID": "27667662-462c-5bf0-a442-63b939f633c7",
+        "Uses": 2
+    },
+    {
+        "ItemID": "F674ACCD-43BE-712E-8FED-FD88B6438841",
+        "Name": "Shoot Here Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/F674ACCD-43BE-712E-8FED-FD88B6438841.png",
+        "InstanceID1": "f505b58b-7deb-4668-b258-c03aafb77f15",
+        "InstanceID2": "7cfc72f6-f549-42ba-854a-5135842268a3",
+        "LevelID": "c7dc8b9d-4eaa-12a3-711c-ca9b53c1011c",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C42AFAAF-4E7E-CCC8-248E-848A290E3499",
+        "Name": "Slurp Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C42AFAAF-4E7E-CCC8-248E-848A290E3499.png",
+        "InstanceID1": "719ef2e6-2e2f-49e8-9521-c1281c102b71",
+        "InstanceID2": "9b5119a0-ffb4-4c55-8003-0a140e24874e",
+        "LevelID": "54d1541b-4650-9074-b26a-a49542896fa2",
+        "Uses": 2
+    },
+    {
+        "ItemID": "9C190C73-4FFF-0E1F-8910-4BB993ABD90A",
+        "Name": "Star Lotus Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/9C190C73-4FFF-0E1F-8910-4BB993ABD90A.png",
+        "InstanceID1": "c71fdf54-dfa8-4c7b-bd6b-e0fd2811dea3",
+        "InstanceID2": "2b7516a1-2a6b-4282-ae3f-6760bbc738f4",
+        "LevelID": "b85314c3-47b8-b0fe-0470-8ebb777deadf",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C40FD3CC-41D7-20F2-FEF4-6B954D8813C5",
+        "Name": "Stringed Soprano Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C40FD3CC-41D7-20F2-FEF4-6B954D8813C5.png",
+        "InstanceID1": "dd584def-b182-4ac3-8933-301c975fd6c4",
+        "InstanceID2": "b3ef446e-023e-4021-8aef-ed573cbec725",
+        "LevelID": "1af79e46-4a09-0b73-1030-7bbdbfd9b91c",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C4E6F0B2-493C-8FF2-128D-2DAB80E74A60",
+        "Name": "Tactic Kappa Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C4E6F0B2-493C-8FF2-128D-2DAB80E74A60.png",
+        "InstanceID1": "93ef1d9c-7903-4279-9a1d-b01a445ed962",
+        "InstanceID2": "afa1dc33-e60a-4b5f-a6e4-a3deec814a24",
+        "LevelID": "8a6c3807-445f-9461-5680-88ab8af1f1ad",
+        "Uses": 2
+    },
+    {
+        "ItemID": "770E120E-466F-8847-48DE-0ABD1ABEF521",
+        "Name": "Tanghulu Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/770E120E-466F-8847-48DE-0ABD1ABEF521.png",
+        "InstanceID1": "87d7557e-3b35-466e-a5af-72b9d745cae2",
+        "InstanceID2": "29746d49-39d0-4120-a138-2a15d991f921",
+        "LevelID": "bce2e679-43c7-6991-528e-709b2628f1fc",
+        "Uses": 2
+    },
+    {
+        "ItemID": "63B69A44-4AB4-B810-C33D-D29995168BC4",
+        "Name": "Tilde Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/63B69A44-4AB4-B810-C33D-D29995168BC4.png",
+        "InstanceID1": "e73c2901-71cc-4cdb-9af4-8ccc351b32a5",
+        "InstanceID2": "024a5829-f7ab-445a-8f2d-222b369c2016",
+        "LevelID": "5a5008e9-4b60-e89d-2ba8-97a3f0c53b8d",
+        "Uses": 2
+    },
+    {
+        "ItemID": "C28A5EA6-48BD-2BEF-D652-CD97C8E1F727",
+        "Name": "Topotek Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/C28A5EA6-48BD-2BEF-D652-CD97C8E1F727.png",
+        "InstanceID1": "a5340116-11f4-47ae-b2e5-4b5da3fa1329",
+        "InstanceID2": "90feb0dc-a238-4bc5-b7fb-455122988520",
+        "LevelID": "a2f5e382-45c9-927d-1b56-329c04bc56c1",
+        "Uses": 2
+    },
+    {
+        "ItemID": "AC72BB9A-4368-8502-5DAC-698D72021C81",
+        "Name": "VALORANT Coin Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/AC72BB9A-4368-8502-5DAC-698D72021C81.png",
+        "InstanceID1": "6660bfaf-ddeb-4f80-8994-15a1cde067ce",
+        "InstanceID2": "5e0ab844-96d4-4e8e-a9e0-9d6055ed4d51",
+        "LevelID": "4b5417ed-49de-7076-e0fb-12a5b43957ce",
+        "Uses": 2
+    },
+    {
+        "ItemID": "575DDF35-42A1-1DE6-8599-D78DC7FB9A02",
+        "Name": "Walis Tambo Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/575DDF35-42A1-1DE6-8599-D78DC7FB9A02.png",
+        "InstanceID1": "2bb0bc9e-8b70-427b-bb51-3d527d7e30a0",
+        "InstanceID2": "ee8169c6-69db-4a63-ba59-26a5cd96e373",
+        "LevelID": "2e164663-438a-91a1-7533-34b1e7fa8cf0",
+        "Uses": 2
+    },
+    {
+        "ItemID": "2539EF35-419E-1C46-782F-398E97D212FA",
+        "Name": "Winter Whisper Buddy",
+        "ImageURL": "https://vinfo-api.com/media/Charms/2539EF35-419E-1C46-782F-398E97D212FA.png",
+        "InstanceID1": "811dca34-d877-471d-b477-35cba6555820",
+        "InstanceID2": "46fec0c3-a75c-48d5-86b9-ca6705f6d3d5",
+        "LevelID": "5c880649-4f78-0ea2-879f-56ad144b0a4e",
+        "Uses": 2
+    }
+]
