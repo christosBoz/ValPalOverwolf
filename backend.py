@@ -145,7 +145,7 @@ class CustomClient(valclient.Client):
             verify=False,
         )
         entitlements = response.json()
-        puuid = entitlements["subject"]
+        puuid = self.entitlements["subject"]
         headers = {
             "Authorization": f"Bearer {entitlements['accessToken']}",
             "X-Riot-Entitlements-JWT": entitlements["token"],
