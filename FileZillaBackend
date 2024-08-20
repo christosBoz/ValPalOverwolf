@@ -566,7 +566,7 @@ def get_sprays(client):
             # Create updated item with collected chromas
             updated_item = {
                 "ItemID": item_id,
-                "Name": spray["displayName"],
+                "Name": spray["displayName"], 
                 "displayIcon": spray["displayIcon"],
                 "fullDisplayImg": spray["fullTransparentIcon"],
                 "fullDisplayGif": spray["animationGif"]
@@ -582,11 +582,11 @@ def get_titles(client):
     titles_owned = client.store_fetch_entitlements(item_type = "de7caa6b-adf7-4588-bbd1-143831e786c6")
 
     # Fetch weapon skins data from the API
-    api_url = "https://vinfo-api.com/json/playerTitles"
+    api_url = "https://valorant-api.com/v1/playertitles"
     response = requests.get(api_url)
-    titles_data = response.json()
+    titles_data = response.json().get('data', [])
 
-    titles_by_offerid = {item['offerId']: item for item in titles_data}
+    titles_by_offerid = {item['uuid']: item for item in titles_data}
 
     # Initialize a set to keep track of processed ItemIDs
     processed_item_ids = set()
@@ -609,15 +609,15 @@ def get_titles(client):
             # Create updated item with collected chromas
             updated_item = {
                 "ItemID": item_id,
-                "Name": title["name"],
+                "Name": title["displayName"],
                 "Title": title["titleText"],
             }
             
             updated_titles.append(updated_item)
 
     # Sort updated_entitlements by Name
-    updated_cards_sorted = sorted(updated_titles, key=lambda x: x["Name"])
-    return updated_cards_sorted
+    updated_titles_sorted = sorted(updated_titles, key=lambda x: x["Name"])
+    return updated_titles_sorted
 
 
 if __name__ == '__main__':
