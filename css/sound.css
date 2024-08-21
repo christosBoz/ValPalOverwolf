@@ -35,13 +35,76 @@
 
   body {
     margin: 0;
+    display: flex;
+    min-width: 320px;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
-  .backgroundContainer {
-    position: absolute;
+  .main {
+    background-color: #262424;
     height: 100%;
-    width: 100vw;
-    z-index: -1;
+    display: flex;
     overflow: hidden;
-    position: fixed;
   }
+
+  .soundsBackground {
+    background-color: #262424;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+
+}
+.setSoundsContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #1b191a;
+    width: 80%;
+}
+
+.soundsListContainer {
+    display: flex;
+    flex-direction: column;
+    background: #1b191a;
+    width: 20%;
+}
+
+.audioControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align elements to the start (left) */
+  gap: 10px; /* Space between the button row and the select box */
+  margin-top: 20px;
+}
+
+.inputButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 20%;
+}
+
+#audioFile {
+  padding: 5px; /* Optional: Add some padding for better spacing */
+}
+
+#audioList {
+  width: 100%; /* Make the select box take the full width */
+  padding: 5px; /* Optional: Add padding for a consistent look */
+}
+
+.uploadAudio {
+  max-width: 80%;
+}
+.trashImg{
+  max-width: 20%;
+}
+
+

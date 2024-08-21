@@ -7,21 +7,30 @@
     <link rel="stylesheet" href="css/sound.css">
 </head>
 <body style="background-color: #1B191A;">
-<div id="root"></div>
-    <div class="backgroundContainer"></div>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Inventory</a></li>
-            <li><a href="sound.html">Sounds</a></li>
-        </ul>
-    </nav>
+<div id="root">
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html">Inventory</a></li>
+        <li><a href="sound.html">Sounds</a></li>
+    </ul>
+</nav>
+    <div class="main">
+             <div class="setSoundsContainer"></div>
+            <div class="soundsListContainer">
+                    <div class="inputButtonsContainer">
+                        <img src="./img/uploadaudio.png" class="uploadAudio">
+                          <!-- <input type="file" id="audioFile" accept=".mp3, .wav" style="display: none;">  -->
+                        <img src="./img/trash.png" class="trashImg">
+                        <!-- <button onclick="storeAudio()">Store Audio</button>  -->
+                    </div>
+                    <select id="audioList"></select>
 
-    <input type="file" id="audioFile" accept=".mp3, .wav">
-    <button onclick="storeAudio()">Store Audio</button>
-    <button onclick="playStoredAudio()">Play Stored Audio</button>
 
-    <select id="audioList" onchange="playStoredAudio()"></select>
-    <audio id="audioPlayer" controls></audio>
+            </div> 
+    </div>
+</div>
+
+    <audio id="audioPlayer"></audio>
 
     <script src="scripts/storesound.js"></script>
     <script src="scripts/gamedata.js"></script>
