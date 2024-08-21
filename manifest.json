@@ -1,39 +1,48 @@
 {
-    "manifest_version":1,
-    "type":"WebApp",
-    "meta":{
-        "name":"Demo App",
-        "version":"1.0.0",
-        "minimum-overwolf-version":"0.199.0.15",
-        "author":"Developer Name",
-        "icon":"rocket.png",
-        "icon_gray":"rocket.png",
-        "description":"Demo App"
+    "manifest_version": 1,
+    "type": "WebApp",
+    "meta": {
+        "name": "Demo App",
+        "version": "1.0.0",
+        "minimum-overwolf-version": "0.199.0.15",
+        "author": "Developer Name",
+        "icon": "rocket.png",
+        "icon_gray": "rocket.png",
+        "description": "Demo App"
     },
     "permissions": [
-    "GameInfo",
-    "GameEvents",
-    "FileSystem"
+        "GameInfo",
+        "GameEvents",
+        "FileSystem"
     ],
     "data": {
-        "start_window":"MainWindow",
-        "windows":{
-            "MainWindow":{
-                    "file":"loading.html",
-                    "transparent": false,
-                    "resizable": false,
-                    "use_os_windowing": true,
-                    "size": {
-                        "width":400,
-                        "height":400
-                        },
-                    "min_size": {
-                        "width":400,
-                        "height":100
-                    }
-                }
+        "start_window": "MainWindow",
+        "hotkeys": {
+            "sample_app_showhide": {
+                "title": "Show/Hide In-Game Window",
+                "isPassthrough": false,
+                "action-type": "toggle",
+                "default": "Alt+V"
+            }
         },
-
+        "windows": {
+            "MainWindow": {
+                "file": "loading.html",
+                "transparent": false,
+                "resizable": false,
+                "use_os_windowing": true,
+                "size": {
+                    "width": 400,
+                    "height": 400
+                },
+                "min_size": {
+                    "width": 400,
+                    "height": 100
+                },
+                "grabMouse": true,  
+                "clickthrough": false 
+            }
+        },
         "game_targeting": {
             "type": "dedicated",
             "game_id": [
@@ -43,17 +52,15 @@
         "game_events": [
             21640
         ],
-        "launch_events":[
+        "launch_events": [
             {
                 "event": "GameLaunch",
                 "event_data": {
                     "game_ids": [
                         21640
                     ]
-
-             }
+                }
             }
         ]
     }
-
 }

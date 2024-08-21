@@ -174,6 +174,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const refreshData = await refreshResponse.text();
     
                 localStorage.setItem(`${userid}_inventory`, refreshData);
+                weaponsOnly = inventoryData.Weapons
+                buddiesOnly = inventoryData.Buddies
+                cardsOnly = inventoryData.Cards
+                titlesOnly = inventoryData.Titles
+                spraysOnly = inventoryData.Sprays
                 console.log("Refreshed Inv");
             } catch (error) {
                 console.error('Error refreshing inventory:', error);
@@ -212,10 +217,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
         skinPickerContainer.style.display = 'none';
         var currentBuddyID = activeItem.getAttribute("data-buddyID")
-        currentBuddyID = currentBuddyID.toUpperCase();
-        // console.log(currentBuddyID)
+    
+        console.log(currentBuddyID)
+        if (currentBuddyID != "undefined") {
         const currentBuddy = buddiesOnly.find(b => b.ItemID === currentBuddyID)
+
         currentBuddy.Uses -= 1
+        }
       });
 
       document.querySelector('.cardPickerBg').addEventListener('click', function() {
@@ -276,6 +284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(buddyimage)
             console.log(activeItem)
             weaponimage.src = chroma.fullRender
+            
             console.log(activeItem)
             activeBuddy = ''
 
@@ -414,11 +423,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.sprayPickerBg').addEventListener('click', function() {
     sprayContainer.style.display = 'none';
     });
-    
+    const grid = document.querySelector('.skinPickerSkins');
+
+    // Scroll to a specific position smoothly
+    grid.scrollTo({
+        top: 100, // Replace with your desired scroll position
+        behavior: 'smooth'
+    });
+
+    // Scroll by a certain amount smoothly
+    grid.scrollBy({
+        top: 100, // Replace with your desired scroll amount
+        behavior: 'smooth'
+    });
        
     
 
     }
+    
 
 );
 
@@ -452,10 +474,9 @@ function renderWeaponsData(data) {
                     weaponImage.onload = function() {
                         // Once weaponImage is loaded, then check and update buddyImage if needed
                         var buddy = item.getAttribute('data-buddyID');
-                        // console.log(buddyid);
+                        console.log(buddyid);
                         if (buddy != "undefined") {
-                            buddy = buddy.toUpperCase();
-                            const buddyImageUrl = `http://vinfo-api.com/media/Charms/${buddy}.png`;
+                            const buddyImageUrl = `https://media.valorant-api.com/buddies/${buddy}/displayicon.png`;
                             const usedBuddy = buddiesOnly.find(b => b.ItemID === buddy);
                             usedBuddy.Uses -= 1;
                             // console.log(usedBuddy)
@@ -483,9 +504,9 @@ function renderWeaponsData(data) {
     const Identity = data.Identity;
     const playercardImg = document.querySelector('.cardImage');
     const cardImage = Identity.PlayerCardID.toUpperCase();
-    playercardImg.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_large.png";
+    playercardImg.src = "https://media.valorant-api.com/playercards/" + cardImage + "/largeart.png";
     const playercardWide = document.querySelector('.cardImageWide');
-    playercardWide.src = "http://vinfo-api.com/media/PlayerCards/" + cardImage + "_wide.png";
+    playercardWide.src = "https://media.valorant-api.com/playercards/" + cardImage + "/wideart.png";
 
     playercard.setAttribute('data-cardID', Identity.PlayerCardID);
     playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
@@ -748,12 +769,12 @@ function weapon_popup(weaponId, topSkinId, item) {
     activeChroma = activeItem.getAttribute("data-activeChromaID");
     console.log(buddy)
     if (buddy != "undefined") {
-        buddy = buddy.toUpperCase();
+        
         currentBuddy = buddiesOnly.find(b => b.ItemID === buddy)
         console.log(currentBuddy)
         currentBuddy.Uses += 1;
 
-        buddyPreviewImage.src = `http://vinfo-api.com/media/Charms/${buddy}.png`;
+        buddyPreviewImage.src = `https://media.valorant-api.com/buddies/${buddy}/displayicon.png`;
         
     }
     else {
