@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Set up the ping interval (600,000 ms = 10 minutes)
         setInterval(sendPing, 600000); // 10 minutes
 
+
         // Fetch user ID and agents data in parallel
         const [agentsResponse, usernameResponse] = await Promise.all([
         
@@ -75,12 +76,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const inventory = localStorage.getItem(`${userid}_inventory`);
         const inventoryData = JSON.parse(inventory);
+        console.log(inventoryData)
         weaponsOnly = inventoryData.Weapons
         buddiesOnly = inventoryData.Buddies
         cardsOnly = inventoryData.Cards
         titlesOnly = inventoryData.Titles
         spraysOnly = inventoryData.Sprays
-        console.log(cardsOnly)
+        console.log(buddiesOnly)
 
 
         // Update agent loadout function
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             activeAgentName = agentName; // Update active agent's name
             const localStorageKey = `${userid}_${agentName}_loadout`;
             const agentLoadoutData = localStorage.getItem(localStorageKey);
-
+            
             resetUses()
             if (agentLoadoutData) {
                 try {
@@ -226,6 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     
       });
+      console.log(buddiesOnly)
 
       document.querySelector('.skinPickerBg').addEventListener('click', function() {
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
@@ -422,10 +425,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             activeItem = spray
             if (sprayContainer.style.display === 'none') {
                 sprayContainer.style.display = "unset";
+                renderSprayData()
                 const name = spray.getAttribute('weapon')
                 const id = spray.getAttribute('data-slotid')
                 const imgSrc = spray.querySelector('img').getAttribute('src');
-                spraypopup(id, name, imgSrc, spray)
+                // spraypopup(id, name, imgSrc, spray)
             } else {
                 sprayContainer.style.display = 'none';
                 console.log("not openning because it says its closed");
@@ -949,33 +953,90 @@ function renderTopWeapon(data){
 
 
 function renderSprayData(){
-    const sprayDisplay = document.querySelector('.topSpray')
-    const grid = document.querySelector('.sprayGrid')
+    const sprayDisplay = document.querySelector('.topSpray');
+    const grid = document.querySelector('.sprayGrid');
+    const sprayPreview = document.querySelector('.previewImg')
     grid.innerHTML = '';
     grid.style.visibility = 'hidden';
+    console.log(spraysOnly)
     const renderCardPromise = new Promise((resolve, reject) => {
         spraysOnly.forEach(s => {
             const sprayDiv = document.createElement('div');
-            sprayDiv.classList.add('spray-image'); // Add a class for styling if needed
-             // Create an img element for the skin
-             const sprayImage = document.createElement('img');
-            //  cardImage.className = "Card_"+ c.ItemID
-             sprayImage.src = s.ImageURL
-             sprayImage.alt = s.Name; // Optionally set alt text
+            sprayDiv.classList.add('spray-container');
+
+            // Create an img element for the spray
+            // const displayIcon = document.createElement('img');
+            // displayIcon.src = s.displayIcon;
+            // displayIcon.alt = s.Name;
+            // displayIcon.classList.add('display-icon');
+            const sprayImage = document.createElement('img');
+            sprayImage.src = s.displayIcon;
+            sprayImage.alt = s.Name;
+
+
+            //create gif element
+            // const gifImage = document.createElement('img');
+            // gifImage.src = s.fullDisplayGif;
+            // gifImage.alt = s.Name;
+            // gifImage.classList.add('gif-image');
+            // gifImage.style.display = 'none'; // Hide GIF initially
+
+            // //append both images
+            // sprayDiv.appendChild(displayIcon)
+            // sprayDiv.appendChild(gifImage)
+            
+            
+           
+            // Optionally handle a click event to display the spray
             sprayDiv.addEventListener('click', () => {
-                sprayDisplay.src = s.ImageURL
-                activeSpray = s
-            })
-             sprayDiv.appendChild(sprayImage);
-             grid.appendChild(sprayDiv);
+                console.log(sprayDiv.src)
+                // sprayPreview.src = sprayDiv.src;
+                activeSpray = s;
+            });
 
-        })
+            sprayDiv.appendChild(sprayImage);
+            grid.appendChild(sprayDiv);
+            
+        });
 
-        resolve();
+        resolve(); // Resolve the promise after all sprays are rendered
     });
+
     renderCardPromise.then(() => {
         grid.style.visibility = 'visible';
     });
+
+    // sprayPreview.addEventListener('dragstart', function(e) {
+    //     // Clone the image when the drag starts
+    //     // const clone = e.target.cloneNode(true);
+    //     // Store the src of the cloned image in the dataTransfer object
+    //     e.dataTransfer.setData('text/plain', e.target.src);
+    // });
+
+    // // Add event listeners to the drop zones
+    // const dropzones = document.querySelectorAll('.sprayTop, .sprayRight, .sprayBottom, .sprayLeft');
+    // dropzones.forEach(dropzone => {
+    //     dropzone.addEventListener('dragover', function(e) {
+    //         e.preventDefault(); // Allow dropping
+    //     });
+
+    //     dropzone.addEventListener('drop', function(e) {
+    //         e.preventDefault();
+    //         // Get the source of the dragged image
+    //         const sprayImageSrc = e.dataTransfer.getData('text/plain');
+            
+    //         // Create a new image element for the dropzone
+    //         const newImage = document.createElement('img');
+    //         newImage.src = sprayImageSrc;
+    //         newImage.className = 'sprayImageWheel'; // Apply the same class for styling
+            
+    //         // Clear the dropzone
+    //         dropzone.innerHTML = ''; // Optional: Clear any existing content
+            
+    //         // Append the new image to the dropzone
+    //         dropzone.appendChild(newImage);
+    //     });
+    // });
 }
 
 function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) { 

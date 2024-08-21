@@ -1,0 +1,191 @@
+{
+    "Subject": "9c412040-4847-52ae-849b-4f8f9cc0004a",
+    "Version": 24,
+    "Guns": [
+        {
+            "ID": "63e6c2b6-4a8e-869c-3d4c-e38355226584",
+            "SkinID": "f454efd1-49cb-372f-7096-d394df615308",
+            "SkinLevelID": "d91fb318-4e40-b4c9-8c0b-bb9da28bac55",
+            "ChromaID": "2f93861d-4b2f-2175-af0c-3ba0c736e257",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/2f93861d-4b2f-2175-af0c-3ba0c736e257/fullrender.png"
+        },
+        {
+            "ID": "55d8a0f4-4274-ca67-fe2c-06ab45efdf58",
+            "SkinID": "5305d9c4-4f46-fbf4-9e9a-dea772c263b5",
+            "SkinLevelID": "0f5f60f4-4c94-e4b2-ceab-e2b4e8b41784",
+            "ChromaID": "b33de820-4061-8b85-31ce-808f1a2c58f5",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/b33de820-4061-8b85-31ce-808f1a2c58f5/fullrender.png"
+        },
+        {
+            "ID": "9c82e19d-4575-0200-1a81-3eacf00cf872",
+            "SkinID": "9c808029-48f5-ce89-21c5-88bf4228d2ed",
+            "SkinLevelID": "b5f4ed55-4e7f-f561-b365-5397f9e5890b",
+            "ChromaID": "f68018d5-44ff-4ccf-3957-75af660abc12",
+            "CharmInstanceID": "160f37f5-281a-4e84-855d-9ee46a8f43c0",
+            "CharmID": "9219f3fa-4c89-7d7d-f2dc-ed8ad3c7bf6e",
+            "CharmLevelID": "c104e58d-40ee-2024-3cfc-40b9e36d6828",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/f68018d5-44ff-4ccf-3957-75af660abc12/fullrender.png"
+        },
+        {
+            "ID": "ae3de142-4d85-2547-dd26-4e90bed35cf7",
+            "SkinID": "724a7f42-4315-eccf-0e76-77bdd3ec2e09",
+            "SkinLevelID": "c8e6ac70-48ef-9d96-d964-a88e8890b885",
+            "ChromaID": "bf35f404-4a14-6953-ced2-5bafd21639a0",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/bf35f404-4a14-6953-ced2-5bafd21639a0/fullrender.png"
+        },
+        {
+            "ID": "ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a",
+            "SkinID": "337cb216-4a6e-d85d-88c2-f29ab317784c",
+            "SkinLevelID": "871e73ed-452d-eb5a-3d6b-1d87060f35ce",
+            "ChromaID": "52221ba2-4e4c-ec76-8c81-3483506d5242",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/52221ba2-4e4c-ec76-8c81-3483506d5242/fullrender.png"
+        },
+        {
+            "ID": "ec845bf4-4f79-ddda-a3da-0db3774b2794",
+            "SkinID": "acd26127-48ff-8b9e-7ba6-b989af8a4b24",
+            "SkinLevelID": "6942d8d1-4370-a144-2140-22a6d2be2697",
+            "ChromaID": "b71ae8d6-44bb-aa4c-0d2a-dc9ed9e66410",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/b71ae8d6-44bb-aa4c-0d2a-dc9ed9e66410/fullrender.png"
+        },
+        {
+            "ID": "910be174-449b-c412-ab22-d0873436b21b",
+            "SkinID": "70c97fb2-4d79-d4bb-5173-a1888cd4bfd9",
+            "SkinLevelID": "2f5078c7-4381-492d-cc00-9f96966ba1ec",
+            "ChromaID": "3d8ffcfe-4786-0180-42d7-e1be18dd1cab",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/3d8ffcfe-4786-0180-42d7-e1be18dd1cab/fullrender.png"
+        },
+        {
+            "ID": "44d4e95c-4157-0037-81b2-17841bf2e8e3",
+            "SkinID": "f06657f3-48b6-6314-7235-a9a2749df5b9",
+            "SkinLevelID": "80fabd74-4438-a2dd-0c39-42ab449f9ec6",
+            "ChromaID": "dc99ed5a-4d75-87a0-c921-75963ea3c1e1",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/dc99ed5a-4d75-87a0-c921-75963ea3c1e1/fullrender.png"
+        },
+        {
+            "ID": "29a0cfab-485b-f5d5-779a-b59f85e204a8",
+            "SkinID": "d90a940b-4040-4c7b-7a9b-7ab574429226",
+            "SkinLevelID": "b22de236-4c7a-fb52-6103-c18bae5719ed",
+            "ChromaID": "3d1e1a59-422c-7964-08e5-a58c0820f929",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/3d1e1a59-422c-7964-08e5-a58c0820f929/fullrender.png"
+        },
+        {
+            "ID": "1baa85b4-4c70-1284-64bb-6481dfc3bb4e",
+            "SkinID": "b4903002-4687-1953-847a-e0b09a2b2726",
+            "SkinLevelID": "7afbe865-4832-941b-049b-1397bd90d4d8",
+            "ChromaID": "e17c8364-4630-505a-a2f8-45add0c2c292",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/e17c8364-4630-505a-a2f8-45add0c2c292/fullrender.png"
+        },
+        {
+            "ID": "e336c6b8-418d-9340-d77f-7a9e4cfe0702",
+            "SkinID": "1ef6ba68-4dbe-30c7-6bc8-93a6c6f13f04",
+            "SkinLevelID": "feaf05a1-492f-d154-a9f5-0eb1fe9a603e",
+            "ChromaID": "5a59bd61-48a9-af61-c00f-4aa21deca9a8",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/5a59bd61-48a9-af61-c00f-4aa21deca9a8/fullrender.png"
+        },
+        {
+            "ID": "42da8ccc-40d5-affc-beec-15aa47b42eda",
+            "SkinID": "48ad078a-4dae-2b85-a945-f4b6d1efecbb",
+            "SkinLevelID": "a7f92a1c-4465-5ea3-7745-bd876117f4a7",
+            "ChromaID": "95608504-4c8b-1408-1612-0f8200421c49",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/95608504-4c8b-1408-1612-0f8200421c49/fullrender.png"
+        },
+        {
+            "ID": "a03b24d3-4319-996d-0f8c-94bbfba1dfc7",
+            "SkinID": "d1f2920f-469a-3431-ad96-96afbd0017f2",
+            "SkinLevelID": "88cba358-4f4d-4d0e-69fc-b48f4c65cb2d",
+            "ChromaID": "4914f50d-49f9-6424-ca80-9486c45a138d",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/4914f50d-49f9-6424-ca80-9486c45a138d/fullrender.png"
+        },
+        {
+            "ID": "4ade7faa-4cf1-8376-95ef-39884480959b",
+            "SkinID": "3bf1e8e0-47e8-f27a-6054-929575f41a54",
+            "SkinLevelID": "414d888a-41ce-fcf0-e545-c49018ec9cf4",
+            "ChromaID": "0f934388-418a-a9e7-42a7-21b27402e46c",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/0f934388-418a-a9e7-42a7-21b27402e46c/fullrender.png"
+        },
+        {
+            "ID": "c4883e50-4494-202c-3ec3-6b8a9284f00b",
+            "SkinID": "fd44b2d5-49ee-77ab-fa56-588f3ac0c268",
+            "SkinLevelID": "f0389390-49eb-a43e-27fa-fc9f9f8aa9de",
+            "ChromaID": "1afec971-4170-f29b-1c94-07a0eff270ab",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/1afec971-4170-f29b-1c94-07a0eff270ab/fullrender.png"
+        },
+        {
+            "ID": "462080d1-4035-2937-7c09-27aa2a5c27a7",
+            "SkinID": "f01d1307-4299-42f5-2c5e-7dab7e69ab19",
+            "SkinLevelID": "1dc45e18-4a07-c85f-0020-6da4db1486ce",
+            "ChromaID": "a9aaccca-4cdc-02ea-1d7e-89bbacecc0e2",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/a9aaccca-4cdc-02ea-1d7e-89bbacecc0e2/fullrender.png"
+        },
+        {
+            "ID": "f7e1b454-4ad4-1063-ec0a-159e56b58941",
+            "SkinID": "940fb417-4a9c-3004-41f5-3e8f1f4178b2",
+            "SkinLevelID": "471fc2a5-47a7-5b12-2895-0899117d2f57",
+            "ChromaID": "31bb2115-4c62-d37c-43c4-11b8fee7f212",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/31bb2115-4c62-d37c-43c4-11b8fee7f212/fullrender.png"
+        },
+        {
+            "ID": "2f59173c-4bed-b6c3-2191-dea9b58be9c7",
+            "SkinID": "12cc9ed2-4430-d2fe-3064-f7a19b1ba7c7",
+            "SkinLevelID": "854938f3-4532-b300-d9a2-379d987d7469",
+            "ChromaID": "cac83e5c-47a1-3519-5420-1db1fdbc4892",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/cac83e5c-47a1-3519-5420-1db1fdbc4892/fullrender.png"
+        },
+        {
+            "ID": "5f0aaf7a-4289-3998-d5ff-eb9a5cf7ef5c",
+            "SkinID": "740b9572-44b1-57bf-767e-6aa01811f94d",
+            "SkinLevelID": "e4d16fc0-47a2-323f-0564-9495418237e8",
+            "ChromaID": "66c8d241-4f7c-6652-3aaa-51bafffbd493",
+            "Attachments": [],
+            "displayIcon": "https://media.valorant-api.com/weaponskinchromas/66c8d241-4f7c-6652-3aaa-51bafffbd493/fullrender.png"
+        }
+    ],
+    "Sprays": [
+        {
+            "EquipSlotID": "04af080a-4071-487b-61c0-5b9c0cfaac74",
+            "SprayID": "66b4e570-4794-a2e2-3df9-d5a1ac3fc6d9",
+            "SprayLevelID": null
+        },
+        {
+            "EquipSlotID": "5863985e-43ac-b05d-cb2d-139e72970014",
+            "SprayID": "b1655fe2-4110-97f9-e64c-d9a3dba23b98",
+            "SprayLevelID": null
+        },
+        {
+            "EquipSlotID": "0814b2fe-4512-60a4-5288-1fbdcec6ca48",
+            "SprayID": "6983ae7c-4cb5-835c-8f62-b7affbaae20e",
+            "SprayLevelID": null
+        },
+        {
+            "EquipSlotID": "7cdc908e-4f69-9140-a604-899bd879eed1",
+            "SprayID": "65e1df93-41ac-b192-d791-3382491f58cc",
+            "SprayLevelID": null
+        }
+    ],
+    "Identity": {
+        "PlayerCardID": "7f957f92-48ae-11de-6671-36930d4e4b95",
+        "PlayerTitleID": "d873aef3-49be-277d-7966-d0a2d9d9ad22",
+        "AccountLevel": 0,
+        "PreferredLevelBorderID": "00000000-0000-0000-0000-000000000000",
+        "HideAccountLevel": false
+    },
+    "Incognito": true
+}
