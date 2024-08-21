@@ -217,10 +217,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const skinPickerContainer = document.querySelector('.skinPickerContainer');
         skinPickerContainer.style.display = 'none';
         var currentBuddyID = activeItem.getAttribute("data-buddyID")
-        currentBuddyID = currentBuddyID.toUpperCase();
-        // console.log(currentBuddyID)
+    
+        console.log(currentBuddyID)
+        if (currentBuddyID != "undefined") {
         const currentBuddy = buddiesOnly.find(b => b.ItemID === currentBuddyID)
+
         currentBuddy.Uses -= 1
+        }
       });
 
       document.querySelector('.cardPickerBg').addEventListener('click', function() {
@@ -420,11 +423,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.sprayPickerBg').addEventListener('click', function() {
     sprayContainer.style.display = 'none';
     });
-    
+    const grid = document.querySelector('.skinPickerSkins');
+
+    // Scroll to a specific position smoothly
+    grid.scrollTo({
+        top: 100, // Replace with your desired scroll position
+        behavior: 'smooth'
+    });
+
+    // Scroll by a certain amount smoothly
+    grid.scrollBy({
+        top: 100, // Replace with your desired scroll amount
+        behavior: 'smooth'
+    });
        
     
 
     }
+    
 
 );
 
