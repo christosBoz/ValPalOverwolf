@@ -25,6 +25,20 @@ let activeSpray = ''
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         userid = localStorage.getItem(`puuid`)
+        async function sendPing() {
+            try {
+                const response = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000/ping?puuid=${userid}`);
+                if (!response.ok) {
+                    throw new Error('Ping failed');
+                }
+                console.log('Ping successful:', new Date().toLocaleTimeString());
+            } catch (error) {
+                console.error('Error sending ping:', error);
+            }
+        }
+    
+        // Set up the ping interval (600,000 ms = 10 minutes)
+        setInterval(sendPing, 600000); // 10 minutes
 
         // Fetch user ID and agents data in parallel
         const [agentsResponse, usernameResponse] = await Promise.all([
