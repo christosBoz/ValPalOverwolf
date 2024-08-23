@@ -1684,7 +1684,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   width: 22vw;
   height: 22vw;
   border-radius: 25vw;
-  border: 1px solid rgb(0, 0, 0);
+  /* border: 1px solid rgb(0, 0, 0); */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -21,6 +21,10 @@ let activeTitle = ''
 let activeTitleFullData = ''
 let spraysOnly = ''
 let activeSpray = ''
+let spray1 = ''
+let spray2 = ''
+let spray3 = ''
+let spray4 = ''
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -439,8 +443,64 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
 
     document.querySelector('.sprayPickerBg').addEventListener('click', function() {
+        const sprayTop = document.querySelector('.sprayTop')
+        const sprayTopImg = document.querySelector('.sprayTop img')
+
+        const sprayRight = document.querySelector('.sprayRight')
+        const sprayRightImg = document.querySelector('.sprayRight img')
+
+        const sprayBottom = document.querySelector('.sprayBottom')
+        const sprayBottomImg = document.querySelector('.sprayBottom img')
+
+        const sprayLeft = document.querySelector('.sprayLeft')
+        const sprayLeftImg = document.querySelector('.sprayLeft img')
+
+        const wheelTop = document.querySelector('.sprayDirectionTopButton img')
+        const wheelRight = document.querySelector('.sprayDirectionRightButton img')
+        const wheelBottom = document.querySelector('.sprayDirectionBottomButton img')
+        const wheelLeft = document.querySelector('.sprayDirectionLeftButton img')
+        console.log(sprayRight)
+        console.log(sprayRightImg)
+
+        wheelTop.src = sprayTopImg.src
+        wheelRight.src = sprayRightImg.src
+        wheelLeft.src = sprayLeftImg.src
+        wheelBottom.src = sprayBottomImg.src
+
+        dataBuffer.Sprays[0].SprayID = sprayTop.getAttribute('img-id');
+        dataBuffer.Sprays[1].SprayID = sprayRight.getAttribute('img-id');
+        dataBuffer.Sprays[2].SprayID = sprayBottom.getAttribute('img-id');
+        dataBuffer.Sprays[3].SprayID = sprayLeft.getAttribute('img-id');
+      
+        console.log(dataBuffer)
+
+
+
+
     sprayContainer.style.display = 'none';
+
+
+
+
+    
+
+
+
+
     });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     const grid = document.querySelector('.skinPickerSkins');
 
     // Scroll to a specific position smoothly
@@ -457,10 +517,12 @@ document.addEventListener('DOMContentLoaded', async () => {
        
     
 
-    }
+    
+ 
     
 
-);
+
+});
 
 
 function renderWeaponsData(data) {
@@ -955,88 +1017,50 @@ function renderTopWeapon(data){
 function renderSprayData(){
     const sprayDisplay = document.querySelector('.topSpray');
     const grid = document.querySelector('.sprayGrid');
-    const sprayPreview = document.querySelector('.previewImg')
+    const sprayPreview = document.querySelector('.previewImg');
     grid.innerHTML = '';
     grid.style.visibility = 'hidden';
-    console.log(spraysOnly)
-    const renderCardPromise = new Promise((resolve, reject) => {
-        spraysOnly.forEach(s => {
-            const sprayDiv = document.createElement('div');
-            sprayDiv.classList.add('spray-container');
+    console.log(spraysOnly);
 
-            // Create an img element for the spray
-            // const displayIcon = document.createElement('img');
-            // displayIcon.src = s.displayIcon;
-            // displayIcon.alt = s.Name;
-            // displayIcon.classList.add('display-icon');
-            const sprayImage = document.createElement('img');
-            sprayImage.src = s.displayIcon;
-            sprayImage.alt = s.Name;
+    spraysOnly.forEach(s => {
+        const sprayDiv = document.createElement('div');
+        sprayDiv.classList.add('spray-container');
 
+        const sprayImage = document.createElement('img');
+        sprayImage.src = s.displayIcon;
+        sprayImage.alt = s.Name;
 
-            //create gif element
-            // const gifImage = document.createElement('img');
-            // gifImage.src = s.fullDisplayGif;
-            // gifImage.alt = s.Name;
-            // gifImage.classList.add('gif-image');
-            // gifImage.style.display = 'none'; // Hide GIF initially
-
-            // //append both images
-            // sprayDiv.appendChild(displayIcon)
-            // sprayDiv.appendChild(gifImage)
-            
-            
-           
-            // Optionally handle a click event to display the spray
-            sprayDiv.addEventListener('click', () => {
-                console.log(sprayDiv.src)
-                // sprayPreview.src = sprayDiv.src;
-                activeSpray = s;
-            });
-
-            sprayDiv.appendChild(sprayImage);
-            grid.appendChild(sprayDiv);
-            
+        // Handle click event to display the spray
+        sprayDiv.addEventListener('click', () => {
+            activeSpray = s;
+            console.log(activeSpray);
+            if (activeSpray.fullDisplayGif != null) {
+                sprayPreview.src = activeSpray.fullDisplayGif;
+            } else {
+                sprayPreview.src = activeSpray.fullDisplayImg;
+            }
         });
 
-        resolve(); // Resolve the promise after all sprays are rendered
+        sprayDiv.appendChild(sprayImage);
+        grid.appendChild(sprayDiv);
     });
 
-    renderCardPromise.then(() => {
-        grid.style.visibility = 'visible';
+    grid.style.visibility = 'visible';
+
+    // Add event listeners to dropzones to update their images based on activeSpray
+    const dropzones = document.querySelectorAll('.sprayTop, .sprayRight, .sprayBottom, .sprayLeft');
+
+    dropzones.forEach(dropzone => {
+        dropzone.addEventListener('click', () => {
+            if (activeSpray) {
+                const dropzoneImage = dropzone.querySelector('img');
+                if (dropzoneImage) {
+                    dropzoneImage.src = activeSpray.displayIcon;
+                    dropzone.setAttribute('img-id', activeSpray.ItemID)
+                }
+            }
+        });
     });
-
-    // sprayPreview.addEventListener('dragstart', function(e) {
-    //     // Clone the image when the drag starts
-    //     // const clone = e.target.cloneNode(true);
-    //     // Store the src of the cloned image in the dataTransfer object
-    //     e.dataTransfer.setData('text/plain', e.target.src);
-    // });
-
-    // // Add event listeners to the drop zones
-    // const dropzones = document.querySelectorAll('.sprayTop, .sprayRight, .sprayBottom, .sprayLeft');
-    // dropzones.forEach(dropzone => {
-    //     dropzone.addEventListener('dragover', function(e) {
-    //         e.preventDefault(); // Allow dropping
-    //     });
-
-    //     dropzone.addEventListener('drop', function(e) {
-    //         e.preventDefault();
-    //         // Get the source of the dragged image
-    //         const sprayImageSrc = e.dataTransfer.getData('text/plain');
-            
-    //         // Create a new image element for the dropzone
-    //         const newImage = document.createElement('img');
-    //         newImage.src = sprayImageSrc;
-    //         newImage.className = 'sprayImageWheel'; // Apply the same class for styling
-            
-    //         // Clear the dropzone
-    //         dropzone.innerHTML = ''; // Optional: Clear any existing content
-            
-    //         // Append the new image to the dropzone
-    //         dropzone.appendChild(newImage);
-    //     });
-    // });
 }
 
 function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) { 
