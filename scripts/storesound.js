@@ -48,8 +48,21 @@ function uploadAudio() {
 
 function saveAudio(file){
     const audioPickerContainer = document.querySelector('.audioPickerContainer');
-    const filenameText = audioPickerContainer.querySelector('#filename')
-    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    let filenameText = file.name
+    const fileNameDisplay = document.getElementById('filename');
+    
+    const playaudiobutton = audioPickerContainer.querySelector('.playaudio')
+    playaudiobutton.addEventListener('click', function(event) {
+        console.log(playaudiobutton.src)
+        if (playaudiobutton.src = "./img/playaudio.png" || "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/img/playaudio.png"){
+            console.log("play")
+            playaudiobutton.src = "./img/pauseaudio.png"
+        }else if (playaudiobutton.src = "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/img/pauseaudio.png"){
+            console.log("pause")
+            playaudiobutton.src = "./img/playaudio.png"
+        }
+    })
+
     if (audioPickerContainer.style.display === 'none') {
         audioPickerContainer.style.display = 'unset';
         console.log("made visible")
@@ -57,8 +70,16 @@ function saveAudio(file){
         audioPickerContainer.style.display = 'none';
         console.log("hi");
     }
-    filenameText.innerHTML = file.name
+    
 
+    const maxLength = 50; // Set your character limit here
+    const fileInput = document.getElementById('text-box');
+    const fileNameParagraph = document.getElementById('filename');
+
+    if (file.name.length > maxLength) {
+        filenameText = file.name.slice(0, maxLength) + '...';
+    }
+    fileNameDisplay.innerHTML = filenameText
 }
 function storeAudio() {
     let fileInput = document.getElementById('audioFile');

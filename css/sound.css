@@ -145,5 +145,31 @@
   max-height: 80%;
 }
 
+.fileOptions{
+  display: flex;
+  flex-direction: row;
+  object-fit: contain;
+  height: 22%;
+  padding-right: 7%;
+  padding-left: 7%;
+  padding-top: 4%;
+}
 
-.sound
+.fileText{
+  font-size: large;
+  color: white;
+  margin-block: auto;
+}
+
+.textBox{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  white-space: pre-wrap; /* Ensure line breaks are respected */
+  word-wrap: break-word;
+}
