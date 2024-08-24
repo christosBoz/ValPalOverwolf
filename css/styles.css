@@ -1526,7 +1526,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
 .sprayPickerSearch {
   text-align: start;
-  width: 112.5%;
+  width: 27.7%;
   height: fit-content;
   margin-top: 2%;
 }
@@ -1535,11 +1535,12 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   background-color: #ffffff1a;
   border: 0;
   height: 33px;
-  width: 24.6%;
+  width: 100%;
   border-radius: 0px;
   position: relative;
   font-size: 20px;
   outline: none;
+  text-align: center;
 }
 
 .sprayPickerSkins {
@@ -1549,23 +1550,24 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   flex-grow: 1;
 }
 
-.sprayGrid{
+.sprayGrid {
   /* display: flex; */
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: auto auto;
   padding: 0;
-  width: 30%;
+  width: 50%;
   height: fit-content;
   max-height: 75%;
   margin-top: 0%;
-  column-gap: 0vw;
+  column-gap: 0.2vw;
   row-gap: 1vw;
   justify-content: center;
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  }
+  margin-left: -11%;
+}
 
   .sprayGrid::-webkit-scrollbar {
     display: none;
@@ -1608,6 +1610,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   height: 17%;
   width: 25%;
   position: absolute;
+  cursor: pointer;
 }
 
 .sprayTitle {
@@ -1617,27 +1620,47 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   color: white;
   font-weight: bold;
 }
-  .sprayDirectionTopOverlay{
-    position: absolute;
-    left: 2vw;
-    width: 88%;
-  }
-
-  .sprayImageWheel {
-    width: 65%;
-  }
-  
-  .sprayRight {
-    z-index: 5;
-    height: 17%;
-    width: 25%;
-    right: -0.6vw;
-    top: 30vh;
-    bottom: 0;
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
-    position: absolute;
+.sprayDirectionTopOverlay {
+  position: absolute;
+  left: 0vw;
+  width: 100%;
+  top: -8vh;
+  opacity: 0;
 }
+.sprayTop .sprayImageWheel,
+.sprayRight .sprayImageWheel,
+.sprayLeft .sprayImageWheel,
+.sprayBottom .sprayImageWheel {
+    transition: box-shadow 0.1s ease-in-out;
+}
+
+.sprayTop .sprayImageWheel:hover,
+.sprayRight .sprayImageWheel:hover,
+.sprayLeft .sprayImageWheel:hover,
+.sprayBottom .sprayImageWheel:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.6);
+}
+
+
+
+.sprayImageWheel {
+  width: 65%;
+}
+
+.sprayRight {
+  z-index: 5;
+  height: 17%;
+  width: 25%;
+  right: -0.6vw;
+  top: 30vh;
+  bottom: 0;
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  position: absolute;
+  cursor: pointer;
+}
+
+
 
 .sprayLeft {
   z-index: 5;
@@ -1649,6 +1672,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   /* margin-top: auto; */
   /* margin-bottom: auto; */
   position: absolute;
+  cursor: pointer;
 }
   
   .sprayBottom {
@@ -1663,6 +1687,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
     width: 25%;
     position: absolute;
     bottom: 4vh;
+    cursor: pointer;
 }
 
   .spray-container:hover {
