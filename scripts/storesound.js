@@ -19,8 +19,47 @@ window.onload = function() {
         let objectStore = db.createObjectStore("audioFiles", { keyPath: "id", autoIncrement: true });
         objectStore.createIndex("name", "name", { unique: false });
     };
+    document.querySelector('.uploadAudio').addEventListener('click', function() {
+        uploadAudio()
+    })
 };
 
+
+function uploadAudio() {
+    // Create a file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.wav, .mp3'; // Restrict to WAV and MP3 files
+
+    // Listen for the file selection
+    fileInput.onchange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Upload the file or handle it as needed
+            console.log("Selected file:", file.name);
+            saveAudio(file)
+            
+        }
+    };
+
+    // Trigger the file selection dialog
+    fileInput.click();
+}
+
+function saveAudio(file){
+    const audioPickerContainer = document.querySelector('.audioPickerContainer');
+    const filenameText = audioPickerContainer.querySelector('#filename')
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    if (audioPickerContainer.style.display === 'none') {
+        audioPickerContainer.style.display = 'unset';
+        console.log("made visible")
+    } else {
+        audioPickerContainer.style.display = 'none';
+        console.log("hi");
+    }
+    filenameText.innerHTML = file.name
+
+}
 function storeAudio() {
     let fileInput = document.getElementById('audioFile');
     let file = fileInput.files[0];
