@@ -74,6 +74,42 @@
     width: 20%;
 }
 
+.audioPickerContainer{
+  display: none;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+}
+
+.audioPickerBg{
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(3px);
+}
+
+.audioPicker {
+  display: flex;
+  flex-direction: column;
+  background-color: #1b1b1b;
+  margin: auto;
+  height: 30%;
+  width: 30%;
+  position: absolute;
+  top: 0%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 0%;
+  border-radius: 20px;
+  box-sizing: border-box;
+  border: .3vw solid #fe4753;
+}
+
 .audioControls {
   display: flex;
   flex-direction: column;
@@ -102,9 +138,12 @@
 
 .uploadAudio {
   max-width: 80%;
+  max-height: 80%;
 }
 .trashImg{
   max-width: 20%;
+  max-height: 80%;
 }
 
 
+.sound

@@ -15,18 +15,29 @@
     </ul>
 </nav>
     <div class="main">
-             <div class="setSoundsContainer"></div>
+            <div class="setSoundsContainer">
+
+            </div>
             <div class="soundsListContainer">
-                    <div class="inputButtonsContainer">
-                        <img src="./img/uploadaudio.png" class="uploadAudio">
-                          <!-- <input type="file" id="audioFile" accept=".mp3, .wav" style="display: none;">  -->
-                        <img src="./img/trash.png" class="trashImg">
-                        <!-- <button onclick="storeAudio()">Store Audio</button>  -->
+                <div class="inputButtonsContainer">
+                    <img src="./img/uploadaudio.png" class="uploadAudio">
+                    <!-- <input type="file" id="audioFile" accept=".mp3, .wav" style="display: none;">  -->
+                    <img src="./img/trash.png" class="trashImg">
+                    <!-- <button onclick="storeAudio()">Store Audio</button>  -->
+                </div>
+                <select id="audioList"></select>
+            </div>
+            <div class="audioPickerContainer" style="display: none;" >
+                <div class="audioPickerBg"></div>
+                <div class="audioPicker">
+                    <div class="fileOptions">
+                        <img src="./img/uploadarrow.png" class="uploadArrow">
+                        <p id="filename">file</p>
                     </div>
-                    <select id="audioList"></select>
 
+                </div>
 
-            </div> 
+            </div>
     </div>
 </div>
 
