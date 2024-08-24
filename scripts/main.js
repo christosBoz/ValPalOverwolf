@@ -340,6 +340,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
     });
+
+    document.getElementById('spraySearchInput').addEventListener('input', function() {
+        let filter = this.value.toLowerCase()
+        let sprays = document.querySelectorAll('.sprayGrid .spray-container')
+        sprays.forEach(function(spray) {
+            let altText = spray.querySelector('img').getAttribute('alt').toLowerCase();
+            if (altText.includes(filter)) {
+                spray.style.display = '';  // Show the spray
+            } else {
+                spray.style.display = 'none';  // Hide the spray
+            }
+        });
+
+    });
+
+
+
+
     document.getElementById('cardSearchInput').addEventListener('input', function() {
 
         let filter = this.value.toLowerCase();
@@ -428,12 +446,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(spray)
             activeItem = spray
             if (sprayContainer.style.display === 'none') {
+                document.getElementById('spraySearchInput').value = '';
                 sprayContainer.style.display = "unset";
                 renderSprayData()
-                const name = spray.getAttribute('weapon')
-                const id = spray.getAttribute('data-slotid')
-                const imgSrc = spray.querySelector('img').getAttribute('src');
-                // spraypopup(id, name, imgSrc, spray)
             } else {
                 sprayContainer.style.display = 'none';
                 console.log("not openning because it says its closed");
@@ -1029,7 +1044,7 @@ function renderSprayData(){
         const sprayImage = document.createElement('img');
         sprayImage.src = s.displayIcon;
         sprayImage.alt = s.Name;
-
+        const sprayTitle = document.querySelector('.sprayTitle');
         // Handle click event to display the spray
         sprayDiv.addEventListener('click', () => {
             activeSpray = s;
@@ -1039,6 +1054,7 @@ function renderSprayData(){
             } else {
                 sprayPreview.src = activeSpray.fullDisplayImg;
             }
+            sprayTitle.textContent = activeSpray.Name;
         });
 
         sprayDiv.appendChild(sprayImage);
@@ -1063,86 +1079,6 @@ function renderSprayData(){
     });
 }
 
-function spraypopup(sprayid, sprayDirection, sprayIcon, entireSpray) { 
-    const sprayContainer = document.querySelector('.sprayPickerContainer')
-    const spray1 = document.querySelector('.sprayDirectionTopButton')
-    const spray2 = document.querySelector('.sprayDirectionRightButton')
-    const spray3 = document.querySelector('.sprayDirectionBottomButton')
-    const spray4 = document.querySelector('.sprayDirectionLeftButton')
-    const sprayDisplay = document.querySelector('.topSpray')
-
-    document.querySelector('.sprayPreview .topSpray').setAttribute('src', sprayIcon);
-
-    const grid = document.querySelector('.sprayGrid')
-    // renderSprayData()
-    spraysOnly.forEach(s => {
-        const sprayDiv = document.createElement('div');
-        sprayDiv.classList.add('spray-image'); // Add a class for styling if needed
-         // Create an img element for the skin
-         const sprayImage = document.createElement('img');
-        //  cardImage.className = "Card_"+ c.ItemID
-         sprayImage.src = s.ImageURL
-         sprayImage.alt = s.Name; // Optionally set alt text
-        sprayDiv.addEventListener('click', () => {
-            sprayDisplay.src = s.ImageURL
-            activeSpray = s
-        })
-         sprayDiv.appendChild(sprayImage);
-         grid.appendChild(sprayDiv);
-
-    })
-    const sprayImage1 = spray1.querySelector('img.sprayImage');
-    const sprayImage2 = spray2.querySelector('img.sprayImage');
-    const sprayImage3 = spray3.querySelector('img.sprayImage');
-    const sprayImage4 = spray4.querySelector('img.sprayImage');
-    document.querySelector('.chooseButtonSprays').addEventListener('click', function() {
-
-        console.log(activeSpray)
-
-        if (sprayDirection === "Spray1") {
-            console.log(spray1)
-            sprayImage1.src = activeSpray.ImageURL
-            spray1.setAttribute('data-slotid', activeSpray.ItemID)
-            sprayDirection = ""
-            dataBuffer.Sprays[0].SprayID = activeSpray.ItemID
-            sprayContainer.style.display = "unset";
-        
-        }
-        if (sprayDirection === "Spray2") {
-            sprayImage2.src = activeSpray.ImageURL
-            spray2.setAttribute('data-slotid', activeSpray.ItemID)
-            sprayDirection = ""
-            dataBuffer.Sprays[1].SprayID = spray2.getAttribute('data-slotid')
-            sprayContainer.style.display = "unset";
-    
-
-        }
-        if (sprayDirection === "Spray3") {
-            sprayImage3.src = activeSpray.ImageURL
-            spray3.setAttribute('data-slotid', activeSpray.ItemID)
-            sprayDirection = ""
-            dataBuffer.Sprays[2].SprayID = spray3.getAttribute('data-slotid')
-            sprayContainer.style.display = "unset";
-
-        }
-        if (sprayDirection === "Spray4") {
-            sprayImage4.src = activeSpray.ImageURL
-            spray4.setAttribute('data-slotid', activeSpray.ItemID)
-            sprayDirection = ""
-            dataBuffer.Sprays[3].SprayID = spray4.getAttribute('data-slotid')
-            sprayContainer.style.display = "unset";
-
-        }
-        
-    
-     })
-
-    
-
-
-
-    
-}
 
 function checkSprays() {
     const sprayImages = document.querySelectorAll('.sprayItem .sprayImage');
