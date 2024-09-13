@@ -575,38 +575,44 @@ img {
   top: 25%;
 }
 
-.loadoutbuttons{
+.loadoutbuttons {
   height: auto;
   align-content: center;
   display: flex;
-  flex-direction: column ;
+  /* flex-direction: column; */
   width: 100%;
   position: relative;
+  justify-content: space-between;
+  /* margin-top: 20%; */
+  /* column-gap: 22%; */
+  /* border: solid; */
 }
 .loadoutbutton{
   max-width: 100%;
   /* margin-left: -8%; */
-  margin-top: 5%;
   object-fit: contain;
   position: absolute;
 
 }
 
-#loadLoadoutButton{
-  margin-top: 5%;
+#loadLoadoutButton {
+  width: 20%;
   cursor: pointer;
-
+  position: absolute;
+  left: 0vw;
 }
-#loadLoadoutButton:hover{
+/* #loadLoadoutButton:hover{
  content: url("https://imgur.com/tVP7NV4.png")
 }
 #saveLoadoutButton:hover{
   content: url("https://imgur.com/3E8mLOK.png");
-}
+} */
 
-#saveLoadoutButton{
-  margin-top: 35%;
+#saveLoadoutButton {
+  width: 27%;
   cursor: pointer;
+  position: absolute;
+  right: 5vw;
 }
 
 .cardPickerContainer{
@@ -974,14 +980,17 @@ input{
 }
 
 #refreshButton {
-  margin-top: 70%;
+  /* margin-top: 70%; */
   cursor: pointer;
-  width:  100%; 
-  background-color: white;
+  width: 19%;
+  /* background-color: white; */
+  position: absolute;
+  right: 1vw;
+  top: 1.45vh;
 }
-#refreshButton:hover {
+/* #refreshButton:hover {
   background-color: #60eacf;
-}
+} */
 
 .skinPickerClose {
   color: white;
