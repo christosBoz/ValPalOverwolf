@@ -105,7 +105,6 @@
   padding-left: 0%;
   padding-right: 0%;
   padding-bottom: 0%;
-  border-radius: 20px;
   box-sizing: border-box;
   border: .3vw solid #fe4753;
 }
@@ -172,4 +171,15 @@
   justify-content: center;
   white-space: pre-wrap; /* Ensure line breaks are respected */
   word-wrap: break-word;
+}
+
+#waveformCanvas {
+  margin-top: 13%;
+}
+
+.rectangle {
+  width: 728px;  /* Width of the rectangle */
+  height: 90px; /* Height of the rectangle */
+  background-color: #4CAF50; /* Rectangle color */
+  border: 2px solid #333; /* Optional: Border around the rectangle */
 }

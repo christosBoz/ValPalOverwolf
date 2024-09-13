@@ -11,6 +11,9 @@
         "description": "Demo App"
     },
     "permissions": [
+        "Extensions",
+        "Streaming",
+        "Profile",
         "GameInfo",
         "GameEvents",
         "FileSystem"

@@ -1,5 +1,13 @@
 let db;
-
+let audioContext;
+let analyser;
+let source;
+let bufferLength;
+let dataArray;
+let animationFrameId;
+const canvas = document.getElementById('waveformCanvas');
+const ctx = canvas.getContext('2d');
+let isPlaying = false;
 window.onload = function() {
     let request = indexedDB.open("AudioDB", 1);
 
@@ -46,41 +54,123 @@ function uploadAudio() {
     fileInput.click();
 }
 
-function saveAudio(file){
-    const audioPickerContainer = document.querySelector('.audioPickerContainer');
-    let filenameText = file.name
-    const fileNameDisplay = document.getElementById('filename');
-    
-    const playaudiobutton = audioPickerContainer.querySelector('.playaudio')
-    playaudiobutton.addEventListener('click', function(event) {
-        console.log(playaudiobutton.src)
-        if (playaudiobutton.src = "./img/playaudio.png" || "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/img/playaudio.png"){
-            console.log("play")
-            playaudiobutton.src = "./img/pauseaudio.png"
-        }else if (playaudiobutton.src = "overwolf-extension://mhlpbbigoglahfnkpekoamfknlnaneebgodenaam/img/pauseaudio.png"){
-            console.log("pause")
-            playaudiobutton.src = "./img/playaudio.png"
+
+
+
+function saveAudio(file) {
+    if (file) {
+        let audio = new Audio();
+        const audioPickerContainer = document.querySelector('.audioPickerContainer');
+        let filenameText = file.name;
+        const fileNameDisplay = document.getElementById('filename');
+        const playaudiobutton = audioPickerContainer.querySelector('.playaudio');
+
+        if (audioPickerContainer.style.display === 'none') {
+            audioPickerContainer.style.display = 'unset';
+            console.log("made visible");
+        } else {
+            audioPickerContainer.style.display = 'none';
+            console.log("hi");
         }
-    })
 
-    if (audioPickerContainer.style.display === 'none') {
-        audioPickerContainer.style.display = 'unset';
-        console.log("made visible")
-    } else {
-        audioPickerContainer.style.display = 'none';
-        console.log("hi");
+        const maxLength = 50;
+        if (file.name.length > maxLength) {
+            filenameText = file.name.slice(0, maxLength) + '...';
+        }
+        fileNameDisplay.innerHTML = filenameText;
+
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            const fileData = event.target.result;
+            audio.src = fileData;
+            console.log("Audio file loaded");
+
+            audio.addEventListener('canplay', function() {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                source = audioContext.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+                analyser.fftSize = 512; // Higher value for more detail
+
+                bufferLength = analyser.fftSize;
+                dataArray = new Uint8Array(bufferLength);
+
+                function draw() {
+                    animationFrameId = requestAnimationFrame(draw);
+
+                    analyser.getByteTimeDomainData(dataArray);
+
+                    ctx.fillStyle = 'rgb(27, 25, 26)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#fe4753'; // Set the waveform color here
+                    ctx.beginPath();
+
+                    let sliceWidth = canvas.width * 1.0 / bufferLength;
+                    let x = 0;
+
+                    for (let i = 0; i < bufferLength; i++) {
+                        let v = dataArray[i] / 128.0; // Normalizing value
+                        let y = v * canvas.height / 2; // Centered y value
+
+                        if (i === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+
+                        x += sliceWidth;
+                    }
+
+                    ctx.lineTo(canvas.width, canvas.height / 2);
+                    ctx.stroke();
+                }
+
+                // Start drawing loop
+                draw();
+
+                // Pause and resume handling
+                audio.addEventListener('pause', () => {
+                    isPlaying = false;
+                    cancelAnimationFrame(animationFrameId);
+                });
+
+                audio.addEventListener('play', () => {
+                    if (!isPlaying) {
+                        isPlaying = true;
+                        draw(); // Restart the drawing loop
+                    }
+                });
+            });
+        };
+        reader.readAsDataURL(file);
+
+        playaudiobutton.addEventListener('click', function(event) {
+            if (playaudiobutton.src.includes("playaudio.png")) {
+                playaudiobutton.src = "./img/pauseaudio.png";
+                audio.volume = 1.0;
+                audio.play().then(() => {
+                    console.log("Audio playing");
+                }).catch(error => {
+                    console.error("Error playing audio:", error);
+                });
+            } else if (playaudiobutton.src.includes("pauseaudio.png")) {
+                playaudiobutton.src = "./img/playaudio.png";
+                audio.pause();
+                console.log("Audio paused");
+            }
+        });
     }
-    
-
-    const maxLength = 50; // Set your character limit here
-    const fileInput = document.getElementById('text-box');
-    const fileNameParagraph = document.getElementById('filename');
-
-    if (file.name.length > maxLength) {
-        filenameText = file.name.slice(0, maxLength) + '...';
-    }
-    fileNameDisplay.innerHTML = filenameText
 }
+
+
+
+
+
+
+
 function storeAudio() {
     let fileInput = document.getElementById('audioFile');
     let file = fileInput.files[0];
