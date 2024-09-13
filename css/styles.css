@@ -186,6 +186,7 @@ body {
   width: 18%;
   display: flex;
   flex-direction: column;
+  height: fit-content;
   
 }
 .invCategoryName {
@@ -1735,3 +1736,15 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   cursor: pointer;
   border-width: 1cap;
 } */
+
+
+.adRectangle {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 728px ;  /* Width of the rectangle */
+  min-height: 90px; /* Height of the rectangle */
+  background-color: #4CAF50; /* Rectangle color */
+  margin-bottom: .5%;
+}
