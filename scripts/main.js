@@ -395,6 +395,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
       document.querySelector('.topWeapon').addEventListener('click', function() {
+        document.getElementById('skinSearchInput').value=''
         const skinGrid = document.querySelector('.skinGrid');
         skinGrid.innerHTML = '';
         skinGrid.innerHTML = weaponChoicesHTML
@@ -652,7 +653,7 @@ function card_popup() {
 
 //    console.log(preview_dictionary);
 
-
+    document.getElementById('cardSearchInput').value=''
     const cardPickerContainer = document.querySelector('.cardPickerContainer');
     if (cardPickerContainer.style.display === 'none') {
         cardPickerContainer.style.display = "unset";
@@ -893,7 +894,7 @@ function weaponChoices(weapon){
 
     skinGrid.style.visibility = 'hidden';
     
-
+    document.getElementById('skinSearchInput').value=''
     // Create a promise to handle rendering of weapons
     const renderWeaponsPromise = new Promise((resolve, reject) => {
         weapon.forEach(w => {
@@ -941,7 +942,9 @@ function weaponChoices(weapon){
 }
 
 function buddyChoices(){
+    document.getElementById('skinSearchInput').value=''
     activeType = "buddies"
+
     const skinGrid = document.querySelector('.skinGrid');
     const buddyPreview = document.querySelector('.buddyPreview');
     const buddyImg = buddyPreview.querySelector('.clickForBuddy');
