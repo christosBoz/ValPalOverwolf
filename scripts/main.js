@@ -193,7 +193,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const refreshResponse = await fetch(`http://ec2-3-143-245-70.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${userid}`);
                 const refreshData = await refreshResponse.text();
     
-                localStorage.setItem(`${userid}_inventory`, refreshData);
+                localStorage.setItem(`${userid}_inventory`, refreshData)
+                const inventory = localStorage.getItem(`${userid}_inventory`);
+                const inventoryData = JSON.parse(inventory);
                 weaponsOnly = inventoryData.Weapons
                 buddiesOnly = inventoryData.Buddies
                 cardsOnly = inventoryData.Cards
