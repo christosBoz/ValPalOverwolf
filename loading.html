@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Client Activation</title>
 </head>
-<body>
-    <button id="activate-button">Activate Client</button>
+<body style="background: #1b191a;">
+
     <pre id="activation-status"></pre>
 
     <script type="module">
         let puuid = '';
         document.addEventListener('DOMContentLoaded', async () => {
-            const activateButton = document.getElementById('activate-button');
             const activationStatusPre = document.getElementById('activation-status');
 
-            activateButton.addEventListener('click', async () => {
                 try {
                     // Adjust the path to your actual lockfile path
                     const lockfilePath = overwolf.io.paths.localAppData+ '/Riot Games/Riot Client/Config/lockfile'; // Change this to the actual path
@@ -114,7 +112,6 @@
                     activationStatusPre.textContent = `Error: ${error.message}`;
                 }
             });
-        });
     </script>
 </body>
 </html>
