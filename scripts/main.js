@@ -397,11 +397,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
       document.querySelector('.topWeapon').addEventListener('click', function() {
+        const topWeapon = document.querySelector('.topWeapon')
+        const weaponId = topWeapon.getAttribute('data-weaponId');
+        const weapon = weaponsOnly.filter(weapon => weapon.Weaponid === weaponId);
         document.getElementById('skinSearchInput').value=''
         const skinGrid = document.querySelector('.skinGrid');
-        skinGrid.innerHTML = '';
-        skinGrid.innerHTML = weaponChoicesHTML
-    })
+
+        weaponChoices(weapon)
+      });
     document.querySelector('.buddyPreview').addEventListener('click', function() {
         buddyChoices()
     })
@@ -845,6 +848,7 @@ function weapon_popup(weaponId, topSkinId, item) {
     const chromaPreview = document.querySelector('.chromaPreview');
     const topWeapon = document.querySelector('.topWeapon');
     var buddy = item.getAttribute('data-buddyID');
+    topWeapon.setAttribute('data-weaponID', weaponId);
     topWeapon.src = '';
     skinGrid.innerHTML = '';
     chromaPreview.innerHTML = '';

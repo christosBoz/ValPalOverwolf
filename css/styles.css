@@ -1057,6 +1057,7 @@ row-gap: 1vw;
 
 .weapon-skin img{
 max-width: 90%;
+max-height: 75%;
 }
 
 .skinPicker .skinPickerSkins .weapon-skin:before {
