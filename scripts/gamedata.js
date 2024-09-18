@@ -177,7 +177,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
 // Function to send loadout update to the backend
 async function sendLoadoutUpdate(loadoutData) {
     try {
-        const response = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000/update_loadout?puuid=${user_id}`, {
+        const response = await fetch(`http://ec2-3-143-245-70.us-east-2.compute.amazonaws.com:5000/update_loadout?puuid=${user_id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -224,7 +224,7 @@ overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
         }else{
             console.log("Game has started");
             try {
-                const loadoutResponse = await fetch(`http://ec2-3-22-235-94.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
+                const loadoutResponse = await fetch(`http://ec2-3-143-245-70.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
                 currentloadout = await loadoutResponse.json();
                 console.log(currentloadout);
             } catch (error) {
