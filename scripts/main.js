@@ -226,14 +226,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
 
       });
-      const card = document.querySelector('.Card')
-        card.addEventListener('click', function(){
-            
-            card_popup();
-            console.log(activeCard)
 
-    
-      });
       console.log(buddiesOnly)
 
       document.querySelector('.skinPickerBg').addEventListener('click', function() {
@@ -249,12 +242,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
-      document.querySelector('.cardPickerBg').addEventListener('click', function() {
-        const cardPickerContainer = document.querySelector('.cardPickerContainer');
-        cardPickerContainer.style.display = 'none';
-      });
 
-      
+
       document.querySelector('.chooseButton').addEventListener('click', function() {
         if (activeBuddy.Uses == 0) {
             alert("no more buddies")
@@ -601,28 +590,6 @@ function renderWeaponsData(data) {
         });
     });
 
-    const playercard = document.querySelector('.Card')
-    const Identity = data.Identity;
-    const playercardImg = document.querySelector('.cardImage');
-    const cardImage = Identity.PlayerCardID.toUpperCase();
-    playercardImg.src = "https://media.valorant-api.com/playercards/" + cardImage + "/largeart.png";
-    const playercardWide = document.querySelector('.cardImageWide');
-    playercardWide.src = "https://media.valorant-api.com/playercards/" + cardImage + "/wideart.png";
-
-    playercard.setAttribute('data-cardID', Identity.PlayerCardID);
-    playercard.setAttribute('data-titleID', Identity.PlayerTitleID);
-
-    const player_username = document.querySelectorAll('#username')
-    const player_title = document.querySelector('.titleName')
-    const wideUsername = document.querySelector('.botLineUsername')
-    wideUsername.textContent = username;
-    activeTitle = titlesOnly.find(title => title.ItemID === Identity.PlayerTitleID)
-    console.log(activeTitle)
-    player_title.textContent = activeTitle.Title;
-    console.log(player_username)
-    player_username.forEach(name =>{
-        name.innerHTML = username
-    })
 
     const sprays = Array.isArray(data.Sprays) ? data.Sprays : [];
 
@@ -646,199 +613,6 @@ function resetUses(){
         // console.log("hi")
     })
 }
-
-function card_popup() {
-
-//     preview_dictionary={
-//         "card":cardID,
-//         "agentImg":agentImg,
-//         "agentName":agentName,
-//         "username":username
-//    };
-
-//    console.log(preview_dictionary);
-
-    document.getElementById('cardSearchInput').value=''
-    const cardPickerContainer = document.querySelector('.cardPickerContainer');
-    if (cardPickerContainer.style.display === 'none') {
-        cardPickerContainer.style.display = "unset";
-    } else {
-        cardPickerContainer.style.display = 'none';
-        console.log("balls");
-    }
-    
-
-    cardChoices()
-
-    const dropdown = document.querySelector('.titleDropDown');
-    const select = dropdown.querySelector('.select');
-    const selected = dropdown.querySelector('.selected');
-    const caret = dropdown.querySelector('.caret');
-    const menu = dropdown.querySelector('.selectMenu');
-    selected.innerText = activeTitle.Title;
-
-    
-    select.addEventListener('click', (event) => {
-        event.stopPropagation();
-        // Toggle the clicked select styles
-        select.classList.toggle('select-clicked');
-        
-        // Toggle the rotation of the caret
-        caret.classList.toggle('caret-rotate');
-        
-        // Toggle the visibility of the menu
-        menu.classList.toggle('menu-open');
-
-        titleChoices()
-    });
-    //when click on select then do titlechoices.
-    
-}
-
-function cardChoices(){
-    const cardGrid = document.querySelector('.cardGrid')
-    const invLargeImage = document.querySelector('.cardImage')
-    const invWideImage = document.querySelector('.cardImageWide')
-    
-    cardGrid.innerHTML = '';
-    cardGrid.style.visibility = 'hidden';
-    const topCardLong = document.querySelector(".topCardLong");
-    topLoadingCard = document.querySelector(".topLoadingCard");
-    const loadingCardWide = topLoadingCard.querySelector('.cardImageWide');
-    const cardtitle = document.querySelector('.cardTitle')
-    const playercard = document.querySelector('.Card')
-    const cardid = playercard.getAttribute('data-cardID')
-    // console.log(cardid)
-    activeCard = cardsOnly.find(card => card.ItemID === cardid)
-    console.log(activeCard)
-    topCardLong.src = activeCard.largeImageURL
-    loadingCardWide.src = activeCard.wideImageURL
-    cardtitle.innerHTML = activeCard.Name
-    
-    
-    const renderCardPromise = new Promise((resolve, reject) => {
-        cardsOnly.forEach(c => {
-            const cardDiv = document.createElement('div');
-            cardDiv.classList.add('card-image'); // Add a class for styling if needed
-
-             // Create an img element for the skin
-             const cardImage = document.createElement('img');
-            //  cardImage.className = "Card_"+ c.ItemID
-             cardImage.src = c.smallImageURL
-             cardImage.alt = c.Name; // Optionally set alt text
-             const cardName = document.createElement('div');
-             cardName.className = "cardName"
-            //  cardName.innerHTML = c.Name
-
-            //  cardDiv.appendChild(cardName)
-            cardDiv.addEventListener('click', () => {
-                activeCard = c
-                console.log(activeCard)
-                topCardLong.src = c.largeImageURL
-                loadingCardWide.src = c.wideImageURL
-                cardtitle.innerHTML = c.Name
-                // invLargeImage.src = c.largeImageURL
-                // invWideImage.src = c.wideImageURL
-                // playercard.setAttribute('data-cardID', c.ItemID) 
-            });
-             cardDiv.appendChild(cardImage);
-
-
-
-             cardGrid.appendChild(cardDiv);
-             cardChoicesHTML = cardGrid.innerHTML
-        })
-        
-        resolve();
-    });
-    renderCardPromise.then(() => {
-        cardGrid.style.visibility = 'visible';
-    });
-
-}
-
-
-function titleChoices() {
-    const playercard = document.querySelector('.Card')
-    const titleid = playercard.getAttribute('data-titleID')
-    console.log(titleid)
-    activeTitle = titlesOnly.find(title => title.ItemID === titleid)
-    const titleSelect = document.querySelector('.selectMenu');
-    console.log(titleSelect)
-    titleSelect.innerHTML = '';
-    console.log(titlesOnly)
-    titlesOnly.forEach(t => {
-        const option = document.createElement('li');
-        option.classList.add('option-select'); // Add a class for styling if needed
-        //<option value="option1">Option 1</option>
-        option.setAttribute('data-item-id', t.ItemID);
-        option.textContent = t.Title;
-        titleSelect.appendChild(option);
-    });
-
-    const dropdown = document.querySelector('.titleDropDown');
-
-    // Get inner elements
-    const select = dropdown.querySelector('.select');
-    const caret = dropdown.querySelector('.caret');
-    const menu = dropdown.querySelector('.selectMenu');
-    const options = dropdown.querySelectorAll('.option-select');
-    const selected = dropdown.querySelector('.selected');
-    selected.innerText = activeTitle.Title;
-
-    
-    select.addEventListener('click', (event) => {
-        event.stopPropagation();
-        // Toggle the clicked select styles
-        select.classList.toggle('select-clicked');
-        
-        // Toggle the rotation of the caret
-        caret.classList.toggle('caret-rotate');
-        
-        // Toggle the visibility of the menu
-        menu.classList.toggle('menu-open');
-    });
-    
-    options.forEach(option => {
-        option.addEventListener('click', (event) => {
-            // Stop the event from bubbling up to the select element
-            event.stopPropagation();
-    
-            // Set the selected text
-            selected.innerText = option.innerText;
-    
-            // Remove the styles indicating the select is active
-            select.classList.remove('select-clicked');
-            caret.classList.remove('caret-rotate');
-            menu.classList.remove('menu-open');
-    
-            // Remove active class from all options and add it to the clicked one
-            options.forEach(option => {
-                option.classList.remove('active');
-            });
-            option.classList.add('active');
-            console.log(option)
-
-            activeTitle = titlesOnly.find(title => title.Title === option.textContent)
-            console.log(activeTitle)
-        });
-    });
-    
-    
-    // Close the dropdown if clicked outside
-    document.addEventListener('click', (event) => {
-        if (!dropdown.contains(event.target)) {
-            select.classList.remove('select-clicked');
-            caret.classList.remove('caret-rotate');
-            menu.classList.remove('menu-open');
-            event.stopPropagation();
-        }
-    });
-
-}
-
-
-
 
 function weapon_popup(weaponId, topSkinId, item) {
     const skinGrid = document.querySelector('.skinGrid');

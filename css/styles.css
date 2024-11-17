@@ -31,7 +31,7 @@
 
 #agentsGrid{
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
   padding: 0;
   width: fit-content;
   height: auto;
@@ -39,6 +39,12 @@
   row-gap: .5vh;
   margin-top: 2%;
   
+}
+.agentsAndAds{
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .agent-box{
   width:fit-content;
@@ -128,10 +134,10 @@ body {
   display: flex;
   flex-direction: row;
   gap: 2%;
-  width: 100%;
+  width: fit-content;
   height: 100%;
   padding-top: 1%;
-  
+  margin-left: 3%;
 }
 .p-0{
   width: fit-content;
@@ -183,7 +189,7 @@ body {
 
 
 .inventory .invCol {
-  width: 18%;
+  width:15.85vw;
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -1751,10 +1757,15 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 .adRectangle {
   position: fixed;
   bottom: 0;
-  left: 50%;
+  left: 65%;
   transform: translateX(-50%);
   min-width: 728px ;  /* Width of the rectangle */
   min-height: 90px; /* Height of the rectangle */
   background-color: #4CAF50; /* Rectangle color */
   margin-bottom: .5%;
+}
+
+.adSpace{
+  min-width: 400px;
+ height: 300px;
 }
