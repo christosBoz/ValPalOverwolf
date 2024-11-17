@@ -14,7 +14,7 @@ function resizeToScreenWithScaling() {
 
     console.log("Scaled screen width:", scaledScreenWidth, "Scaled screen height:", scaledScreenHeight);
 
-    const windowWidth = Math.round(scaledScreenWidth * 0.7);
+    const windowWidth = Math.round(scaledScreenWidth * 0.48 + 400);
     const windowHeight = Math.round(scaledScreenHeight * 0.7);
 
     console.log("Window width:", windowWidth, "Window height:", windowHeight);
