@@ -46,7 +46,7 @@
     -webkit-overflow-scrolling: touch;
 
 }
-.agentsAndAds{
+.agentsAndAds {
   width: 400px;
   height: 100%;
   display: flex;
@@ -54,11 +54,13 @@
   margin-left: 1%;
   margin-right: 2%;
   padding-top: 1%;
+  gap: 1%;
 }
-.agent-box{
-  width:fit-content;
-  display:flex;
+.agent-box {
+  width: fit-content;
+  display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .loadout-grid{
   flex: 0 0 20%;  /* Adjust the width as needed */
@@ -70,8 +72,10 @@
   margin-left: 1%;
   margin-right: 4%;
   display: flex;
-  width:fit-content;
-  padding-top: 1%
+  width: fit-content;
+  padding-top: 1%;
+  height: 43vh;
+  flex-grow: 1;
 }
 .row{
   row-gap: 1%;
