@@ -1,10 +1,11 @@
 let puuid = '';
 document.addEventListener('DOMContentLoaded', async () => {
     const activationStatusPre = document.getElementById('activation-status');
-
+    
     try {
         // Adjust the path to your actual lockfile path
         const lockfilePath = overwolf.io.paths.localAppData + '/Riot Games/Riot Client/Config/lockfile'; // Change this to the actual path
+        const shooterGameLog = overwolf.io.paths.localAppData + '/VALORANT/Saved/Logs/ShooterGame.log';
 
         // Read the lockfile content
         const lockfileContent = await new Promise((resolve, reject) => {
@@ -16,6 +17,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
         });
+
+        const shooterGameLogContent = await new Promise((resolve, reject) => {
+            overwolf.io.readTextFile(shooterGameLog, { encoding: 'utf8' }, (result) => {
+                if (result.success) {
+                    resolve(result.content);
+                } else {
+                    reject(new Error('Failed to read shootergame: ' + result.error));
+                }
+            });
+        });
+        // console.log(shooterGameLogContent)
+        console.log(shooterGameLogContent.match("https://glz-(.+/?)-1.(.+?).a.pvp.net")[1])
+        const shard = shooterGameLogContent.match("https://glz-(.+/?)-1.(.+?).a.pvp.net")[1]
 
         const [name, pid, port, password, protocol] = lockfileContent.split(':');
 
@@ -61,7 +75,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             body: JSON.stringify({
                 lockfileContent,
                 sessionData,
-                entitlementsData // Include the fetched entitlements data
+                entitlementsData,// Include the fetched entitlements data
+                shard
             }),
         });
 
