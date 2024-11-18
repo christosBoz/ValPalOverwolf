@@ -29,22 +29,20 @@
   padding: 0px;
 }
 
-#agentsGrid{
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: auto auto auto;
-    padding: 0;
-    width: 100%;
-    height: fit-content;
-    max-height: 75%;
-    margin-top: 0%;
-    column-gap: 10px;
-    row-gap: 10px;
-    justify-content: center;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-
+#agentsGrid {
+  display: grid;
+  height: 100%;
+  overflow-y: auto;
+  grid-template-columns: auto auto auto auto;
+  padding: 0;
+  /* width: 100%; */
+  /* height: fit-content; */
+  /* max-height: 75%; */
+  /* margin-top: 0%; */
+  column-gap: 10px;
+  row-gap: 10px;
+  /* justify-content: center; */
+  /* overflow-y: scroll; */
 }
 .agentsAndAds {
   width: 400px;
@@ -73,6 +71,7 @@
   margin-right: 4%;
   display: flex;
   width: fit-content;
+  flex-direction: column;
   padding-top: 1%;
   height: 43vh;
   flex-grow: 1;
