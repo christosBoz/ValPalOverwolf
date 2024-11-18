@@ -28,13 +28,9 @@
         }
         // Reached if the script loaded properly.
         // You can now create however many ad containers you need for this window, granted that they follow the implementation guidelines.
-        let adContainer1 = new OwAd(document.querySelector(".adRectangle"),
-        {size: {width: 728, height: 90}}
-        );
         let adContainer2 = new OwAd(document.querySelector(".adSpace"),
         {size: {width: 400, height: 300}}
         );
-        console.log(adContainer1)
     }
 
 </script>
@@ -48,7 +44,7 @@
             </ul>
         </nav>
         <main class="main">
-            <div class="agentsAndAds">
+        <div class="agentsAndAds">
            <div class="agent-side">
                 <div class="invCategoryName">Agents</div>
                 <div id="agentsGrid" class="row agent-grid">
@@ -61,7 +57,7 @@
                 </div> -->
             </div>     
             <div class="adSpace"></div>
-        </div>
+            </div>
                     <div class="inventory">
                         <div class="invCol" id="test">
                             <div class="invCategoryName">SIDEARMS</div>
