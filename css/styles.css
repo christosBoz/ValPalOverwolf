@@ -602,7 +602,7 @@ img {
   /* column-gap: 22%; */
   /* border: solid; */
   right: 1vw;
-  top: 92vh;
+  top: 91vh;
   width: 27%;
 }
 .loadoutbutton{
@@ -614,10 +614,10 @@ img {
 }
 
 #loadLoadoutButton {
-  width: 8%;
+  width: 16%;
   cursor: pointer;
   position: absolute;
-  left: 18.5vw;
+  left: 12.3vw;
 }
 /* #loadLoadoutButton:hover{
  content: url("https://imgur.com/tVP7NV4.png")
@@ -627,10 +627,10 @@ img {
 } */
 
 #saveLoadoutButton {
-  width: 8%;
+  width: 16%;
   cursor: pointer;
   position: absolute;
-  right: 3vw;
+  right: 5vw;
   top: 1vh;
 }
 
@@ -1001,7 +1001,7 @@ input{
 #refreshButton {
   /* margin-top: 70%; */
   cursor: pointer;
-  width: 8%;
+  width: 17%;
   /* background-color: white; */
   position: absolute;
   right: 0vw;
