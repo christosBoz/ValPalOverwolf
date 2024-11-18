@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(entitlementsData);
 
         // Send the lockfile content, session data, and entitlements token to the Python server
-        const response = await fetch('http://ec2-3-143-245-70.us-east-2.compute.amazonaws.com:5000/activate', {
+        const response = await fetch('http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/activate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const userInventory = localStorage.getItem(`${puuid}_inventory`);
         if (userInventory === null) {
             try {
-                const refreshResponse = await fetch(`http://ec2-3-143-245-70.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${puuid}`);
+                const refreshResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${puuid}`);
                 if (!refreshResponse.ok) {
                     throw new Error('Failed to refresh inventory');
                 }
