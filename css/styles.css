@@ -1570,7 +1570,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
 .sprayPickerSearch {
   text-align: start;
-  width: 54.4%;
+  width: 54.6%;
   height: fit-content;
   /* margin-top: 2%; */
   position: absolute;
@@ -1619,7 +1619,6 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   .sprayPickerSprays {
     width: 100%;
     overflow-y: scroll;
-    padding-right: 5px;
     flex-grow: 1;
   }
 
