@@ -1570,9 +1570,11 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
 .sprayPickerSearch {
   text-align: start;
-  width: 27.7%;
+  width: 54.4%;
   height: fit-content;
-  margin-top: 2%;
+  /* margin-top: 2%; */
+  position: absolute;
+  top: 25vh;
 }
 .sprayPickerSearch input {
   margin: 0;
@@ -1595,22 +1597,19 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 }
 
 .sprayGrid {
-  /* display: flex; */
   display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: auto auto;
-  padding: 0;
-  width: 50%;
-  height: fit-content;
-  max-height: 75%;
-  margin-top: 0%;
-  column-gap: 0.2vw;
-  row-gap: 1vw;
-  justify-content: center;
+  grid-template-columns: auto auto auto auto;
+  width: 56.2%;
+  /* height: fit-content; */
+  max-height: 56%;
+  column-gap: -5.8vw;
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  margin-left: -11%;
+  max-width: 100%;
+  position: absolute;
+  bottom: 6vh;
+  row-gap: 2%;
 }
 
   .sprayGrid::-webkit-scrollbar {
@@ -1628,9 +1627,11 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
     display: none;
   }
 
-  .spray-container img{
+  .spray-container img {
     width: 70%;
-  }
+    border: solid;
+    border-color: cadetblue;
+}
   .sprayWheelDisplay {
     position: absolute;
     /* left: 5vh; */
@@ -1657,13 +1658,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   cursor: pointer;
 }
 
-.sprayTitle {
-  margin-top: 2vw;
-  font-size: 2vw;
-  font-style: normal;
-  color: white;
-  font-weight: bold;
-}
+
 .sprayDirectionTopOverlay {
   position: absolute;
   left: 0vw;
@@ -1795,4 +1790,81 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 .adSpace{
   min-width: 400px;
   min-height: 300px;
+}
+
+.spraysBar{
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  width: 24%;
+  bottom: 2vh;
+  position: absolute;
+  height: 9%;
+}
+
+.spraysBar img {
+  width: 20%;
+}
+
+.sprayFullArt {
+  /* display: flex;
+  height: 40%;
+  position: absolute;
+  top: 33vh;
+  right: 2vw;
+  width: 40%;
+  margin-right: -4%; */
+  position: relative;
+  display: inline-block;
+  /* width: fit-content; */
+  top: 38vh;
+  width: 35%;
+  height: 35%;
+  right: -16vw;
+}
+.sprayTitle {
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  padding: 0.5vw 1vw;
+  font-size: 1.6vw;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  /* white-space: nowrap; */
+  width: 80%;
+}
+.spraysBarLine {
+  height: 15%;
+  display: flex;
+  gap: 20%;
+  width: 54%;
+  justify-content: center;
+  position: absolute;
+  right: 15vw;
+  bottom: 63vh;
+}
+
+.sprayContainer img {
+  width: 100%;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.sprayContainer img:hover {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5); /* Soft glow effect */
+  transform: scale(1.05); /* Slight zoom effect (optional) */
+}
+.fullartimage {
+  display: block;
+  width: 100%; /* Adjust based on your layout */
+  height: auto;
+}
+
+.sprayLocation{
+  font-size: 12px;
+  color: white;
 }

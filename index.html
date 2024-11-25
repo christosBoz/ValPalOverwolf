@@ -41,6 +41,8 @@
             <ul>
                 <li><a href="index.html">Inventory</a></li>
                 <li><a href="sound.html">Sounds</a></li>
+                <li><a href="sound.html">Profile</a></li>
+                <li><a href="index.html">Loadout</a></li>
             </ul>
         </nav>
         <main class="main">
@@ -188,6 +190,13 @@
                         
                 
                         <div class="bigBox">
+                            <div class="spraysBar">
+                                <img src="" class="leftSpray">
+                                <img src="" class="TopSpray">
+                                <img src="" class="BotSpray">
+                                <img src="" class="RightSpray">
+
+                            </div>
                             <div class = "loadoutbuttons">
                                 <img src="img\import_button.png" class="loadoutbutton" id="loadLoadoutButton">
                                 <img src="img\save_button.png" class="loadoutbutton" id="saveLoadoutButton">
@@ -281,39 +290,37 @@
                 <div class="sprayPickerBg"></div>
                 <div class="sprayPicker">
                     <div class="sprayPickerSprays">
-                        <div class="sprayTitle">
-                            Select A Spray Then Select Spot On The Wheel
+                        
+                        <div class="spraysBarLine">
+                            <div class="sprayContainer">
+                                <img src="https://media.valorant-api.com/sprays/0a6db78c-48b9-a32d-c47a-82be597584c1/displayicon.png" class="leftSpray">
+                                <p class="sprayLocation">Spray Left</p>
+                            </div>
+                            <div class="sprayContainer">
+                                <img src="https://media.valorant-api.com/sprays/0a6db78c-48b9-a32d-c47a-82be597584c1/displayicon.png" class="topSpray">
+                                <p class="sprayLocation">Spray Top</p>
+                            </div>
+                            <div class="sprayContainer">
+                                <img src="https://media.valorant-api.com/sprays/0a6db78c-48b9-a32d-c47a-82be597584c1/displayicon.png" class="botSpray">
+                                <p class="sprayLocation">Spray Bottom</p>
+                            </div>
+                            <div class="sprayContainer">
+                                <img src="https://media.valorant-api.com/sprays/0a6db78c-48b9-a32d-c47a-82be597584c1/displayicon.png" class="rightSpray">
+                                <p class="sprayLocation">Spray Right</p>
+                            </div>
                         </div>
+                        
                         <div class="sprayPickerSearch">
                             <input type="text" placeholder="Search" id="spraySearchInput">
                         </div>
                         <div class="sprayGrid">
         
                         </div>
-                        <div class="sprayWheelDisplay">
-                             <div class="sprayWheelCircle">
-                                <img class="sprayWheelCircleImg" src="\img\bigspraywheel.png" alt="Spray Wheel">
-                                <div class="centerDisplay">
-                                    <img src="http://vinfo-api.com/media/Sprays/0A6DB78C-48B9-A32D-C47A-82BE597584C1.png" class="previewImg">
-                                </div>
-                             </div>       
-                            
-                            
-                            <div weapon="Spray1" class="sprayTop" data-slotid="04af080a-4071-487b-61c0-5b9c0cfaac74">
-                                <img src="http://vinfo-api.com/media/Sprays/0A6DB78C-48B9-A32D-C47A-82BE597584C1.png" class="sprayImageWheel" loading="lazy">
+                        <div class="sprayFullArt">
+                            <div class="sprayTitle">
+                                Select A Spray Then Drag Full Spray To Location
                             </div>
-                            <!-- <img class="sprayDirectionTopOverlay" src="https://www.valorantbuilder.com/assets/spray_direction-8KYVO8TK.png"> -->
-                            <div weapon="Spray2" class="sprayRight" data-slotid="5863985e-43ac-b05d-cb2d-139e72970014">
-                                <img src="http://vinfo-api.com/media/Sprays/0A6DB78C-48B9-A32D-C47A-82BE597584C1.png" class="sprayImageWheel" loading="lazy">
-                            </div>
-                            <!-- <img class="sprayDirectionRightOverlay" src="https://www.valorantbuilder.com/assets/spray_direction-8KYVO8TK.png"> -->
-                            <div weapon="Spray3" class="sprayBottom" data-slotid="7cdc908e-4f69-9140-a604-899bd879eed1">
-                                <img src="http://vinfo-api.com/media/Sprays/0A6DB78C-48B9-A32D-C47A-82BE597584C1.png" class="sprayImageWheel" loading="lazy">
-                            </div>
-                            <!-- <img class="sprayDirectionBottomOverlay" src="https://www.valorantbuilder.com/assets/spray_direction-8KYVO8TK.png"> -->
-                            <div weapon="Spray4" class="sprayLeft" data-slotid="0814b2fe-4512-60a4-5288-1fbdcec6ca48">
-                                <img src="http://vinfo-api.com/media/Sprays/0A6DB78C-48B9-A32D-C47A-82BE597584C1.png" class="sprayImageWheel" loading="lazy">
-                            </div>
+                            <img src="" class="fullartimage">
                             
                         </div>
                     </div>

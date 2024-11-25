@@ -242,6 +242,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
+      
+
 
 
       document.querySelector('.chooseButton').addEventListener('click', function() {
@@ -434,15 +436,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     // player_title.textContent = activeTitle.Title
   
 
-    
+    //do sprays here
+    const sprayBar = document.querySelector('.spraysBar')
+    const defaultSprayURL = 'https://media.valorant-api.com/sprays/0a6db78c-48b9-a32d-c47a-82be597584c1/displayicon.png'
+    sprayBar.querySelector(".leftSpray").src = defaultSprayURL;
+    sprayBar.querySelector(".TopSpray").src = defaultSprayURL;
+    sprayBar.querySelector(".BotSpray").src = defaultSprayURL;
+    sprayBar.querySelector(".RightSpray").src = defaultSprayURL;
     const sprayContainer = document.querySelector('.sprayPickerContainer')
-    document.querySelectorAll('.sprayItem').forEach(spray => {
-        spray.addEventListener('click', function(event) {
-            console.log(spray)
-            activeItem = spray
+    document.querySelector('.spraysBar').addEventListener('click', function(){
             if (sprayContainer.style.display === 'none') {
                 document.getElementById('spraySearchInput').value = '';
                 sprayContainer.style.display = "unset";
+                const sprayBarLine = document.querySelector('.spraysBarLine')
+            
                 renderSprayData()
             } else {
                 sprayContainer.style.display = 'none';
@@ -450,44 +457,77 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
         })
-      });
-
+           
     document.querySelector('.sprayPickerBg').addEventListener('click', function() {
-        const sprayTop = document.querySelector('.sprayTop')
-        const sprayTopImg = document.querySelector('.sprayTop img')
+        const sprayPickerContainer = document.querySelector('.sprayPickerContainer');
+        const leftSprayBarImg = document.querySelector('.spraysBar img.leftSpray')
+        const rightSprayBarImg = document.querySelector('.spraysBar img.RightSpray')
+        const topSprayBarImg = document.querySelector('.spraysBar img.TopSpray')
+        const bottSprayBarImg = document.querySelector('.spraysBar img.BotSpray')
+        // Select the image inside .sprayContainer directly
+        const sprayTopImg = document.querySelector('.sprayContainer img.topSpray');
+        const sprayRightImg = document.querySelector('.sprayContainer img.rightSpray');
+        const sprayLeftImg = document.querySelector('.sprayContainer img.leftSpray');
+        const sprayBotImg = document.querySelector('.sprayContainer img.botSpray');
+        console.log("Logging Spray Top Image: ", sprayTopImg);
+        const imgSrc = sprayTopImg.src;
+        const imgId = sprayTopImg.getAttribute('img-id');
+        console.log("Image Src: ", imgSrc);
+        console.log("Image ID: ", imgId);
+        topSprayBarImg.src = sprayTopImg.src;
+        leftSprayBarImg.src = sprayLeftImg.src;
+        rightSprayBarImg.src = sprayRightImg.src;
+        bottSprayBarImg.src = sprayBotImg.src;
 
-        const sprayRight = document.querySelector('.sprayRight')
-        const sprayRightImg = document.querySelector('.sprayRight img')
 
-        const sprayBottom = document.querySelector('.sprayBottom')
-        const sprayBottomImg = document.querySelector('.sprayBottom img')
-
-        const sprayLeft = document.querySelector('.sprayLeft')
-        const sprayLeftImg = document.querySelector('.sprayLeft img')
-
-        const wheelTop = document.querySelector('.sprayDirectionTopButton img')
-        const wheelRight = document.querySelector('.sprayDirectionRightButton img')
-        const wheelBottom = document.querySelector('.sprayDirectionBottomButton img')
-        const wheelLeft = document.querySelector('.sprayDirectionLeftButton img')
-        console.log(sprayRight)
-        console.log(sprayRightImg)
-
-        wheelTop.src = sprayTopImg.src
-        wheelRight.src = sprayRightImg.src
-        wheelLeft.src = sprayLeftImg.src
-        wheelBottom.src = sprayBottomImg.src
-
-        dataBuffer.Sprays[0].SprayID = sprayTop.getAttribute('img-id');
-        dataBuffer.Sprays[1].SprayID = sprayRight.getAttribute('img-id');
-        dataBuffer.Sprays[2].SprayID = sprayBottom.getAttribute('img-id');
-        dataBuffer.Sprays[3].SprayID = sprayLeft.getAttribute('img-id');
+        dataBuffer.Sprays[0].SprayID = sprayTopImg.getAttribute('img-id');
+        dataBuffer.Sprays[1].SprayID = sprayRightImg.getAttribute('img-id');
+        dataBuffer.Sprays[2].SprayID = sprayBotImg.getAttribute('img-id');
+        dataBuffer.Sprays[3].SprayID = sprayLeftImg.getAttribute('img-id');
+        sprayPickerContainer.style.display = 'none';
+        
+        
+    
+        });
       
-        console.log(dataBuffer)
+
+    document.querySelector('.spraysBar').addEventListener('click', function() {
+        console.log("test")
+        // const sprayTop = document.querySelector('.sprayTop')
+        // const sprayTopImg = document.querySelector('.sprayTop img')
+
+        // const sprayRight = document.querySelector('.sprayRight')
+        // const sprayRightImg = document.querySelector('.sprayRight img')
+
+        // const sprayBottom = document.querySelector('.sprayBottom')
+        // const sprayBottomImg = document.querySelector('.sprayBottom img')
+
+        // const sprayLeft = document.querySelector('.sprayLeft')
+        // const sprayLeftImg = document.querySelector('.sprayLeft img')
+
+        // const wheelTop = document.querySelector('.sprayDirectionTopButton img')
+        // const wheelRight = document.querySelector('.sprayDirectionRightButton img')
+        // const wheelBottom = document.querySelector('.sprayDirectionBottomButton img')
+        // const wheelLeft = document.querySelector('.sprayDirectionLeftButton img')
+        // console.log(sprayRight)
+        // console.log(sprayRightImg)
+
+        // wheelTop.src = sprayTopImg.src
+        // wheelRight.src = sprayRightImg.src
+        // wheelLeft.src = sprayLeftImg.src
+        // wheelBottom.src = sprayBottomImg.src
+
+        // dataBuffer.Sprays[0].SprayID = sprayTop.getAttribute('img-id');
+        // dataBuffer.Sprays[1].SprayID = sprayRight.getAttribute('img-id');
+        // dataBuffer.Sprays[2].SprayID = sprayBottom.getAttribute('img-id');
+        // dataBuffer.Sprays[3].SprayID = sprayLeft.getAttribute('img-id');
+      
+        // console.log(dataBuffer)
 
 
 
 
-        sprayContainer.style.display = 'none';
+        // sprayContainer.style.display = 'none';
 
 
 
@@ -533,6 +573,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 });
+
+
+
+
+
 
 
 function renderWeaponsData(data) {
@@ -815,7 +860,7 @@ function renderTopWeapon(data){
 function renderSprayData(){
     const sprayDisplay = document.querySelector('.topSpray');
     const grid = document.querySelector('.sprayGrid');
-    const sprayPreview = document.querySelector('.previewImg');
+    const sprayPreview = document.querySelector('.fullartimage');
     grid.innerHTML = '';
     grid.style.visibility = 'hidden';
     console.log(spraysOnly);
@@ -827,15 +872,20 @@ function renderSprayData(){
         const sprayImage = document.createElement('img');
         sprayImage.src = s.displayIcon;
         sprayImage.alt = s.Name;
+        sprayImage.setAttribute('full-display-img',  s.fullDisplayImg);
         const sprayTitle = document.querySelector('.sprayTitle');
         // Handle click event to display the spray
         sprayDiv.addEventListener('click', () => {
             activeSpray = s;
             console.log(activeSpray);
+            console.log(activeSpray.fullDisplayImg)
             if (activeSpray.fullDisplayGif != null) {
                 sprayPreview.src = activeSpray.fullDisplayGif;
-            } else {
+            } else if (activeSpray.fullDisplayImg != null) {
                 sprayPreview.src = activeSpray.fullDisplayImg;
+            }
+            else {
+                sprayPreview.src = activeSpray.displayIcon
             }
             sprayTitle.textContent = activeSpray.Name;
         });
@@ -847,16 +897,16 @@ function renderSprayData(){
     grid.style.visibility = 'visible';
 
     // Add event listeners to dropzones to update their images based on activeSpray
-    const dropzones = document.querySelectorAll('.sprayTop, .sprayRight, .sprayBottom, .sprayLeft');
+    const dropzones = document.querySelectorAll('.topSpray, .botSpray, .rightSpray, .leftSpray');
 
     dropzones.forEach(dropzone => {
         dropzone.addEventListener('click', () => {
+            console.log("clciked")
             if (activeSpray) {
-                const dropzoneImage = dropzone.querySelector('img');
-                if (dropzoneImage) {
-                    dropzoneImage.src = activeSpray.displayIcon;
-                    dropzone.setAttribute('img-id', activeSpray.ItemID)
-                }
+                console.log(activeSpray)
+                console.log(dropzone.src)
+                dropzone.src = activeSpray.displayIcon; 
+                dropzone.setAttribute('img-id', activeSpray.ItemID);
             }
         });
     });
