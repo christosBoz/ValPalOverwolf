@@ -1816,7 +1816,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   position: relative;
   display: inline-block;
   /* width: fit-content; */
-  top: 38vh;
+  top: 15vh;
   width: 35%;
   height: 35%;
   right: -16vw;
@@ -1866,4 +1866,10 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 .sprayLocation{
   font-size: 12px;
   color: white;
+}
+
+.sprayDisplay {
+  background-color: #262424;
+  width: 100%;
+  height: 29.5%;
 }
