@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     console.log(weaponsOnly)
     renderWeaponGrid(weaponsOnly)
+    setupSearch(weaponsOnly)
 
 
 
@@ -167,4 +168,19 @@ function renderWeaponGrid(weaponsOnly) {
 
 
 
+}
+
+// Set up the search functionality
+function setupSearch(weaponsOnly) {
+    const searchBar = document.getElementById('SearchInput');
+    searchBar.addEventListener('input', (event) => {
+        const searchText = event.target.value.toLowerCase();
+        const filteredWeapons = weaponsOnly.filter(w => 
+            !w.Name.toLowerCase().includes('standard') &&
+            !w.Name.toLowerCase().includes('random') &&
+            w.Name.toLowerCase() !== 'melee' &&
+            w.Name.toLowerCase().includes(searchText)
+        );
+        renderWeaponGrid(filteredWeapons);
+    });
 }
