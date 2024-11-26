@@ -370,6 +370,7 @@ def get_weapons(client):
             weapon_skin_data = weapon_skins_by_level_uuid[item_id]
             weapon_skin = weapon_skin_data["skin"]
             weapon_uuid = weapon_skin_data["weapon_uuid"]
+            content_tier_uuid = weapon_skin.get("contentTierUuid")  # Get contentTierUuid
             
             owned_chromas = [weapon_skin["chromas"][0]]
             for chroma in weapon_skin.get("chromas", []):
@@ -388,7 +389,8 @@ def get_weapons(client):
                 "Weaponid": weapon_uuid,
                 "Name": weapon_skin["displayName"],
                 "Chromas": owned_chromas,
-                "Levels": owned_levels
+                "Levels": owned_levels,
+                "ContentTierUuid": content_tier_uuid
             }
             
             updated_weapons.append(updated_item)

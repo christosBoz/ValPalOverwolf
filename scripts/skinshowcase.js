@@ -102,8 +102,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     console.log(weaponsOnly)
-    renderWeaponGrid(weaponsOnly)
-    setupSearch(weaponsOnly)
+    renderWeaponGrid(weaponsOnly);
+    setupSearch(weaponsOnly);
+    setupFilter(weaponsOnly);
 
 
 
@@ -118,7 +119,7 @@ function renderWeaponGrid(weaponsOnly) {
     // document.getElementById('skinSearchInput').value=''
     // Create a promise to handle rendering of weapons
     const renderWeaponsPromise = new Promise((resolve, reject) => {
-        weaponsOnly.forEach(w => {
+        weaponsOnly.forEach(async w => {
             //filter out standard and random skin img
 
             if (w.Name.toLowerCase().includes('standard') || w.Name.toLowerCase().includes('random') || w.Name.toLowerCase() === 'melee') {
@@ -131,7 +132,21 @@ function renderWeaponGrid(weaponsOnly) {
                 // Create a div for the weapon skin
                 const weaponDiv = document.createElement('div');
                 weaponDiv.classList.add('weapon-skin'); // Add a class for styling if needed
+                weaponDiv.setAttribute('data-contenttier', w.ContentTierUuid); // Add the content tier UUID as an attribute
 
+
+                // Fetch the display icon for the content tier
+                const contentTierDisplayIcon = await fetchContentTierIcon(w.ContentTierUuid);
+
+                // Create an img element for the content tier icon
+                // if (contentTierDisplayIcon) {
+                //     const tierIcon = document.createElement('img');
+                //     tierIcon.className = "content-tier-icon";
+                //     tierIcon.src = contentTierDisplayIcon;
+                //     tierIcon.alt = `Content Tier Icon - ${w.ContentTierUuid}`; // Optional alt text
+                //     weaponDiv.appendChild(tierIcon);
+                // }
+                
                 // Create an img element for the skin
                 const skinImage = document.createElement('img');
                 skinImage.className = "Weapon_"+ w.Weaponid
@@ -183,4 +198,46 @@ function setupSearch(weaponsOnly) {
         );
         renderWeaponGrid(filteredWeapons);
     });
+}
+
+
+function setupFilter(weaponsOnly) {
+    const filterDrop = document.querySelector('.filterDrop #skinFilter');
+    filterDrop.addEventListener('change', (event) => {
+        const selected = event.target.value;
+
+        // Map dropdown values to content tier UUIDs
+        const contentTierMapping = {
+            deluxe: '0cebb8be-46d7-c12a-d306-e9907bfc5a25',
+            exclusive: 'e046854e-406c-37f4-6607-19a9ba8426fc',
+            premium: '60bca009-4182-7998-dee7-b8a2558dc369',
+            select: '12683d76-48d7-84a3-4e09-6985794f0445',
+            ultra: '411e4a55-4e59-7757-41f0-86a53f101bb5',
+        };
+
+        const filteredWeapons = weaponsOnly.filter(w => {
+            const contentTier = w.ContentTierUuid; // Ensure `ContentTierID` is part of the data
+            console.log(contentTier)
+            if (selected === 'all') return true; // Show all items if "All Items" is selected
+            return contentTier === contentTierMapping[selected];
+        });
+        renderWeaponGrid(filteredWeapons)
+    });
+}
+
+// Function to fetch content tier display icon
+async function fetchContentTierIcon(contentTierUuid) {
+    try {
+        const response = await fetch(`https://valorant-api.com/v1/contenttiers/${contentTierUuid}`);
+        const data = await response.json();
+        if (data.status === 200) {
+            return data.data.displayIcon; // Return the display icon URL
+        } else {
+            console.error("Content tier fetch failed", data);
+            return null; // If the fetch failed, return null
+        }
+    } catch (error) {
+        console.error("Error fetching content tier icon:", error);
+        return null; // Return null in case of an error
+    }
 }
