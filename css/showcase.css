@@ -52,6 +52,7 @@ html, body {
 .searchBar {
     width: 24%;
     padding: 1rem;
+    height: 10%;
 }
 
 .searchBar input {
@@ -117,7 +118,7 @@ img.Weapon_44d4e95c-4157-0037-81b2-17841bf2e8e3 {
 .filterDrop {
     width: 15%;
     position: relative;
-    top: -10vh;
+    top: -2vh;
     left: 85vw;
 }
 
@@ -129,6 +130,7 @@ img.Weapon_44d4e95c-4157-0037-81b2-17841bf2e8e3 {
     position: relative;
     right: -34vw;
     top: 7vh;
+    width: 32%;
 }
 
 .totalCounter p {
@@ -137,4 +139,14 @@ img.Weapon_44d4e95c-4157-0037-81b2-17841bf2e8e3 {
     margin-block-end: 0em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    font-family: sans-serif;
+}
+
+.skinPrice {
+
+}
+
+.topBar {
+    width: 100%;
+    height: 10%;
 }

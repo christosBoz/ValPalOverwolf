@@ -153,7 +153,7 @@ async function renderWeaponGrid(weaponsOnly) {
             // Create skin price div
             const skinPrice = document.createElement('div');
             skinPrice.className = "skinPrice";
-            skinPrice.innerHTML = priceData === null ? 'Price: Not Available' : `Price: ${priceData}`;
+            skinPrice.innerHTML = priceData === null ? 'Battle Pass Skin' : `VP: ${priceData}`;
 
             // Append elements
             weaponDiv.appendChild(skinName);
@@ -179,7 +179,7 @@ async function renderWeaponGrid(weaponsOnly) {
     // Make the skinGrid visible after rendering
     skinGrid.style.visibility = 'visible';
     const costUSD = (totalCounter * 0.010505).toFixed(2);
-    totalCounterDiv.textContent = `Skin Total is ${totalCounter}VP Approx: ${costUSD}`;
+    totalCounterDiv.textContent = `Inventory Total: ${totalCounter}VP   Approx: $${costUSD}`;
     console.log('Total Counter:', totalCounter);
     
 
