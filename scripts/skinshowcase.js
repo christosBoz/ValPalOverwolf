@@ -178,8 +178,10 @@ async function renderWeaponGrid(weaponsOnly) {
 
     // Make the skinGrid visible after rendering
     skinGrid.style.visibility = 'visible';
-    totalCounterDiv.textContent = `Your Skin Total is ${totalCounter}`;
+    const costUSD = (totalCounter * 0.010505).toFixed(2);
+    totalCounterDiv.textContent = `Skin Total is ${totalCounter}VP Approx: ${costUSD}`;
     console.log('Total Counter:', totalCounter);
+    
 
  
 
