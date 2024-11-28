@@ -111,79 +111,81 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-function renderWeaponGrid(weaponsOnly) {
+async function renderWeaponGrid(weaponsOnly) {
     const skinGrid = document.querySelector('.skinGrid');
     skinGrid.innerHTML = '';
     skinGrid.style.visibility = 'hidden';
+    const totalCounterDiv = document.querySelector('.totalCounter p');
 
-    // document.getElementById('skinSearchInput').value=''
-    // Create a promise to handle rendering of weapons
-    const renderWeaponsPromise = new Promise((resolve, reject) => {
-        weaponsOnly.forEach(async w => {
-            //filter out standard and random skin img
+    let totalCounter = 0;
 
-            if (w.Name.toLowerCase().includes('standard') || w.Name.toLowerCase().includes('random') || w.Name.toLowerCase() === 'melee') {
-                return; // Skip this iteration
+    // Use a for...of loop to work with async/await
+    for (const w of weaponsOnly) {
+        if (
+            w.Name.toLowerCase().includes('standard') ||
+            w.Name.toLowerCase().includes('random') ||
+            w.Name.toLowerCase() === 'melee'
+        ) {
+            continue; // Skip unwanted skins
+        }
+
+        if (w.Chromas && w.Chromas.length > 0) {
+            // Fetch necessary data
+            const contentTierDisplayIcon = await fetchContentTierIcon(w.ContentTierUuid);
+            const priceData = await fetchWeaponSkinByOfferID(w.OfferID);
+
+            // Create a div for the weapon skin
+            const weaponDiv = document.createElement('div');
+            weaponDiv.classList.add('weapon-skin');
+            weaponDiv.setAttribute('data-contenttier', w.ContentTierUuid);
+
+            // Create skin image
+            const skinImage = document.createElement('img');
+            skinImage.className = "Weapon_" + w.Weaponid;
+            skinImage.src = w.Chromas[0].fullRender;
+            skinImage.alt = w.Name;
+
+            // Create skin name div
+            const skinName = document.createElement('div');
+            skinName.className = "skinName";
+            skinName.innerHTML = w.Name;
+
+            // Create skin price div
+            const skinPrice = document.createElement('div');
+            skinPrice.className = "skinPrice";
+            skinPrice.innerHTML = priceData === null ? 'Price: Not Available' : `Price: ${priceData}`;
+
+            // Append elements
+            weaponDiv.appendChild(skinName);
+            weaponDiv.appendChild(skinImage);
+            weaponDiv.appendChild(skinPrice);
+
+            // Update totalCounter if priceData is available
+            if (priceData !== null) {
+                totalCounter += priceData;
             }
 
+            // Add click event listener
+            weaponDiv.addEventListener('click', () => {
+                activeSkin = w;
+                activeChroma = w.Chromas[0].uuid;
+            });
 
-            // Check if Chromas array exists and has at least one element
-            if (w.Chromas && w.Chromas.length > 0) {
-                // Create a div for the weapon skin
-                const weaponDiv = document.createElement('div');
-                weaponDiv.classList.add('weapon-skin'); // Add a class for styling if needed
-                weaponDiv.setAttribute('data-contenttier', w.ContentTierUuid); // Add the content tier UUID as an attribute
+            // Append weaponDiv to the grid
+            skinGrid.appendChild(weaponDiv);
+        }
+    }
 
+    // Make the skinGrid visible after rendering
+    skinGrid.style.visibility = 'visible';
+    totalCounterDiv.textContent = `Your Skin Total is ${totalCounter}`;
+    console.log('Total Counter:', totalCounter);
 
-                // Fetch the display icon for the content tier
-                const contentTierDisplayIcon = await fetchContentTierIcon(w.ContentTierUuid);
-
-                // Create an img element for the content tier icon
-                // if (contentTierDisplayIcon) {
-                //     const tierIcon = document.createElement('img');
-                //     tierIcon.className = "content-tier-icon";
-                //     tierIcon.src = contentTierDisplayIcon;
-                //     tierIcon.alt = `Content Tier Icon - ${w.ContentTierUuid}`; // Optional alt text
-                //     weaponDiv.appendChild(tierIcon);
-                // }
-                
-                // Create an img element for the skin
-                const skinImage = document.createElement('img');
-                skinImage.className = "Weapon_"+ w.Weaponid
-                skinImage.src = w.Chromas[0].fullRender; // Set the src to the first chroma displayIcon
-                skinImage.alt = w.Name; // Optionally set alt text
-                const skinName = document.createElement('div');
-                skinName.className = "skinName"
-                skinName.innerHTML = w.Name
-
-                weaponDiv.appendChild(skinName)
-
-                weaponDiv.appendChild(skinImage);
-
-                // Add event listener to update topWeapon image on click
-                weaponDiv.addEventListener('click', () => {
-                    activeSkin = w
-                    activeChroma = w.Chromas[0].uuid;
-                });
-
-                // Append the weapon div to the skinGrid
-                skinGrid.appendChild(weaponDiv);
-                weaponChoicesHTML = skinGrid.innerHTML
-            }
-        });
-
-        // Resolve the promise after rendering is complete
-        resolve();
-    });
-
-    // Once rendering is complete, make the skinGrid visible
-    renderWeaponsPromise.then(() => {
-        skinGrid.style.visibility = 'visible';
-    });
-
-
+ 
 
 }
+
+
 
 // Set up the search functionality
 function setupSearch(weaponsOnly) {
@@ -217,7 +219,7 @@ function setupFilter(weaponsOnly) {
 
         const filteredWeapons = weaponsOnly.filter(w => {
             const contentTier = w.ContentTierUuid; // Ensure `ContentTierID` is part of the data
-            console.log(contentTier)
+            // console.log(contentTier)
             if (selected === 'all') return true; // Show all items if "All Items" is selected
             return contentTier === contentTierMapping[selected];
         });
@@ -241,3 +243,30 @@ async function fetchContentTierIcon(contentTierUuid) {
         return null; // Return null in case of an error
     }
 }
+
+let weaponDataCache = null;
+
+async function fetchWeaponSkinByOfferID(offerID) {
+    try {
+        if (!weaponDataCache) {
+            const response = await fetch('./weaponskin.json');
+            if (!response.ok) {
+                console.error(`Failed to load local JSON: ${response.status} ${response.statusText}`);
+                return null;
+            }
+            weaponDataCache = await response.json();
+        }
+
+        // Search for the skin with the matching offerID
+        const skin = weaponDataCache.find((item) => item.offerId === offerID);
+
+        return skin ? Object.values(skin.price)[0] : null;
+    } catch (error) {
+        console.error("Error loading weapon skins locally:", error);
+        return null;
+    }
+}
+
+
+
+
