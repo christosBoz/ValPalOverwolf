@@ -98,8 +98,7 @@ html, body {
     /* text-align: center; */
     font-size: 1vw;
     color: #fff;
-    position: absolute;
-    top: 15vh;
+    position: relative;
     left: .5vw;
     width: 100%;
     z-index: 2;
