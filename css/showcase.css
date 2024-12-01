@@ -87,7 +87,11 @@ html, body {
     border-radius: 5px; /* Optional: Add rounded corners */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for a polished look */
     position: relative;
+    transition: box-shadow 0.3s ease; /* Smooth transition for the box-shadow on hover */
 }
+
+
+
 .skinName {
     /* text-align: center; */
     font-size: 1vw;
@@ -172,6 +176,7 @@ html, body {
     top: 2vh;
     /* display: flex; */
     right: 1vw;
+    font-size: 14px;
 }
 
 .topBar {
@@ -182,22 +187,37 @@ html, body {
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
     background: linear-gradient(to top, #4382AA, transparent);
 }
+.weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"]:hover {
+    box-shadow: 0 0 15px 5px rgba(67, 130, 170, 0.7); 
+}
 /* Premium  */
 .weapon-skin[data-contenttier="60bca009-4182-7998-dee7-b8a2558dc369"] {
     background: linear-gradient(to top, #864763, transparent);
+}
+.weapon-skin[data-contenttier="60bca009-4182-7998-dee7-b8a2558dc369"]:hover {
+    box-shadow: 0 0 15px 5px rgba(134, 71, 99, 0.7); 
 }
 /* exlusive */
 .weapon-skin[data-contenttier="e046854e-406c-37f4-6607-19a9ba8426fc"] { 
     background: linear-gradient(to top, #B26947, transparent);
 }
+.weapon-skin[data-contenttier="e046854e-406c-37f4-6607-19a9ba8426fc"]:hover { 
+    box-shadow: 0 0 15px 5px rgba(178, 105, 71, 0.7); 
+}
 /* deluxe */
 .weapon-skin[data-contenttier="0cebb8be-46d7-c12a-d306-e9907bfc5a25"] { 
     background: linear-gradient(to top, #179682, transparent);
+}
+.weapon-skin[data-contenttier="0cebb8be-46d7-c12a-d306-e9907bfc5a25"]:hover { 
+    box-shadow: 0 0 15px 5px rgba(23, 150, 130, 0.7); 
 }
 
 /* ultra */
 .weapon-skin[data-contenttier="411e4a55-4e59-7757-41f0-86a53f101bb5"] { 
     background: linear-gradient(to top, #DABE59, transparent);
+}
+.weapon-skin[data-contenttier="411e4a55-4e59-7757-41f0-86a53f101bb5"]:hover { 
+    box-shadow: 0 0 15px 5px rgba(218 , 190 , 89, 0.7); 
 }
 
 .skinPrice img {

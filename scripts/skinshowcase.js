@@ -103,11 +103,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     console.log(weaponsOnly)
     renderWeaponGrid(weaponsOnly);
+    // setGradients()
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
 
-
-
+    
 });
 
 
@@ -154,7 +154,7 @@ async function renderWeaponGrid(weaponsOnly) {
             // Create skin price div
             const skinPrice = document.createElement('div');
             skinPrice.className = "skinPrice";
-            skinPrice.innerHTML = priceData === null ? 'Battle Pass / Agent Skin' : `${priceData}`;
+            skinPrice.innerHTML = priceData === null ? '' : `${priceData}`;
 
             // Conditionally append tier image if priceData is not null
             if (priceData !== null) {
@@ -191,6 +191,44 @@ async function renderWeaponGrid(weaponsOnly) {
     const costUSD = (totalCounter * 0.010505).toFixed(2);
     totalCounterDiv.textContent = `Inventory Total: ${totalCounter}VP   Approx: $${costUSD}`;
     console.log('Total Counter:', totalCounter);
+
+
+
+
+}
+
+function setGradients(){
+    
+    const skinGrid = document.querySelector('.skinGrid');
+    const allSkins = skinGrid.querySelectorAll(".weapon-skin");
+    console.log(allSkins);
+    // console.log(skinGrid.getElementsByClassName("weapon-skin"))
+    
+    // weaponDivs.forEach(weaponDiv => {
+    //     const contentTier = weaponDiv.getAttribute('data-contenttier'); // Get the content tier ID
+
+    //     // Use a switch statement to apply the corresponding gradient
+    //     switch (contentTier) {
+    //         case '12683d76-48d7-84a3-4e09-6985794f0445': // Select
+    //             weaponDiv.style.background = 'linear-gradient(to top, #4382AA, transparent)';
+    //             break;
+    //         case '60bca009-4182-7998-dee7-b8a2558dc369': // Premium
+    //             weaponDiv.style.background = 'linear-gradient(to top, #864763, transparent)';
+    //             break;
+    //         case 'e046854e-406c-37f4-6607-19a9ba8426fc': // Exclusive
+    //             weaponDiv.style.background = 'linear-gradient(to top, #B26947, transparent)';
+    //             break;
+    //         case '0cebb8be-46d7-c12a-d306-e9907bfc5a25': // Deluxe
+    //             weaponDiv.style.background = 'linear-gradient(to top, #179682, transparent)';
+    //             break;
+    //         case '411e4a55-4e59-7757-41f0-86a53f101bb5': // Ultra
+    //             weaponDiv.style.background = 'linear-gradient(to top, #DABE59, transparent)';
+    //             break;
+    //         default:
+    //             console.log('Unknown tier:', contentTier); // Optional: for debugging if any tier doesn't match
+    //             break;
+    //     }
+    // });
 }
 
 
