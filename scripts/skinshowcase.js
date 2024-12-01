@@ -144,6 +144,7 @@ async function renderWeaponGrid(weaponsOnly) {
             skinImage.className = "Weapon_" + w.Weaponid;
             skinImage.src = w.Chromas[0].fullRender;
             skinImage.alt = w.Name;
+            skinImage.id = "skin_" + w.Weaponid; 
 
             // Create skin name div
             const skinName = document.createElement('div');
@@ -153,7 +154,16 @@ async function renderWeaponGrid(weaponsOnly) {
             // Create skin price div
             const skinPrice = document.createElement('div');
             skinPrice.className = "skinPrice";
-            skinPrice.innerHTML = priceData === null ? 'Battle Pass Skin' : `VP: ${priceData}`;
+            skinPrice.innerHTML = priceData === null ? 'Battle Pass / Agent Skin' : `${priceData}`;
+
+            // Conditionally append tier image if priceData is not null
+            if (priceData !== null) {
+                const tierImg = document.createElement('img');
+                tierImg.src = "img/vpimg.png";
+                tierImg.alt = "tier img";
+                skinPrice.appendChild(tierImg);
+                // You can also adjust the image size or any other styles for the tier image here if needed.
+            }
 
             // Append elements
             weaponDiv.appendChild(skinName);
@@ -181,11 +191,8 @@ async function renderWeaponGrid(weaponsOnly) {
     const costUSD = (totalCounter * 0.010505).toFixed(2);
     totalCounterDiv.textContent = `Inventory Total: ${totalCounter}VP   Approx: $${costUSD}`;
     console.log('Total Counter:', totalCounter);
-    
-
- 
-
 }
+
 
 
 
