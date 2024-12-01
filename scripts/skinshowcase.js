@@ -146,29 +146,29 @@ async function renderWeaponGrid(weaponsOnly) {
             skinImage.alt = w.Name;
             skinImage.id = "skin_" + w.Weaponid; 
 
-            // Create skin name div
-            //const skinName = document.createElement('div');
-            //skinName.className = "skinName";
-            //skinName.innerHTML = w.Name;
+            //Create skin name div
+            const skinName = document.createElement('div');
+            skinName.className = "skinName";
+            skinName.innerHTML = w.Name;
 
-            // Create skin price div
-           // const skinPrice = document.createElement('div');
-            //skinPrice.className = "skinPrice";
-            //skinPrice.innerHTML = priceData === null ? '' : `${priceData}`;
+            //Create skin price div
+           const skinPrice = document.createElement('div');
+            skinPrice.className = "skinPrice";
+            skinPrice.innerHTML = priceData === null ? '' : `${priceData}`;
 
             // Conditionally append tier image if priceData is not null
             if (priceData !== null) {
                 const tierImg = document.createElement('img');
                 tierImg.src = "img/vpimg.png";
                 tierImg.alt = "tier img";
-                //skinPrice.appendChild(tierImg);
+                skinPrice.appendChild(tierImg);
                 // You can also adjust the image size or any other styles for the tier image here if needed.
             }
 
             // Append elements
-            //weaponDiv.appendChild(skinName);
+            weaponDiv.appendChild(skinName);
             weaponDiv.appendChild(skinImage);
-            //weaponDiv.appendChild(skinPrice);
+            weaponDiv.appendChild(skinPrice);
 
             // Update totalCounter if priceData is available
             if (priceData !== null) {
