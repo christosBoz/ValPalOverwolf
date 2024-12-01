@@ -7,7 +7,6 @@
 } */
 
 
-
 /* Style for each agent image */
 .agent-image {
   background: transparent; /* Grey background behind each image */
@@ -95,6 +94,7 @@
   overflow: hidden;
 }
 
+
 .navbar a{
   color: white;
   text-decoration: none;
@@ -102,6 +102,7 @@
   display: block;
   text-align: center;
 }
+
 .navbar a:hover{
   background-color: rgb(99, 98, 98);
 }
