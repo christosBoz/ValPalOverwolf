@@ -69,7 +69,7 @@ html, body {
 
 .skinGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(16%, 1fr));
     gap: 1vw;
     width: 99%;
     height: 100%;
@@ -80,7 +80,7 @@ html, body {
 }
 .weapon-skin {
     width: 100%; /* Ensure it takes the full width of the grid cell */
-    aspect-ratio: 1; /* Ensures the div remains square */
+    aspect-ratio: 1.96; /* Ensures the div remains square */
     display: flex; /* Center the content */
     flex-direction: column; /* Arrange content vertically */
     justify-content: center;
