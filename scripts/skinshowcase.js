@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // setGradients()
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
+    sortByPrice();
 
     
 });
@@ -166,9 +167,9 @@ async function renderWeaponGrid(weaponsOnly) {
             }
 
             // Append elements
-            weaponDiv.appendChild(skinName);
-            weaponDiv.appendChild(skinImage);
             weaponDiv.appendChild(skinPrice);
+            weaponDiv.appendChild(skinImage);
+            weaponDiv.appendChild(skinName);
 
             // Update totalCounter if priceData is available
             if (priceData !== null) {
@@ -199,41 +200,6 @@ async function renderWeaponGrid(weaponsOnly) {
 
 
 }
-
-function setGradients(){
-    
-    const skinGrid = document.querySelector('.skinGrid');
-    const allSkins = skinGrid.querySelectorAll(".weapon-skin");
-    console.log(allSkins);
-    // console.log(skinGrid.getElementsByClassName("weapon-skin"))
-    
-    // weaponDivs.forEach(weaponDiv => {
-    //     const contentTier = weaponDiv.getAttribute('data-contenttier'); // Get the content tier ID
-
-    //     // Use a switch statement to apply the corresponding gradient
-    //     switch (contentTier) {
-    //         case '12683d76-48d7-84a3-4e09-6985794f0445': // Select
-    //             weaponDiv.style.background = 'linear-gradient(to top, #4382AA, transparent)';
-    //             break;
-    //         case '60bca009-4182-7998-dee7-b8a2558dc369': // Premium
-    //             weaponDiv.style.background = 'linear-gradient(to top, #864763, transparent)';
-    //             break;
-    //         case 'e046854e-406c-37f4-6607-19a9ba8426fc': // Exclusive
-    //             weaponDiv.style.background = 'linear-gradient(to top, #B26947, transparent)';
-    //             break;
-    //         case '0cebb8be-46d7-c12a-d306-e9907bfc5a25': // Deluxe
-    //             weaponDiv.style.background = 'linear-gradient(to top, #179682, transparent)';
-    //             break;
-    //         case '411e4a55-4e59-7757-41f0-86a53f101bb5': // Ultra
-    //             weaponDiv.style.background = 'linear-gradient(to top, #DABE59, transparent)';
-    //             break;
-    //         default:
-    //             console.log('Unknown tier:', contentTier); // Optional: for debugging if any tier doesn't match
-    //             break;
-    //     }
-    // });
-}
-
 
 
 
@@ -273,9 +239,43 @@ function setupFilter(weaponsOnly) {
             if (selected === 'all') return true; // Show all items if "All Items" is selected
             return contentTier === contentTierMapping[selected];
         });
+
+        
         renderWeaponGrid(filteredWeapons)
     });
 }
+function sortByPrice(defaultValue = 'desc') {
+    const sortDrop = document.querySelector('.sortDrop #priceSort');
+    const weaponGrid = document.querySelector('.skinGrid');
+    // Set the default value for the dropdown
+    sortDrop.value = defaultValue;
+    // Function to sort and update the grid
+    const sortGrid = (order) => {
+        const weapons = Array.from(weaponGrid.querySelectorAll('.weapon-skin'));
+
+        const sortedWeapons = weapons.sort((a, b) => {
+            const priceA = parseInt(a.querySelector('.skinPrice').textContent.trim().replace(/\D/g, '')) || 0;
+            const priceB = parseInt(b.querySelector('.skinPrice').textContent.trim().replace(/\D/g, '')) || 0;
+
+            return order === 'asc' ? priceA - priceB : priceB - priceA; // Ascending or Descending
+        });
+
+        // Clear the grid and re-append sorted elements
+        weaponGrid.innerHTML = '';
+        sortedWeapons.forEach(skin => weaponGrid.appendChild(skin));
+    };
+
+    // Initial sorting based on defaultValue
+    sortGrid(defaultValue);
+
+    // Listen for dropdown changes
+    sortDrop.addEventListener('change', () => {
+        sortGrid(sortDrop.value);
+    });
+}
+
+
+
 
 // Function to fetch content tier display icon
 async function fetchContentTierIcon(contentTierUuid) {
