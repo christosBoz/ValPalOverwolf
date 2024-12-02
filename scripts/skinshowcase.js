@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching and processing data:', error);
     }
 
-
+    renderWeaponGrid(weaponsOnly);
     console.log(weaponsOnly)
     document.querySelector('.showBuddies').addEventListener('click', () => {
         console.log("working")
@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("clicked sprays")
         renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
     });
-    // renderWeaponGrid(weaponsOnly);
-    // setGradients()
+    
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
     sortByPrice('asc');
