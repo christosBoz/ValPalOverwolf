@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function renderWeaponGrid(weaponsOnly) {
     const skinGrid = document.querySelector('.skinGrid');
     skinGrid.innerHTML = '';
+    skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(16%, 1fr))";
     skinGrid.style.visibility = 'hidden';
     const totalCounterDiv = document.querySelector('.totalCounter p');
 
