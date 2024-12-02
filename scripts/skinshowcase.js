@@ -86,6 +86,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("working")
         renderWeaponGrid(weaponsOnly); // Assuming buddyData is the array of buddies
     });
+    document.querySelector('.showSprays').addEventListener('click', () => {
+        console.log("clicked sprays")
+        renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
+    });
     // renderWeaponGrid(weaponsOnly);
     // setGradients()
     setupSearch(weaponsOnly);
@@ -187,6 +191,8 @@ async function renderWeaponGrid(weaponsOnly) {
 
 async function renderBuddiesGrid(buddiesOnly) {
     const skinGrid = document.querySelector('.skinGrid');
+    // grid-template-columns: repeat(auto-fill, minmax(12%, 1fr));
+    skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(12%, 1fr))";
     skinGrid.innerHTML = '';
     skinGrid.style.visibility = 'hidden';
 
@@ -214,38 +220,27 @@ async function renderBuddiesGrid(buddiesOnly) {
 async function renderSprayGrid(spraysOnly) {
     const skinGrid = document.querySelector('.skinGrid');
     skinGrid.innerHTML = '';
+    skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(12%, 1fr))";
     skinGrid.style.visibility = 'hidden';
     
     spraysOnly.forEach(s => {
+        // console.log(s)
         const sprayDiv = document.createElement('div');
         sprayDiv.classList.add('spray-container');
 
         const sprayImage = document.createElement('img');
+        const sprayName = document.createElement('div');
+        sprayName.className = "sprayName";
+        sprayName.innerHTML = s.Name;
         sprayImage.src = s.displayIcon;
-        sprayImage.alt = s.Name;
         sprayImage.setAttribute('full-display-img',  s.fullDisplayImg);
-        const sprayTitle = document.querySelector('.sprayTitle');
-        // Handle click event to display the spray
-        // sprayDiv.addEventListener('click', () => {
-        //     activeSpray = s;
-        //     console.log(activeSpray);
-        //     console.log(activeSpray.fullDisplayImg)
-        //     if (activeSpray.fullDisplayGif != null) {
-        //         sprayPreview.src = activeSpray.fullDisplayGif;
-        //     } else if (activeSpray.fullDisplayImg != null) {
-        //         sprayPreview.src = activeSpray.fullDisplayImg;
-        //     }
-        //     else {
-        //         sprayPreview.src = activeSpray.displayIcon
-        //     }
-        //     sprayTitle.textContent = activeSpray.Name;
-        // });
 
         sprayDiv.appendChild(sprayImage);
-        grid.appendChild(sprayDiv);
+        sprayDiv.appendChild(sprayName);
+        skinGrid.appendChild(sprayDiv);
     });
 
-    grid.style.visibility = 'visible';
+    skinGrid.style.visibility = 'visible';
 }
 
 
