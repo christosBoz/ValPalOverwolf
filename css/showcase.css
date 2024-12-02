@@ -109,7 +109,11 @@ html, body {
     width: auto;
     height: auto;
 }
-
+.sortDrop {
+    position: absolute;
+    right: 16%;
+    bottom: 89.5%;
+}
 
 .skinGrid::-webkit-scrollbar {
     display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
@@ -191,6 +195,7 @@ html, body {
     height: 10%;
     display: flex;
     align-items: flex-start;
+    overflow: hidden;
 }
 /* Select */
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
@@ -234,4 +239,33 @@ html, body {
     width: 47%;
     left: -1.5vw;
     top: 0.14vh;
+}
+
+.buttonMenu {
+    display: flex;
+    position: absolute;
+    left: 34%;
+    top: 8%;
+    column-gap: 3%;
+}
+
+.buddy-container{
+    /* border: solid; */
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 2, 9, 0.5);
+}
+
+.buddy-container img {
+    width: 43%;
+}
+
+.buddyName {
+    position: absolute;
+    bottom: 0%;
+    left: 1%;
+    font-size: 100%;
 }

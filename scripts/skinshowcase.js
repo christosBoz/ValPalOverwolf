@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const inventoryData = JSON.parse(inventory);
         console.log(inventoryData)
         weaponsOnly = inventoryData.Weapons
-        // buddiesOnly = inventoryData.Buddies
-        // cardsOnly = inventoryData.Cards
+        buddiesOnly = inventoryData.Buddies
+        cardsOnly = inventoryData.Cards
         // titlesOnly = inventoryData.Titles
-        // spraysOnly = inventoryData.Sprays
+        spraysOnly = inventoryData.Sprays
 
 
         
@@ -70,30 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             return await response.json();
         }
 
-        
-        
-
-        // Event listener for refreshing the inventory data
-        // document.getElementById('refreshButton').addEventListener('click', async () => {
-        //     try {
-        //         const refreshResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/refresh-inventory?puuid=${userid}`);
-        //         const refreshData = await refreshResponse.text();
-    
-        //         localStorage.setItem(`${userid}_inventory`, refreshData)
-        //         const inventory = localStorage.getItem(`${userid}_inventory`);
-        //         const inventoryData = JSON.parse(inventory);
-        //         weaponsOnly = inventoryData.Weapons
-        //         buddiesOnly = inventoryData.Buddies
-        //         cardsOnly = inventoryData.Cards
-        //         titlesOnly = inventoryData.Titles
-        //         spraysOnly = inventoryData.Sprays
-        //         console.log("Refreshed Inv");
-        //     } catch (error) {
-        //         console.error('Error refreshing inventory:', error);
-        //     }
-        // });
-
-        // Function to render weapons data (assuming it's defined elsewhere)
 
 
     } catch (error) {
@@ -102,11 +78,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     console.log(weaponsOnly)
-    renderWeaponGrid(weaponsOnly);
+    document.querySelector('.showBuddies').addEventListener('click', () => {
+        console.log("working")
+        renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
+    });
+    document.querySelector('.showSkins').addEventListener('click', () => {
+        console.log("working")
+        renderWeaponGrid(weaponsOnly); // Assuming buddyData is the array of buddies
+    });
+    // renderWeaponGrid(weaponsOnly);
     // setGradients()
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
-    sortByPrice();
+    sortByPrice('asc');
 
     
 });
@@ -201,6 +185,68 @@ async function renderWeaponGrid(weaponsOnly) {
 
 }
 
+async function renderBuddiesGrid(buddiesOnly) {
+    const skinGrid = document.querySelector('.skinGrid');
+    skinGrid.innerHTML = '';
+    skinGrid.style.visibility = 'hidden';
+
+    buddiesOnly.forEach(b => {
+        console.log(b)
+        const buddyDiv = document.createElement('div');
+        buddyDiv.classList.add('buddy-container');
+
+        const buddyName = document.createElement('div');
+        buddyName.className = "buddyName";
+        buddyName.innerHTML = b.Name;
+        const buddyImage = document.createElement('img');
+        buddyImage.src = b.ImageURL;
+   
+        buddyDiv.appendChild(buddyImage);
+        buddyDiv.appendChild(buddyName);
+        skinGrid.appendChild(buddyDiv);
+
+    });
+
+    skinGrid.style.visibility = 'visible';
+    
+}
+
+async function renderSprayGrid(spraysOnly) {
+    const skinGrid = document.querySelector('.skinGrid');
+    skinGrid.innerHTML = '';
+    skinGrid.style.visibility = 'hidden';
+    
+    spraysOnly.forEach(s => {
+        const sprayDiv = document.createElement('div');
+        sprayDiv.classList.add('spray-container');
+
+        const sprayImage = document.createElement('img');
+        sprayImage.src = s.displayIcon;
+        sprayImage.alt = s.Name;
+        sprayImage.setAttribute('full-display-img',  s.fullDisplayImg);
+        const sprayTitle = document.querySelector('.sprayTitle');
+        // Handle click event to display the spray
+        // sprayDiv.addEventListener('click', () => {
+        //     activeSpray = s;
+        //     console.log(activeSpray);
+        //     console.log(activeSpray.fullDisplayImg)
+        //     if (activeSpray.fullDisplayGif != null) {
+        //         sprayPreview.src = activeSpray.fullDisplayGif;
+        //     } else if (activeSpray.fullDisplayImg != null) {
+        //         sprayPreview.src = activeSpray.fullDisplayImg;
+        //     }
+        //     else {
+        //         sprayPreview.src = activeSpray.displayIcon
+        //     }
+        //     sprayTitle.textContent = activeSpray.Name;
+        // });
+
+        sprayDiv.appendChild(sprayImage);
+        grid.appendChild(sprayDiv);
+    });
+
+    grid.style.visibility = 'visible';
+}
 
 
 // Set up the search functionality
@@ -244,6 +290,8 @@ function setupFilter(weaponsOnly) {
         renderWeaponGrid(filteredWeapons)
     });
 }
+
+
 function sortByPrice(defaultValue = 'desc') {
     const sortDrop = document.querySelector('.sortDrop #priceSort');
     const weaponGrid = document.querySelector('.skinGrid');
