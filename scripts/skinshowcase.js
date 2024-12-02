@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("clicked sprays")
         renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
     });
+    document.querySelector('.showPlayerCards').addEventListener('click', () => {
+        console.log("clicked cards")
+        renderCardGrid(cardsOnly); // Assuming buddyData is the array of buddies
+    });
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
@@ -177,6 +181,8 @@ async function renderWeaponGrid(weaponsOnly) {
 
     // Make the skinGrid visible after rendering
     skinGrid.style.visibility = 'visible';
+    const filterMenu = document.querySelector('.filterDrop');
+    filterMenu.style.visibility = 'visible';
     const costUSD = (totalCounter * 0.010505).toFixed(2);
     totalCounterDiv.textContent = `${totalCounter} \t ≈ $${costUSD}`;
     const vpLogo = document.createElement('img')
@@ -214,6 +220,8 @@ async function renderBuddiesGrid(buddiesOnly) {
     });
 
     skinGrid.style.visibility = 'visible';
+    const filterMenu = document.querySelector('.filterDrop');
+    filterMenu.style.visibility = 'hidden';
     
 }
 
@@ -241,8 +249,38 @@ async function renderSprayGrid(spraysOnly) {
     });
 
     skinGrid.style.visibility = 'visible';
+    const filterMenu = document.querySelector('.filterDrop');
+    filterMenu.style.visibility = 'hidden';
 }
 
+
+async function renderCardGrid(cardsOnly) {
+    const skinGrid = document.querySelector('.skinGrid');
+    skinGrid.innerHTML = '';
+    skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(15%, 1fr))";
+    skinGrid.style.visibility = 'hidden';
+
+    cardsOnly.forEach(c => {
+        console.log(c)
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card-container');
+
+        const cardSmallImg = document.createElement('img');
+        const cardName = document.createElement('div');
+        cardName.className = "cardName";
+        cardName.innerHTML = c.Name;
+        cardSmallImg.src = c.smallImageURL;
+        // sprayImage.setAttribute('full-display-img',  s.fullDisplayImg);
+
+        cardDiv.appendChild(cardSmallImg);
+        cardDiv.appendChild(cardName);
+        skinGrid.appendChild(cardDiv);
+    });
+    skinGrid.style.visibility = 'visible';
+    const filterMenu = document.querySelector('.filterDrop');
+    filterMenu.style.visibility = 'hidden';
+    
+}
 
 // Set up the search functionality
 function setupSearch(weaponsOnly) {
@@ -261,30 +299,65 @@ function setupSearch(weaponsOnly) {
 
 
 function setupFilter(weaponsOnly) {
-    const filterDrop = document.querySelector('.filterDrop #skinFilter');
-    filterDrop.addEventListener('change', (event) => {
-        const selected = event.target.value;
+    const filterItems = document.querySelectorAll('.filterDrop .filterItem'); // Select all text items
+    const line = document.createElement('div');
+    line.style.position = 'absolute';
+    line.style.bottom = '0';
+    line.style.left = '0';
+    line.style.height = '2px';
+    line.style.backgroundColor = '#bf3d3d';
+    line.style.transition = 'left 0.3s ease, width 0.3s ease';
+    document.querySelector('.filterDrop').appendChild(line);
 
-        // Map dropdown values to content tier UUIDs
-        const contentTierMapping = {
-            deluxe: '0cebb8be-46d7-c12a-d306-e9907bfc5a25',
-            exclusive: 'e046854e-406c-37f4-6607-19a9ba8426fc',
-            premium: '60bca009-4182-7998-dee7-b8a2558dc369',
-            select: '12683d76-48d7-84a3-4e09-6985794f0445',
-            ultra: '411e4a55-4e59-7757-41f0-86a53f101bb5',
-        };
+    filterItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            // Remove the 'selected' class from all items
+            filterItems.forEach(i => i.classList.remove('selected'));
 
-        const filteredWeapons = weaponsOnly.filter(w => {
-            const contentTier = w.ContentTierUuid; // Ensure `ContentTierID` is part of the data
-            // console.log(contentTier)
-            if (selected === 'all') return true; // Show all items if "All Items" is selected
-            return contentTier === contentTierMapping[selected];
+            // Add 'selected' class to the clicked item
+            event.target.classList.add('selected');
+
+            // Get the selected item
+            const selectedItem = event.target;
+
+            // Set the underline position and width dynamically based on the selected item
+            const { left, width } = selectedItem.getBoundingClientRect();
+            const parentLeft = document.querySelector('.filterDrop').getBoundingClientRect().left;
+
+            line.style.left = `${left - parentLeft}px`; // Align to the selected item
+            line.style.width = `${width}px`; // Match the width of the selected item
+
+            const selected = event.target.dataset.filter;
+
+            // Map filter item values to content tier UUIDs
+            const weaponType = {
+                Pistol: ['29a0cfab-485b-f5d5-779a-b59f85e204a8', '1baa85b4-4c70-1284-64bb-6481dfc3bb4e', '44d4e95c-4157-0037-81b2-17841bf2e8e3', '42da8ccc-40d5-affc-beec-15aa47b42eda', 'e336c6b8-418d-9340-d77f-7a9e4cfe0702'],
+                Rifle: ['ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a', '9c82e19d-4575-0200-1a81-3eacf00cf872'],
+                SMG: ['462080d1-4035-2937-7c09-27aa2a5c27a7', 'f7e1b454-4ad4-1063-ec0a-159e56b58941'],
+                Shotgun: ['910be174-449b-c412-ab22-d0873436b21b','ec845bf4-4f79-ddda-a3da-0db3774b2794'],
+                Sniper: ['c4883e50-4494-202c-3ec3-6b8a9284f00b', '5f0aaf7a-4289-3998-d5ff-eb9a5cf7ef5c', 'a03b24d3-4319-996d-0f8c-94bbfba1dfc7'],
+                MachineGun: ['55d8a0f4-4274-ca67-fe2c-06ab45efdf58', '63e6c2b6-4a8e-869c-3d4c-e38355226584'],
+                Melee: ['2f59173c-4bed-b6c3-2191-dea9b58be9c7'],
+            };
+
+            const filteredWeapons = weaponsOnly.filter(w => {
+                const typeWeapon = w.Weaponid; // Ensure `Weaponid` is part of the data
+                // Check if selected filter is "all" and return all weapons if true
+                if (selected === 'all') return true;
+                // If the selected category is "Pistol", check if the weapon ID is in the array of pistols
+                if (selected === 'Pistol') {
+                    return weaponType.Pistol.includes(typeWeapon);
+                }
+                // For other weapon types, compare the selected category with the weapon's type
+                return weaponType[selected] && weaponType[selected].includes(typeWeapon);
+            });
+
+            renderWeaponGrid(filteredWeapons);
         });
-
-        
-        renderWeaponGrid(filteredWeapons)
     });
 }
+
+
 
 
 function sortByPrice(defaultValue = 'desc') {
