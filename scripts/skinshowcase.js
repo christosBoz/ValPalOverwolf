@@ -309,6 +309,16 @@ function setupFilter(weaponsOnly) {
     line.style.transition = 'left 0.3s ease, width 0.3s ease';
     document.querySelector('.filterDrop').appendChild(line);
 
+
+    const defaultSelected = document.querySelector('.filterDrop .filterItem[data-filter="all"]');
+    if (defaultSelected) {
+        defaultSelected.classList.add('selected');
+        const { left, width } = defaultSelected.getBoundingClientRect();
+        const parentLeft = document.querySelector('.filterDrop').getBoundingClientRect().left;
+
+        line.style.left = `${left - parentLeft}px`;
+        line.style.width = `${width}px`;
+    }
     filterItems.forEach(item => {
         item.addEventListener('click', (event) => {
             // Remove the 'selected' class from all items
