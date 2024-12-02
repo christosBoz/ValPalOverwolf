@@ -34,22 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('String from backend:', username);
         console.log('String from backend:', userid);
 
-    
-        // // Initialize agent grid
-        // const agentsGrid = document.getElementById('agentsGrid');
-        // const fragment = document.createDocumentFragment();
-        // filteredAgents.forEach(agent => {
-        //     const agentDiv = document.createElement('div');
-        //     agentDiv.classList.add('make-button');
-        //     agentDiv.innerHTML = `
-        //         <div class="p-0">
-        //             <img src="${agent.displayIconSmall}" alt="${agent.displayName}" class="img-fluid agent-image">
-        //         </div>
-        //     `;
-        //     fragment.appendChild(agentDiv);
-        // });
-        // agentsGrid.appendChild(fragment);
-
         const inventory = localStorage.getItem(`${userid}_inventory`);
         const inventoryData = JSON.parse(inventory);
         console.log(inventoryData)
@@ -58,9 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         cardsOnly = inventoryData.Cards
         // titlesOnly = inventoryData.Titles
         spraysOnly = inventoryData.Sprays
-
-
-        
+    
 
         async function fetchLoadout(loadoutFileName) {
             const response = await fetch(loadoutFileName);
@@ -75,24 +57,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching and processing data:', error);
     }
+    updateSelectedFilter('Weapons');
 
     renderWeaponGrid(weaponsOnly);
     console.log(weaponsOnly)
-    document.querySelector('.showBuddies').addEventListener('click', () => {
+    document.querySelector('[data-filter="Buddies"]').addEventListener('click', () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
+        updateSelectedFilter('Buddies');
     });
-    document.querySelector('.showSkins').addEventListener('click', () => {
+    document.querySelector('[data-filter="Weapons"]').addEventListener('click', () => {
         console.log("working")
         renderWeaponGrid(weaponsOnly); // Assuming buddyData is the array of buddies
+        updateSelectedFilter('Weapons');
+        updateSelectedFilterWeapons('all')
+        
     });
-    document.querySelector('.showSprays').addEventListener('click', () => {
+    document.querySelector('[data-filter="Sprays"]').addEventListener('click', () => {
         console.log("clicked sprays")
         renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
+        updateSelectedFilter('Sprays');
     });
-    document.querySelector('.showPlayerCards').addEventListener('click', () => {
+    document.querySelector('[data-filter="Cards"]').addEventListener('click', () => {
         console.log("clicked cards")
         renderCardGrid(cardsOnly); // Assuming buddyData is the array of buddies
+        updateSelectedFilter('Cards');
     });
     
     setupSearch(weaponsOnly);
@@ -203,7 +192,7 @@ async function renderBuddiesGrid(buddiesOnly) {
     skinGrid.style.visibility = 'hidden';
 
     buddiesOnly.forEach(b => {
-        console.log(b)
+        // console.log(b)
         const buddyDiv = document.createElement('div');
         buddyDiv.classList.add('buddy-container');
 
@@ -261,7 +250,7 @@ async function renderCardGrid(cardsOnly) {
     skinGrid.style.visibility = 'hidden';
 
     cardsOnly.forEach(c => {
-        console.log(c)
+        // console.log(c)
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card-container');
 
@@ -284,23 +273,30 @@ async function renderCardGrid(cardsOnly) {
 
 // Set up the search functionality
 function setupSearch(weaponsOnly) {
+    const skinGrid = document.querySelector('.skinGrid');
     const searchBar = document.getElementById('SearchInput');
+    
     searchBar.addEventListener('input', (event) => {
-        const searchText = event.target.value.toLowerCase();
+        const searchText = event.target.value.toLowerCase();        // Filter weapons based on search criteria
         const filteredWeapons = weaponsOnly.filter(w => 
             !w.Name.toLowerCase().includes('standard') &&
             !w.Name.toLowerCase().includes('random') &&
             w.Name.toLowerCase() !== 'melee' &&
             w.Name.toLowerCase().includes(searchText)
         );
+
+        // Render filtered weapons
         renderWeaponGrid(filteredWeapons);
+
     });
 }
+
 
 
 function setupFilter(weaponsOnly) {
     const filterItems = document.querySelectorAll('.filterDrop .filterItem'); // Select all text items
     const line = document.createElement('div');
+    line.className = "line";
     line.style.position = 'absolute';
     line.style.bottom = '0';
     line.style.left = '0';
@@ -442,6 +438,42 @@ async function fetchWeaponSkinByOfferID(offerID) {
         return null;
     }
 }
+
+function updateSelectedFilter(selectedFilter) {
+    const line = document.querySelector('.line');
+    if (line) {
+        line.remove();
+    }
+    const menuItems = document.querySelectorAll('.menuItem'); // Ensure this matches your HTML
+
+    menuItems.forEach(item => {
+        if (item.getAttribute('data-filter') === selectedFilter) {
+            item.classList.add('selected'); // Add the 'selected' class to the clicked item
+        } else {
+            item.classList.remove('selected'); // Remove 'selected' class from others
+        }
+    });
+    
+}
+
+
+function updateSelectedFilterWeapons(selectedFilter) {
+    const filterItems = document.querySelectorAll('.filterItem');
+    console.log(selectedFilter)
+    // Remove 'selected' class from all items to reset
+    filterItems.forEach(item => {
+        item.classList.remove('selected');
+    });
+
+    // Set the selected filter's class
+    filterItems.forEach(item => {
+        console.log(item)
+        if (item.getAttribute('data-filter') === selectedFilter) {
+            item.classList.add('selected');
+        }
+    });
+}
+
 
 
 

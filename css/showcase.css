@@ -73,12 +73,14 @@ html, body {
     grid-template-columns: repeat(auto-fill, minmax(16%, 1fr));
     gap: 1vw;
     width: 99%;
-    height: 100%;
+    height: 40%;
     overflow-y: auto;
     scroll-behavior: smooth;
     padding-left: .5%;
-    padding-bottom: 5%;
+    padding-bottom: 12%;
+    padding-top: 2%;
 }
+
 .weapon-skin {
     width: 100%; /* Ensure it takes the full width of the grid cell */
     aspect-ratio: 1.96; /* Ensures the div remains square */
@@ -148,18 +150,47 @@ html, body {
 #skin_e336c6b8-418d-9340-d77f-7a9e4cfe0702 {
     width: 58% !important;
 }
-
-.filterDrop {
-    /* width: 40%;
+.buttonMenu {
+    display: flex;
     position: absolute;
-    top: 13vh;
-    left: 30vw;
-    visibility: hidden; */
-    /* grid-area: auto; */
-    /* display: grid; */
-    /* color: azure; */
+    left: 34%;
+    top: 8%;
+    column-gap: 3%;
+}
+.buttonMenu .menuItem {
+    cursor: pointer;
+    padding: 10px;
+    margin: -2px 6px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.buttonMenu .menuItem:hover {
+    color: #bf3d3d;
 }
 
+.buttonMenu .menuItem.selected {
+    color: #bf3d3d;
+}
+
+/* Add a pseudo-element for the underline */
+.buttonMenu .menuItem::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #bf3d3d;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.buttonMenu .menuItem.selected::after {
+    width: 100%; /* Underline width to match the text */
+    left: 0;
+}
 
 .filterDrop {
     display: flex;
@@ -242,12 +273,12 @@ html, body {
 
 .topBar {
     width: 100%;
-    height: 10%;
+    height: 15%;
     display: flex;
     align-items: flex-start;
     overflow: hidden;
     justify-content: center;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
 }
 /* Select */
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
@@ -293,13 +324,7 @@ html, body {
     top: 0.14vh;
 }
 
-.buttonMenu {
-    display: flex;
-    position: absolute;
-    left: 34%;
-    top: 8%;
-    column-gap: 3%;
-}
+
 
 .buddy-container{
     /* border: solid; */
