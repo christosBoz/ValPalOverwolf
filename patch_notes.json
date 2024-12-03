@@ -1,0 +1,36 @@
+{
+    "Agent updates": {
+        "Cypher": [
+            "Cypher has been a dominant force with his map-wide information gathering and powerful kill setups. Because Cypher's map-wide info is intended to be his unique strength, we want to target the efficacy of his kill potential.",
+            "We're adjusting the Trap Wire to increase the counterplay time window after hitting it, so that there is more of a balance between a well-crafted setup and enemies deliberately trying to break trap wires. Additionally, this will help team compositions who don't have as much utility to deal with unbreakable traps.",
+            "Cypher's ultimate has been extra powerful after adding the second reveal and the removal of time restriction on enemy corpses in patch 5.10, so we're bumping up the cost to put it more in-line with other comparable ultimates.",
+            "Trap Wire:Now has a .5 second windup before the full wallhack reveal applies and fades in.Trap wire now has updated minimap icon treatment to better display what the trap wire is connected to.",
+            "Neural Theft:Ult Cost 6 >>> 7"
+        ],
+        "Sage": [
+            "Sage has been feeling weak with relatively low pick rate in high-level play. We want to continue to hone in her ability to stall and slow down attackers when pushing into areas her team controls.",
+            "With the added dash speed reduction on Slowing Orb, well-timed, proactive casts of her Slowing Orb should feel rewarding and make slows a more meaningful debuff against duelists with dashes.",
+            "Healing Orb: Self Heal 30HP >>> 50HPHeal time matched to ally heal at around 5 seconds",
+            "Slowing Orb: Now will additionally reduce the dash speed of enemies caught inside the slowing zone by 50% similar to the Concuss changes in the Gameplay Systems Updates later in the patch notes.",
+            "Resurrection: Ult Cost 8 >>> 7"
+        ],
+        "Deadlock": [
+            "Deadlock's ultimate will now always kill the target when the timer expires and they are not freed from the nanowire cocoon. Previously, captured targets only died if they reached the end location before the timer expired.",
+            "Deadlock's visuals for health on the Annihilation Cocoon and Barrier Mesh have been updated to make their health states more clear."
+        ],
+        "Omen": [
+            "Omen has been a mainstay controller in high-level play for a long time. He particularly shines in his ability to create ambiguity throughout a round with the low cooldowns on his smokes. However, Omen's ability to place one-way smokes inside level geometry provides significant defensive power with low counterplay. We'll be keeping an eye out here for how these changes affect the overall controller ecosystem.",
+            "Dark Cover:Dark Cover will now always fall to level geometry similar to other spherical smokes like Brimstone's Sky Smoke, Clove's Ruse, etc.This should prevent Omen from placing one-way smokes on small ornamental pieces of Geometry, like the fuse boxes in the main of Split B and only allow him to place smokes where players can stand."
+        ],
+        "Clove": [
+            "Ruse:Ally vs enemy clarity around Ruse casts for both alive and dead casts of smokes have been improved.Enemy smokes updated to appear more red than ally smokes",
+            "Not Dead Yet:Time to get a kill: 12s >>> 10sThis change had been made accidentally in Patch 8.11 when fixing another bug, but the ultimate has been performing well at this tuning."
+        ],
+        "Phoenix": [
+            "Following up from our updates to Duelist in 8.11, we're taking an opportunity to let Phoenix shine brighter as the bold and confident duelist he is. His updates encourage him to get back to the fight quickly, break into sites with his Curve Ball and reward him for succeeding on entry.Phoenix now applies a Heal over time to himself whenever he touches his flames which persists even if he leaves the fire. This allows him to dip into his flames and then continue to press the offense.Curve Ball:Changed to the signature ability slotGrants a free charge on round start2 kill reset to generate an additional chargeHot Hands:Changed to a non-signature abilityCost 200 creditsBlaze:We want to support Phoenix's hybrid \u201cjack of all trades\u201d utility value by allowing him to cast Blaze from safety for his teammates similar to other vision-blocking utility.Initial projectile goes through walls, allowing Blaze to function similarly to Harbor's High Tide."
+        ],
+        "Jett": [
+            "Drift (Passive)Balance-impacting bug fix: Jett can no longer float while suppressed or detained."
+        ]
+    }
+}

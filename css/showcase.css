@@ -55,6 +55,7 @@ html, body {
     height: 0%;
     position: absolute;
     left: 0%;
+    /* top: 1%; */
 }
 
 .searchBar input {
@@ -67,18 +68,17 @@ html, body {
     height: 20%;
     background-color: #ffffff1a;
 }
-
 .skinGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16%, 1fr));
     gap: 1vw;
     width: 99%;
-    height: 40%;
     overflow-y: auto;
     scroll-behavior: smooth;
     padding-left: .5%;
     padding-bottom: 12%;
     padding-top: 2%;
+    flex-grow: 1;
 }
 
 .weapon-skin {
@@ -154,7 +154,7 @@ html, body {
     display: flex;
     position: absolute;
     left: 34%;
-    top: 8%;
+    top: 6%;
     column-gap: 3%;
 }
 .buttonMenu .menuItem {
@@ -196,7 +196,8 @@ html, body {
     display: flex;
     justify-content: space-around;
     position: relative;
-    bottom: -75%;
+    padding-top: 3%;
+    padding-bottom: 22%;
 }
 
 .filterDrop .filterItem {
