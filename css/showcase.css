@@ -76,8 +76,6 @@ html, body {
     overflow-y: auto;
     scroll-behavior: smooth;
     padding-left: .5%;
-    padding-bottom: 12%;
-    padding-top: 2%;
     flex-grow: 1;
 }
 
