@@ -272,7 +272,7 @@ html, body {
 
 .topBar {
     width: 100%;
-    height: 15%;
+    height: fit-content;
     display: flex;
     align-items: flex-start;
     overflow: hidden;
