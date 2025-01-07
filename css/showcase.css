@@ -73,12 +73,20 @@ html, body {
     grid-template-columns: repeat(auto-fill, minmax(16%, 1fr));
     gap: 1vw;
     width: 99%;
-    overflow-y: auto;
+    overflow-y: scroll;
     scroll-behavior: smooth;
     padding-left: .5%;
     flex-grow: 1;
     position: absolute;
-    top: 17%;
+    /* top: 0%; */
+}
+
+.skinSection {
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+    overflow: auto;
+    /* overflow: hidden; */
 }
 .weapon-skin {
     width: 100%; /* Ensure it takes the full width of the grid cell */
@@ -118,6 +126,9 @@ html, body {
 }
 
 .skinGrid::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+.skinSection::-webkit-scrollbar {
     display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
 }
 /* ghost */
