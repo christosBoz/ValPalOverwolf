@@ -77,8 +77,9 @@ html, body {
     scroll-behavior: smooth;
     padding-left: .5%;
     flex-grow: 1;
+    position: absolute;
+    top: 17%;
 }
-
 .weapon-skin {
     width: 100%; /* Ensure it takes the full width of the grid cell */
     aspect-ratio: 1.96; /* Ensures the div remains square */
