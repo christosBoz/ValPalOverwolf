@@ -79,6 +79,7 @@ html, body {
     flex-grow: 1;
     position: absolute;
     /* top: 0%; */
+    padding-bottom: 6%;
 }
 
 .skinSection {
