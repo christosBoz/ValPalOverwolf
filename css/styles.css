@@ -1608,9 +1608,8 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
-  position: absolute;
-  bottom: 6vh;
   row-gap: 2%;
+  margin-top: 6%;
 }
 
   .sprayGrid::-webkit-scrollbar {
