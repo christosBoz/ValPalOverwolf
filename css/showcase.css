@@ -48,24 +48,24 @@ html, body {
     flex-direction: column;
 }
 
-/* Search bar styling */
 .searchBar {
     width: 24%;
-    padding: 1rem;
-    height: 0%;
-    position: absolute;
+    padding-left: 1%;
+    height: fit-content;
+    /* position: absolute; */
     left: 0%;
     /* top: 1%; */
+    display: flex;
 }
 
 .searchBar input {
     width: 100%;
-    padding: 0.8rem;
+    padding: 3%;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     outline: none;
-    height: 20%;
+    /* height: 100%; */
     background-color: #ffffff1a;
 }
 .skinGrid {
@@ -150,9 +150,9 @@ html, body {
 }
 .buttonMenu {
     display: flex;
-    position: absolute;
-    left: 34%;
-    top: 6%;
+    /* position: absolute; */
+    /* left: 34%; */
+    /* top: 6%; */
     column-gap: 3%;
 }
 .buttonMenu .menuItem {
@@ -192,9 +192,10 @@ html, body {
 
 .filterDrop {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     position: relative;
-    padding-top: 3%;
+    /* padding-top: 3%; */
+    width: fit-content;
 }
 
 .filterDrop .filterItem {
@@ -202,7 +203,7 @@ html, body {
     padding: 10px;
     margin: 0 10px;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     position: relative;
     transition: color 0.3s ease;
@@ -275,8 +276,21 @@ html, body {
     display: flex;
     align-items: flex-start;
     overflow: hidden;
+    justify-content: normal;
+    padding-bottom: 0%;
+    column-gap: 9.7%;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+}
+
+.midBar {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
     justify-content: center;
-    padding-bottom: 1%;
+    /* padding-bottom: 2%; */
+    /* column-gap: 9.7%; */
 }
 /* Select */
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
