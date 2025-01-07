@@ -1,0 +1,35 @@
+/* styles.css */
+
+/* Reset default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;  /* Hide the scroll bar */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    height: 100vh;  /* Each section takes up the full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+    padding: 20px;
+}
+
+/* Different background colors for each section */
+#section1 { background-color: lightblue; }
+#section2 { background-color: lightcoral; }
+#section3 { background-color: lightgreen; }
+#section4 { background-color: lightgoldenrodyellow; }
