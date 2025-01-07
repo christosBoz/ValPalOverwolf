@@ -305,6 +305,14 @@ html, body {
     /* padding-bottom: 2%; */
     /* column-gap: 9.7%; */
 }
+
+.upOrDown{
+
+}
+
+.upOrDown img {
+    
+}
 /* Select */
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
     background: linear-gradient(to top, #4382AA, transparent);
