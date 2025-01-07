@@ -86,9 +86,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
-    sortByPrice('asc');
 
+    const arrow = document.querySelector('.sortDrop .Arrow'); 
+
+    if (!arrow.hasAttribute('alt')) {
+        arrow.setAttribute('alt', 'UP'); 
+    }
+    console.log(arrow.alt)
     
+    // Call sortByDirection with default value
+    sortByDirection("UP");
+
+
+    arrow.addEventListener('click', () => {
+        console.log("Clikcing Arrow")
+        if (arrow.style.transform === "scaleY(-1)") {
+            arrow.style.transform = "scaleY(1)";
+            arrow.setAttribute('alt', 'UP');
+            
+
+        } else {
+            arrow.style.transform = "scaleY(-1)";
+            arrow.setAttribute('alt', 'DOWN');
+            
+        }
+
+        sortByDirection(arrow.alt);
+    });
+
+
+  
 });
 
 
@@ -366,12 +393,10 @@ function setupFilter(weaponsOnly) {
 
 
 
-function sortByPrice(defaultValue = 'desc') {
+function sortByDirection(Direction) {
     const sortDrop = document.querySelector('.sortDrop #priceSort');
     const weaponGrid = document.querySelector('.skinGrid');
-    // Set the default value for the dropdown
-    sortDrop.value = defaultValue;
-    // Function to sort and update the grid
+    // Function to sort the grid
     const sortGrid = (order) => {
         const weapons = Array.from(weaponGrid.querySelectorAll('.weapon-skin'));
 
@@ -379,7 +404,12 @@ function sortByPrice(defaultValue = 'desc') {
             const priceA = parseInt(a.querySelector('.skinPrice').textContent.trim().replace(/\D/g, '')) || 0;
             const priceB = parseInt(b.querySelector('.skinPrice').textContent.trim().replace(/\D/g, '')) || 0;
 
-            return order === 'asc' ? priceA - priceB : priceB - priceA; // Ascending or Descending
+            if (order === 'asc') {
+                return priceA - priceB; // Ascending
+            } else if (order === 'desc') {
+                return priceB - priceA; // Descending
+            }
+            return 0; // No sorting
         });
 
         // Clear the grid and re-append sorted elements
@@ -387,13 +417,89 @@ function sortByPrice(defaultValue = 'desc') {
         sortedWeapons.forEach(skin => weaponGrid.appendChild(skin));
     };
 
-    // Initial sorting based on defaultValue
-    sortGrid(defaultValue);
+    const sortGridAlph = (order) => {
+        const weapons = Array.from(weaponGrid.querySelectorAll('.weapon-skin'));
+    
+        const sortedWeapons = weapons.sort((a, b) => {
+            // Assuming the weapon name is in an element with class '.skinName'
+            const nameA = a.querySelector('.skinName').textContent.trim().toLowerCase();
+            const nameB = b.querySelector('.skinName').textContent.trim().toLowerCase();
+    
+            // Compare alphabetically
+            if (order === 'asc') {
+                return nameA.localeCompare(nameB); // Ascending alphabetical order
+            } else if (order === 'desc') {
+                return nameB.localeCompare(nameA); // Descending alphabetical order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        weaponGrid.innerHTML = '';
+        sortedWeapons.forEach(skin => weaponGrid.appendChild(skin));
+    };
 
-    // Listen for dropdown changes
-    sortDrop.addEventListener('change', () => {
-        sortGrid(sortDrop.value);
-    });
+
+    const tierRanking = {
+        'e046854e-406c-37f4-6607-19a9ba8426fc': 1, 
+        '411e4a55-4e59-7757-41f0-86a53f101bb5': 2,
+        '60bca009-4182-7998-dee7-b8a2558dc369': 3,
+        '0cebb8be-46d7-c12a-d306-e9907bfc5a25': 4,
+        '12683d76-48d7-84a3-4e09-6985794f0445': 5  
+    };
+
+
+    const sortGridRarity = (order) => {
+        const weapons = Array.from(weaponGrid.querySelectorAll('.weapon-skin'));
+    
+        const sortedWeapons = weapons.sort((a, b) => {
+            const contentTierA = a.getAttribute('data-contenttier').trim();
+            const contentTierB = b.getAttribute('data-contenttier').trim();
+    
+            // Get the rarity rank for each tier
+            const rankA = tierRanking[contentTierA] || Infinity; // Default to Infinity if not found
+            const rankB = tierRanking[contentTierB] || Infinity; // Default to Infinity if not found
+    
+            // Sort based on the rank of the tiers
+            if (order === 'asc') {
+                return rankA - rankB; // Ascending order
+            } else if (order === 'desc') {
+                return rankB - rankA; // Descending order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        weaponGrid.innerHTML = '';
+        sortedWeapons.forEach(skin => weaponGrid.appendChild(skin));
+    };
+
+    const selectedValue = sortDrop.value;
+    console.log("we get here")
+    console.log(selectedValue)
+    if (selectedValue === "Price") {
+        if (Direction === "UP") {
+            sortGrid('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGrid('desc');
+        }
+    } else if (selectedValue === "Alph") {
+        if (Direction === "UP") {
+            sortGridAlph('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridAlph('desc');
+        }
+    } else if (selectedValue === "Rarity") {
+        if (Direction === "UP") {
+            sortGridRarity('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridRarity('desc');
+        }
+    }
+
 }
 
 

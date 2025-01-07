@@ -122,10 +122,17 @@ html, body {
 }
 .sortDrop {
     position: absolute;
-    right: 16%;
+    right: 4%;
     bottom: 89.5%;
+    width: 13%;
+    column-gap: 6%;
+    display: flex;
 }
 
+.sortDrop .Arrow {
+    cursor: pointer;
+    width: 16%;
+}
 .skinGrid::-webkit-scrollbar {
     display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
 }
@@ -311,7 +318,7 @@ html, body {
 }
 
 .upOrDown img {
-    
+
 }
 /* Select */
 .weapon-skin[data-contenttier="12683d76-48d7-84a3-4e09-6985794f0445"] {
