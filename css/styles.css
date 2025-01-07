@@ -1599,10 +1599,11 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
 .sprayGrid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   width: 56.2%;
-  /* height: fit-content; */
-  max-height: 56%;
+  height: fit-content;
+  height: 56%;
   column-gap: -5.8vw;
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -1618,7 +1619,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 
   .sprayPickerSprays {
     width: 100%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     flex-grow: 1;
   }
 
@@ -1806,19 +1807,12 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
 }
 
 .sprayFullArt {
-  /* display: flex;
-  height: 40%;
-  position: absolute;
-  top: 33vh;
-  right: 2vw;
-  width: 40%;
-  margin-right: -4%; */
   position: relative;
   display: inline-block;
   /* width: fit-content; */
-  top: 15vh;
+  top: -42vh;
   width: 35%;
-  height: 35%;
+  height: 54%;
   right: -16vw;
 }
 .sprayTitle {
