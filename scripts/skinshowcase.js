@@ -65,23 +65,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Buddies');
+        changeDropDown('Buddies')
     });
     document.querySelector('[data-filter="Weapons"]').addEventListener('click', () => {
         console.log("working")
         renderWeaponGrid(weaponsOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Weapons');
         updateSelectedFilterWeapons('all')
+        changeDropDown('Weapons')
         
     });
     document.querySelector('[data-filter="Sprays"]').addEventListener('click', () => {
         console.log("clicked sprays")
         renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Sprays');
+        changeDropDown('Sprays')
     });
     document.querySelector('[data-filter="Cards"]').addEventListener('click', () => {
         console.log("clicked cards")
         renderCardGrid(cardsOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Cards');
+        changeDropDown('Cards')
     });
     
     setupSearch(weaponsOnly);
@@ -604,6 +608,40 @@ function updateSelectedFilterWeapons(selectedFilter) {
         }
     });
 }
+
+function changeDropDown(category) {
+    const dropDown = document.querySelector('.sortDrop #priceSort');
+    const arrow = document.querySelector('.sortDrop .Arrow'); 
+    if (category === "Buddies" || category === "Sprays" || category === "Cards") {
+        console.log(dropDown);
+
+        // Iterate through all the options and disable or hide them
+        Array.from(dropDown.options).forEach(option => {
+            if (option.value !== "Alph") {
+                option.style.display = "none"; // Hide the option
+            } else {
+                option.style.display = "block"; // Ensure "Alph" is visible
+                option.selected = true;       // Set "Alph" as the selected option
+                arrow.style.visibility = "visible";
+            }
+        });
+    } else if (category === "Weapons") {
+        // Reset the dropdown to its original state (default at "All")
+        Array.from(dropDown.options).forEach(option => {
+            option.style.display = "block"; // Make all options visible
+        });
+        dropDown.value = "All"; // Default the dropdown to "All"
+        arrow.style.visibility = "hidden"; // Hide the arrow
+    
+    }
+    else {
+        // Reset all options to be available if the category is not "Buddies"
+        Array.from(dropDown.options).forEach(option => {
+            option.style.display = "block";
+        });
+    }
+}
+
 
 
 
