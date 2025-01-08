@@ -89,14 +89,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const arrow = document.querySelector('.sortDrop .Arrow'); 
 
+
+    const dropDown = document.querySelector('.sortDrop #priceSort');
+    const filterItems = document.querySelectorAll('.filterDrop .filterItem'); 
+    console.log(dropDown.value)
+    dropDown.addEventListener('change', function() {
+        console.log("Dropdown value: " + dropDown.value);
+        if (dropDown.value !== 'All' && dropDown.value === 'Price') {
+            arrow.style.visibility = 'visible'; 
+            console.log("changed value to" + dropDown.value)
+            sortByDirection(arrow.alt)
+        } else if (dropDown.value !== 'All' && dropDown.value === 'Alph') {
+            arrow.style.visibility = 'visible'; 
+            console.log("changed value to" + dropDown.value)
+            sortByDirection(arrow.alt)
+        } else if (dropDown.value !== 'All' && dropDown.value === 'Rarity') {
+            arrow.style.visibility = 'visible'; 
+            console.log("changed value to" + dropDown.value)
+            sortByDirection(arrow.alt)
+        } 
+         else {
+            renderWeaponGrid(weaponsOnly);
+            arrow.style.visibility = 'hidden';
+            updateSelectedFilterWeapons('all')
+        }
+        
+
+    });
+    
     if (!arrow.hasAttribute('alt')) {
         arrow.setAttribute('alt', 'UP'); 
     }
     console.log(arrow.alt)
     
-    // Call sortByDirection with default value
-    sortByDirection("UP");
-
 
     arrow.addEventListener('click', () => {
         console.log("Clikcing Arrow")

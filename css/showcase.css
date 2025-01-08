@@ -46,6 +46,7 @@ html, body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    z-index: 0;
 }
 
 .searchBar {
@@ -292,7 +293,7 @@ html, body {
 
 .topBar {
     width: 100%;
-    height: fit-content;
+    height: 5%;
     display: flex;
     align-items: flex-start;
     overflow: hidden;
@@ -440,3 +441,125 @@ html, body {
 .showPlayerCards {
     white-space: nowrap;
 }
+
+#priceSort {
+    width: 100%;
+    /* font-weight: bold; */
+    font-family: math;
+    background-color: #ffffff1a;
+    color: white;
+}
+#priceSort option {
+    background-color: black;
+    color: white;
+}
+/* 
+.fancyMenu {
+    width: fit-content;
+    cursor: pointer;
+    position: absolute;
+    transition: 300ms;
+    color: white;
+    overflow: hidden;
+    left: 85vw;
+    top: 7vh;
+}
+  
+  .selected {
+    background-color: #2a2f3b;
+    padding: 5px;
+    margin-bottom: 3px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100000;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .arrow {
+    position: relative;
+    right: 0px;
+    height: 10px;
+    transform: rotate(-90deg);
+    width: 25px;
+    fill: white;
+    z-index: 100000;
+    transition: 300ms;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #2a2f3b;
+    position: relative;
+    top: -100px;
+    opacity: 0;
+    transition: 300ms;
+    z-index: 1;
+  }
+  
+  .fancyMenu:hover > .options {
+    opacity: 1;
+    top: 0;
+  }
+  
+  .fancyMenu:hover > .selected .arrow {
+    transform: rotate(0deg);
+  }
+  
+  .option {
+    border-radius: 5px;
+    padding: 5px;
+    transition: 300ms;
+    background-color: #2a2f3b;
+    width: 150px;
+    font-size: 15px;
+  }
+  .option:hover {
+    background-color: #323741;
+  }
+  
+  .options input[type="radio"] {
+    display: none;
+  }
+  
+  .options label {
+    display: inline-block;
+  }
+  .options label::before {
+    content: attr(data-txt);
+  }
+  
+  .options input[type="radio"]:checked + label {
+    display: none;
+  }
+  
+  .options input[type="radio"]#all:checked + label {
+    display: none;
+  }
+  
+  .fancyMenu:has(.options input[type="radio"]#all:checked) .selected::before {
+    content: attr(data-default);
+  }
+  
+  .fancyMenu:has(.options input[type="radio"]#option-1:checked) .selected::before {
+    content: attr(data-one);
+  }
+  
+  .fancyMenu:has(.options input[type="radio"]#option-2:checked) .selected::before {
+    content: attr(data-two);
+  }
+  
+  .fancyMenu:has(.options input[type="radio"]#option-3:checked) .selected::before {
+    content: attr(data-three);
+  }
+  
+
+  .fancyMenu:has(.options input[type="radio"]#option-4:checked) .selected::before {
+    content: attr(data-four);
+  }
+   */
