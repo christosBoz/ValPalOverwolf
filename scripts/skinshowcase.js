@@ -1,5 +1,5 @@
 let weaponsOnly = ''
-
+let activeCategory = 'Weapons'
 
 
 
@@ -57,6 +57,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching and processing data:', error);
     }
+    const arrow = document.querySelector('.sortDrop .Arrow'); 
+    if (!arrow.hasAttribute('alt')) {
+        arrow.setAttribute('alt', 'UP'); 
+    } 
     updateSelectedFilter('Weapons');
 
     renderWeaponGrid(weaponsOnly);
@@ -66,6 +70,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Buddies');
         changeDropDown('Buddies')
+        sortByDirectionBuddies(arrow.alt);
+        activeCategory = "Buddies";
     });
     document.querySelector('[data-filter="Weapons"]').addEventListener('click', () => {
         console.log("working")
@@ -73,6 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateSelectedFilter('Weapons');
         updateSelectedFilterWeapons('all')
         changeDropDown('Weapons')
+        activeCategory = "Weapons";
         
     });
     document.querySelector('[data-filter="Sprays"]').addEventListener('click', () => {
@@ -80,18 +87,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderSprayGrid(spraysOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Sprays');
         changeDropDown('Sprays')
+        sortByDirectionSprays(arrow.alt);
+        activeCategory = "Sprays";
     });
     document.querySelector('[data-filter="Cards"]').addEventListener('click', () => {
         console.log("clicked cards")
         renderCardGrid(cardsOnly); // Assuming buddyData is the array of buddies
         updateSelectedFilter('Cards');
         changeDropDown('Cards')
+        sortByDirectionCards(arrow.alt);
+        activeCategory = "Cards";
     });
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
 
-    const arrow = document.querySelector('.sortDrop .Arrow'); 
+    
 
 
     const dropDown = document.querySelector('.sortDrop #priceSort');
@@ -117,30 +128,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             arrow.style.visibility = 'hidden';
             updateSelectedFilterWeapons('all')
         }
-        
-
     });
     
-    if (!arrow.hasAttribute('alt')) {
-        arrow.setAttribute('alt', 'UP'); 
-    }
-    console.log(arrow.alt)
-    
+   
 
     arrow.addEventListener('click', () => {
         console.log("Clikcing Arrow")
         if (arrow.style.transform === "scaleY(-1)") {
             arrow.style.transform = "scaleY(1)";
             arrow.setAttribute('alt', 'UP');
-            
-
         } else {
             arrow.style.transform = "scaleY(-1)";
-            arrow.setAttribute('alt', 'DOWN');
-            
+            arrow.setAttribute('alt', 'DOWN');          
         }
+        console.log(activeCategory)
 
-        sortByDirection(arrow.alt);
+        if (activeCategory === "Weapons") {
+            sortByDirection(arrow.alt);
+        } else if (activeCategory === "Buddies") {
+            sortByDirectionBuddies(arrow.alt)
+        }else if (activeCategory === "Sprays") {
+            sortByDirectionSprays(arrow.alt);
+        }else if(activeCategory === "Cards") {
+            sortByDirectionCards(arrow.alt);
+        }
     });
 
 
@@ -529,6 +540,119 @@ function sortByDirection(Direction) {
         }
     }
 
+}
+
+function sortByDirectionBuddies(Direction) {
+    const sortDrop = document.querySelector('.sortDrop #priceSort');
+
+    const buddyGrid = document.querySelector('.skinGrid');
+    const sortGridAlph = (order) => {
+        const buddies = Array.from(buddyGrid.querySelectorAll('.buddy-container'));
+    
+        const sortedBuddies = buddies.sort((a, b) => {
+            // Assuming the weapon name is in an element with class '.skinName'
+            const nameA = a.querySelector('.buddyName').textContent.trim().toLowerCase();
+            const nameB = b.querySelector('.buddyName').textContent.trim().toLowerCase();
+    
+            // Compare alphabetically
+            if (order === 'asc') {
+                return nameA.localeCompare(nameB); // Ascending alphabetical order
+            } else if (order === 'desc') {
+                return nameB.localeCompare(nameA); // Descending alphabetical order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        buddyGrid.innerHTML = '';
+        sortedBuddies.forEach(buddy => buddyGrid.appendChild(buddy));
+    };
+    const selectedValue = sortDrop.value;
+
+    console.log(selectedValue)
+    if (selectedValue === "Alph") {
+        if (Direction === "UP") {
+            sortGridAlph('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridAlph('desc');
+        }
+    } 
+
+}
+function sortByDirectionSprays(Direction) {
+    const sortDrop = document.querySelector('.sortDrop #priceSort');
+
+    const sprayGrid = document.querySelector('.skinGrid');
+    const sortGridAlph = (order) => {
+        const sprays = Array.from(sprayGrid.querySelectorAll('.spray-container'));
+    
+        const sortedSprays = sprays.sort((a, b) => {
+            // Assuming the weapon name is in an element with class '.skinName'
+            const nameA = a.querySelector('.sprayName').textContent.trim().toLowerCase();
+            const nameB = b.querySelector('.sprayName').textContent.trim().toLowerCase();
+    
+            // Compare alphabetically
+            if (order === 'asc') {
+                return nameA.localeCompare(nameB); // Ascending alphabetical order
+            } else if (order === 'desc') {
+                return nameB.localeCompare(nameA); // Descending alphabetical order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        sprayGrid.innerHTML = '';
+        sortedSprays.forEach(spray => sprayGrid.appendChild(spray));
+    };
+    const selectedValue = sortDrop.value;
+
+    console.log(selectedValue)
+    if (selectedValue === "Alph") {
+        if (Direction === "UP") {
+            sortGridAlph('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridAlph('desc');
+        }
+    } 
+}
+function sortByDirectionCards(Direction) {
+    const sortDrop = document.querySelector('.sortDrop #priceSort');
+
+    const cardGrid = document.querySelector('.skinGrid');
+    const sortGridAlph = (order) => {
+        const cards = Array.from(cardGrid.querySelectorAll('.card-container'));
+    
+        const sortedCards = cards.sort((a, b) => {
+            // Assuming the weapon name is in an element with class '.skinName'
+            const nameA = a.querySelector('.cardName').textContent.trim().toLowerCase();
+            const nameB = b.querySelector('.cardName').textContent.trim().toLowerCase();
+    
+            // Compare alphabetically
+            if (order === 'asc') {
+                return nameA.localeCompare(nameB); // Ascending alphabetical order
+            } else if (order === 'desc') {
+                return nameB.localeCompare(nameA); // Descending alphabetical order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        cardGrid.innerHTML = '';
+        sortedCards.forEach(card => cardGrid.appendChild(card));
+    };
+    const selectedValue = sortDrop.value;
+
+    console.log(selectedValue)
+    if (selectedValue === "Alph") {
+        if (Direction === "UP") {
+            sortGridAlph('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridAlph('desc');
+        }
+    } 
 }
 
 
