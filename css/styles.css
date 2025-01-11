@@ -1925,4 +1925,92 @@ button#closePopup {
 button#closePopup:hover {
   background-color: #0056b3;
 }
+
+
+
+.faq-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ff2525;
+  background-image: linear-gradient(147deg, #ff2525 0%, #ff6e6e 74%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  right: -73vw;
+  top: 1.5vh;
 }
+
+.faq-button svg {
+  height: 1.5em;
+  fill: white;
+}
+
+.faq-button:hover svg {
+  animation: jello-vertical 0.7s both;
+}
+
+@keyframes jello-vertical {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -40px; /* Moved the tooltip below the button */
+  opacity: 0;
+  background-color: #ff2525;
+  background-image: linear-gradient(147deg, #ff2525 0%, #ff6e6e 74%);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.2s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #ff2525;
+  background-size: 1000%;
+  background-position: center;
+  transform: rotate(45deg);
+  top: -5px; /* Adjusted to point up toward the button */
+  transition-duration: 0.3s;
+}
+
+.faq-button:hover .tooltip {
+  bottom: -60px; /* Adjusts the position during hover */
+  opacity: 1;
+  transition-duration: 0.3s;
+}
+
