@@ -1,5 +1,38 @@
-let weaponsOnly = ''
-let activeCategory = 'Weapons'
+let weaponsOnly = '';
+let activeCategory = 'Weapons';
+let activeSubCategory = 'All';
+const weaponType = {
+    Pistol: [
+        '29a0cfab-485b-f5d5-779a-b59f85e204a8', // Classic
+        '1baa85b4-4c70-1284-64bb-6481dfc3bb4e', // Shorty
+        '44d4e95c-4157-0037-81b2-17841bf2e8e3', // Frenzy
+        '42da8ccc-40d5-affc-beec-15aa47b42eda', // Ghost
+        'e336c6b8-418d-9340-d77f-7a9e4cfe0702'  // Sheriff
+    ],
+    Rifle: [
+        'ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a', // Vandal
+        '9c82e19d-4575-0200-1a81-3eacf00cf872'  // Phantom
+    ],
+    SMG: [
+        '462080d1-4035-2937-7c09-27aa2a5c27a7', // Stinger
+        'f7e1b454-4ad4-1063-ec0a-159e56b58941'  // Spectre
+    ],
+    Shotgun: [
+        '910be174-449b-c412-ab22-d0873436b21b', // Bucky
+        'ec845bf4-4f79-ddda-a3da-0db3774b2794'  // Judge
+    ],
+    Sniper: [
+        'c4883e50-4494-202c-3ec3-6b8a9284f00b', // Marshal
+        'a03b24d3-4319-996d-0f8c-94bbfba1dfc7'  // Operator
+    ],
+    'Machine Gun': [
+        '55d8a0f4-4274-ca67-fe2c-06ab45efdf58', // Ares
+        '63e6c2b6-4a8e-869c-3d4c-e38355226584'  // Odin
+    ],
+    Melee: [
+        '2f59173c-4bed-b6c3-2191-dea9b58be9c7'  // Knife
+    ]
+};
 
 
 
@@ -61,10 +94,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!arrow.hasAttribute('alt')) {
         arrow.setAttribute('alt', 'UP'); 
     } 
+
     updateSelectedFilter('Weapons');
 
     renderWeaponGrid(weaponsOnly);
     console.log(weaponsOnly)
+
+    const fancySearch = document.querySelector('.search_input');
     document.querySelector('[data-filter="Buddies"]').addEventListener('click', () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
@@ -72,6 +108,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         changeDropDown('Buddies')
         sortByDirectionBuddies(arrow.alt);
         activeCategory = "Buddies";
+        setupSearch(buddiesOnly);
+        fancySearch.value = "";
     });
     document.querySelector('[data-filter="Weapons"]').addEventListener('click', () => {
         console.log("working")
@@ -80,6 +118,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateSelectedFilterWeapons('all')
         changeDropDown('Weapons')
         activeCategory = "Weapons";
+        // setupSearch(weaponsOnly);
+        fancySearch.value = "";
+
         
     });
     document.querySelector('[data-filter="Sprays"]').addEventListener('click', () => {
@@ -89,6 +130,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         changeDropDown('Sprays')
         sortByDirectionSprays(arrow.alt);
         activeCategory = "Sprays";
+        setupSearch(spraysOnly);
+        fancySearch.value = "";
+
     });
     document.querySelector('[data-filter="Cards"]').addEventListener('click', () => {
         console.log("clicked cards")
@@ -97,10 +141,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         changeDropDown('Cards')
         sortByDirectionCards(arrow.alt);
         activeCategory = "Cards";
+        setupSearch(cardsOnly);
+        fancySearch.value = "";
+
     });
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
+    console.log("content has been loaded")
 
     
 
@@ -160,6 +208,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 async function renderWeaponGrid(weaponsOnly) {
+    console.log("render weapon grid called")
     const skinGrid = document.querySelector('.skinGrid');
     skinGrid.innerHTML = '';
     skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(16%, 1fr))";
@@ -240,10 +289,11 @@ async function renderWeaponGrid(weaponsOnly) {
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'visible';
     const costUSD = (totalCounter * 0.010505).toFixed(2);
-    totalCounterDiv.textContent = `${totalCounter} \t ≈ $${costUSD}`;
+    // totalCounterDiv.textContent = `${totalCounter} \t ≈ $${costUSD}`;
+    // totalCounterDiv.textContent = "";
     const vpLogo = document.createElement('img')
     vpLogo.src = "img/vpimg.png";
-    totalCounterDiv.appendChild(vpLogo);
+    // totalCounterDiv.appendChild(vpLogo);
     console.log('Total Counter:', totalCounter);
 
 
@@ -339,24 +389,60 @@ async function renderCardGrid(cardsOnly) {
 }
 
 // Set up the search functionality
-function setupSearch(weaponsOnly) {
+function setupSearch(categoryOnly) {
     const skinGrid = document.querySelector('.skinGrid');
     const searchBar = document.getElementById('SearchInput');
+    const fancySearch = document.querySelector('.search_input');
+
+    // Remove any existing event listener
+    fancySearch.removeEventListener('input', handleSearch);
+
+    // Add a new event listener based on the current activeCategory
+    function handleSearch(event) {
+        const searchText = event.target.value.toLowerCase();
     
-    searchBar.addEventListener('input', (event) => {
-        const searchText = event.target.value.toLowerCase();        // Filter weapons based on search criteria
-        const filteredWeapons = weaponsOnly.filter(w => 
-            !w.Name.toLowerCase().includes('standard') &&
-            !w.Name.toLowerCase().includes('random') &&
-            w.Name.toLowerCase() !== 'melee' &&
-            w.Name.toLowerCase().includes(searchText)
-        );
+        if (activeCategory === "Weapons") {
+            const filteredWeapons = categoryOnly.filter(w => {
+                // Filter by subcategory (activeSubCategory)
+                if (activeSubCategory && activeSubCategory !== 'All') {
+                    const subcategoryWeapons = weaponType[activeSubCategory];
+                    console.log(subcategoryWeapons)
+                    if (!subcategoryWeapons || !subcategoryWeapons.includes(w.Weaponid)) {
+                        return false; // Exclude weapons not in the subcategory
+                    }
+                }
+    
+                // Filter by search text
+                return (
+                    !w.Name.toLowerCase().includes('standard') &&
+                    !w.Name.toLowerCase().includes('random') &&
+                    w.Name.toLowerCase() !== 'melee' &&
+                    w.Name.toLowerCase().includes(searchText)
+                );
+            });
+    
+            renderWeaponGrid(filteredWeapons);
+        } else if (activeCategory === "Buddies") {
+            const filteredBuddies = categoryOnly.filter(w =>
+                w.Name.toLowerCase().includes(searchText)
+            );
+            renderBuddiesGrid(filteredBuddies);
+        } else if (activeCategory === "Cards") {
+            const filteredCards = categoryOnly.filter(w =>
+                w.Name.toLowerCase().includes(searchText)
+            );
+            renderCardGrid(filteredCards);
+        } else if (activeCategory === "Sprays") {
+            const filteredSprays = categoryOnly.filter(w =>
+                w.Name.toLowerCase().includes(searchText)
+            );
+            renderSprayGrid(filteredSprays);
+        }
+    }
 
-        // Render filtered weapons
-        renderWeaponGrid(filteredWeapons);
-
-    });
+    fancySearch.addEventListener('input', handleSearch);
 }
+
 
 
 
@@ -384,6 +470,8 @@ function setupFilter(weaponsOnly) {
     }
     filterItems.forEach(item => {
         item.addEventListener('click', (event) => {
+            console.log(item.textContent);
+            activeSubCategory = item.textContent;
             // Remove the 'selected' class from all items
             filterItems.forEach(i => i.classList.remove('selected'));
 
