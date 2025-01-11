@@ -566,7 +566,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
        
     
+    const popup = document.getElementById("infoPopup");
+    const closePopup = document.getElementById("closePopup");
+    const dontShowAgain = document.getElementById("dontShowAgain");
 
+    // Check if the popup should be shown
+    const shouldShowPopup = localStorage.getItem("dontShowAgain") !== "true";
+
+    if (shouldShowPopup) {
+        popup.style.display = "flex";
+    }
+
+    // Close button event
+    closePopup.addEventListener("click", () => {
+        if (dontShowAgain.checked) {
+        localStorage.setItem("dontShowAgain", "true");
+        }
+        popup.style.display = "none";
+    });
     
  
     
