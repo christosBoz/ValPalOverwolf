@@ -571,9 +571,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const dontShowAgain = document.getElementById("dontShowAgain");
     const helpButton = document.querySelector('.faq-button');
     // Check if the popup should be shown
-    const shouldShowPopup = localStorage.getItem("dontShowAgain") !== "true";
+    // const shouldShowPopup = localStorage.getItem("dontShowAgain") !== "true";
+    const shouldShowPopup = localStorage.getItem("dontShowAgain");
+    console.log(shouldShowPopup)
 
-    if (shouldShowPopup) {
+
+    if (shouldShowPopup !== "true") {
         popup.style.display = "flex";
     }
 

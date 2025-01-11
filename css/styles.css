@@ -7,6 +7,7 @@
 } */
 
 
+
 /* Style for each agent image */
 .agent-image {
   background: transparent; /* Grey background behind each image */
@@ -1875,7 +1876,7 @@ img[class="Weapon_63E6C2B6-4A8E-869C-3D4C-E38355226584"] {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;

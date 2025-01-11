@@ -202,7 +202,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-
   
 });
 
