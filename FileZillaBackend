@@ -429,25 +429,33 @@ def get_weapons(client):
     
     return updated_weapons_sorted
 def get_buddies(client):
+    buddies_owned = client.store_fetch_entitlements(
+        item_type="dd3bf334-87f3-40bd-b043-682a57a8dc3a"
+    )
 
-    buddies_owned = client.store_fetch_entitlements(item_type = "dd3bf334-87f3-40bd-b043-682a57a8dc3a")
-
-    # Fetch weapon skins data from the API
+    # Fetch weapon buddies data from the API
     api_url = "https://valorant-api.com/v1/buddies"
     response = requests.get(api_url)
-    buddies_data = response.json().get('data', [])
+    buddies_data = response.json().get("data", [])
 
     buddies_by_level_uuid = {}
-    for buddy in buddies_data: 
+    for buddy in buddies_data:
         if buddy.get("levels") and len(buddy["levels"]) > 0:
             first_level_uuid = buddy["levels"][0]["uuid"]
+            # Get dominant colors
+            dominant_colors = get_dominant_colors_from_url(
+                buddy["displayIcon"], buddy=True
+            )
+
             buddies_by_level_uuid[first_level_uuid] = {
-                "buddy": buddy
+                "buddy": buddy,
+                "DominantColors": dominant_colors,  # Add the dominant colors here
             }
+
     # Initialize a set to keep track of processed ItemIDs
     processed_item_ids = set()
 
-    # Update weapons_owned["Entitlements"] to match the structure from weapon_skins_data
+    # Update buddies_owned["Entitlements"] to match the structure from weapon buddies data
     updated_buddies = []
     for item in buddies_owned["Entitlements"]:
         item_id = item["ItemID"]
@@ -456,41 +464,34 @@ def get_buddies(client):
         if item_id in processed_item_ids:
             for buddy in updated_buddies:
                 if buddy["LevelID"] == item_id:
-                    # print(buddy)
-                    # print(buddy['InstanceID2'])
-                    print(item["InstanceID"])
                     buddy["InstanceID2"] = item["InstanceID"]
-                    
             continue
         else:
             processed_item_ids.add(item_id)  # Mark this item ID as processed
-            
 
-        # Check if the itemID exists in the weapon skins data
+        # Check if the itemID exists in the buddies data
         if item_id in buddies_by_level_uuid:
             buddy_data = buddies_by_level_uuid[item_id]
             buddy = buddy_data["buddy"]
-            
-            # Create updated item with collected chromas
+            dominant_colors = buddy_data["DominantColors"]  # Retrieve dominant colors
+
+            # Create updated item with collected buddies
             updated_item = {
                 "ItemID": buddy["uuid"],
                 "Name": buddy["displayName"],
                 "ImageURL": buddy["displayIcon"],
                 "InstanceID1": item["InstanceID"],
                 "InstanceID2": "",
-                "Dominant Colors": get_dominant_colors_from_url(buddy["displayIcon"], buddy=True),
+                "Dominant Colors": dominant_colors,  # Add dominant colors to the buddy
                 "LevelID": item_id,
-                "Uses": 2
+                "Uses": 2,
             }
-            
+
             updated_buddies.append(updated_item)
 
-    # Sort updated_entitlements by Weaponid
+    # Sort updated_buddies by Name
     updated_buddies_sorted = sorted(updated_buddies, key=lambda x: x["Name"])
     return updated_buddies_sorted
-
-# Create a new JSON structure with three fields and the entitlements as the value for the first field
-
 def get_cards(client):
     cards_owned = client.store_fetch_entitlements(item_type = "3f296c07-64c3-494c-923b-fe692a4fa1bd")
 
