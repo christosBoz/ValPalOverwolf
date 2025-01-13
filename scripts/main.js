@@ -566,7 +566,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
        
     
+    const popup = document.getElementById("infoPopup");
+    const closePopup = document.getElementById("closePopup");
+    const dontShowAgain = document.getElementById("dontShowAgain");
+    const helpButton = document.querySelector('.faq-button');
+    // Check if the popup should be shown
+    // const shouldShowPopup = localStorage.getItem("dontShowAgain") !== "true";
+    const shouldShowPopup = localStorage.getItem("dontShowAgain");
+    console.log(shouldShowPopup)
 
+
+    if (shouldShowPopup !== "true") {
+        popup.style.display = "flex";
+    }
+
+    // Close button event
+    closePopup.addEventListener("click", () => {
+        if (dontShowAgain.checked) {
+        localStorage.setItem("dontShowAgain", "true");
+        }
+        popup.style.display = "none";
+    });
+
+    helpButton.addEventListener("click", () => {
+        popup.style.display = "flex"
+    });
     
  
     

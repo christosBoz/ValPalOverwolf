@@ -5,6 +5,12 @@ import requests
 import valclient  # Ensure valclient is installed and configured
 import typing as t
 import base64
+from PIL import Image
+import colorsys
+from collections import Counter
+import requests
+from io import BytesIO
+
 
 clients = {}
 
@@ -370,7 +376,6 @@ def get_weapons(client):
             weapon_skin_data = weapon_skins_by_level_uuid[item_id]
             weapon_skin = weapon_skin_data["skin"]
             weapon_uuid = weapon_skin_data["weapon_uuid"]
-            content_tier_uuid = weapon_skin.get("contentTierUuid")  # Get contentTierUuid
             
             owned_chromas = [weapon_skin["chromas"][0]]
             for chroma in weapon_skin.get("chromas", []):
@@ -389,8 +394,7 @@ def get_weapons(client):
                 "Weaponid": weapon_uuid,
                 "Name": weapon_skin["displayName"],
                 "Chromas": owned_chromas,
-                "Levels": owned_levels,
-                "ContentTierUuid": content_tier_uuid
+                "Levels": owned_levels
             }
             
             updated_weapons.append(updated_item)
@@ -474,6 +478,7 @@ def get_buddies(client):
                 "ImageURL": buddy["displayIcon"],
                 "InstanceID1": item["InstanceID"],
                 "InstanceID2": "",
+                "Dominant Colors": get_dominant_colors_from_url(buddy["displayIcon"], buddy=True),
                 "LevelID": item_id,
                 "Uses": 2
             }
@@ -624,3 +629,93 @@ def get_titles(client):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+
+
+def rgb_to_hsl(r, g, b):
+    """Convert RGB to HSL."""
+    r, g, b = r / 255.0, g / 255.0, b / 255.0
+    h, l, s = colorsys.rgb_to_hls(r, g, b)
+    return int(h * 360), int(s * 100), int(l * 100)
+
+def classify_hsl(h, s, l):
+    """Classify HSL into predefined color ranges with adjusted brightness."""
+    l = int(l * 1.3)  # Adjust lightness to account for reduced brightness (30% increase)
+    l = min(l, 100)   # Ensure lightness doesn't exceed 100
+
+    if l < 10 and s <=5:  # Adjusted black threshold
+        return "Black"
+    elif l > 70 and s <=5:  # Adjusted white threshold
+        return "White"
+    elif 10< l > 70 and s <=5:  # Adjusted white threshold
+        return "Grey"
+    elif 0 <= h < 15 or 345 <= h <= 360:
+        return "Red"
+    elif 15 <= h < 45:
+        return "Orange"
+    elif 45 <= h < 70:
+        return "Yellow"
+    elif 70 <= h < 155:
+        return "Green"
+    elif 155 <= h < 260:
+        return "Blue"
+    elif 260 <= h < 300:
+        return "Purple"
+    elif 300 <= h < 345:
+        return "Pink"
+    else:
+        return "Unknown"
+
+def get_dominant_colors_from_url(image_url, buddy=False):
+    """Get the top 3 dominant colors in an image from a URL, with optional cropping."""
+    try:
+        # Download the image
+        response = requests.get(image_url)
+        response.raise_for_status()
+        image = Image.open(BytesIO(response.content))
+
+        # Convert PNG to RGBA if not already in RGBA mode
+        if image.format == "PNG" and "A" not in image.mode:
+            image = image.convert("RGBA")
+        elif image.mode not in ("RGB", "RGBA"):
+            # Convert other modes (like grayscale) to RGB or RGBA
+            image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading the image: {e}")
+        return
+
+    # Get image dimensions
+    width, height = image.size
+
+    # Define the area to ignore (top-right corner: 20% height, 54.7% width)
+    crop_width = int(width * 0.547)
+    crop_height = int(height * 0.2)
+
+    # Crop the image to exclude the top-right section
+    if buddy:
+        image = image.crop((0, 0, width - crop_width, height - crop_height))
+
+    # Process pixels, skipping transparent ones
+    pixels = list(image.getdata())
+    color_counts = Counter()
+
+    for pixel in pixels:
+        if len(pixel) == 4:  # RGBA mode
+            r, g, b, a = pixel
+            if a == 0:  # Skip fully transparent pixels
+                continue
+        else:
+            r, g, b = pixel
+
+        h, s, l = rgb_to_hsl(r, g, b)
+        color_class = classify_hsl(h, s, l)
+        color_counts[color_class] += 1
+
+    total_pixels = sum(color_counts.values())
+    if total_pixels == 0:
+        print("No visible pixels found in the image.")
+        return
+
+    dominant_colors = color_counts.most_common(3)
+    return dominant_colors
+   
