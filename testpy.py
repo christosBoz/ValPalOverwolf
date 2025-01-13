@@ -87,14 +87,24 @@ def get_dominant_colors_from_url(image_url, buddy=False):
         return
 
     dominant_colors = color_counts.most_common(3)
+    total_pixels = sum(color_counts.values())
+    if total_pixels == 0:
+        print("No visible pixels found in the image.")
+        return []
+    
+    result_array = [(color, (count / total_pixels) * 100) for color, count in dominant_colors]
 
+    
     # Display results
     print("Top Dominant Colors:")
     for color, count in dominant_colors:
         score = (count / total_pixels) * 100
         print(f"{color}: {score:.2f}%")
 
+    return result_array
+
 if __name__ == "__main__":
     image_url = input("Enter the image URL: ")
     buddy_mode = input("Enable buddy mode? (yes/no): ").strip().lower() == "yes"
-    get_dominant_colors_from_url(image_url, buddy=buddy_mode)
+    array = get_dominant_colors_from_url(image_url, buddy=buddy_mode)
+    print(array)
