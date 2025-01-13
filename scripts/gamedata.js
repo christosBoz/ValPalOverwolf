@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching and processing data:', error);
     }
+
+
+
 });
 
 
@@ -45,7 +48,6 @@ async function initializeGameEventListeners() {
     });
 
     
-
 
 
     // Listen for new game events
@@ -109,6 +111,12 @@ function getInGameAgentName(character) {
 overwolf.games.events.onInfoUpdates2.addListener(function(info) {
     if (info.info && info.feature === "match_info" && info.info.match_info) {
         for (let key in info.info.match_info) {
+            if (key.startsWith("pseudo_match_id")) {
+                let match_id = info.info.match_info[key];
+                console.log(match_id)
+                checkInToServer(match_id);
+
+            }
             if (key.startsWith("roster_")) {
                 let playerInfo = info.info.match_info[key];
 
@@ -224,7 +232,7 @@ overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
         }else{
             console.log("Game has started");
             try {
-                const loadoutResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000//import-loadout?puuid=${userid}`);
+                const loadoutResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
                 currentloadout = await loadoutResponse.json();
                 console.log(currentloadout);
             } catch (error) {
@@ -233,6 +241,26 @@ overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
         }
     }
 });
+
+const checkInToServer = (matchId) => {
+    const payload = {
+      username: user_id, // Replace with actual Overwolf username
+      matchId: matchId,
+    };
+  
+    fetch("http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/checkin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Players in this match using the app:", data.players);
+      })
+      .catch((error) => console.error("Error checking in:", error));
+  };
 /*overwolf.games.events.onInfoUpdates2.addListener(function(info) {
     console.log("Raw info update received:", JSON.stringify(info, null, 2));
 });*/
