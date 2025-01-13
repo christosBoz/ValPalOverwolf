@@ -13,6 +13,10 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
+body {
+    padding-top: 80px; /* Adjust depending on header height */
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -28,8 +32,46 @@ html, body {
     padding: 20px;
 }
 
+.intro {
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+}
+
+.highlight{
+    color: #ff5252;
+}
+
+.title{
+    height: 100vh;                  /* Full viewport height */
+    display: flex;                   /* Use flexbox */
+    flex-direction: column;          /* Stack elements vertically */
+    justify-content: flex-start;     /* Align content to the top */
+    align-items: center;             /* Center the content horizontally */
+    padding-top: 120px;         /* Make space for the fixed header */
+}
+
+.sticky-header{
+    position: fixed;   /* Fix the header to the top of the page */
+    top: 0;            /* Position at the very top */
+    left: 0;           /* Align to the left */
+    width: 100%;       /* Full width */
+    background-color: #1b191a;  /* Dark background */
+    color: white;      /* White text */
+    padding: 20px 0;   /* Padding for the header */
+    text-align: center;  /* Center align the text */
+    z-index: 1000;     /* Ensure it stays above other content */
+}
+
+.description{
+    font-size: 1.5rem;               /* Smaller text size for the description */
+    color: white;                    /* White color for the description */
+    text-align: center;              /* Center-align the description */
+    margin-top: 20px;                /* Adds space between the heading and description */
+}
+
 /* Different background colors for each section */
-#section1 { background-color: lightblue; }
-#section2 { background-color: lightcoral; }
-#section3 { background-color: lightgreen; }
-#section4 { background-color: lightgoldenrodyellow; }
+#section1 { background-color: #1b191a; }
+#section2 { background-color: #1b191a; }
+#section3 { background-color: #1b191a; }
+#section4 { background-color: #1b191a; }
