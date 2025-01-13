@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(weaponsOnly)
 
     const fancySearch = document.querySelector('.search_input');
+    const colorPanel = document.querySelector('.colorPanel')
     document.querySelector('[data-filter="Buddies"]').addEventListener('click', () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
@@ -148,6 +149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
+    setUpColorPanel(buddiesOnly);
     console.log("content has been loaded")
 
     
@@ -317,9 +319,19 @@ async function renderBuddiesGrid(buddiesOnly) {
         buddyName.innerHTML = b.Name;
         const buddyImage = document.createElement('img');
         buddyImage.src = b.ImageURL;
+
+        const buddyColors = document.createElement('div');
+        buddyColors.className = "DominantColors";
+
+        // Store each dominant color as a data attribute on the div
+        b["Dominant Colors"].forEach((color, index) => {
+            buddyColors.setAttribute(`data-color-${index}`, `${color[0]} (${color[1].toFixed(2)}%)`);
+        });
+
    
         buddyDiv.appendChild(buddyImage);
         buddyDiv.appendChild(buddyName);
+        buddyDiv.appendChild(buddyColors);
         skinGrid.appendChild(buddyDiv);
 
     });
@@ -327,6 +339,8 @@ async function renderBuddiesGrid(buddiesOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
+    const colorMenu = document.querySelector('.colorPanel');
+    colorMenu.style.visibility = 'visible';
     
 }
 
@@ -516,6 +530,33 @@ function setupFilter(weaponsOnly) {
         });
     });
 }
+
+function setUpColorPanel(buddiesOnly) {
+    const colorItems = document.querySelectorAll('.colorPanel .colorItem'); // Select all color items
+
+    // Function to apply the box shadow effect to the selected color
+    function applyBoxShadow(selectedItem) {
+        // Reset box-shadow for all items first
+        colorItems.forEach(item => {
+            item.style.boxShadow = ''; // Remove box shadow
+        });
+
+        // Apply box-shadow to the selected item
+        const selectedColor = selectedItem.getAttribute('data-color');
+        selectedItem.style.boxShadow = `0 0 10px 2px ${selectedColor}`;
+    }
+
+    // Add event listeners to all color items
+    colorItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            // Remove box-shadow from all items and then apply to the clicked item
+            applyBoxShadow(event.target);
+        });
+    });
+}
+
+
+
 
 
 

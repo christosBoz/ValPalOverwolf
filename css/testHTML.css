@@ -1,3 +1,7 @@
+* {
+  background-color: grey;
+}
+
 .container {
     position: relative;
     box-sizing: border-box;
@@ -83,3 +87,48 @@
     fill: white;
     font-size: 1.3em;
   }
+  .colorPanel {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+}
+
+.colorItem {
+    cursor: pointer;
+    padding: 8px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    transition: color 0.3s ease;
+    border-radius: 4px;
+}
+
+.colorItem:hover {
+    color: #bf3d3d;
+}
+
+.colorItem.selected {
+    color: #bf3d3d;
+}
+
+/* Add a pseudo-element for the underline */
+.colorItem::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #bf3d3d;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.colorItem.selected::after {
+    width: 100%; /* Underline width to match the text */
+    left: 0;
+}
