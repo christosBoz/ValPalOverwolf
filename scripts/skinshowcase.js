@@ -296,6 +296,8 @@ async function renderWeaponGrid(weaponsOnly) {
     vpLogo.src = "img/vpimg.png";
     // totalCounterDiv.appendChild(vpLogo);
     console.log('Total Counter:', totalCounter);
+    const colorMenu = document.querySelector('.colorPanel');
+    colorMenu.style.visibility = 'hidden';
 
 
 
@@ -370,6 +372,8 @@ async function renderSprayGrid(spraysOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
+    const colorMenu = document.querySelector('.colorPanel');
+    colorMenu.style.visibility = 'hidden';
 }
 
 
@@ -398,6 +402,8 @@ async function renderCardGrid(cardsOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
+    const colorMenu = document.querySelector('.colorPanel');
+    colorMenu.style.visibility = 'hidden';
     
 }
 
@@ -533,27 +539,69 @@ function setupFilter(weaponsOnly) {
 
 function setUpColorPanel(buddiesOnly) {
     const colorItems = document.querySelectorAll('.colorPanel .colorItem'); // Select all color items
+    let selectedColors = [];
 
-    // Function to apply the box shadow effect to the selected color
+    // Function to apply the gradient glow effect to the selected color
     function applyBoxShadow(selectedItem) {
-        // Reset box-shadow for all items first
-        colorItems.forEach(item => {
-            item.style.boxShadow = ''; // Remove box shadow
-        });
-
-        // Apply box-shadow to the selected item
+        // Grab the color from the data-color attribute
         const selectedColor = selectedItem.getAttribute('data-color');
-        selectedItem.style.boxShadow = `0 0 10px 2px ${selectedColor}`;
+
+        // Check if the "All" item is clicked
+        if (selectedColor === 'all') {
+            // If "All" is clicked, remove the selected class from all items and reset glow
+            colorItems.forEach(item => {
+                item.classList.remove('selected');
+                item.style.removeProperty('--glow-color');
+            });
+            selectedColors = []; // Clear selected colors
+        } else {
+            // If a specific color is clicked, toggle the 'selected' class
+            selectedItem.classList.toggle('selected');
+
+            // Apply or remove the glow effect based on the selection state
+            if (selectedItem.classList.contains('selected')) {
+                selectedItem.style.setProperty('--glow-color', selectedColor); // Apply glow color
+                if (!selectedColors.includes(selectedColor)) {
+                    selectedColors.push(selectedColor); // Add color to selectedColors
+                }
+            } else {
+                selectedItem.style.removeProperty('--glow-color'); // Remove glow color
+                selectedColors = selectedColors.filter(color => color !== selectedColor); // Remove color from selectedColors
+            }
+        }
     }
+    
+    
 
     // Add event listeners to all color items
     colorItems.forEach(item => {
         item.addEventListener('click', (event) => {
-            // Remove box-shadow from all items and then apply to the clicked item
             applyBoxShadow(event.target);
+            console.log(selectedColors)
+
+            // Filter and sort the buddies based on the first color in "Dominant Colors"
+            const filteredBuddies = buddiesOnly
+                .filter(buddy => {
+                    const [color, intensity] = buddy["Dominant Colors"][0]; // Get the first color and intensity
+                    console.log(color)
+                    return selectedColors.length === 0 || selectedColors.some(selectedColor => selectedColor.toLowerCase() === color.toLowerCase());
+                })
+                .sort((a, b) => {
+                    // Sort by the intensity of the first color in "Dominant Colors" (descending)
+                    const intensityA = a["Dominant Colors"][0][1];
+                    const intensityB = b["Dominant Colors"][0][1];
+                    return intensityB - intensityA;
+                });
+
+            console.log(filteredBuddies); // For debugging, log the filtered and sorted buddies
+            // Call your render function here to display the filtered buddies
+            renderBuddiesGrid(filteredBuddies);
         });
     });
+
 }
+
+
 
 
 

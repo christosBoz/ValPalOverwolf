@@ -541,7 +541,6 @@ html, body {
     width: fit-content;
 }
 
-/* Ensure color items look the same, but no underline initially */
 .colorPanel .colorItem {
     cursor: pointer;
     padding: 10px;
@@ -553,5 +552,34 @@ html, body {
     transition: color 0.3s ease;
 }
 
+.colorPanel .colorItem:hover {
+    color: #bf3d3d;
+}
 
+.colorPanel .colorItem.selected {
+    color: #bf3d3d;
+}
+
+/* Pseudo-element for glow effect */
+.colorPanel .colorItem.selected::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Position it just below the color item */
+    left: 0;
+    width: 100%;
+    height: 10px; /* Height of the glow */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, var(--glow-color, #bf3d3d) 100%); /* Default gradient */
+    filter: blur(5px); /* Add a blur effect to make the glow softer */
+    transition: all 0.3s ease;
+}
+
+/* Make sure the glow doesn't appear when the item is not selected */
+.colorPanel .colorItem::after {
+    display: none; /* Hide the glow by default */
+}
+
+/* Make sure the glow appears when selected */
+.colorPanel .colorItem.selected::after {
+    display: block; /* Display the glow when selected */
+}
 
