@@ -541,6 +541,12 @@ function setUpColorPanel(buddiesOnly) {
     const colorItems = document.querySelectorAll('.colorPanel .colorItem'); // Select all color items
     let selectedColor = null; // Keep track of the single selected color
 
+    // Optional color mapping for renamed colors
+    const colorMapping = {
+        blue: 'cyan', // Map old 'blue' to 'cyan'
+        cyan: 'cyan' // Ensure 'cyan' is recognized
+    };
+
     // Function to apply the gradient glow effect to the selected color
     function applyBoxShadow(selectedItem) {
         // Grab the color from the data-color attribute
@@ -573,16 +579,30 @@ function setUpColorPanel(buddiesOnly) {
             // Filter and sort the buddies based on the selected color
             const filteredBuddies = buddiesOnly
                 .filter(buddy => {
-                    // Check if the selected color is in any of the buddy's 3 dominant colors
+                    // Convert the selected color to lowercase for comparison
+                    const lowerSelectedColor = selectedColor?.toLowerCase();
+
+                    // Filter buddies by matching any of their dominant colors
                     return (
                         !selectedColor || // Show all buddies if no color is selected
-                        buddy["Dominant Colors"].some(([color]) => color.toLowerCase() === selectedColor.toLowerCase())
+                        buddy["Dominant Colors"].some(([color]) => {
+                            const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase(); // Map color if necessary
+                            return mappedColor === lowerSelectedColor;
+                        })
                     );
                 })
                 .sort((a, b) => {
                     // Sort by the intensity of the selected color in "Dominant Colors" (descending)
-                    const intensityA = a["Dominant Colors"].find(([color]) => color.toLowerCase() === selectedColor?.toLowerCase())?.[1] || 0;
-                    const intensityB = b["Dominant Colors"].find(([color]) => color.toLowerCase() === selectedColor?.toLowerCase())?.[1] || 0;
+                    const intensityA = a["Dominant Colors"].find(([color]) => {
+                        const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase();
+                        return mappedColor === selectedColor?.toLowerCase();
+                    })?.[1] || 0;
+
+                    const intensityB = b["Dominant Colors"].find(([color]) => {
+                        const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase();
+                        return mappedColor === selectedColor?.toLowerCase();
+                    })?.[1] || 0;
+
                     return intensityB - intensityA;
                 });
 
@@ -592,6 +612,7 @@ function setUpColorPanel(buddiesOnly) {
         });
     });
 }
+
 
 
 
