@@ -1,4 +1,3 @@
-let user_id = '';
 let playerLocked = false;
 let lastWonRounds = 0;
 let currentloadout = ''
@@ -111,12 +110,6 @@ function getInGameAgentName(character) {
 overwolf.games.events.onInfoUpdates2.addListener(function(info) {
     if (info.info && info.feature === "match_info" && info.info.match_info) {
         for (let key in info.info.match_info) {
-            if (key.startsWith("pseudo_match_id")) {
-                let match_id = info.info.match_info[key];
-                console.log(match_id)
-                checkInToServer(match_id);
-
-            }
             if (key.startsWith("roster_")) {
                 let playerInfo = info.info.match_info[key];
 
@@ -154,7 +147,13 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
             }
         }
     }
-    // ------------------------------------------------------------------------------------------------
+
+    // Listen for match_start event
+    if (info.info && info.feature === "match_info" && info.info.match_info.match_start) {
+        console.log("Match started"); // Log match started when the match begins
+    }
+
+    // Check for round phase updates
     if (info.info && info.feature === "match_info" && info.info.match_info.round_phase) {
         let roundPhase = info.info.match_info.round_phase;
 
@@ -165,6 +164,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
         }
     }
 
+    // Check for score updates
     if (info.info && info.feature === "match_info" && info.info.match_info.score) {
         let scoreData = JSON.parse(info.info.match_info.score);
         let currentWonRounds = scoreData.won;
@@ -173,14 +173,13 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
         if (currentWonRounds > lastWonRounds) {
             console.log("Round won!");
             soundFileName = "ara.mp3";
-            playSoundByName(soundFileName, 0.4
-            );
+            playSoundByName(soundFileName, 0.4);
             lastWonRounds = currentWonRounds; // Update the won rounds tracker
         }
     }
-
-
 });
+
+
 
 // Function to send loadout update to the backend
 async function sendLoadoutUpdate(loadoutData) {
@@ -202,43 +201,43 @@ async function sendLoadoutUpdate(loadoutData) {
     }
 }
 
-// Listen for changes in running game status
-overwolf.games.onGameInfoUpdated.addListener(function(info) {
-    if (info && info.gameInfo && info.gameInfo.isRunning) {
-        //console.log("A new game has started: ", info.gameInfo);
-        if (info.gameInfo.id === 21640) { // 21640 is the game_id for Valorant
-            initializeGameEventListeners();
-        }
-    } else {
-        console.log("Game has stopped or switched.");
-    }
-});
+
 
 overwolf.games.events.onNewEvents.addListener(function(event) {
     console.log("Raw event data:", event);
 });
 
-overwolf.games.events.onInfoUpdates2.addListener(async function(info) {
-    if (info.info && info.info.match_info) {
-        console.log("Map detected:", info.info.match_info.map);
+overwolf.games.events.onNewEvents.addListener(async function(event) {
+    console.log("New event detected:", event);
 
-        let map = info.info.match_info.map;
+    if (event.events && event.events.length > 0) {
+        event.events.forEach(async (gameEvent) => {
+            switch (gameEvent.name) {
+                case "match_start":
+                    console.log("Match started");
+                    const matchresponse = await fetch((`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/get-matchid?puuid=${userid}`))
+                    var match = await matchresponse.json()
+                    var matchid = match["MatchID"]
+                    console.log(matchid)
+                    checkInToServer(matchid)
+                    try {
+                        const loadoutResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
+                        currentloadout = await loadoutResponse.json();
+                        console.log("Loaded loadout:", currentloadout);
+                    } catch (error) {
+                        console.error('Error fetching loadout:', error);
+                    }
+                    break;
 
-        if (map === null) {
-            console.log("Game has been dodged or ended");
-            sendLoadoutUpdate(currentloadout);
-        }else if (map === undefined) {
-            console.log("Game is ongoing");
-        }else{
-            console.log("Game has started");
-            try {
-                const loadoutResponse = await fetch(`http://ec2-3-18-187-99.us-east-2.compute.amazonaws.com:5000/import-loadout?puuid=${userid}`);
-                currentloadout = await loadoutResponse.json();
-                console.log(currentloadout);
-            } catch (error) {
-                console.error('Error fetching loadout:', error);
+                case "match_end":
+                    console.log("Match ended. Sending loadout to server...");
+                    sendLoadoutUpdate(currentloadout);
+                    break;
+
+                default:
+                    console.log("Unhandled event:", gameEvent.name);
             }
-        }
+        });
     }
 });
 
