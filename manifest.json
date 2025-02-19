@@ -18,16 +18,17 @@
         "GameEvents",
         "FileSystem"
     ],
+
+    "hotkeys": {
+            "toggle_app": {
+                "title": "Toggle App",
+                "action": "toggle_window",
+                "default": "Alt+V",
+                "per_game": []
+              }
+        },
     "data": {
         "start_window": "MainWindow",
-        "hotkeys": {
-            "sample_app_showhide": {
-                "title": "Show/Hide In-Game Window",
-                "isPassthrough": false,
-                "action-type": "toggle",
-                "default": "Alt+V"
-            }
-        },
         "windows": {
             "MainWindow": {
                 "file": "loading.html",

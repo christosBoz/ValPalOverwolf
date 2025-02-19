@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;  /* Hide the scroll bar */
+    font-family: Arial, sans-serif;
+    background-color: #1b191a;
+}
+
+body {
+    padding-top: 80px; /* Adjust depending on header height */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sticky-header{
+    position: fixed;   /* Fix the header to the top of the page */
+    top: 0;            /* Position at the very top */
+    left: 0;           /* Align to the left */
+    width: 100%;       /* Full width */
+    background-color: #1b191a;  /* Dark background */
+    color: white;      /* White text */
+    padding: 20px 0;   /* Padding for the header */
+    text-align: center;  /* Center align the text */
+    z-index: 1000;     /* Ensure it stays above other content */
+    border-bottom: 2px solid red;
+}
+
+
+.Welcome {
+    text-align: center;
+    margin: 2vh auto;
+    padding: 2vh;
+    background-color: #1e1e2f;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+}
+
+.Welcome h1 {
+    font-size: 3vw;
+    /* color: #f4c542; Highlighted color */
+}
+
+.Welcome p {
+    font-size: 1.5vw;
+    line-height: 1.8;
+    color: #dcdcdc;
+}
+
+.highlight {
+    /* color: #f4c542; */
+    font-weight: bold;
+}
+
