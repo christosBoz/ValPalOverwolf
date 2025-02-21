@@ -1,6 +1,8 @@
 let playerLocked = false;
 let lastWonRounds = 0;
 let currentloadout = ''
+let currentplayers = ''
+let matchInfoData = null; // Variable to store match_info data
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -151,6 +153,7 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
     // Listen for match_start event
     if (info.info && info.feature === "match_info" && info.info.match_info.match_start) {
         console.log("Match started"); // Log match started when the match begins
+        scoreboard = JSON.parse(info.info.match_info.scoreboard);
     }
 
     // Check for round phase updates
@@ -175,6 +178,19 @@ overwolf.games.events.onInfoUpdates2.addListener(function(info) {
             soundFileName = "ara.mp3";
             playSoundByName(soundFileName, 0.4);
             lastWonRounds = currentWonRounds; // Update the won rounds tracker
+        }
+    }
+
+});
+
+overwolf.games.events.onInfoUpdates2.addListener(function (info) {
+    if (info.info && info.feature === "match_info" && info.info.match_info) {
+        // Check if the scoreboard data is present in the update
+        const hasScoreboard = Object.keys(info.info.match_info).some(key => key.startsWith("scoreboard"));
+
+        if (hasScoreboard) {
+            matchInfoData = info.info.match_info; // Store match_info data only when scoreboard is present
+            console.log("Updated match_info (with scoreboard):", matchInfoData);
         }
     }
 });
@@ -208,6 +224,7 @@ overwolf.games.events.onNewEvents.addListener(function(event) {
 });
 
 overwolf.games.events.onNewEvents.addListener(async function(event) {
+
     console.log("New event detected:", event);
 
     if (event.events && event.events.length > 0) {
@@ -233,6 +250,22 @@ overwolf.games.events.onNewEvents.addListener(async function(event) {
                     console.log("Match ended. Sending loadout to server...");
                     sendLoadoutUpdate(currentloadout);
                     break;
+                case "scoreboard_screen":
+                    if (gameEvent.data === "open") {
+                        console.log("Scoreboard opened!");
+                        if (matchInfoData) {
+                            try {
+                                // Parse and log the scoreboard data
+                                const scoreboardData = JSON.parse(matchInfoData["scoreboard_0"]);
+                                console.log("Scoreboard Data:", scoreboardData);
+                            } catch (error) {
+                                console.error("Error parsing scoreboard data:", error);
+                            }
+                        } else {
+                            console.log("No scoreboard data available.");
+                        }
+                    }
+                    break;
 
                 default:
                     console.log("Unhandled event:", gameEvent.name);
@@ -256,6 +289,7 @@ const checkInToServer = (matchId) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        currentplayers = data.players
         console.log("Players in this match using the app:", data.players);
       })
       .catch((error) => console.error("Error checking in:", error));

@@ -99,9 +99,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     renderWeaponGrid(weaponsOnly);
     console.log(weaponsOnly)
+    const slider = document.getElementById("colorSlider");
+    if (slider) {
+        slider.addEventListener("input", logSliderValue);
+    }
 
     const fancySearch = document.querySelector('.search_input');
-    const colorPanel = document.querySelector('.colorPanel')
     document.querySelector('[data-filter="Buddies"]').addEventListener('click', () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
@@ -149,7 +152,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     setupSearch(weaponsOnly);
     setupFilter(weaponsOnly);
-    setUpColorPanel(buddiesOnly);
     console.log("content has been loaded")
 
     
@@ -296,13 +298,40 @@ async function renderWeaponGrid(weaponsOnly) {
     vpLogo.src = "img/vpimg.png";
     // totalCounterDiv.appendChild(vpLogo);
     console.log('Total Counter:', totalCounter);
-    const colorMenu = document.querySelector('.colorPanel');
-    colorMenu.style.visibility = 'hidden';
 
 
 
 
 }
+
+// Function to log the min and max slider values
+// Function to enforce range constraints and log values
+function logSliderValue() {
+    const colorSlider = document.getElementById("colorSlider");
+    if (!colorSlider) return;
+
+    const minRange = colorSlider.children[0];
+    const maxRange = colorSlider.children[1];
+
+    let minValue = parseInt(minRange.value);
+    let maxValue = parseInt(maxRange.value);
+
+    // Prevent min slider from exceeding max slider
+    if (minValue > maxValue) {
+        minRange.value = maxValue;
+    }
+
+    // Prevent max slider from going below min slider
+    if (maxValue < minValue) {
+        maxRange.value = minValue;
+    }
+
+    console.log("Min range value:", minRange.value);
+    console.log("Max range value:", maxRange.value);
+}
+
+
+
 
 async function renderBuddiesGrid(buddiesOnly) {
     const skinGrid = document.querySelector('.skinGrid');
@@ -325,10 +354,6 @@ async function renderBuddiesGrid(buddiesOnly) {
         const buddyColors = document.createElement('div');
         buddyColors.className = "DominantColors";
 
-        // Store each dominant color as a data attribute on the div
-        b["Dominant Colors"].forEach((color, index) => {
-            buddyColors.setAttribute(`data-color-${index}`, `${color[0]} (${color[1].toFixed(2)}%)`);
-        });
 
    
         buddyDiv.appendChild(buddyImage);
@@ -341,8 +366,7 @@ async function renderBuddiesGrid(buddiesOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
-    const colorMenu = document.querySelector('.colorPanel');
-    colorMenu.style.visibility = 'visible';
+
     
 }
 
@@ -372,7 +396,6 @@ async function renderSprayGrid(spraysOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
-    const colorMenu = document.querySelector('.colorPanel');
     colorMenu.style.visibility = 'hidden';
 }
 
@@ -402,8 +425,6 @@ async function renderCardGrid(cardsOnly) {
     skinGrid.style.visibility = 'visible';
     const filterMenu = document.querySelector('.filterDrop');
     filterMenu.style.visibility = 'hidden';
-    const colorMenu = document.querySelector('.colorPanel');
-    colorMenu.style.visibility = 'hidden';
     
 }
 
@@ -537,81 +558,6 @@ function setupFilter(weaponsOnly) {
     });
 }
 
-function setUpColorPanel(buddiesOnly) {
-    const colorItems = document.querySelectorAll('.colorPanel .colorItem'); // Select all color items
-    let selectedColor = null; // Keep track of the single selected color
-
-    // Optional color mapping for renamed colors
-    const colorMapping = {
-        blue: 'cyan', // Map old 'blue' to 'cyan'
-        cyan: 'cyan' // Ensure 'cyan' is recognized
-    };
-
-    // Function to apply the gradient glow effect to the selected color
-    function applyBoxShadow(selectedItem) {
-        // Grab the color from the data-color attribute
-        const newSelectedColor = selectedItem.getAttribute('data-color');
-
-        // Reset all items first
-        colorItems.forEach(item => {
-            item.classList.remove('selected');
-            item.style.removeProperty('--glow-color');
-        });
-
-        // If "All" is clicked, clear the selection
-        if (newSelectedColor === 'all') {
-            selectedColor = null; // Clear the selected color
-        } else {
-            // Set the selected color
-            selectedItem.classList.add('selected');
-            selectedItem.style.setProperty('--glow-color', newSelectedColor); // Apply glow color
-            selectedColor = newSelectedColor; // Update the selected color
-        }
-    }
-
-    // Add event listeners to all color items
-    colorItems.forEach(item => {
-        item.addEventListener('click', (event) => {
-            applyBoxShadow(event.target);
-
-            console.log(`Selected color: ${selectedColor}`);
-
-            // Filter and sort the buddies based on the selected color
-            const filteredBuddies = buddiesOnly
-                .filter(buddy => {
-                    // Convert the selected color to lowercase for comparison
-                    const lowerSelectedColor = selectedColor?.toLowerCase();
-
-                    // Filter buddies by matching any of their dominant colors
-                    return (
-                        !selectedColor || // Show all buddies if no color is selected
-                        buddy["Dominant Colors"].some(([color]) => {
-                            const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase(); // Map color if necessary
-                            return mappedColor === lowerSelectedColor;
-                        })
-                    );
-                })
-                .sort((a, b) => {
-                    // Sort by the intensity of the selected color in "Dominant Colors" (descending)
-                    const intensityA = a["Dominant Colors"].find(([color]) => {
-                        const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase();
-                        return mappedColor === selectedColor?.toLowerCase();
-                    })?.[1] || 0;
-
-                    const intensityB = b["Dominant Colors"].find(([color]) => {
-                        const mappedColor = colorMapping[color.toLowerCase()] || color.toLowerCase();
-                        return mappedColor === selectedColor?.toLowerCase();
-                    })?.[1] || 0;
-
-                    return intensityB - intensityA;
-                });
-
-            console.log(filteredBuddies); // Log the filtered and sorted buddies
-            // Call your render function here to display the filtered buddies
-            renderBuddiesGrid(filteredBuddies);
-        });
-    });
-}
 
 
 
