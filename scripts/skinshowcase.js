@@ -307,6 +307,8 @@ async function renderWeaponGrid(weaponsOnly) {
 // Function to log the min and max slider values
 // Function to enforce range constraints and log values
 function logSliderValue() {
+    const buddyGrid = document.querySelector('.skinGrid');
+
     const colorSlider = document.getElementById("colorSlider");
     if (!colorSlider) return;
 
@@ -328,9 +330,19 @@ function logSliderValue() {
 
     console.log("Min range value:", minRange.value);
     console.log("Max range value:", maxRange.value);
+
+    const buddies = Array.from(buddyGrid.querySelectorAll('.buddy-container'));
+
+    buddies.forEach(buddy => {
+        const dominantColor = parseInt(buddy.dataset.dominantColor);
+        
+        if (dominantColor >= minValue && dominantColor <= maxValue) {
+            buddy.style.display = "block"; // Show valid buddies
+        } else {
+            buddy.style.display = "none"; // Hide those outside the range
+        }
+    });
 }
-
-
 
 
 async function renderBuddiesGrid(buddiesOnly) {
@@ -341,26 +353,26 @@ async function renderBuddiesGrid(buddiesOnly) {
     skinGrid.style.visibility = 'hidden';
 
     buddiesOnly.forEach(b => {
-        // console.log(b)
         const buddyDiv = document.createElement('div');
         buddyDiv.classList.add('buddy-container');
-
+        
+        // Store DominantColors as a data attribute
+        buddyDiv.dataset.dominantColor = b["Dominant Colors"];;
+    
         const buddyName = document.createElement('div');
         buddyName.className = "buddyName";
         buddyName.innerHTML = b.Name;
+    
         const buddyImage = document.createElement('img');
         buddyImage.src = b.ImageURL;
-
+    
         const buddyColors = document.createElement('div');
         buddyColors.className = "DominantColors";
-
-
-   
+    
         buddyDiv.appendChild(buddyImage);
         buddyDiv.appendChild(buddyName);
         buddyDiv.appendChild(buddyColors);
         skinGrid.appendChild(buddyDiv);
-
     });
 
     skinGrid.style.visibility = 'visible';
@@ -702,17 +714,49 @@ function sortByDirectionBuddies(Direction) {
         buddyGrid.innerHTML = '';
         sortedBuddies.forEach(buddy => buddyGrid.appendChild(buddy));
     };
+
+    const sortGridHue = (order) => {
+        const buddies = Array.from(buddyGrid.querySelectorAll('.buddy-container'));
+    
+        const sortedBuddies = buddies.sort((a, b) => {
+            const HueA = a.getAttribute('data-dominant-color').trim();
+            const HueB = b.getAttribute('data-dominant-color').trim();
+    
+            
+    
+            // Sort based on the rank of the tiers
+            if (order === 'asc') {
+                return HueA - HueB; // Ascending order
+            } else if (order === 'desc') {
+                return HueB - HueA; // Descending order
+            }
+            return 0; // No sorting
+        });
+    
+        // Clear the grid and re-append sorted elements
+        buddyGrid.innerHTML = '';
+        sortedBuddies.forEach(buddy => buddyGrid.appendChild(buddy));
+    };
+
+
     const selectedValue = sortDrop.value;
 
     console.log(selectedValue)
     if (selectedValue === "Alph") {
         if (Direction === "UP") {
-            sortGridAlph('asc');
+            sortGridHue('asc');
             console.log("sorting in asc order")
         }else if (Direction === "DOWN") {
-            sortGridAlph('desc');
+            sortGridHue('desc');
         }
-    } 
+    }else if (selectedValue === "Color") {
+        if (Direction === "UP") {
+            sortGridHue('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridHue('desc');
+        }
+    }
 
 }
 function sortByDirectionSprays(Direction) {
@@ -780,14 +824,21 @@ function sortByDirectionCards(Direction) {
     const selectedValue = sortDrop.value;
 
     console.log(selectedValue)
-    if (selectedValue === "Alph") {
+     if (selectedValue === "Alph") {
         if (Direction === "UP") {
             sortGridAlph('asc');
             console.log("sorting in asc order")
         }else if (Direction === "DOWN") {
             sortGridAlph('desc');
         }
-    } 
+    } else if (selectedValue === "Rarity") {
+        if (Direction === "UP") {
+            sortGridRarity('asc');
+            console.log("sorting in asc order")
+        }else if (Direction === "DOWN") {
+            sortGridRarity('desc');
+        }
+    }
 }
 
 
