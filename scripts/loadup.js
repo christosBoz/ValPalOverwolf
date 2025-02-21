@@ -1,8 +1,13 @@
 let puuid = '';
 document.addEventListener('DOMContentLoaded', async () => {
     const activationStatusPre = document.getElementById('activation-status');
+    const loadingBar = document.getElementById('loading-bar');
     
     try {
+
+        //update progress bar to 10% when script starts
+        updateProgressBar(10);
+
         // Adjust the path to your actual lockfile path
         const lockfilePath = overwolf.io.paths.localAppData + '/Riot Games/Riot Client/Config/lockfile'; // Change this to the actual path
         const shooterGameLog = overwolf.io.paths.localAppData + '/VALORANT/Saved/Logs/ShooterGame.log';
@@ -22,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             overwolf.io.readTextFile(shooterGameLog, { encoding: 'utf8' }, (result) => {
                 if (result.success) {
                     resolve(result.content);
+                    updateProgressBar(20); // update progress bar to 20% after lockfile read
                 } else {
                     reject(new Error('Failed to read shootergame: ' + result.error));
                 }
@@ -52,6 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const sessionData = await sessionResponse.json();
+        updateProgressBar(50); // update progress bar to 50% after fetching session data
 
         // Fetch entitlements token from the local endpoint
         const entitlementsResponse = await fetch(`https://127.0.0.1:${port}/entitlements/v1/token`, {
@@ -64,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const entitlementsData = await entitlementsResponse.json();
+        updateProgressBar(60); // update progress bar to 60% after fetching entitlements
         console.log(entitlementsData);
 
         // Send the lockfile content, session data, and entitlements token to the Python server
@@ -85,10 +93,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const result = await response.json();
-        activationStatusPre.textContent = `Success: ${JSON.stringify(result, null, 2)}`;
+        //activationStatusPre.textContent = `Success: ${JSON.stringify(result, null, 2)}`;
 
         puuid = result.puuid;
         localStorage.setItem('puuid', puuid);
+
+        updateProgressBar(80); // Update progress to 80% after server response
 
         // Refresh inventory if not already available in localStorage
         const userInventory = localStorage.getItem(`${puuid}_inventory`);
@@ -111,7 +121,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Redirect if inventory is already present
             window.location.href = 'index.html';
         }
+
+        //updateProgressBar(100); // Update progress to 100% when everything is done
     } catch (error) {
+        console.log(error);
         activationStatusPre.textContent = `Error: ${error.message}`;
     }
 });
+
+// function to update loading bar progress
+function updateProgressBar(value) {
+    const loadingBar = document.getElementById('loading-bar');
+    loadingBar.value = value;
+}
