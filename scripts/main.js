@@ -592,9 +592,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         popup.style.display = "flex"
     });
     
- 
-    
-
 
 });
 

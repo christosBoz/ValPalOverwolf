@@ -1,5 +1,5 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
     "type": "WebApp",
     "meta": {
         "name": "Demo App",
@@ -18,12 +18,16 @@
         "GameEvents",
         "FileSystem"
     ],
+"background": {
+    "scripts": ["scripts/background.js"]
+},
+
 
     "hotkeys": {
             "toggle_app": {
                 "title": "Toggle App",
-                "action": "toggle_window",
                 "default": "Alt+V",
+                "passthrough": true,
                 "per_game": []
               }
         },
@@ -34,7 +38,7 @@
                 "file": "loading.html",
                 "transparent": false,
                 "resizable": false,
-                "use_os_windowing": true,
+                "use_os_windowing": false,
                 "size": {
                     "width": 400,
                     "height": 400
@@ -44,6 +48,7 @@
                     "height": 100
                 },
                 "grabMouse": true,  
+                "grab_keyboard_focus": true,
                 "clickthrough": false 
             }
         },

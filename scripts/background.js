@@ -1,3 +1,4 @@
+console.log("Background loaded")
 // Subscribe to Valorant game events
 function subscribeToGameEvents() {
     overwolf.games.events.setRequiredFeatures(["match_start"], (response) => {
@@ -22,10 +23,38 @@ function subscribeToGameEvents() {
       console.log("Match started, but no match ID was found in data:", data);
     }
   }
+// Listen for the hotkey press event
+overwolf.settings.hotkeys.onPressed.addListener((event) => {
+  if (event.name === "toggle_app") {
+      // Get the declared window
+      overwolf.windows.obtainDeclaredWindow("MainWindow", (result) => {
+          if (result.success) {
+              // Check the window's current state
+              overwolf.windows.getWindowState(result.window.id, (stateResult) => {
+                  if (stateResult.success) {
+                      if (stateResult.window_state === "normal" || stateResult.window_state === "maximized") {
+                          // If the window is visible, hide it
+                          overwolf.windows.hide(result.window.id);
+                      } else {
+                          // If the window is hidden, restore it
+                          overwolf.windows.restore(result.window.id);
+                      }
+                  }
+              });
+          } else {
+              console.error("Failed to obtain window:", result);
+          }
+      });
+  }
+});
+
+
+
   
   // Detect when Valorant is running
   function checkForValorant(gameInfo) {
-    const VALORANT_GAME_ID = 21626;
+    // const VALORANT_GAME_ID = 21626;
+    const VALORANT_GAME_ID = 21640;
   
     if (gameInfo && gameInfo.id === VALORANT_GAME_ID && gameInfo.isRunning) {
       console.log("Valorant detected. Subscribing to game events...");
