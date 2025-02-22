@@ -55,6 +55,7 @@
                 "use_os_windowing": false,
                 "show_in_taskbar": false,
                 "size": {
+                    
                     "width": 1,
                     "height": 1
                 }
