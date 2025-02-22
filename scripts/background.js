@@ -1,77 +1,78 @@
-console.log("Background loaded")
-// Subscribe to Valorant game events
-function subscribeToGameEvents() {
-    overwolf.games.events.setRequiredFeatures(["match_start"], (response) => {
-      if (response.success) {
-        console.log("Subscribed to match_start event successfully.");
-        overwolf.games.events.onNewEvents.addListener((event) => {
-          if (event.name === "match_start") {
-            logMatchId(event.data);
-          }
-        });
-      } else {
-        console.error("Failed to subscribe to game events:", response);
-      }
+console.log("✅ Background script loaded!");
+
+// Function to launch the main window
+function launchMainWindow() {
+    overwolf.windows.obtainDeclaredWindow("MainWindow", (result) => {
+        if (result.success) {
+            console.log("🔹 Launching MainWindow...");
+            overwolf.windows.restore(result.window.id);
+        } else {
+            console.error("❌ Failed to obtain MainWindow:", result);
+        }
     });
-  }
-  
-  // Log the match ID
-  function logMatchId(data) {
-    if (data && data.match_id) {
-      console.log("Match started with ID:", data.match_id);
-    } else {
-      console.log("Match started, but no match ID was found in data:", data);
-    }
-  }
-// Listen for the hotkey press event
-overwolf.settings.hotkeys.onPressed.addListener((event) => {
-  if (event.name === "toggle_app") {
-      // Get the declared window
-      overwolf.windows.obtainDeclaredWindow("MainWindow", (result) => {
-          if (result.success) {
-              // Check the window's current state
-              overwolf.windows.getWindowState(result.window.id, (stateResult) => {
-                  if (stateResult.success) {
-                      if (stateResult.window_state === "normal" || stateResult.window_state === "maximized") {
-                          // If the window is visible, hide it
-                          overwolf.windows.hide(result.window.id);
-                      } else {
-                          // If the window is hidden, restore it
-                          overwolf.windows.restore(result.window.id);
-                      }
-                  }
-              });
-          } else {
-              console.error("Failed to obtain window:", result);
-          }
-      });
-  }
+}
+
+// Open the main window on startup
+overwolf.extensions.onAppLaunchTriggered.addListener(() => {
+    console.log("🔄 App launched! Opening MainWindow...");
+    launchMainWindow();
 });
 
+// Ensure the main window opens when Overwolf starts the app
+launchMainWindow();
 
+// Function to toggle MainWindow visibility
+function toggleMainWindow() {
+    overwolf.windows.obtainDeclaredWindow("MainWindow", (result) => {
+        if (result.success) {
+            const windowId = result.window.id;
 
-  
-  // Detect when Valorant is running
-  function checkForValorant(gameInfo) {
-    // const VALORANT_GAME_ID = 21626;
-    const VALORANT_GAME_ID = 21640;
-  
-    if (gameInfo && gameInfo.id === VALORANT_GAME_ID && gameInfo.isRunning) {
-      console.log("Valorant detected. Subscribing to game events...");
-      subscribeToGameEvents();
+            overwolf.windows.getWindowState(windowId, (stateResult) => {
+                if (stateResult.success) {
+                    console.log(`🔹 Current window state: ${stateResult.window_state}`);
+
+                    if (stateResult.window_state === "normal" || stateResult.window_state === "maximized") {
+                        console.log("🔻 Hiding MainWindow...");
+                        overwolf.windows.hide(windowId);
+                    } else {
+                        console.log("🔺 Restoring MainWindow...");
+                        overwolf.windows.restore(windowId, (restoreResult) => {
+                            if (!restoreResult.success) {
+                                console.error("❌ Failed to restore, trying bringToFront...");
+                                overwolf.windows.bringToFront(windowId);
+                            }
+                        });
+                    }
+                } else {
+                    console.error("❌ Failed to get window state:", stateResult);
+                }
+            });
+        } else {
+            console.error("❌ Failed to obtain MainWindow:", result);
+        }
+    });
+}
+
+// Use Overwolf to listen for global Alt+V keypress
+let isAltPressed = false;
+
+// Track Alt key press
+overwolf.games.inputTracking.onKeyDown.addListener((info) => {
+    if (info.key === "164") { // 18 is the key code for Alt
+        isAltPressed = true;
     }
-  }
-  
-  // Listen for game launch events
-  overwolf.games.onGameInfoUpdated.addListener((info) => {
-    if (info.gameChanged && info.runningChanged) {
-      checkForValorant(info.gameInfo);
+    if (info.key === "86" && isAltPressed) { // 86 is 'V'
+        console.log("🔹 Alt+V pressed! Toggling MainWindow...");
+        toggleMainWindow();
     }
-  });
-  
-  // Initial check for running game
-  overwolf.games.getRunningGameInfo((gameInfo) => {
-    if (gameInfo && gameInfo.isRunning) {
-      checkForValorant(gameInfo);
+});
+
+// Track Alt key release
+overwolf.games.inputTracking.onKeyUp.addListener((info) => {
+    if (info.key === "164") {
+        isAltPressed = false;
     }
-  });
+});
+
+// Enable input tracking
+
