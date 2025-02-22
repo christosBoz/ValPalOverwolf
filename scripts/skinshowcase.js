@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const fancySearch = document.querySelector('.search_input');
+    const colorBar = document.getElementById('colorSlider')
     document.querySelector('[data-filter="Buddies"]').addEventListener('click', () => {
         console.log("working")
         renderBuddiesGrid(buddiesOnly); // Assuming buddyData is the array of buddies
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeCategory = "Buddies";
         setupSearch(buddiesOnly);
         fancySearch.value = "";
+        colorBar.style.visibility = 'visible';
     });
     document.querySelector('[data-filter="Weapons"]').addEventListener('click', () => {
         console.log("working")
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeCategory = "Weapons";
         // setupSearch(weaponsOnly);
         fancySearch.value = "";
+        colorBar.style.visibility = 'hidden';
 
         
     });
@@ -136,6 +139,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeCategory = "Sprays";
         setupSearch(spraysOnly);
         fancySearch.value = "";
+        colorBar.style.visibility = 'hidden';
+
 
     });
     document.querySelector('[data-filter="Cards"]').addEventListener('click', () => {
@@ -147,6 +152,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeCategory = "Cards";
         setupSearch(cardsOnly);
         fancySearch.value = "";
+        colorBar.style.visibility = 'hidden';
+
 
     });
     
