@@ -353,38 +353,89 @@ function logSliderValue() {
 
 
 async function renderBuddiesGrid(buddiesOnly) {
-    const skinGrid = document.querySelector('.skinGrid');
-    // grid-template-columns: repeat(auto-fill, minmax(12%, 1fr));
-    skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(12%, 1fr))";
-    skinGrid.innerHTML = '';
-    skinGrid.style.visibility = 'hidden';
+    
 
-    buddiesOnly.forEach(b => {
-        const buddyDiv = document.createElement('div');
-        buddyDiv.classList.add('buddy-container');
+    try {
+        const response = await fetch("buddiestuff_updated.json");
+        const buddiesData = await response.json();
+
+        // Ensure we are accessing the correct part of the JSON structure
+        const buddiesArray = buddiesData.data; 
+
+        // Create a lookup map using uuid as the key
+        const buddiesMap = new Map();
+        buddiesArray.forEach(b => buddiesMap.set(b.uuid, b.dominantHue));
+
+        const skinGrid = document.querySelector('.skinGrid');
+        skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(12%, 1fr))";
+        skinGrid.innerHTML = '';
+        skinGrid.style.visibility = 'hidden';
+
+        buddiesOnly.forEach(b => {
+            const buddyDiv = document.createElement('div');
+            buddyDiv.classList.add('buddy-container');
+
+            // Match ItemID with the uuid from buddiesData
+            const dominantHue = buddiesMap.get(b.ItemID) ?? "Unknown";
+
+            // Store dominant hue as a data attribute
+            buddyDiv.dataset.dominantColor = dominantHue;  
+
+            const buddyName = document.createElement('div');
+            buddyName.className = "buddyName";
+            buddyName.innerHTML = b.Name;
+
+            const buddyImage = document.createElement('img');
+            buddyImage.src = b.ImageURL;
+
+            const buddyColors = document.createElement('div');
+            buddyColors.className = "DominantColors";
+            // buddyColors.innerText = `Hue: ${dominantHue}`;
+
+            buddyDiv.appendChild(buddyImage);
+            buddyDiv.appendChild(buddyName);
+            buddyDiv.appendChild(buddyColors);
+            skinGrid.appendChild(buddyDiv);
+        });
+
+        skinGrid.style.visibility = 'visible';
+        const filterMenu = document.querySelector('.filterDrop');
+        filterMenu.style.visibility = 'hidden';
+    } catch (error) {
+        console.error("Error fetching buddies data:", error);
+    }
+    // const skinGrid = document.querySelector('.skinGrid');
+    // // grid-template-columns: repeat(auto-fill, minmax(12%, 1fr));
+    // skinGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(12%, 1fr))";
+    // skinGrid.innerHTML = '';
+    // skinGrid.style.visibility = 'hidden';
+
+    // buddiesOnly.forEach(b => {
+    //     const buddyDiv = document.createElement('div');
+    //     buddyDiv.classList.add('buddy-container');
         
-        // Store DominantColors as a data attribute
-        buddyDiv.dataset.dominantColor = b["Dominant Colors"];;
+    //     // Store DominantColors as a data attribute
+    //     buddyDiv.dataset.dominantColor = b["Dominant Colors"];;
     
-        const buddyName = document.createElement('div');
-        buddyName.className = "buddyName";
-        buddyName.innerHTML = b.Name;
+    //     const buddyName = document.createElement('div');
+    //     buddyName.className = "buddyName";
+    //     buddyName.innerHTML = b.Name;
     
-        const buddyImage = document.createElement('img');
-        buddyImage.src = b.ImageURL;
+    //     const buddyImage = document.createElement('img');
+    //     buddyImage.src = b.ImageURL;
     
-        const buddyColors = document.createElement('div');
-        buddyColors.className = "DominantColors";
+    //     const buddyColors = document.createElement('div');
+    //     buddyColors.className = "DominantColors";
     
-        buddyDiv.appendChild(buddyImage);
-        buddyDiv.appendChild(buddyName);
-        buddyDiv.appendChild(buddyColors);
-        skinGrid.appendChild(buddyDiv);
-    });
+    //     buddyDiv.appendChild(buddyImage);
+    //     buddyDiv.appendChild(buddyName);
+    //     buddyDiv.appendChild(buddyColors);
+    //     skinGrid.appendChild(buddyDiv);
+    // });
 
-    skinGrid.style.visibility = 'visible';
-    const filterMenu = document.querySelector('.filterDrop');
-    filterMenu.style.visibility = 'hidden';
+    // skinGrid.style.visibility = 'visible';
+    // const filterMenu = document.querySelector('.filterDrop');
+    // filterMenu.style.visibility = 'hidden';
 
     
 }
