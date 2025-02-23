@@ -1,5 +1,5 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
     "type": "WebApp",
     "meta": {
         "name": "Demo App",
@@ -18,23 +18,24 @@
         "GameEvents",
         "FileSystem"
     ],
-
+    "background": {
+        "enable": true,
+        "script": "scripts/background.js"
+    },
     "hotkeys": {
-            "toggle_app": {
-                "title": "Toggle App",
-                "action": "toggle_window",
-                "default": "Alt+V",
-                "per_game": []
-              }
-        },
+        "toggle_app": {
+            "title": "Toggle App",
+            "default": "Alt+V"
+        }
+    },
     "data": {
-        "start_window": "MainWindow",
+        "start_window": "BackgroundWindow",
         "windows": {
             "MainWindow": {
                 "file": "loading.html",
                 "transparent": false,
                 "resizable": false,
-                "use_os_windowing": true,
+                "use_os_windowing": false,
                 "size": {
                     "width": 400,
                     "height": 400
@@ -44,25 +45,32 @@
                     "height": 100
                 },
                 "grabMouse": true,  
+                "grab_keyboard_focus": true,
                 "clickthrough": false 
+            },
+            "BackgroundWindow": {
+                "file": "background.html",
+                "transparent": true,
+                "resizable": false,
+                "use_os_windowing": false,
+                "show_in_taskbar": false,
+                "size": {
+                    
+                    "width": 1,
+                    "height": 1
+                }
             }
         },
         "game_targeting": {
             "type": "dedicated",
-            "game_id": [
-                21640
-            ]
+            "game_id": [21640]
         },
-        "game_events": [
-            21640
-        ],
+        "game_events": [21640],
         "launch_events": [
             {
                 "event": "GameLaunch",
                 "event_data": {
-                    "game_ids": [
-                        21640
-                    ]
+                    "game_ids": [21640]
                 }
             }
         ]
