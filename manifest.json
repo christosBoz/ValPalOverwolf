@@ -2,13 +2,13 @@
     "manifest_version": 2,
     "type": "WebApp",
     "meta": {
-        "name": "Demo App",
+        "name": "ValPal",
         "version": "1.0.0",
         "minimum-overwolf-version": "0.199.0.15",
         "author": "Developer Name",
-        "icon": "rocket.png",
-        "icon_gray": "rocket.png",
-        "description": "Demo App"
+        "icon": "img/vplogo.png",
+        "icon_gray": "img/vplogo.png",
+        "description": "ValPal"
     },
     "permissions": [
         "Extensions",
